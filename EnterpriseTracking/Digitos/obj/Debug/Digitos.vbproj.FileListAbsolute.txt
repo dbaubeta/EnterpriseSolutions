@@ -1,0 +1,8 @@
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\bin\Debug\Digitos.dll
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\bin\Debug\Digitos.pdb
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\bin\Debug\Digitos.xml
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.Resources.resources
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbproj.GenerateResource.Cache
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
+C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb
