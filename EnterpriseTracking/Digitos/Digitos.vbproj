@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Digito_Horizontal.vb" />
+    <Compile Include="Digito_Vertical.vb" />
     <Compile Include="DV.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

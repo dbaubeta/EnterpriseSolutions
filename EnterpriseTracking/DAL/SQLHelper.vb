@@ -10,9 +10,9 @@ Public Class SqlHelper
 
     Private strCon As [String] = My.Resources.StrSql
 
-#Region "CRUD"
+#Region "Insert"
 
-    Public Function Create(Consulta As String, Params As SqlParameter()) As Integer
+    Public Function Insert(Consulta As String, Params As SqlParameter()) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
         cmd.Connection = con
@@ -33,31 +33,44 @@ Public Class SqlHelper
             Return -1
         End Try
     End Function
+#End Region
 
-    Public Function Retrieve(Consulta As String, Params As SqlParameter()) As DataTable
+
+#Region "SelectTabla"
+    Public Function SelectTabla(Consulta As String, Params As SqlParameter()) As DataTable
         Dim da As New SqlDataAdapter()
         da.SelectCommand = New SqlCommand()
         da.SelectCommand.Connection = New SqlConnection(strCon)
         da.SelectCommand.CommandType = CommandType.Text
         da.SelectCommand.CommandText = Consulta
+        If Params IsNot Nothing Then da.SelectCommand.Parameters.AddRange(Params)
         Dim dt As New DataTable()
         da.Fill(dt)
         Return dt
+        da.Dispose()
     End Function
+#End Region
+
+
+#Region "SelectEscalar"
+
     Public Function RetrieveScalar(Consulta As String, Params As SqlParameter()) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
         cmd.Connection = con
         cmd.CommandType = CommandType.Text
         cmd.CommandText = Consulta
-        If Params IsNot Nothing Then
-            cmd.Parameters.AddRange(Params)
-        End If
+        If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
         con.Open()
         Dim Resultado = cmd.ExecuteScalar()
         con.Close()
         Return CInt(Resultado)
     End Function
+#End Region
+
+
+#Region "Update"
+
     Public Function Update(Consulta As String, Params As SqlParameter()) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
@@ -79,6 +92,11 @@ Public Class SqlHelper
             Return -1
         End Try
     End Function
+#End Region
+
+
+#Region "Delete"
+
     Public Function Delete(Consulta As String, Params As SqlParameter()) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
@@ -101,6 +119,7 @@ Public Class SqlHelper
         End Try
     End Function
 #End Region
+
 
 #Region "Param Builder"
     Public Function CrearParametro(Nombre As String, Value As String) As SqlParameter
@@ -126,6 +145,15 @@ Public Class SqlHelper
         P.Value = Value
         Return P
     End Function
+
+    Public Function CrearParametro(Nombre As String, Value As Long) As SqlParameter
+        Dim P As New SqlParameter()
+        P.DbType = DbType.Int64
+        P.ParameterName = Nombre
+        P.Value = Value
+        Return P
+    End Function
+
 
     Public Function CrearParametro(Nombre As String, Value As DateTime) As SqlParameter
         Dim P As New SqlParameter()

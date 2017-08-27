@@ -10,7 +10,7 @@
         End Set
     End Property
 
-    Public MustOverride Sub Calcular(o As Object)
+    Public MustOverride Function Calcular(o As Object) As Long
 
 
 

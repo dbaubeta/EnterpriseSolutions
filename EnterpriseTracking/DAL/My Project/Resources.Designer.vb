@@ -61,7 +61,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Data Source=.\NEGRA10;Initial Catalog=EnterpriseSolutionsBD; Integrated Security=SSPI;.
+        '''  Looks up a localized string similar to Data Source=Localhost;Initial Catalog=EnterpriseSolutionsBD; Integrated Security=SSPI;.
         '''</summary>
         Friend ReadOnly Property StrSql() As String
             Get

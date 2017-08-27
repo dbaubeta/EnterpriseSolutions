@@ -1,11 +1,11 @@
 ﻿Public Class Idioma
 
-    Private _ID As String
-    Public Property ID() As String
+    Private _ID As Long
+    Public Property ID() As Long
         Get
             Return _ID
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Long)
             _ID = value
         End Set
     End Property
@@ -53,7 +53,7 @@
 
 
     Public Sub New()
-        Me.DVH = New Digitos.Digito_Horizontal
+        Me.Leyendas = New List(Of BE.Leyenda)
     End Sub
 
 End Class

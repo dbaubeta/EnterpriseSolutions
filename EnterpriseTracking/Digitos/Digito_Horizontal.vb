@@ -3,7 +3,7 @@
 Public Class Digito_Horizontal
     Inherits DV
 
-    Public Overrides Sub calcular(o As Object)
+    Public Overrides Function calcular(o As Object) As Long
 
         Dim info() As PropertyInfo = o.GetType().GetProperties()
         Dim cadena As String = ""
@@ -19,12 +19,16 @@ Public Class Digito_Horizontal
                 End If
             End If
         Next
-        MsgBox(cadena)
 
+        ' Calcular el DVH
+        Dim dvh As Long
+        For j As Integer = 0 To cadena.Length - 1
+            dvh += Asc(cadena(j))
+        Next
 
-        'valor = 1
+        Return dvh
 
-    End Sub
+    End Function
 
 
 End Class

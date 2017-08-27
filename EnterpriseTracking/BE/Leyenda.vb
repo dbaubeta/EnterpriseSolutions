@@ -10,28 +10,27 @@
         End Set
     End Property
 
-    Private _Nombre_Leyenda As String
-    Public Property Nombre_Leyenda() As String
+    Private _Texto_Leyenda As String
+    Public Property texto_Leyenda() As String
         Get
-            Return _Nombre_Leyenda
+            Return _Texto_Leyenda
         End Get
         Set(ByVal value As String)
-            _Nombre_Leyenda = value
+            _Texto_Leyenda = value
         End Set
     End Property
 
-    Private _DVH As Digitos.DV
-    Public Property DVH() As Digitos.DV
+    Private _DVH As Long
+    Public Property DVH() As Long
         Get
             Return _DVH
         End Get
-        Set(ByVal value As Digitos.DV)
+        Set(ByVal value As Long)
             _DVH = value
         End Set
     End Property
 
     Public Sub New()
-        Me.DVH = New Digitos.Digito_Horizontal
     End Sub
 
 End Class
