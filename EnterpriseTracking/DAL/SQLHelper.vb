@@ -12,9 +12,11 @@ Public Class SqlHelper
 
 #Region "Insert"
 
-    Public Function Insert(Consulta As String, Params As SqlParameter()) As Integer
+    Public Function Insert(Consulta As String, Params As SqlParameter()) As Long
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
+        Dim Resultado As Long = 0
+
         cmd.Connection = con
         cmd.CommandType = CommandType.Text
         cmd.CommandText = Consulta
@@ -23,14 +25,18 @@ Public Class SqlHelper
         End If
         Try
             con.Open()
-            Dim Resultado = cmd.ExecuteNonQuery()
+            If Consulta.ToUpper.Contains("SELECT SCOPE_IDENTITY()") Then
+                Resultado = cmd.ExecuteScalar
+            Else
+                Resultado = cmd.ExecuteNonQuery()
+            End If
             con.Close()
             con.Dispose()
             Return Resultado
         Catch ex As SqlException
             'Dim Log As New Seguridad.Log()
             'Log.Write(ex.Message, ex.StackTrace, "DAL", "Critico")
-            Return -1
+            Throw ex
         End Try
     End Function
 #End Region
@@ -38,16 +44,20 @@ Public Class SqlHelper
 
 #Region "SelectTabla"
     Public Function SelectTabla(Consulta As String, Params As SqlParameter()) As DataTable
-        Dim da As New SqlDataAdapter()
-        da.SelectCommand = New SqlCommand()
-        da.SelectCommand.Connection = New SqlConnection(strCon)
-        da.SelectCommand.CommandType = CommandType.Text
-        da.SelectCommand.CommandText = Consulta
-        If Params IsNot Nothing Then da.SelectCommand.Parameters.AddRange(Params)
-        Dim dt As New DataTable()
-        da.Fill(dt)
-        Return dt
-        da.Dispose()
+        Try
+            Dim da As New SqlDataAdapter()
+            da.SelectCommand = New SqlCommand()
+            da.SelectCommand.Connection = New SqlConnection(strCon)
+            da.SelectCommand.CommandType = CommandType.Text
+            da.SelectCommand.CommandText = Consulta
+            If Params IsNot Nothing Then da.SelectCommand.Parameters.AddRange(Params)
+            Dim dt As New DataTable()
+            da.Fill(dt)
+            Return dt
+            da.Dispose()
+        Catch ex As SqlException
+            Throw ex
+        End Try
     End Function
 #End Region
 

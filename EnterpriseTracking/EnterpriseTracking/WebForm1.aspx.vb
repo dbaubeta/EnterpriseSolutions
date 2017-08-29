@@ -21,26 +21,26 @@
         'l.DVH.Calcular(l)
 
 
-        Dim b As New BLL.Leyenda
+        Dim b As New BLL.Idioma
         Dim l1 As New BE.Leyenda
         Dim l2 As New BE.Leyenda
         Dim i As New BE.Idioma
         Dim m As New BE.MensajeError
 
         l1.ID = "Idiot"
-        l1.texto_Leyenda = "Eres un idiota"
+        l1.texto_Leyenda = "shu idiot"
         l1.DVH = 0
 
         l2.ID = "Saint"
-        l2.texto_Leyenda = "Eres un santo"
+        l2.texto_Leyenda = "Shuar a sain"
         l2.DVH = 1
 
-        i.ID = 1
-        i.Nombre = "Español"
+        'i.ID = 2
+        i.Nombre = "Ingli"
         i.Leyendas.Add(l1)
         i.Leyendas.Add(l2)
 
-        b.Guardar_Leyendas(i)
+        b.Guardar(i)
 
     End Sub
 End Class

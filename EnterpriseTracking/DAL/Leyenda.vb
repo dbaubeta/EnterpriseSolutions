@@ -5,8 +5,12 @@ Public Class Leyenda
 
     Public Sub Guardar_Leyendas(i As BE.Idioma)
         Dim DBH As New SqlHelper
-        Dim params(3) As System.Data.SqlClient.SqlParameter
+        Dim params(0) As System.Data.SqlClient.SqlParameter
 
+        params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))
+        DBH.Delete("delete from idioma_leyenda where IDIdioma=@P1", params)
+
+        ReDim params(3)
         For Each l As BE.Leyenda In i.Leyendas
 
             params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))

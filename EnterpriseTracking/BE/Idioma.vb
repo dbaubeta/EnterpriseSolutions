@@ -20,12 +20,12 @@
         End Set
     End Property
 
-    Private _DVH As Digitos.DV
-    Public Property DVH() As Digitos.DV
+    Private _DVH As Long
+    Public Property DVH() As Long
         Get
             Return _DVH
         End Get
-        Set(ByVal value As Digitos.DV)
+        Set(ByVal value As Long)
             _DVH = value
         End Set
     End Property
