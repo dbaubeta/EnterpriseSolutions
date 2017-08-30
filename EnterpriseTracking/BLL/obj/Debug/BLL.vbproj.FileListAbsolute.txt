@@ -31,3 +31,6 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.xml

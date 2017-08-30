@@ -12,7 +12,7 @@ Public Class SqlHelper
 
 #Region "Insert"
 
-    Public Function Insert(Consulta As String, Params As SqlParameter()) As Long
+    Public Function Insert(Consulta As String, Optional Params As SqlParameter() = Nothing) As Long
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
         Dim Resultado As Long = 0
@@ -20,9 +20,7 @@ Public Class SqlHelper
         cmd.Connection = con
         cmd.CommandType = CommandType.Text
         cmd.CommandText = Consulta
-        If Params IsNot Nothing Then
-            cmd.Parameters.AddRange(Params)
-        End If
+        If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
         Try
             con.Open()
             If Consulta.ToUpper.Contains("SELECT SCOPE_IDENTITY()") Then
@@ -43,7 +41,7 @@ Public Class SqlHelper
 
 
 #Region "SelectTabla"
-    Public Function SelectTabla(Consulta As String, Params As SqlParameter()) As DataTable
+    Public Function SelectTabla(Consulta As String, Optional Params As SqlParameter() = Nothing) As DataTable
         Try
             Dim da As New SqlDataAdapter()
             da.SelectCommand = New SqlCommand()
@@ -64,32 +62,36 @@ Public Class SqlHelper
 
 #Region "SelectEscalar"
 
-    Public Function RetrieveScalar(Consulta As String, Params As SqlParameter()) As Integer
+    Public Function RetrieveScalar(Consulta As String, Optional Params As SqlParameter() = Nothing) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
-        cmd.Connection = con
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = Consulta
-        If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
-        con.Open()
-        Dim Resultado = cmd.ExecuteScalar()
-        con.Close()
-        Return CInt(Resultado)
+
+        Try
+            cmd.Connection = con
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = Consulta
+            If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
+            con.Open()
+            Dim Resultado = cmd.ExecuteScalar()
+            con.Close()
+            Return CInt(Resultado)
+
+        Catch ex As SqlException
+            Throw ex
+        End Try
     End Function
 #End Region
 
 
 #Region "Update"
 
-    Public Function Update(Consulta As String, Params As SqlParameter()) As Integer
+    Public Function Update(Consulta As String, Optional Params As SqlParameter() = Nothing) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
         cmd.Connection = con
         cmd.CommandType = CommandType.Text
         cmd.CommandText = Consulta
-        If Params IsNot Nothing Then
-            cmd.Parameters.AddRange(Params)
-        End If
+        If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
         Try
             con.Open()
             Dim Resultado = cmd.ExecuteNonQuery()
@@ -99,7 +101,7 @@ Public Class SqlHelper
         Catch ex As SqlException
             'Dim Log As New Seguridad.Log()
             'Log.Write(ex.Message, ex.StackTrace, "DAL", "Critico")
-            Return -1
+            Throw ex
         End Try
     End Function
 #End Region
@@ -107,15 +109,13 @@ Public Class SqlHelper
 
 #Region "Delete"
 
-    Public Function Delete(Consulta As String, Params As SqlParameter()) As Integer
+    Public Function Delete(Consulta As String, Optional Params As SqlParameter() = Nothing) As Integer
         Dim con As New SqlConnection(strCon)
         Dim cmd As New SqlCommand()
         cmd.Connection = con
         cmd.CommandType = CommandType.Text
         cmd.CommandText = Consulta
-        If Params IsNot Nothing Then
-            cmd.Parameters.AddRange(Params)
-        End If
+        If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
         Try
             con.Open()
             Dim Resultado = cmd.ExecuteNonQuery()
@@ -172,6 +172,15 @@ Public Class SqlHelper
         P.Value = Value
         Return P
     End Function
+
+    Public Function CrearParametro(Nombre As String, Value As Boolean) As SqlParameter
+        Dim P As New SqlParameter()
+        P.DbType = DbType.Boolean
+        P.ParameterName = Nombre
+        P.Value = Value
+        Return P
+    End Function
+
 #End Region
 
 

@@ -1,12 +1,12 @@
 ﻿Public Class Leyenda
 
-    Private _ID As String
-    Public Property ID() As String
+    Private _IDLeyenda As String
+    Public Property IDLeyenda() As String
         Get
-            Return _ID
+            Return _IDLeyenda
         End Get
         Set(ByVal value As String)
-            _ID = value
+            _IDLeyenda = value
         End Set
     End Property
 

@@ -41,17 +41,6 @@
     End Property
 
 
-    Private _pruebita As Leyenda
-    Public Property pruebita() As Leyenda
-        Get
-            Return _pruebita
-        End Get
-        Set(ByVal value As Leyenda)
-            _pruebita = value
-        End Set
-    End Property
-
-
     Public Sub New()
         Me.Leyendas = New List(Of BE.Leyenda)
     End Sub

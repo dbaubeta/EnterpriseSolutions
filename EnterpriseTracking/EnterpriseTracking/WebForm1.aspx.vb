@@ -27,11 +27,11 @@
         Dim i As New BE.Idioma
         Dim m As New BE.MensajeError
 
-        l1.ID = "Idiot"
+        l1.IDLeyenda = "Idiot"
         l1.texto_Leyenda = "shu idiot"
         l1.DVH = 0
 
-        l2.ID = "Saint"
+        l2.IDLeyenda = "Saint"
         l2.texto_Leyenda = "Shuar a sain"
         l2.DVH = 1
 

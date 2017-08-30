@@ -62,6 +62,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facade_Pantalla.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\DAL\DAL.vbproj">
       <Project>{f9e048cb-7c0c-4a92-be46-87fecf82d6cc}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Digitos\Digitos.vbproj">
+      <Project>{403b3c66-4472-4fb7-b3f8-9764ae9a44b9}</Project>
+      <Name>Digitos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
