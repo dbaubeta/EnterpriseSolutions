@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class WebForm1
+Partial Public Class WebForm2
 
     '''<summary>
     '''milabel control.
@@ -23,11 +23,11 @@ Partial Public Class WebForm1
     Protected WithEvents milabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Miboton control.
+    '''miboton control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Miboton As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents miboton As Global.System.Web.UI.WebControls.Button
 End Class

@@ -37,10 +37,10 @@ Public Class Idioma
 
     End Sub
 
-    Public Function Obtener_Idiomas(i As List(Of BE.Idioma)) As List(Of BE.Idioma)
+    Public Function Obtener_Idiomas(Optional i As List(Of BE.Idioma) = Nothing) As List(Of BE.Idioma)
 
-        Dim params(i.Count - 1) As System.Data.SqlClient.SqlParameter
-        Dim cadena As String = "select * from idioma where Id in ("
+        Dim params() As System.Data.SqlClient.SqlParameter = Nothing
+        Dim cadena As String = "select * from idioma"
         Dim idx As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Idioma
@@ -48,13 +48,23 @@ Public Class Idioma
         Dim dl As New DAL.Leyenda
 
         Try
-            For Each x As BE.Idioma In i
-                idx += 1
-                If idx > 1 Then cadena += ","
-                cadena += "@P" + idx.ToString.Trim
-                params(idx - 1) = DBH.CrearParametro("@P" + idx.ToString.Trim, Int32.Parse(x.ID))
-            Next
-            cadena += ")"
+
+            If Not IsNothing(i) Then
+                ReDim params(i.Count - 1)
+
+                If i.Count > 0 Then
+                    cadena += " where Id in ("
+
+                    For Each x As BE.Idioma In i
+                        idx += 1
+                        If idx > 1 Then cadena += ","
+                        cadena += "@P" + idx.ToString.Trim
+                        params(idx - 1) = DBH.CrearParametro("@P" + idx.ToString.Trim, Int32.Parse(x.ID))
+                    Next
+                    cadena += ")"
+                End If
+            End If
+
 
             dt = DBH.SelectTabla(cadena, params)
             For Each dr As DataRow In dt.Rows

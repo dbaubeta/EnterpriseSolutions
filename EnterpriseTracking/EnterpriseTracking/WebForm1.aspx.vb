@@ -5,42 +5,21 @@
 
     End Sub
 
-    Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Dim l As New BE.Idioma
-        'Dim l1 As New BE.Leyenda
-        'Dim l2 As New BE.Leyenda
-
-        'l.ID = "myId"
-        'l.Nombre = "MiNombre"
-        'l.Leyendas = New List(Of BE.Leyenda)
-        'l.pruebita = New BE.Leyenda
-        'l.pruebita.ID = 9999
-
-        'l.Leyendas.Add(l1)
-        'l.Leyendas.Add(l2)
-        'l.DVH.Calcular(l)
+    Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Miboton.Click
+        
 
 
-        Dim b As New BLL.Idioma
-        Dim l1 As New BE.Leyenda
-        Dim l2 As New BE.Leyenda
-        Dim i As New BE.Idioma
-        Dim m As New BE.MensajeError
+    End Sub
 
-        l1.IDLeyenda = "Idiot"
-        l1.texto_Leyenda = "shu idiot"
-        l1.DVH = 0
+    Protected Sub miboton_Click(sender As Object, e As EventArgs) Handles Miboton.Click
 
-        l2.IDLeyenda = "Saint"
-        l2.texto_Leyenda = "Shuar a sain"
-        l2.DVH = 1
+    End Sub
 
-        'i.ID = 2
-        i.Nombre = "Ingli"
-        i.Leyendas.Add(l1)
-        i.Leyendas.Add(l2)
+    Protected Sub miboton_Click1(sender As Object, e As EventArgs) Handles Miboton.Click
 
-        b.Guardar(i)
+    End Sub
+
+    Protected Sub miboton_Click2(sender As Object, e As EventArgs) Handles Miboton.Click
 
     End Sub
 End Class

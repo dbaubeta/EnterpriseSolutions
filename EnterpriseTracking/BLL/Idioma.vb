@@ -22,7 +22,7 @@
 
     End Sub
 
-    Public Function Obtener_Idiomas(i As List(Of BE.Idioma)) As List(Of BE.Idioma)
+    Public Function Obtener_Idiomas(Optional i As List(Of BE.Idioma) = Nothing) As List(Of BE.Idioma)
         Dim d As New DAL.Idioma
         Dim d2 As New DAL.Leyenda
         Dim l As New List(Of BE.Idioma)

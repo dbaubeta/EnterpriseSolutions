@@ -6,11 +6,12 @@
         <br />
     </p>
     <p>
+        <asp:Label ID="milabel" runat="server" Text="blabla"></asp:Label>
     </p>
     <p>
         blablablabalbla</p>
     <p>
-        <asp:Button ID="Button1" runat="server" Text="Button" />
+        <asp:Button ID="miboton" runat="server" Text="Button" />
     </p>
     <p>
     </p>

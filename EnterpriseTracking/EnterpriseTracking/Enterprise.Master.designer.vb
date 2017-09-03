@@ -11,23 +11,32 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class WebForm1
+Partial Public Class Enterprise
 
     '''<summary>
-    '''milabel control.
+    '''dlIdiomas control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents milabel As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Miboton control.
+    '''page1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Miboton As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents page1 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''MainContent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class
