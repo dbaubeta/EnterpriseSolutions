@@ -38,7 +38,17 @@ Public Class Facade_Pantalla
 
         Dim o As BE.Leyenda = p_idioma.Leyendas.Find(Function(c) c.IDLeyenda = ID)
         If IsNothing(o) Then
-            Return "Language not found"
+
+            o = New BE.Leyenda
+            o.IDLeyenda = ID
+            o.texto_Leyenda = ""
+            Do While o.texto_Leyenda = ""
+                o.texto_Leyenda = InputBox("Ingresa el valor para " + ID + " (idioma:" + p_idioma.Nombre + ")", "Falta la entrada de idioma")
+            Loop
+            p_idioma.Leyendas.Add(o)
+            Dim bi As New BLL.Idioma
+            bi.Guardar(p_idioma)
+            Return o.texto_Leyenda
         Else
             Return o.texto_Leyenda
         End If
@@ -55,38 +65,35 @@ Public Class Facade_Pantalla
             'traducir controles
             If Not c.ID Is Nothing Then
                 Dim leyenda As String = obtenerLeyenda(formname + "_" + c.ID.ToString, p_idioma)
-                If Not leyenda Is Nothing Then
-                    'boton
-                    If TypeOf c Is Button Then
-                        Dim boton As Button = TryCast(c, Button)
-                        boton.Text = leyenda
-                    End If
-
-                    'textbox
-                    If TypeOf c Is TextBox Then
-                        Dim txt As TextBox = TryCast(c, TextBox)
-                        txt.Text = leyenda
-                    End If
-
-                    'label
-                    If TypeOf c Is Label Then
-                        Dim etiqueta As Label = TryCast(c, Label)
-                        etiqueta.Text = leyenda
-                    End If
-
-                    'html
-                    If TypeOf c Is HtmlGenericControl Then
-                        Dim controlHTML As HtmlGenericControl = DirectCast(c, HtmlGenericControl)
-                        controlHTML.InnerText = leyenda
-                    End If
-                    If TypeOf c Is HtmlButton Then
-                        Dim botonHTML As HtmlButton = DirectCast(c, HtmlButton)
-                        botonHTML.InnerText = leyenda
-                    End If
-
-
+                'boton
+                If TypeOf c Is Button Then
+                    Dim boton As Button = TryCast(c, Button)
+                    boton.Text = leyenda
                 End If
+
+                'textbox
+                'If TypeOf c Is TextBox Then
+                'Dim txt As TextBox = TryCast(c, TextBox)
+                'txt.Text = leyenda
                 'End If
+
+                'label
+                If TypeOf c Is Label Then
+                    Dim etiqueta As Label = TryCast(c, Label)
+                    etiqueta.Text = leyenda
+                End If
+
+                'html
+                If TypeOf c Is HtmlGenericControl Then
+                    Dim controlHTML As HtmlGenericControl = DirectCast(c, HtmlGenericControl)
+                    controlHTML.InnerText = leyenda
+                End If
+                If TypeOf c Is HtmlButton Then
+                    Dim botonHTML As HtmlButton = DirectCast(c, HtmlButton)
+                    botonHTML.InnerText = leyenda
+                End If
+
+
             End If
 
             'si el control contiene otros controles itero sobre ellos

@@ -7,7 +7,7 @@
 <p>
     &nbsp;</p>
 <p>
-        <asp:Button ID="miboton" runat="server" Text="Button" />
+        <asp:Button ID="miboton2" runat="server" Text="Button" />
     </p>
 <p>
 </p>
