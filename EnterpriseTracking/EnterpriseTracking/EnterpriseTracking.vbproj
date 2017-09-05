@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>
     </SchemaVersion>
-    <ProjectGuid>{AE84FA76-FF4A-4B49-AD08-69085BF3E41D}</ProjectGuid>
+    <ProjectGuid>{99576CA7-30F9-424F-95C5-12A5C0D3DF19}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>EnterpriseTracking</RootNamespace>
@@ -97,7 +97,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="EditarLenguaje.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -122,7 +121,7 @@
     </Compile>
     <Compile Include="EditarLenguaje.aspx.vb">
       <DependentUpon>EditarLenguaje.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Enterprise.Master.designer.vb">
       <DependentUpon>Enterprise.Master</DependentUpon>
@@ -131,15 +130,12 @@
       <DependentUpon>Enterprise.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Global.asax.vb">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.vb">
       <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -212,7 +208,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54118</DevelopmentServerPort>
+          <DevelopmentServerPort>53186</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:59764/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
