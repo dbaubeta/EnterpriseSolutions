@@ -14,33 +14,6 @@ Option Explicit On
 Partial Public Class EditarLenguaje
 
     '''<summary>
-    '''lblLenguajeNombre control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblLenguajeNombre As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtLenguajeNombre control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLenguajeNombre As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidatorLenguajeNombre control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidatorLenguajeNombre As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''grdLeyendas control.
     '''</summary>
     '''<remarks>
@@ -57,4 +30,13 @@ Partial Public Class EditarLenguaje
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAceptar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancelar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
 End Class
