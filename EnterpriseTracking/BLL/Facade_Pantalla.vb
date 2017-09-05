@@ -23,7 +23,7 @@ Public Class Facade_Pantalla
         Else
             Master = DirectCast(p_formulario.Master, MasterPage)
         End If
-        Dim mastername = Path.GetFileName(Master.Request.Path)
+        Dim mastername = Path.GetFileName(Master.Request.Path).Replace(".aspx", "")
         TraducirLeyendas(Master, p_idioma, mastername)
 
 
@@ -66,16 +66,17 @@ Public Class Facade_Pantalla
             If Not c.ID Is Nothing Then
                 Dim leyenda As String = obtenerLeyenda(formname + "_" + c.ID.ToString, p_idioma)
                 'boton
+
                 If TypeOf c Is Button Then
                     Dim boton As Button = TryCast(c, Button)
                     boton.Text = leyenda
                 End If
 
-                'textbox
-                'If TypeOf c Is TextBox Then
-                'Dim txt As TextBox = TryCast(c, TextBox)
-                'txt.Text = leyenda
-                'End If
+                'TextBox
+                If TypeOf c Is TextBox Then
+                    Dim txt As TextBox = TryCast(c, TextBox)
+                    txt.ToolTip = leyenda
+                End If
 
                 'label
                 If TypeOf c Is Label Then
@@ -93,15 +94,19 @@ Public Class Facade_Pantalla
                     botonHTML.InnerText = leyenda
                 End If
 
-
+                If TypeOf c Is RequiredFieldValidator Then
+                    Dim req As RequiredFieldValidator = DirectCast(c, RequiredFieldValidator)
+                    req.Attributes("ErrorMessage") = leyenda
+                    req.Text = leyenda
+                End If
             End If
-
             'si el control contiene otros controles itero sobre ellos
             'para ver si hay que traducirlos
             If (c.Controls.Count > 0) Then
                 'llamada recursiva
                 TraducirLeyendas(c, p_idioma, formname)
             End If
+
         Next
 
     End Sub

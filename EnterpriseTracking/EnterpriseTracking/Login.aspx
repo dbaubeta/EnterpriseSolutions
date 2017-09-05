@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="Login.aspx.vb" Inherits="EnterpriseTracking.Login1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="Login.aspx.vb" Inherits="EnterpriseTracking.Login" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12">
             <section id="loginForm">
@@ -51,8 +51,5 @@
                 </p>
             </section>
         </div>
-
     </div>
-
-
 </asp:Content>

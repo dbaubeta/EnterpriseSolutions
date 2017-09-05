@@ -1,12 +1,7 @@
-﻿Imports System.Data
-
-
-Public Class EditarLenguaje
+﻿Public Class EditarLenguaje
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-
 
     End Sub
 
@@ -27,6 +22,7 @@ Public Class EditarLenguaje
             dt.Rows.Add(dr)
         Next
 
+        grdLeyendas.DataSource = Nothing
         grdLeyendas.DataSource = dt
         grdLeyendas.DataBind()
 
@@ -39,15 +35,18 @@ Public Class EditarLenguaje
 
         Dim falta As Boolean = False
         For Each gvr As GridViewRow In Me.grdLeyendas.Rows
-            Dim tb As TextBox = DirectCast(gvr.FindControl("TextBox1"), TextBox)
+            Dim tb As TextBox = DirectCast(gvr.FindControl("txtNuevoTextoLeyenda"), TextBox)
             If tb.Text = "" Or IsNothing(tb.Text) Then
                 falta = True
             End If
         Next
 
         If falta Then
-
+            MsgBox("Falta")
+        Else
+            MsgBox("tan todos")
         End If
 
     End Sub
 End Class
+
