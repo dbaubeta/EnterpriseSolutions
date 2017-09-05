@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Login1
+Partial Public Class Login
 
     '''<summary>
     '''ErrorMessage control.

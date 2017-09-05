@@ -1,9 +1,10 @@
-﻿Public Class Login1
+﻿Public Class Login
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
     End Sub
+
 
     Protected Sub LogIn(sender As Object, e As EventArgs)
         If IsValid Then
@@ -14,5 +15,6 @@
             'ErrorMessage.Visible = True
         End If
     End Sub
+
 
 End Class
