@@ -34,3 +34,21 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.xml
+D:\EnterpriseTracking\BLL\bin\Debug\BLL.dll
+D:\EnterpriseTracking\BLL\bin\Debug\BLL.pdb
+D:\EnterpriseTracking\BLL\bin\Debug\BLL.xml
+D:\EnterpriseTracking\BLL\bin\Debug\BE.dll
+D:\EnterpriseTracking\BLL\bin\Debug\DAL.dll
+D:\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
+D:\EnterpriseTracking\BLL\bin\Debug\BE.pdb
+D:\EnterpriseTracking\BLL\bin\Debug\BE.xml
+D:\EnterpriseTracking\BLL\bin\Debug\DAL.pdb
+D:\EnterpriseTracking\BLL\bin\Debug\DAL.xml
+D:\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
+D:\EnterpriseTracking\BLL\bin\Debug\Digitos.xml
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.vbprojResolveAssemblyReference.cache
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.Resources.resources
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.vbproj.GenerateResource.Cache
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.dll
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.xml
+D:\EnterpriseTracking\BLL\obj\Debug\BLL.pdb

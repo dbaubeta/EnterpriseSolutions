@@ -19,3 +19,12 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BE\obj\Debug\BE.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BE\obj\Debug\BE.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BE\obj\Debug\BE.pdb
+D:\EnterpriseTracking\BE\bin\Debug\BE.dll
+D:\EnterpriseTracking\BE\bin\Debug\BE.pdb
+D:\EnterpriseTracking\BE\bin\Debug\BE.xml
+D:\EnterpriseTracking\BE\obj\Debug\BE.vbprojResolveAssemblyReference.cache
+D:\EnterpriseTracking\BE\obj\Debug\BE.Resources.resources
+D:\EnterpriseTracking\BE\obj\Debug\BE.vbproj.GenerateResource.Cache
+D:\EnterpriseTracking\BE\obj\Debug\BE.dll
+D:\EnterpriseTracking\BE\obj\Debug\BE.xml
+D:\EnterpriseTracking\BE\obj\Debug\BE.pdb

@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class Login
 
     '''<summary>
+    '''errmessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents errmessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''ErrorMessage control.
     '''</summary>
     '''<remarks>
@@ -41,13 +50,13 @@ Partial Public Class Login
     Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Usuario control.
+    '''txtUsuario control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Usuario As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ErrorUsuario control.
@@ -68,13 +77,13 @@ Partial Public Class Login
     Protected WithEvents lblPassword As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Password control.
+    '''txtPassword control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Password As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ErrorPassword control.
@@ -102,6 +111,15 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRememberme As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnLogin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''RegisterHyperLink control.

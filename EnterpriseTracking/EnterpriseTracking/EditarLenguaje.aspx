@@ -4,6 +4,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid">
       <div class="row" style="margin-bottom:20px">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1" style="vertical-align:middle">
+            <asp:Label ID="lblLenguajeReferencia" runat="server" Text="Label" Width="100%"></asp:Label>
+        </div>
+        <div class="col-sm-5" style="vertical-align:middle">
+                <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+        </div>        
+        <div class="col-sm-4" style="vertical-align:middle"></div>
+
+      </div>
+
+      <div class="row" style="margin-bottom:20px">
         <div class="col-sm-1">
         </div>
         <div class="col-sm-1" style="vertical-align:middle">
@@ -25,23 +37,23 @@
                 <asp:GridView ID="grdLeyendas" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="IDLeyenda" HeaderText="IDLeyenda" >
-                    <HeaderStyle Width="20%" />
+                    <HeaderStyle Width="15%" />
                     </asp:BoundField>
                     <asp:BoundField DataField="TextoLeyenda" HeaderText="TextoLeyenda" >
-                    <HeaderStyle Width="20%" />
+                    <HeaderStyle Width="15%" />
                     </asp:BoundField>
                     <asp:TemplateField HeaderText="NuevoTextoLeyenda">
                         <ItemTemplate>
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">
                                     <asp:TextBox ID="txtNuevoTextoLeyenda" runat="server" style="width:100%" CssClass="form-control"/>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorNuevaLeyenda" runat="server" ErrorMessage="Error!" ControlToValidate="txtNuevoTextoLeyenda" />
                                 </div>
                             </div>
                         </ItemTemplate>
-                        <HeaderStyle Width="60%" />
+                        <HeaderStyle Width="70%" />
                     </asp:TemplateField>
                 </Columns>
                 </asp:GridView>

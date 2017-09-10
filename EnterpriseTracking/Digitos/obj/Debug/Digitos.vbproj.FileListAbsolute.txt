@@ -21,3 +21,18 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\bin\Debug\BE.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\bin\Debug\BE.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbprojResolveAssemblyReference.cache
+D:\EnterpriseTracking\Digitos\bin\Debug\Digitos.dll
+D:\EnterpriseTracking\Digitos\bin\Debug\Digitos.pdb
+D:\EnterpriseTracking\Digitos\bin\Debug\Digitos.xml
+D:\EnterpriseTracking\Digitos\bin\Debug\DAL.dll
+D:\EnterpriseTracking\Digitos\bin\Debug\BE.dll
+D:\EnterpriseTracking\Digitos\bin\Debug\DAL.pdb
+D:\EnterpriseTracking\Digitos\bin\Debug\DAL.xml
+D:\EnterpriseTracking\Digitos\bin\Debug\BE.pdb
+D:\EnterpriseTracking\Digitos\bin\Debug\BE.xml
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbprojResolveAssemblyReference.cache
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.Resources.resources
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbproj.GenerateResource.Cache
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
+D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb

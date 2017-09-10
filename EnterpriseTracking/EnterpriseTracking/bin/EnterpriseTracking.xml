@@ -38,6 +38,14 @@ MainContent control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.Login.errmessage">
+	<summary>
+errmessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.Login.ErrorMessage">
 	<summary>
 ErrorMessage control.
@@ -62,9 +70,9 @@ lblUsuario control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.Login.Usuario">
+</member><member name="F:EnterpriseTracking.Login.txtUsuario">
 	<summary>
-Usuario control.
+txtUsuario control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -86,9 +94,9 @@ lblPassword control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.Login.Password">
+</member><member name="F:EnterpriseTracking.Login.txtPassword">
 	<summary>
-Password control.
+txtPassword control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -113,6 +121,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.Login.lblRememberme">
 	<summary>
 lblRememberme control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.Login.btnLogin">
+	<summary>
+btnLogin control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -151,45 +167,61 @@ To modify move field declaration from designer file to code-behind file.
  Module used to define the properties that are available in the My Namespace for Web projects.
  </summary>
 	<remarks></remarks>
-</member><member name="F:EnterpriseTracking.EditarLenguaje.lblLenguajeNombre">
+</member><member name="F:EnterpriseTracking.EditarLenguaje.lblLenguajeReferencia">
 	<summary>
-lblLenguajeNombre control.
+Control lblLenguajeReferencia.
 </summary>
 	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.dlIdiomas">
+	<summary>
+Control dlIdiomas.
+</summary>
+	<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.lblLenguajeNombre">
+	<summary>
+Control lblLenguajeNombre.
+</summary>
+	<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member><member name="F:EnterpriseTracking.EditarLenguaje.txtLenguajeNombre">
 	<summary>
-txtLenguajeNombre control.
+Control txtLenguajeNombre.
 </summary>
 	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member><member name="F:EnterpriseTracking.EditarLenguaje.RequiredFieldValidatorLenguajeNombre">
 	<summary>
-RequiredFieldValidatorLenguajeNombre control.
+Control RequiredFieldValidatorLenguajeNombre.
 </summary>
 	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member><member name="F:EnterpriseTracking.EditarLenguaje.grdLeyendas">
 	<summary>
-grdLeyendas control.
+Control grdLeyendas.
 </summary>
 	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member><member name="F:EnterpriseTracking.EditarLenguaje.btnAceptar">
 	<summary>
-btnAceptar control.
+Control btnAceptar.
 </summary>
 	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
 </members>

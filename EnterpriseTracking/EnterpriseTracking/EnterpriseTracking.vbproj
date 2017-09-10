@@ -66,6 +66,10 @@
       <Project>{6de977e4-f188-49b3-9ff3-b78e6213a839}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Seguridad\Seguridad.vbproj">
+      <Project>{298bdc6e-48ac-4a92-854b-b7d3c01819b7}</Project>
+      <Name>Seguridad</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
