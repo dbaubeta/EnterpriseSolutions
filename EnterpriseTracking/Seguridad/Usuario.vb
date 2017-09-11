@@ -45,6 +45,28 @@
             ' Cargar permisos aca
 
 
+
+            '            WITH x AS
+            '(
+            '    -- anchor:
+            '    SELECT IDHijo, IdPadre , [level] = 0
+            '    FROM (select IDElemento IDHijo, cast(NULL as bigint) IDPadre from Elemento_Usuario eu 
+            '			join elemento e on e.ID = eu.IDElemento 
+            '			where tipo = 1) as n
+            '    UNION ALL
+            '    -- recursive:
+            '    SELECT t.IDHijo, t.IDPadre, [level] = x.[level] + 1
+            '    FROM x INNER JOIN Elemento_Elemento  AS t
+            '    ON t.IDPadre = x.IDHijo
+            ')
+            'SELECT IDHijo , IDPadre, [level] FROM x
+            'ORDER BY [level]
+            'OPTION (MAXRECURSION 32);
+
+
+
+
+
         Else
             Me.Usuario = Nothing
         End If

@@ -32,13 +32,13 @@ Partial Public Class Enterprise
     Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''page1 control.
+    '''mnuButtonIdioma control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents page1 As Global.System.Web.UI.HtmlControls.HtmlButton
+    Protected WithEvents mnuButtonIdioma As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
     '''MainContent control.

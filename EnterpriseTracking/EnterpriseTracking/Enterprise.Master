@@ -29,7 +29,7 @@
             </div>
             <ul class="nav navbar-nav">
         <%-- BOTONES DE LA BARRA --%>
-              <li><button class="btn btn navbar-btn" runat="server" id="page1">miboton</button></li>
+              <li><button class="btn btn navbar-btn" runat="server" id="mnuButtonIdioma">miboton</button></li>
             </ul>
           </div>
         </nav>

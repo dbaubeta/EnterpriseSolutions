@@ -1,4 +1,6 @@
-﻿Public Class Enterprise
+﻿Imports System.IO
+
+Public Class Enterprise
     Inherits System.Web.UI.MasterPage
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -43,6 +45,39 @@
         Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
         f.Traducir(Me, DirectCast(Session("Idioma"), BE.Idioma))
 
+        ' Creo los permisos de la pagina si no existen
+
+        Dim formname As String = Path.GetFileName(Request.PhysicalPath).Replace(".aspx", "")
+
+        Dim s As New Seguridad.Permiso
+        s.Elemento.Descripcion = formname
+        s.Elemento.Tipo = 0
+        s.Guardar()
+
+        cargarpermisosbase(Me)
+
 
     End Sub
+
+    Private Sub cargarpermisosbase(c As Control)
+
+        Dim formname As String = Path.GetFileName(Request.PhysicalPath).Replace(".aspx", "")
+
+        If TypeOf c Is Button Or TypeOf c Is Page Or TypeOf c Is HtmlButton Then
+            Dim s As New Seguridad.Permiso
+            s.Elemento.Descripcion = IIf(c.ID.StartsWith("mnuButton"), "", formname + "_") + c.ID
+            s.Elemento.Tipo = 0
+            s.Guardar()
+        End If
+
+
+        'Creo todos los permisos de la pantalla.
+        For Each x As Control In c.Controls
+            cargarpermisosbase(x)
+        Next
+
+    End Sub
+
+
+
 End Class

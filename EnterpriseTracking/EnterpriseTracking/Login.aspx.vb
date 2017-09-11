@@ -2,7 +2,7 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Me.errmessage.Visible = False
+        Me.msjError.Visible = False
     End Sub
 
 
@@ -13,11 +13,15 @@
             Dim s As New Seguridad.Seguridad
             Dim u As New BE.Usuario
             Dim us As New Seguridad.Usuario
+            Dim b As New BLL.Facade_Pantalla
             u.Nombre = Me.txtUsuario.Text
 
             us = s.ObtenerUsuario(u)
             If us Is Nothing Then
-                Me.errmessage.Visible = True
+                Dim em As New BE.MensajeError
+                em.IDError = "msjErrorUsuarioIncorrecto"
+                Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
+                Me.msjError.Visible = True
             Else
                 Response.Redirect("~/EditarLenguaje.aspx")
             End If

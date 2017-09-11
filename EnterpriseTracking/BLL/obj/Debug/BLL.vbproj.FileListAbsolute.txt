@@ -52,3 +52,6 @@ D:\EnterpriseTracking\BLL\obj\Debug\BLL.vbproj.GenerateResource.Cache
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.dll
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.xml
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.xml

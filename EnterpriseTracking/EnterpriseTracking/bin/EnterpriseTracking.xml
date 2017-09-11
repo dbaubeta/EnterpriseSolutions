@@ -22,9 +22,9 @@ dlIdiomas control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.Enterprise.page1">
+</member><member name="F:EnterpriseTracking.Enterprise.mnuButtonIdioma">
 	<summary>
-page1 control.
+mnuButtonIdioma control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -38,9 +38,9 @@ MainContent control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.Login.errmessage">
+</member><member name="F:EnterpriseTracking.Login.msjError">
 	<summary>
-errmessage control.
+msjError control.
 </summary>
 	<remarks>
 Auto-generated field.

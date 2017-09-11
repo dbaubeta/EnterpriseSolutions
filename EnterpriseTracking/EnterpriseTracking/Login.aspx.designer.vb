@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class Login
 
     '''<summary>
-    '''errmessage control.
+    '''msjError control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents errmessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents msjError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''ErrorMessage control.

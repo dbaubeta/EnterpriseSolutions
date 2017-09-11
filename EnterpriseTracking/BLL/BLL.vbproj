@@ -114,6 +114,10 @@
       <Project>{403b3c66-4472-4fb7-b3f8-9764ae9a44b9}</Project>
       <Name>Digitos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Seguridad\Seguridad.vbproj">
+      <Project>{298bdc6e-48ac-4a92-854b-b7d3c01819b7}</Project>
+      <Name>Seguridad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
