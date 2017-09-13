@@ -36,15 +36,26 @@
     Public Sub Cargar()
 
         Dim l As New List(Of BE.Usuario)
-        Dim d As New DAL.Usuario
+        Dim du As New DAL.Usuario
 
         l.Add(Me.Usuario)
-        l = d.ObtenerUsuarios(l)
+        l = du.ObtenerUsuarios(l)
         If l.Count > 0 Then
             Me.Usuario = l.Item(0)
-            ' Cargar permisos aca
-
-
+            ' Cargar permisos 
+            Dim de As New DAL.Elemento
+            For Each x As BE.Elemento In de.ObtenerElementos(Me.Usuario)
+                If x.Tipo = 0 Then ' Permiso
+                    Dim y As New Permiso
+                    y.Elemento = x
+                    Me.Elementos.Add(y)
+                Else
+                    Dim y As New Grupo
+                    y.Elemento = x
+                    y.Hijos = ObtenerElementos(x)
+                    Me.Elementos.Add(y)
+                End If
+            Next
 
             '            WITH x AS
             '(
@@ -87,8 +98,9 @@
         ValidarDatos = Nothing
     End Function
 
-    Public Function ValidarPassword(ByVal s As BE.Usuario) As List(Of BE.MensajeError)
-        ValidarPassword = Nothing
+    Public Function ValidarPassword(s As String) As Boolean
+        Dim c As New Cifrado.Cifrado
+        Return c.encriptar_md5(s) = Me.Usuario.Password
     End Function
 
     Public Sub New()
@@ -96,5 +108,29 @@
         Me.Elementos = New List(Of Elemento)
     End Sub
 
+
+
+    Private Function ObtenerElementos(e As BE.Elemento) As List(Of Elemento)
+
+        Dim de As New DAL.Elemento
+        Dim l As New List(Of Elemento)
+
+        For Each x As BE.Elemento In de.ObtenerElementos(e)
+            If x.Tipo = 0 Then ' Permiso
+                Dim y As New Permiso
+                y.Elemento = x
+                l.Add(y)
+            Else
+                Dim y As New Grupo
+                y.Elemento = x
+                y.Hijos = ObtenerElementos(x)
+                l.Add(y)
+            End If
+        Next
+
+        Return l
+
+
+    End Function
 
 End Class

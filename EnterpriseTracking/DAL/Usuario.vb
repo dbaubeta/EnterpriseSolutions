@@ -23,6 +23,8 @@
         Dim dt As DataTable
         Dim l As BE.Usuario
         Dim ll As New List(Of BE.Usuario)
+        Dim di As New DAL.Idioma
+
 
         Try
 
@@ -50,6 +52,9 @@
                 l.Nombre = dr.Item("Nombre")
                 l.DVH = dr.Item("DVH")
                 l.Idioma.ID = dr.Item("IDIdioma")
+                Dim li As New List(Of BE.Idioma)
+                li.Add(l.Idioma)
+                l.Idioma = di.Obtener_Idiomas(li)(0)
                 l.Intentos_fallidos = dr.Item("IntentosFallidos")
                 l.Password = dr.Item("password")
                 ll.Add(l)

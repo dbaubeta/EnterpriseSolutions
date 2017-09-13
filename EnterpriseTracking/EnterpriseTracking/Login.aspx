@@ -1,7 +1,35 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="Login.aspx.vb" Inherits="EnterpriseTracking.Login" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" CodeBehind="Login.aspx.vb" Inherits="EnterpriseTracking.Login" %>
+<!DOCTYPE html>
+<link href="Content/bootstrap.css" rel="stylesheet" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form runat="server">
+
+        <%-- IDIOMAS--%>
+        <div class="row" style="margin-bottom:10px;margin-top:10px">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2">
+                <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True"> 
+
+                </asp:DropDownList>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Enterprise</a>
+            </div>
+            <ul class="nav navbar-nav">
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
     <div class="alert alert-danger" id="msjError" runat="server">
         <strong>Danger!</strong> 
     </div>
@@ -30,14 +58,14 @@
                             <asp:RequiredFieldValidator runat="server" ID="ErrorPassword" ControlToValidate="txtPassword" CssClass="text-danger" ErrorMessage="The password field is required." />
                         </div>
                     </div>
-                    <div class="form-group">
+<%--                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
                                 <asp:CheckBox runat="server" ID="RememberMe" />
                                 <asp:Label runat="server" ID="lblRememberme" AssociatedControlID="RememberMe">Remember me?</asp:Label>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" ID="btnLogin" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
@@ -56,5 +84,16 @@
         </div>
     </div>
 
-</asp:Content>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+
 

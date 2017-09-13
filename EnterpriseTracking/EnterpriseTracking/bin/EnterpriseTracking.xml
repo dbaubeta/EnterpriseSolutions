@@ -38,6 +38,14 @@ MainContent control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.Login.dlIdiomas">
+	<summary>
+dlIdiomas control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.Login.msjError">
 	<summary>
 msjError control.
@@ -105,22 +113,6 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.Login.ErrorPassword">
 	<summary>
 ErrorPassword control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.Login.RememberMe">
-	<summary>
-RememberMe control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.Login.lblRememberme">
-	<summary>
-lblRememberme control.
 </summary>
 	<remarks>
 Auto-generated field.

@@ -16,3 +16,6 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.xml

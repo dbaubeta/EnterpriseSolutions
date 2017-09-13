@@ -42,7 +42,7 @@ Public Class Enterprise
         End If
 
         'Traduzco la pagina
-        Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
+        'Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
         f.Traducir(Me, DirectCast(Session("Idioma"), BE.Idioma))
 
         ' Creo los permisos de la pagina si no existen

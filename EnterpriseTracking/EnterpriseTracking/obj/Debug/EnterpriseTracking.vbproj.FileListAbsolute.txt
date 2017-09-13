@@ -45,3 +45,6 @@ D:\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Seguridad.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Seguridad.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Seguridad.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Cifrado.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Cifrado.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Cifrado.xml

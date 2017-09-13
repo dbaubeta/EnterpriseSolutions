@@ -36,10 +36,6 @@
         ObtenerGrupos = Nothing
     End Function
 
-    Public Function ObtenerPermisos(ByVal e As BE.Elemento, ByVal u As BE.Usuario) As List(Of BE.Elemento)
-        ObtenerPermisos = Nothing
-    End Function
-
     Public Function ObtenerPermisos() As List(Of BE.Elemento)
         ObtenerPermisos = Nothing
     End Function
@@ -48,6 +44,64 @@
 
     End Sub
 
+
+
+    Public Function ObtenerElementos(u As BE.Usuario) As List(Of BE.Elemento)
+
+        Dim params(0) As System.Data.SqlClient.SqlParameter
+        Dim cadena As String = "select IDelemento as ID, e.Descripcion, e.Tipo, e.dvh from Elemento_Usuario ee join elemento e on e.id = ee.IDelemento where ee.IDUsuario=@P1"
+        Dim dt As DataTable
+        Dim l As BE.Elemento
+        Dim ll As New List(Of BE.Elemento)
+
+        Try
+            params(0) = DBH.CrearParametro("@P1", Int64.Parse(u.ID))
+
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Elemento
+                l.ID = dr.Item("ID")
+                l.Descripcion = dr.Item("Descripcion")
+                l.Tipo = dr.Item("Tipo")
+                l.DVH = dr.Item("DVH")
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function ObtenerElementos(e As BE.Elemento) As List(Of BE.Elemento)
+
+        Dim params(0) As System.Data.SqlClient.SqlParameter
+        Dim cadena As String = "select IDHijo as ID, e.Descripcion, e.Tipo, e.dvh from elemento_elemento ee join elemento e on e.id = ee.IDHijo where ee.IDPadre=@P1"
+        Dim dt As DataTable
+        Dim l As BE.Elemento
+        Dim ll As New List(Of BE.Elemento)
+
+        Try
+            params(0) = DBH.CrearParametro("@P1", Int64.Parse(e.ID))
+
+
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Elemento
+                l.ID = dr.Item("ID")
+                l.Descripcion = dr.Item("Descripcion")
+                l.Tipo = dr.Item("Tipo")
+                l.DVH = dr.Item("DVH")
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
 
 
 
