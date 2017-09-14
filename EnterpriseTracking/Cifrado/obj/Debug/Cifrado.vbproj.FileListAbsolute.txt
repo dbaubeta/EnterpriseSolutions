@@ -6,3 +6,12 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\bin\Debug\Cifrado.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\bin\Debug\Cifrado.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\bin\Debug\Cifrado.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.vbprojResolveAssemblyReference.cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.Resources.resources
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.vbproj.GenerateResource.Cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Cifrado\obj\Debug\Cifrado.pdb

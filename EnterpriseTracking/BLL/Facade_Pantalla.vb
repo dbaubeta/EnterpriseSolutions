@@ -7,7 +7,7 @@ Imports System.Data
 
 Public Class Facade_Pantalla
 
-    Public Sub Aplicar_Permisos(ByVal p_formulario As Object, p_usuario As Seguridad.Usuario)
+    Public Sub Aplicar_Permisos(p_formulario As Object, p_usuario As Seguridad.Usuario)
 
         Dim lp As New List(Of Seguridad.Elemento)
         For Each e As Seguridad.Elemento In p_usuario.Elementos
@@ -38,15 +38,15 @@ Public Class Facade_Pantalla
 
 
 
-    Public Function ObtenerLeyenda(ByVal m As BE.MensajeError, ByVal p_idioma As BE.Idioma) As BE.Leyenda
+    Public Function ObtenerLeyenda(m As BE.MensajeError, p_idioma As BE.Idioma) As BE.Leyenda
 
         Dim l As New BE.Leyenda
-        l.texto_Leyenda = ObtenerLeyenda(m.IDError, p_idioma)
+        l.texto_Leyenda = obtenerLeyenda(m.IDError, p_idioma)
         Return l
 
     End Function
 
-    Public Sub Traducir(ByRef p_formulario As Object, ByVal p_idioma As BE.Idioma)
+    Public Sub Traducir(ByRef p_formulario As Object, p_idioma As BE.Idioma)
 
         For Each c As Control In p_formulario.Controls
 
@@ -56,40 +56,40 @@ Public Class Facade_Pantalla
                 'boton
                 If TypeOf c Is Button Then
                     Dim boton As Button = TryCast(c, Button)
-                    boton.Text = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    boton.Text = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     'TextBox
                 ElseIf TypeOf c Is TextBox Then
                     Dim txt As TextBox = TryCast(c, TextBox)
-                    txt.ToolTip = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    txt.ToolTip = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     'label
                 ElseIf TypeOf c Is Label Then
                     Dim etiqueta As Label = TryCast(c, Label)
-                    etiqueta.Text = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    etiqueta.Text = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     'htmlGeneric
                 ElseIf TypeOf c Is HtmlGenericControl Then
                     Dim controlHTML As HtmlGenericControl = DirectCast(c, HtmlGenericControl)
-                    controlHTML.InnerText = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    controlHTML.InnerText = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     'htmlButton
                 ElseIf TypeOf c Is HtmlButton Then
                     Dim botonHTML As HtmlButton = DirectCast(c, HtmlButton)
-                    botonHTML.InnerText = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    botonHTML.InnerText = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     ' RequiredFieldValidator
                 ElseIf TypeOf c Is RequiredFieldValidator Then
                     Dim req As RequiredFieldValidator = DirectCast(c, RequiredFieldValidator)
-                    req.Attributes("ErrorMessage") = ObtenerLeyenda(c.ID.ToString, p_idioma)
-                    req.Text = ObtenerLeyenda(c.ID.ToString, p_idioma)
+                    req.Attributes("ErrorMessage") = obtenerLeyenda(c.ID.ToString, p_idioma)
+                    req.Text = obtenerLeyenda(c.ID.ToString, p_idioma)
 
                     'Gridview
                 ElseIf TypeOf c Is GridView Then
                     Dim gv As GridView = DirectCast(c, GridView)
                     For i = 0 To gv.Columns.Count - 1
                         Dim nombrecol As String = "columna" + i.ToString.Trim
-                        gv.HeaderRow.Cells(i).Text = ObtenerLeyenda(c.ID.ToString + "_" + nombrecol, p_idioma)
+                        gv.HeaderRow.Cells(i).Text = obtenerLeyenda(c.ID.ToString + "_" + nombrecol, p_idioma)
                     Next
                 End If
 

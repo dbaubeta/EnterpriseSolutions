@@ -1,0 +1,7 @@
+﻿body {
+}
+.FixedHeader {
+    position: absolute;
+    z-index:500;
+    font-weight: bold;
+}     

@@ -1,15 +1,15 @@
 ﻿Public Class Elemento
     Dim DBH As New SqlHelper
 
-    Public Sub AgregarPermiso(ByVal g As BE.Elemento, ByVal p As BE.Elemento, ByVal u As BE.Usuario)
+    Public Sub AgregarPermiso(g As BE.Elemento, p As BE.Elemento, u As BE.Usuario)
 
     End Sub
 
-    Public Function Cargar(ByVal e As BE.Elemento) As BE.Elemento
+    Public Function Cargar(e As BE.Elemento) As BE.Elemento
         Cargar = Nothing
     End Function
 
-    Public Sub Guardar(ByVal e As BE.Elemento)
+    Public Sub Guardar(e As BE.Elemento)
 
         Dim params(2) As System.Data.SqlClient.SqlParameter
 
@@ -28,7 +28,7 @@
         End Try
     End Sub
 
-    Public Function ObtenerGrupos(ByVal e As BE.Elemento, ByVal u As BE.Usuario) As List(Of BE.Elemento)
+    Public Function ObtenerGrupos(e As BE.Elemento, u As BE.Usuario) As List(Of BE.Elemento)
         ObtenerGrupos = Nothing
     End Function
 
@@ -40,7 +40,7 @@
         ObtenerPermisos = Nothing
     End Function
 
-    Public Sub QuitarPermiso(ByVal g As BE.Elemento, ByVal p As BE.Elemento, ByVal u As BE.Usuario)
+    Public Sub QuitarPermiso(g As BE.Elemento, p As BE.Elemento, u As BE.Usuario)
 
     End Sub
 

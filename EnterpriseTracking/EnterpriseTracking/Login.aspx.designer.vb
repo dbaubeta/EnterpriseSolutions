@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Login
-
+    
     '''<summary>
     '''dlIdiomas control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''msjError control.
     '''</summary>
@@ -30,7 +30,34 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msjError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
+    
+    '''<summary>
+    '''lblEnterpriseTracking control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblEnterpriseTracking As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblDescripcionSistema control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDescripcionSistema As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblIngresesusdatos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblIngresesusdatos As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''ErrorMessage control.
     '''</summary>
@@ -39,7 +66,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ErrorMessage As Global.System.Web.UI.WebControls.PlaceHolder
-
+    
     '''<summary>
     '''FailureText control.
     '''</summary>
@@ -48,7 +75,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FailureText As Global.System.Web.UI.WebControls.Literal
-
+    
     '''<summary>
     '''lblUsuario control.
     '''</summary>
@@ -57,7 +84,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''txtUsuario control.
     '''</summary>
@@ -66,7 +93,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''ErrorUsuario control.
     '''</summary>
@@ -75,7 +102,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ErrorUsuario As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''lblPassword control.
     '''</summary>
@@ -84,7 +111,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPassword As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''txtPassword control.
     '''</summary>
@@ -93,7 +120,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''ErrorPassword control.
     '''</summary>
@@ -102,7 +129,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ErrorPassword As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
     '''<summary>
     '''btnLogin control.
     '''</summary>
@@ -111,7 +138,7 @@ Partial Public Class Login
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''RegisterHyperLink control.
     '''</summary>

@@ -36,3 +36,18 @@ D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbproj.GenerateResource.Cache
 D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
 D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
 D:\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbprojResolveAssemblyReference.cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.Resources.resources
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbproj.GenerateResource.Cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb

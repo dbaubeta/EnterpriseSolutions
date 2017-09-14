@@ -32,7 +32,7 @@
             Else ' Login correcto
                 Session("Usuario") = us
                 Session("Idioma") = us.Usuario.Idioma
-                Response.Redirect("~/EditarLenguaje.aspx")
+                Response.Redirect("~/Principal.aspx")
             End If
 
             'FailureText.Text = "Invalid login attempt"
@@ -57,8 +57,8 @@
         End If
 
         'Traduzco la pagina
-        'Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
-        f.Traducir(Me, DirectCast(l.Find(Function(c) c.ID = dlIdiomas.SelectedValue), BE.Idioma))
+        Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
+        f.Traducir(Me, DirectCast(Session("Idioma"), BE.Idioma))
 
     End Sub
 

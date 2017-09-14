@@ -7,39 +7,38 @@
 </head>
 <body>
     <form runat="server">
-
-        <%-- IDIOMAS--%>
-        <div class="row" style="margin-bottom:10px;margin-top:10px">
-          <div class="col-sm-8"></div>
-          <div class="col-sm-2"></div>
-          <div class="col-sm-2">
-                <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True"> 
-
-                </asp:DropDownList>
-          </div>
-        </div>
-
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">Enterprise</a>
+            <div class="row" style="margin-bottom:10px;margin-top:10px">
+              <div class="col-sm-10">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Enterprise</a>
+                </div>
+                <ul class="nav navbar-nav"></ul>
+              </div>
+            <%-- IDIOMAS--%>              
+              <div class="col-sm-2" style="height:100%;vertical-align:middle;">
+                    <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True" style="vertical-align:middle;"></asp:DropDownList>
+              </div>
             </div>
-            <ul class="nav navbar-nav">
-            </ul>
-          </div>
+        </div>
         </nav>
 
-        <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
+    <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
     <div class="alert alert-danger" id="msjError" runat="server">
         <strong>Danger!</strong> 
     </div>
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-7">
+                  <asp:Label ID="lblEnterpriseTracking" runat="server" Text="Enterprise Tracking" Font-Size="XX-Large"></asp:Label><br/>
+                  <asp:Label ID="lblDescripcionSistema" runat="server" Text="Label" Font-Size="Large"></asp:Label>
+        </div>
+        <div class="col-md-5">
             <section id="loginForm">
-                <div class="form-horizontal">
-                    <h4>Use a local account to log in.</h4>
+                <div class="form-horizontal panel panel-default" style="padding:15px">
+                    <asp:Label ID="lblIngresesusdatos" runat="server" Text="Label" Font-Size="Large"></asp:Label>
                     <hr />
-                      <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
@@ -58,14 +57,6 @@
                             <asp:RequiredFieldValidator runat="server" ID="ErrorPassword" ControlToValidate="txtPassword" CssClass="text-danger" ErrorMessage="The password field is required." />
                         </div>
                     </div>
-<%--                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" ID="lblRememberme" AssociatedControlID="RememberMe">Remember me?</asp:Label>
-                            </div>
-                        </div>
-                    </div>--%>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" ID="btnLogin" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />

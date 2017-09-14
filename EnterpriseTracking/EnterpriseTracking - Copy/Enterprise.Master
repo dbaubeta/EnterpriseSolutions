@@ -1,0 +1,47 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Enterprise.master.vb" Inherits="EnterpriseTracking.Enterprise" %>
+
+<!DOCTYPE html>
+<link href="Content/bootstrap.css" rel="stylesheet" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+
+        <%-- IDIOMAS--%>
+        <div class="row" style="margin-bottom:5px">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2">
+                <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True"> 
+
+                </asp:DropDownList>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+        <%-- BOTONES DE LA BARRA --%>
+              <li><button class="btn btn navbar-btn" runat="server" id="page1">miboton</button></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

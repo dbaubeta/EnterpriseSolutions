@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Enterprise
-
+    
     '''<summary>
     '''head control.
     '''</summary>
@@ -21,16 +21,7 @@ Partial Public Class Enterprise
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
-    '''<summary>
-    '''dlIdiomas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''mnuButtonIdioma control.
     '''</summary>
@@ -39,7 +30,25 @@ Partial Public Class Enterprise
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mnuButtonIdioma As Global.System.Web.UI.HtmlControls.HtmlButton
-
+    
+    '''<summary>
+    '''mnuButtonSeguridad control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonSeguridad As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''dlIdiomas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
+    
     '''<summary>
     '''MainContent control.
     '''</summary>

@@ -6,6 +6,7 @@
     Private _Intentos_fallidos As Integer
     Private _Nombre As String
     Private _Password As String
+    Private _Habilitado As String
 
     Public Property DVH() As Long
         Get
@@ -61,6 +62,14 @@
         End Set
     End Property
 
+    Public Property Habilitado() As Boolean
+        Get
+            Return _Habilitado
+        End Get
+        Set(ByVal value As Boolean)
+            _Habilitado = value
+        End Set
+    End Property
 
     Public Sub New()
         Me.Idioma = New BE.Idioma

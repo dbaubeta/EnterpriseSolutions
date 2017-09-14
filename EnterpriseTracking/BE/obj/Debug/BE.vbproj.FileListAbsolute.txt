@@ -28,3 +28,12 @@ D:\EnterpriseTracking\BE\obj\Debug\BE.vbproj.GenerateResource.Cache
 D:\EnterpriseTracking\BE\obj\Debug\BE.dll
 D:\EnterpriseTracking\BE\obj\Debug\BE.xml
 D:\EnterpriseTracking\BE\obj\Debug\BE.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\bin\Debug\BE.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\bin\Debug\BE.pdb
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\bin\Debug\BE.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.vbprojResolveAssemblyReference.cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.Resources.resources
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.vbproj.GenerateResource.Cache
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.dll
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.xml
+C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BE\obj\Debug\BE.pdb

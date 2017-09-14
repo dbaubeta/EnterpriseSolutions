@@ -78,6 +78,7 @@ Public Class Enterprise
 
     End Sub
 
-
-
+    Private Sub mnuButtonSeguridad_ServerClick(sender As Object, e As EventArgs) Handles mnuButtonSeguridad.ServerClick
+        Response.Redirect("~/UsuarioLista.aspx")
+    End Sub
 End Class
