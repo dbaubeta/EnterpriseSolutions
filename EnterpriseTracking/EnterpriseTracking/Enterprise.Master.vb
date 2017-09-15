@@ -31,6 +31,8 @@ Public Class Enterprise
         Dim f As New BLL.Facade_Pantalla
         Dim b As New BLL.Idioma
         Dim l As New List(Of BE.Idioma)
+        Dim err As New BE.MensajeError
+
         l = b.Obtener_Idiomas()
 
         'Solo cargo la lista si no es postback (por ejemplo cuando cambio el idioma en el dropdwon
@@ -57,6 +59,26 @@ Public Class Enterprise
         cargarpermisosbase(Me)
 
 
+        'Generar Menu Seguridad
+        Me.ListaSeguridad.Controls.Clear()
+        Dim SegLi1 As New HtmlGenericControl("li")
+        Err.IDError = "mnuButonSeguridad_Usuario"
+        SegLi1.InnerHtml = "<a href=""UsuarioLista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        Me.ListaSeguridad.Controls.Add(SegLi1)
+        Dim SegLi2 As New HtmlGenericControl("li")
+        err.IDError = "mnuButonSeguridad_Permisos"
+        SegLi2.InnerHtml = "<a href=""PermisoLista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        Me.ListaSeguridad.Controls.Add(SegLi2)
+
+        'Generar Menu Idioma
+        Me.ListaIdiomas.Controls.Clear()
+        Dim SegIdi1 As New HtmlGenericControl("li")
+        err.IDError = "mnuButonIdioma_AgregarIdioma"
+        SegIdi1.InnerHtml = "<a href=""EditarLenguaje.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        Me.ListaIdiomas.Controls.Add(SegIdi1)
+
+
+
     End Sub
 
     Private Sub cargarpermisosbase(c As Control)
@@ -78,7 +100,5 @@ Public Class Enterprise
 
     End Sub
 
-    Private Sub mnuButtonSeguridad_ServerClick(sender As Object, e As EventArgs) Handles mnuButtonSeguridad.ServerClick
-        Response.Redirect("~/UsuarioLista.aspx")
-    End Sub
+
 End Class

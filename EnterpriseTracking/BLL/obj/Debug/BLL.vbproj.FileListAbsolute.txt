@@ -16,24 +16,6 @@ C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\Enterpr
 C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
 C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
 C:\Users\dbaub\OneDrive\Documents\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.vbprojResolveAssemblyReference.cache
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.Resources.resources
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.vbproj.GenerateResource.Cache
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.xml
 D:\EnterpriseTracking\BLL\bin\Debug\BLL.dll
 D:\EnterpriseTracking\BLL\bin\Debug\BLL.pdb
 D:\EnterpriseTracking\BLL\bin\Debug\BLL.xml
@@ -52,12 +34,6 @@ D:\EnterpriseTracking\BLL\obj\Debug\BLL.vbproj.GenerateResource.Cache
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.dll
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.xml
 D:\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.xml
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\bin\Debug\BLL.dll
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\bin\Debug\BLL.pdb
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\bin\Debug\BLL.xml
@@ -82,3 +58,27 @@ C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolution
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\obj\Debug\BLL.dll
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\obj\Debug\BLL.xml
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BLL.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\BE.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\DAL.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Digitos.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Seguridad.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\bin\Debug\Cifrado.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.vbprojResolveAssemblyReference.cache
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.Resources.resources
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.vbproj.GenerateResource.Cache
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\BLL\obj\Debug\BLL.pdb
