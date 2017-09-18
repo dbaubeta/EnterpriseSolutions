@@ -9,7 +9,7 @@ Public Class Leyenda
 
         Try
             params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))
-            DBH.Delete("delete from idioma_leyenda where IDIdioma=@P1", params)
+            DBH.Delete("delete from IdiomaLeyenda where IDIdioma=@P1", params)
 
             ReDim params(3)
             For Each l As BE.Leyenda In i.Leyendas
@@ -19,7 +19,7 @@ Public Class Leyenda
                 params(2) = DBH.CrearParametro("@P3", l.texto_Leyenda)
                 params(3) = DBH.CrearParametro("@P4", Long.Parse(l.DVH))
 
-                DBH.Insert("INSERT INTO Idioma_Leyenda(IDIdioma,IDLeyenda,Texto,DVH) VALUES(@P1,@P2,@P3,@P4)", params)
+                DBH.Insert("INSERT INTO IdiomaLeyenda(IDIdioma,IDLeyenda,Texto,DVH) VALUES(@P1,@P2,@P3,@P4)", params)
 
             Next
         Catch ex As Exception
@@ -37,7 +37,7 @@ Public Class Leyenda
 
         Try
             params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))
-            dt = DBH.SelectTabla("select * from idioma_leyenda where IDIdioma=@P1", params)
+            dt = DBH.SelectTabla("select * from IdiomaLeyenda where IDIdioma=@P1", params)
             For Each dr As DataRow In dt.Rows
                 l = New BE.Leyenda
                 l.IDLeyenda = dr.Item("IDLeyenda")
@@ -61,7 +61,7 @@ Public Class Leyenda
         Try
             params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))
             params(1) = DBH.CrearParametro("@P2", m.IDError)
-            dt = DBH.SelectTabla("select * from idioma_leyenda where IDIdioma=@P1 and IDLeyenda=@P2", params)
+            dt = DBH.SelectTabla("select * from IdiomaLeyenda where IDIdioma=@P1 and IDLeyenda=@P2", params)
             For Each dr As DataRow In dt.Rows
                 l = New BE.Leyenda
                 l.IDLeyenda = dr.Item("IDLeyenda")

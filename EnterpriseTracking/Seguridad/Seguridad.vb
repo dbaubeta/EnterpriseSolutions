@@ -29,7 +29,23 @@
     End Function
 
     Public Function ObtenerUsuarios() As List(Of Usuario)
-        ObtenerUsuarios = Nothing
+        '    Public Function ObtenerUsuarios() As List(Of BE.Usuario)
+        Dim d As New DAL.Usuario
+        Dim l As New List(Of Usuario)
+        Try
+
+            For Each bu As BE.Usuario In d.ObtenerUsuarios()
+                Dim x As New Usuario
+                x = ObtenerUsuario(bu)
+                l.Add(x)
+            Next
+
+            Return l
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        '   End Function
     End Function
 
 End Class

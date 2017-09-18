@@ -1,5 +1,17 @@
 ﻿Public Class Usuario
 
+    Dim DBH As DAL.SqlHelper
+
+    Private Class UsuarioElemento
+        Public IDUsuario As Long
+        Public IdElemento As Long
+        Public Sub New(u As Long, e As Long)
+            IDUsuario = u
+            IdElemento = e
+        End Sub
+    End Class
+
+
     Private _elementos As List(Of Elemento)
     Public Property Elementos() As List(Of Elemento)
         Get
@@ -29,7 +41,21 @@
 
     End Sub
 
-    Public Sub Guardar(ByVal u As BE.Usuario)
+    Public Sub Guardar()
+
+        Dim d As New DAL.Usuario
+        Dim DVH As New Digitos.Digito_Horizontal
+        Me.Usuario.DVH = DVH.calcular(Me.Usuario)
+
+        d.Guardar(Me.Usuario)
+
+        If Me.Elementos.Count > 0 Then
+            DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
+            For Each h As Elemento In Me.Elementos
+                Dim ue As New UsuarioElemento(Me.Usuario.ID, h.Elemento.ID)
+                d.Agregar_Elemento(Me.Usuario, h.Elemento, DVH.calcular(ue))
+            Next
+        End If
 
     End Sub
 
@@ -38,11 +64,14 @@
         Dim l As New List(Of BE.Usuario)
         Dim du As New DAL.Usuario
 
+        ' Cargar usuario
+        ' =============================================================
         l.Add(Me.Usuario)
         l = du.ObtenerUsuarios(l)
         If l.Count > 0 Then
             Me.Usuario = l.Item(0)
             ' Cargar permisos 
+            ' =============================================================
             Dim de As New DAL.Elemento
             For Each x As BE.Elemento In de.ObtenerElementos(Me.Usuario)
                 If x.Tipo = 0 Then ' Permiso
@@ -52,31 +81,10 @@
                 Else
                     Dim y As New Grupo
                     y.Elemento = x
-                    y.Hijos = ObtenerElementos(x)
+                    y.Hijos = ObtenerElementos(x) ' si es grupo uso funcion recursiva.
                     Me.Elementos.Add(y)
                 End If
             Next
-
-            '            WITH x AS
-            '(
-            '    -- anchor:
-            '    SELECT IDHijo, IdPadre , [level] = 0
-            '    FROM (select IDElemento IDHijo, cast(NULL as bigint) IDPadre from Elemento_Usuario eu 
-            '			join elemento e on e.ID = eu.IDElemento 
-            '			where tipo = 1) as n
-            '    UNION ALL
-            '    -- recursive:
-            '    SELECT t.IDHijo, t.IDPadre, [level] = x.[level] + 1
-            '    FROM x INNER JOIN Elemento_Elemento  AS t
-            '    ON t.IDPadre = x.IDHijo
-            ')
-            'SELECT IDHijo , IDPadre, [level] FROM x
-            'ORDER BY [level]
-            'OPTION (MAXRECURSION 32);
-
-
-
-
 
         Else
             Me.Usuario = Nothing
@@ -85,10 +93,6 @@
 
     End Sub
 
-
-    Public Function ObtenerUsuarios(ByVal f As List(Of BE.Usuario)) As List(Of BE.Usuario)
-        ObtenerUsuarios = Nothing
-    End Function
 
     Public Function Usuario_Bloqueado(ByVal u As BE.Usuario) As List(Of BE.MensajeError)
         Usuario_Bloqueado = Nothing
@@ -109,7 +113,7 @@
     End Sub
 
 
-
+    ' Funcion Recursiva para obtener el arbol de permisos y grupos
     Private Function ObtenerElementos(e As BE.Elemento) As List(Of Elemento)
 
         Dim de As New DAL.Elemento

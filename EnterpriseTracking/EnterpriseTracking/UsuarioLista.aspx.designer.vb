@@ -21,4 +21,31 @@ Partial Public Class UsuarioLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdUsuarios As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''btnNuevoUsuario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnNuevoUsuario As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnEditarUsuario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEditarUsuario As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnEliminarUsuario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEliminarUsuario As Global.System.Web.UI.WebControls.Button
 End Class

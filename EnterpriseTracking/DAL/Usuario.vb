@@ -2,12 +2,7 @@
 
     Dim DBH As New SqlHelper
 
-    Public Sub Agregar_elemento(p_elemento As BE.Elemento)
-
-    End Sub
-
     Public Sub Guardar(u As BE.Usuario)
-
 
         Dim params(2) As System.Data.SqlClient.SqlParameter
 
@@ -83,8 +78,11 @@
 
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
-        Dim cadena As String = "select * from usuario"
-        Dim idx As Integer = 0
+        Dim in1 As String = ""
+        Dim in2 As String = ""
+        Dim cadena As String = "select * from usuario where "
+        Dim idx1 As Integer = 0
+        Dim idx2 As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Usuario
         Dim ll As New List(Of BE.Usuario)
@@ -97,15 +95,22 @@
                 ReDim params(i.Count - 1)
 
                 If i.Count > 0 Then
-                    cadena += " where nombre in ("
+
 
                     For Each x As BE.Usuario In i
-                        idx += 1
-                        If idx > 1 Then cadena += ","
-                        cadena += "@P" + idx.ToString.Trim
-                        params(idx - 1) = DBH.CrearParametro("@P" + idx.ToString.Trim, x.Nombre)
+                        If Not IsNothing(x.Nombre) Then
+                            idx1 += 1
+                            If idx1 > 1 Then in1 += "," Else in1 += " nombre in ("
+                            in1 += "@P" + (idx1 + idx2).ToString.Trim
+                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.Nombre)
+                        ElseIf Not IsNothing(x.ID) Then
+                            idx2 += 1
+                            If idx2 > 1 Then in2 += "," Else in2 += " ID in ("
+                            in2 += "@P" + (idx1 + idx2).ToString.Trim
+                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.ID)
+                        End If
                     Next
-                    cadena += ")"
+                    cadena += IIf(idx1 > 0, in1 + ")", "") + IIf(idx1 > 0 And idx2 > 0, " or ", "") + IIf(idx2 > 0, in2 + ")", "")
                 End If
             End If
 
@@ -136,6 +141,23 @@
 
 
     End Function
+
+    Public Sub Agregar_Elemento(u As BE.Usuario, p As BE.Elemento, DVH As Long)
+
+        Dim params(2) As System.Data.SqlClient.SqlParameter
+
+        Try
+            ' Insert
+            params(0) = DBH.CrearParametro("@P1", Long.Parse(u.ID))
+            params(1) = DBH.CrearParametro("@P2", Long.Parse(p.ID))
+            params(2) = DBH.CrearParametro("@P3", Long.Parse(DVH))
+
+            Dim resultado As Long = DBH.Insert("INSERT INTO UsuarioElemento(IDUsuario, IDElemento ,DVH) VALUES(@P1,@P2,@P3);", params)
+
+        Catch ex As Exception
+        End Try
+
+    End Sub
 
 
 End Class

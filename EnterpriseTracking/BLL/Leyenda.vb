@@ -18,7 +18,7 @@
             l.Guardar_Leyendas(i)
 
             ' Calculo el Digito verificador vertical
-            dvv.tabla = "Idioma_Leyenda"
+            dvv.tabla = "IdiomaLeyenda"
             dvv.calcular()
 
         Catch ex As Exception

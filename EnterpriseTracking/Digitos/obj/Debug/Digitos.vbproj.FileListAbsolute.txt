@@ -51,3 +51,18 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Digitos.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\DAL.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\BE.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbprojResolveAssemblyReference.cache
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.Resources.resources
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.vbproj.GenerateResource.Cache
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb

@@ -27,7 +27,7 @@ Public Class Idioma
                 params(1) = DBH.CrearParametro("@P2", p_idioma.Nombre)
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(p_idioma.DVH))
 
-                DBH.Insert("update Idioma set Nombre=@P2, DVH=@P3 where ID=@P1", params)
+                DBH.Update("update Idioma set Nombre=@P2, DVH=@P3 where ID=@P1", params)
 
             End If
 
