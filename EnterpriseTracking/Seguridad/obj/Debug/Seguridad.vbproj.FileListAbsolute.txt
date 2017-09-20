@@ -19,27 +19,6 @@ C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolution
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.dll
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.xml
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbprojResolveAssemblyReference.cache
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.Resources.resources
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbproj.GenerateResource.Cache
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.dll
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.xml
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.pdb
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbprojResolveAssemblyReference.cache
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.Resources.resources
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbproj.GenerateResource.Cache
@@ -61,3 +40,24 @@ C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Segurid
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\DAL.xml
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\Digitos.pdb
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\Digitos.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Seguridad.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\BE.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Cifrado.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\DAL.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.pdb
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Digitos.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbprojResolveAssemblyReference.cache
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.Resources.resources
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.vbproj.GenerateResource.Cache
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.dll
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\obj\Debug\Seguridad.pdb

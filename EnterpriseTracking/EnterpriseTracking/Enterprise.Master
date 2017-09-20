@@ -12,11 +12,11 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
- <script type="text/javascript">
-    function openModal() {
-        $('#modalConfirmar').modal('show');
-    }
-</script>
+    <script type="text/javascript">
+        function openModal() {
+            $('#modalConfirmar').modal('show');
+        }
+   </script>
 </head>
 <body>
     <form runat="server">
