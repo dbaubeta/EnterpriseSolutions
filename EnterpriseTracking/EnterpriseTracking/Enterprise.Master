@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Enterprise.master.vb" Inherits="EnterpriseTracking.Enterprise" %>
 
 <!DOCTYPE html>
+<link href="Enterprise.css" rel="stylesheet" />
 <link href="Content/bootstrap.css" rel="stylesheet" />
 <script src="Scripts/jquery-1.9.1.js"></script>
 <script src="Scripts/bootstrap.js"></script>
@@ -11,6 +12,11 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+ <script type="text/javascript">
+    function openModal() {
+        $('#modalConfirmar').modal('show');
+    }
+</script>
 </head>
 <body>
     <form runat="server">

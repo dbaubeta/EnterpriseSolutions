@@ -14,13 +14,22 @@ Option Explicit On
 Partial Public Class UsuarioEdicion
     
     '''<summary>
-    '''lblTituloUsuario control.
+    '''noTranslateModalMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblTituloUsuario As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblTitulo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''lblUsuarioID control.
@@ -59,6 +68,24 @@ Partial Public Class UsuarioEdicion
     Protected WithEvents txtUsuarioNombre As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''lblContraseña control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblContraseña As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txtContraseña control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''lblUsuarioIdioma control.
     '''</summary>
     '''<remarks>
@@ -75,6 +102,24 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''lblUsuarioabilitado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUsuarioabilitado As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''chkHabilitado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkHabilitado As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
     
     '''<summary>
     '''btnAceptar control.

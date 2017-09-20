@@ -298,9 +298,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:EnterpriseTracking.UsuarioEdicion._lblTituloUsuario">
+<member name="F:EnterpriseTracking.UsuarioEdicion._lblTitulo">
 <summary>
-lblTituloUsuario control.
+lblTitulo control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -343,6 +343,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:EnterpriseTracking.UsuarioEdicion._lblContraseña">
+<summary>
+lblContraseña control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.UsuarioEdicion._txtContraseña">
+<summary>
+txtContraseña control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:EnterpriseTracking.UsuarioEdicion._lblUsuarioIdioma">
 <summary>
 lblUsuarioIdioma control.
@@ -355,6 +373,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:EnterpriseTracking.UsuarioEdicion._dlIdiomas">
 <summary>
 dlIdiomas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.UsuarioEdicion._lblUsuarioabilitado">
+<summary>
+lblUsuarioabilitado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.UsuarioEdicion._chkHabilitado">
+<summary>
+chkHabilitado control.
 </summary>
 <remarks>
 Auto-generated field.
