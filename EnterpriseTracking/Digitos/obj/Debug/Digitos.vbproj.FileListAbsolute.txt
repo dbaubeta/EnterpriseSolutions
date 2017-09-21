@@ -66,3 +66,6 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Digitos\obj\Debug\Digitos.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Cifrado.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Cifrado.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Digitos\bin\Debug\Cifrado.xml

@@ -35,10 +35,11 @@ Public Class Cifrado
     'strContent = AES_Decrypt(strContent, "somepassword")
     'File.WriteAllText("decrypted.txt", strContent)
 
-    Public Function Encriptar_str(ByVal input As String, ByVal pass As String) As String
+    Public Function Encriptar_str(ByVal input As String) As String
         Dim AES As New System.Security.Cryptography.RijndaelManaged
         Dim Hash_AES As New System.Security.Cryptography.MD5CryptoServiceProvider
         Dim encrypted As String = ""
+        Dim pass As String = "3st33s3lstr1ngd33ncr1pt4d0"
         Try
             Dim hash(31) As Byte
             Dim temp As Byte() = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))
@@ -55,10 +56,12 @@ Public Class Cifrado
         End Try
     End Function
 
-    Public Function Desencriptar_str(ByVal input As String, ByVal pass As String) As String
+    Public Function Desencriptar_str(ByVal input As String) As String
         Dim AES As New System.Security.Cryptography.RijndaelManaged
         Dim Hash_AES As New System.Security.Cryptography.MD5CryptoServiceProvider
         Dim decrypted As String = ""
+        Dim pass As String = "3st33s3lstr1ngd33ncr1pt4d0"
+
         Try
             Dim hash(31) As Byte
             Dim temp As Byte() = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass))

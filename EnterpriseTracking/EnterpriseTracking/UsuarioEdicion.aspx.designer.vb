@@ -23,6 +23,24 @@ Partial Public Class UsuarioEdicion
     Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''btnModalSi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalSi As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''btnModalNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
     '''lblTitulo control.
     '''</summary>
     '''<remarks>
@@ -119,7 +137,7 @@ Partial Public Class UsuarioEdicion
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents chkHabilitado As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents chkHabilitado As Global.System.Web.UI.WebControls.CheckBox
     
     '''<summary>
     '''btnAceptar control.

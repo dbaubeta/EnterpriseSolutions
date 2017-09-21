@@ -107,6 +107,10 @@
       <Project>{331aba68-7bbb-4d10-9c6b-b4e23c956c52}</Project>
       <Name>BE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cifrado\Cifrado.vbproj">
+      <Project>{0341b243-7936-40cf-b288-53613ef8fb0a}</Project>
+      <Name>Cifrado</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -56,7 +56,7 @@ Public Class Enterprise
         s.Elemento.Tipo = 0
         s.Guardar()
 
-        cargarpermisosbase(Me)
+        'cargarpermisosbase(Me)
 
 
         'Generar Menu Seguridad

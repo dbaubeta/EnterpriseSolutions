@@ -4,7 +4,8 @@
 
     Public Sub Guardar(u As BE.Usuario)
 
-        Dim params(2) As System.Data.SqlClient.SqlParameter
+        Dim params(3) As System.Data.SqlClient.SqlParameter
+        Dim c As New Cifrado.Cifrado
 
         Try
             If IsNothing(u.ID) Or u.ID = 0 Then
@@ -12,22 +13,23 @@
                 params(0) = DBH.CrearParametro("@P1", u.Nombre)
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(u.DVH))
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(u.Idioma.ID))
-
-                Dim resultado As Long = DBH.Insert("INSERT INTO Usuario(Nombre ,DVH, IDIdioma, IntentosFallidos, Habilitado) VALUES(@P1,@P2, @P3, 0, 1); SELECT SCOPE_IDENTITY();", params)
+                params(3) = DBH.CrearParametro("@P4", u.Password)
+                Dim resultado As Long = DBH.Insert("INSERT INTO Usuario(Nombre ,DVH, IDIdioma, IntentosFallidos, Habilitado, password) VALUES(@P1,@P2, @P3, 0, 1, @P4); SELECT SCOPE_IDENTITY();", params)
                 If resultado <> -1 Then
                     u.ID = resultado
                 End If
             Else
                 ' Update 
-                ReDim params(5)
+                ReDim params(6)
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(u.ID))
-                params(1) = DBH.CrearParametro("@P2", u.Nombre)
+                params(1) = DBH.CrearParametro("@P2", c.Encriptar_str(u.Nombre))
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(u.DVH))
                 params(3) = DBH.CrearParametro("@P4", Long.Parse(u.Idioma.ID))
                 params(4) = DBH.CrearParametro("@P5", Int32.Parse(u.Intentos_fallidos))
                 params(5) = DBH.CrearParametro("@P6", Boolean.Parse(u.Habilitado))
+                params(6) = DBH.CrearParametro("@P7", u.Password)
 
-                DBH.Update("update Usuario set Nombre=@P2, DVH=@P3, IDIdioma=@P4, Intentosfallidos=@P5, Habilitado=@P6 where ID=@P1", params)
+                DBH.Update("update Usuario set Nombre=@P2, DVH=@P3, IDIdioma=@P4, Intentosfallidos=@P5, Habilitado=@P6, password=@P7 where ID=@P1", params)
 
             End If
 
@@ -47,7 +49,7 @@
         Dim l As BE.Usuario
         Dim ll As New List(Of BE.Usuario)
         Dim di As New DAL.Idioma
-
+        Dim c As New Cifrado.Cifrado
 
         Try
 
@@ -55,7 +57,7 @@
             For Each dr As DataRow In dt.Rows
                 l = New BE.Usuario
                 l.ID = dr.Item("ID")
-                l.Nombre = dr.Item("Nombre")
+                l.Nombre = c.Desencriptar_str(dr.Item("Nombre"))
                 l.DVH = dr.Item("DVH")
                 l.Idioma.ID = dr.Item("IDIdioma")
                 Dim li As New List(Of BE.Idioma)
@@ -87,6 +89,7 @@
         Dim l As BE.Usuario
         Dim ll As New List(Of BE.Usuario)
         Dim di As New DAL.Idioma
+        Dim c As New Cifrado.Cifrado
 
 
         Try
@@ -98,16 +101,16 @@
 
 
                     For Each x As BE.Usuario In i
-                        If Not IsNothing(x.Nombre) Then
-                            idx1 += 1
-                            If idx1 > 1 Then in1 += "," Else in1 += " nombre in ("
-                            in1 += "@P" + (idx1 + idx2).ToString.Trim
-                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.Nombre)
-                        ElseIf Not IsNothing(x.ID) Then
+                        If Not IsNothing(x.ID) And x.ID <> 0 Then
                             idx2 += 1
                             If idx2 > 1 Then in2 += "," Else in2 += " ID in ("
                             in2 += "@P" + (idx1 + idx2).ToString.Trim
                             params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.ID)
+                        ElseIf Not IsNothing(x.Nombre) Then
+                            idx1 += 1
+                            If idx1 > 1 Then in1 += "," Else in1 += " nombre in ("
+                            in1 += "@P" + (idx1 + idx2).ToString.Trim
+                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, c.Encriptar_str(x.Nombre))
                         End If
                     Next
                     cadena += IIf(idx1 > 0, in1 + ")", "") + IIf(idx1 > 0 And idx2 > 0, " or ", "") + IIf(idx2 > 0, in2 + ")", "")
@@ -119,7 +122,7 @@
             For Each dr As DataRow In dt.Rows
                 l = New BE.Usuario
                 l.ID = dr.Item("ID")
-                l.Nombre = dr.Item("Nombre")
+                l.Nombre = c.Desencriptar_str(dr.Item("Nombre"))
                 l.DVH = dr.Item("DVH")
                 l.Idioma.ID = dr.Item("IDIdioma")
                 Dim li As New List(Of BE.Idioma)

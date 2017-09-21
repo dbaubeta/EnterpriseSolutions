@@ -17,7 +17,8 @@
           <asp:Label ID="noTranslateModalMessage" runat="server" Text="Label"></asp:Label>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button"  ID="btnModalSi" runat="server" class="btn btn-success" data-dismiss="modal"></button>
+        <button type="button"  ID="btnModalNo" runat="server" class="btn btn-danger" data-dismiss="modal"></button>
       </div>
     </div>
 
@@ -59,7 +60,7 @@
                 <asp:Label ID="lblContraseña" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
             </div>    
             <div class="col-sm-3" style="padding-top:3px">
-                <asp:TextBox ID="txtContraseña" runat="server" style="width:100%" CssClass="form-control" textmode="Password" />
+                <asp:TextBox ID="txtContraseña" runat="server" style="width:100%" CssClass="form-control" textmode="Password"  />
             </div>        
         </div>
         <%-- DROPDOWN LIST --%>
@@ -77,12 +78,13 @@
                 <asp:Label ID="lblUsuarioabilitado" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label>
             </div>
             <div class="col-sm-3" style="padding-top:5px">
-			    <div class="btn-group" data-toggle="buttons">
+<%--			    <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default btn-xs">
 				        <input type="checkbox" hidden="hidden" runat="server" ID="chkHabilitado">
 				        <span class="glyphicon glyphicon-ok"></span>
 			        </label>            
-                </div>
+                </div>--%>
+                <asp:CheckBox ID="chkHabilitado" runat="server" />
             </div>        
         </div>
         <div class="row" style="margin-top:20px">

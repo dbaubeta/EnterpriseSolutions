@@ -61,3 +61,6 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.xml

@@ -36,8 +36,6 @@ Public Class Facade_Pantalla
 
     End Sub
 
-
-
     Public Function ObtenerLeyenda(m As BE.MensajeError, p_idioma As BE.Idioma) As BE.Leyenda
 
         Dim l As New BE.Leyenda

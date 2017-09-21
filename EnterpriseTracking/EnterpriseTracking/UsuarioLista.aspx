@@ -27,9 +27,9 @@
             </div>
             <div class="col-md-3">
                 <%-- BOTONES ABM --%>
-                <asp:Button ID="btnNuevoUsuario" runat="server" Text="Button" /> <br/>
-                <asp:Button ID="btnEditarUsuario" runat="server" Text="Button" /> <br/>
-                <asp:Button ID="btnEliminarUsuario" runat="server" Text="Button" /> <br/>
+                <asp:Button ID="btnNuevoUsuario" runat="server" Text="Button" style="width:50%" CssClass="btn btn-success" /> <br/><br/>
+                <asp:Button ID="btnEditarUsuario" runat="server" Text="Button" style="width:50%" CssClass="btn btn-success"/> <br/><br/>
+                <asp:Button ID="btnEliminarUsuario" runat="server" Text="Button" style="width:50%" CssClass="btn btn-danger"/> <br/>
             </div>
         </div>
     </div>
