@@ -12,16 +12,16 @@ Option Explicit On
 
 
 Partial Public Class UsuarioEdicion
-    
+
     '''<summary>
-    '''noTranslateModalMessage control.
+    '''noTranslateModalMessageSiNo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
-    
+    Protected WithEvents noTranslateModalMessageSiNo As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''btnModalSi control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalSi As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnModalNo control.
     '''</summary>
@@ -39,7 +39,25 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''noTranslateModalMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnModalOk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''lblTitulo control.
     '''</summary>
@@ -48,7 +66,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblUsuarioID control.
     '''</summary>
@@ -57,7 +75,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUsuarioID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''noTranslateUsuarioID control.
     '''</summary>
@@ -66,7 +84,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateUsuarioID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblUsuarioNombre control.
     '''</summary>
@@ -75,7 +93,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUsuarioNombre As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtUsuarioNombre control.
     '''</summary>
@@ -84,7 +102,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtUsuarioNombre As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblContraseña control.
     '''</summary>
@@ -93,7 +111,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblContraseña As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtContraseña control.
     '''</summary>
@@ -102,7 +120,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblUsuarioIdioma control.
     '''</summary>
@@ -111,7 +129,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUsuarioIdioma As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''dlIdiomas control.
     '''</summary>
@@ -120,7 +138,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''lblUsuarioabilitado control.
     '''</summary>
@@ -129,7 +147,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUsuarioabilitado As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''chkHabilitado control.
     '''</summary>
@@ -138,7 +156,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkHabilitado As Global.System.Web.UI.WebControls.CheckBox
-    
+
     '''<summary>
     '''btnAceptar control.
     '''</summary>
@@ -147,7 +165,7 @@ Partial Public Class UsuarioEdicion
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAceptar As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnCancelar control.
     '''</summary>

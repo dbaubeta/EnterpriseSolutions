@@ -5,7 +5,14 @@ Public Class UsuarioLista
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsNothing(Session("Usuario")) Then
+            Response.Redirect("~/Login.aspx")
+        End If
+
         CargarGrilla()
+
+        Me.btnEditarUsuario.Enabled = False
+        Me.btnEliminarUsuario.Enabled = False
 
     End Sub
 
@@ -65,7 +72,13 @@ Public Class UsuarioLista
                 row.ToolTip = String.Empty
             End If
         Next
-
+        If grdUsuarios.SelectedRow.Cells(0).Text <> "1" Then
+            Me.btnEditarUsuario.Enabled = True
+            Me.btnEliminarUsuario.Enabled = True
+        Else
+            Me.btnEditarUsuario.Enabled = False
+            Me.btnEliminarUsuario.Enabled = False
+        End If
 
     End Sub
 
@@ -75,8 +88,43 @@ Public Class UsuarioLista
     End Sub
 
     Protected Sub btnEditarUsuario_Click(sender As Object, e As EventArgs) Handles btnEditarUsuario.Click
-        Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
-        Response.Redirect("~/UsuarioEdicion.aspx")
+        If Not IsNothing(grdUsuarios.SelectedRow) Then
+            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+            Response.Redirect("~/UsuarioEdicion.aspx")
+        End If
+    End Sub
+
+    Protected Sub btnEliminarUsuario_Click(sender As Object, e As EventArgs) Handles btnEliminarUsuario.Click
+        If Not IsNothing(grdUsuarios.SelectedRow) Then
+            MostrarMensajeModal("EstaSeguroBorrarElementoSeleccionado", False)
+        End If
+    End Sub
+
+    Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
+
+        'elimino el usuario
+        Dim nu As New Seguridad.Usuario
+        nu.Usuario.ID = grdUsuarios.SelectedRow.Cells(0).Text
+        nu.Eliminar()
+
+        Session("UsuarioAEditar") = Nothing
+        Response.Redirect(Request.RawUrl)
+        'Response.Redirect("~/UsuarioLista.aspx")
+    End Sub
+
+    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean)
+
+        Dim m As New BE.MensajeError
+        Dim f As New BLL.Facade_Pantalla
+
+        m.IDError = Msg
+        If Not simple Then
+            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
+        Else
+            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
+        End If
 
     End Sub
 End Class

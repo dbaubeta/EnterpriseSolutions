@@ -1,13 +1,13 @@
 ﻿Public Class Elemento
 
 
-    Private _descripcion As String
-    Public Property Descripcion() As String
+    Private _nombre As String
+    Public Property nombre() As String
         Get
-            Return _descripcion
+            Return _nombre
         End Get
         Set(ByVal value As String)
-            _descripcion = value
+            _nombre = value
         End Set
     End Property
 

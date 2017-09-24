@@ -3,6 +3,10 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsNothing(Session("Usuario")) Then
+            Response.Redirect("~/Login.aspx")
+        End If
+
         Dim f As New BLL.Facade_Pantalla
         Dim b As New BLL.Idioma
         Dim l As New List(Of BE.Idioma)

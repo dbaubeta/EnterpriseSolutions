@@ -5,6 +5,10 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsNothing(Session("Usuario")) Then
+            Response.Redirect("~/Login.aspx")
+        End If
+
         Dim f As New BLL.Facade_Pantalla
         Dim b As New BLL.Idioma
         Dim l As New List(Of BE.Idioma)
@@ -54,7 +58,11 @@
         Dim c As New Cifrado.Cifrado
 
         ' Creo un usuario nuevo y lo guardo. Si ya existe se va a actualizar los datos
-        nu.Usuario.ID = IIf(IsNothing(Session("UsuarioAEditar")), Nothing, Long.Parse(noTranslateUsuarioID.Text))
+        If IsNothing(Session("UsuarioAEditar")) Then
+            nu.Usuario.ID = 0
+        Else
+            nu.Usuario.ID = Long.Parse(noTranslateUsuarioID.Text)
+        End If
         nu.Usuario.Nombre = txtUsuarioNombre.Text
         nu.Usuario.Idioma.ID = dlIdiomas.SelectedValue
         If txtContraseña.Text <> "" Then
@@ -64,22 +72,21 @@
         End If
         nu.Usuario.Habilitado = chkHabilitado.Checked
 
-        nu.Guardar()
-        Session("UsuarioAEditar") = Nothing
-        Response.Redirect("~/UsuarioLista.aspx")
+
+        Dim erroresval As List(Of BE.MensajeError) = nu.ValidarDatos(nu.Usuario)
+        If erroresval.Count > 0 Then
+            MostrarMensajeModal(erroresval(0).IDError, True)
+        Else
+            nu.Guardar()
+            Session("UsuarioAEditar") = Nothing
+            Response.Redirect("~/UsuarioLista.aspx")
+        End If
 
     End Sub
 
     Protected Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
 
-        Dim m As New BE.MensajeError
-        Dim f As New BLL.Facade_Pantalla
-
-        m.IDError = "EstaSeguroSalir"
-        noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
-        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModal();", True)
-
-
+        MostrarMensajeModal("EstaSeguroSalir", False)
 
     End Sub
 
@@ -89,5 +96,23 @@
     End Sub
 
     Private Sub btnModalNo_ServerClick(sender As Object, e As EventArgs) Handles btnModalNo.ServerClick
+
+    End Sub
+
+
+    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean)
+
+        Dim m As New BE.MensajeError
+        Dim f As New BLL.Facade_Pantalla
+
+        m.IDError = Msg
+        If Not simple Then
+            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
+        Else
+            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
+        End If
+
     End Sub
 End Class

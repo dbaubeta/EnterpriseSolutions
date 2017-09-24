@@ -7,7 +7,7 @@ Imports System.Data
 
 Public Class Facade_Pantalla
 
-    Public Sub Aplicar_Permisos(p_formulario As Object, p_usuario As Seguridad.Usuario)
+    Public Sub Aplicar_Permisos(p_formulario As Object, p_usuario As Seguridad.Usuario, formname As String)
 
         Dim lp As New List(Of Seguridad.Elemento)
         For Each e As Seguridad.Elemento In p_usuario.Elementos
@@ -17,19 +17,22 @@ Public Class Facade_Pantalla
         For Each c As Control In p_formulario.Controls
 
             'Ocultar controles
-            If Not c.ID Is Nothing And c.ID <> "msjError" Then
-                Dim o As Seguridad.Elemento = lp.Find(Function(x) x.Elemento.ID = c.ID)
-                If Not IsNothing(o) Then
-
+            If Not c.ID Is Nothing Then
+                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Then
+                    Dim o As Seguridad.Elemento = lp.Find(Function(x) x.Elemento.nombre = formname + "_" + c.ID)
+                    If IsNothing(o) And p_usuario.Usuario.ID <> 1 Then
+                        c.Visible = False
+                    Else
+                        c.Visible = True
+                    End If
                 End If
-
             End If
 
             'si el control contiene otros controles itero sobre ellos
-            'para ver si hay que traducirlos
+            'para ver si hay que ocultarlos
             If (c.Controls.Count > 0) Then
                 'llamada recursiva
-                Aplicar_Permisos(c, p_usuario) ', formname)
+                Aplicar_Permisos(c, p_usuario, formname)
             End If
 
         Next

@@ -52,7 +52,7 @@ Public Class Cifrado
             encrypted = Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
             Return encrypted
         Catch ex As Exception
-            Return Nothing
+            Return input
         End Try
     End Function
 
@@ -74,7 +74,7 @@ Public Class Cifrado
             decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
             Return decrypted
         Catch ex As Exception
-            Return Nothing
+            Return input
         End Try
     End Function
 

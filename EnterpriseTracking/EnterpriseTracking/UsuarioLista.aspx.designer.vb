@@ -12,7 +12,61 @@ Option Explicit On
 
 
 Partial Public Class UsuarioLista
-    
+
+    '''<summary>
+    '''noTranslateModalMessageSiNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalMessageSiNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnModalSi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalSi As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''btnModalNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateModalMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnModalOk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''lblUsuarioListaTitulo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUsuarioListaTitulo As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''grdUsuarios control.
     '''</summary>
@@ -21,7 +75,7 @@ Partial Public Class UsuarioLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdUsuarios As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''btnNuevoUsuario control.
     '''</summary>
@@ -30,7 +84,7 @@ Partial Public Class UsuarioLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnNuevoUsuario As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnEditarUsuario control.
     '''</summary>
@@ -39,7 +93,7 @@ Partial Public Class UsuarioLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEditarUsuario As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnEliminarUsuario control.
     '''</summary>

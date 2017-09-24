@@ -2,6 +2,7 @@
 
     Dim DBH As New SqlHelper
 
+
     Public Sub Guardar(u As BE.Usuario)
 
         Dim params(3) As System.Data.SqlClient.SqlParameter
@@ -10,7 +11,7 @@
         Try
             If IsNothing(u.ID) Or u.ID = 0 Then
                 ' Insert
-                params(0) = DBH.CrearParametro("@P1", u.Nombre)
+                params(0) = DBH.CrearParametro("@P1", c.Encriptar_str(u.Nombre))
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(u.DVH))
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(u.Idioma.ID))
                 params(3) = DBH.CrearParametro("@P4", u.Password)
@@ -30,6 +31,25 @@
                 params(6) = DBH.CrearParametro("@P7", u.Password)
 
                 DBH.Update("update Usuario set Nombre=@P2, DVH=@P3, IDIdioma=@P4, Intentosfallidos=@P5, Habilitado=@P6, password=@P7 where ID=@P1", params)
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Public Sub Eliminar(u As BE.Usuario)
+
+        Dim params(0) As System.Data.SqlClient.SqlParameter
+
+        Try
+            If IsNothing(u.ID) Or u.ID = 0 Then
+            Else
+                'Delete
+                params(0) = DBH.CrearParametro("@P1", Int32.Parse(u.ID))
+                DBH.Delete("delete from Usuario where ID=@P1", params)
 
             End If
 

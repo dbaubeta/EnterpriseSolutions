@@ -1,6 +1,6 @@
 ﻿Public Class Usuario
 
-    Dim DBH As DAL.SqlHelper
+    Dim DBH As New DAL.SqlHelper
 
     Private Class UsuarioElemento
         Public IDUsuario As Long
@@ -40,6 +40,20 @@
     Public Sub Bloquear_Usuario(ByVal u As BE.usuario)
 
     End Sub
+
+    Public Sub Eliminar()
+
+        Dim d As New DAL.Usuario
+        If IsNothing(Me.Usuario.ID) Or Me.Usuario.ID = 0 Then
+        Else
+            DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
+            d.Eliminar(Me.Usuario)
+        End If
+
+
+    End Sub
+
+
 
     Public Sub Guardar()
 
@@ -99,7 +113,23 @@
     End Function
 
     Public Function ValidarDatos(ByVal s As BE.Usuario) As List(Of BE.MensajeError)
-        ValidarDatos = Nothing
+
+        Dim l As New List(Of BE.MensajeError)
+
+        If s.Nombre = "" Or IsNothing(s.Nombre) Then
+            Dim m As New BE.MensajeError
+            m.IDError = "NombreUsuarioRequerido"
+            l.Add(m)
+        End If
+        If s.Password = "" Or IsNothing(s.Password) Then
+            Dim m As New BE.MensajeError
+            m.IDError = "ContraseñaUsuarioRequerido"
+            l.Add(m)
+        End If
+
+        Return l
+
+
     End Function
 
     Public Function ValidarPassword(s As String) As Boolean

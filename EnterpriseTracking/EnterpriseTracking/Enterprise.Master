@@ -13,8 +13,13 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
-        function openModal() {
+        function openModalSiNo() {
             $('#modalConfirmar').modal('show');
+        }
+   </script>
+    <script type="text/javascript">
+        function openModalOk() {
+            $('#modalMensaje').modal('show');
         }
    </script>
 </head>
@@ -31,34 +36,57 @@
                 <ul class="nav navbar-nav">
                 <%-- BOTONES DE LA BARRA --%>
                   <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonTablas" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaTablas"></ul>
+                    </div>
+                  </li>
+                  <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonSecuencias" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaSecuencias"></ul>
+                    </div>
+                  </li>
+                  <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonReportes" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaReportes"></ul>
+                    </div>
+                  </li>
+                  <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonConcursos" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaConcursos"></ul>
+                    </div>
+                  </li>
+                  <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
                       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonIdioma" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
-                      <ul class="dropdown-menu" runat="server" ID="ListaIdiomas"></ul>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaIdiomas"></ul>
                     </div>
                   </li>
                   <li style="margin-right:5px"><div class="dropdown" style="margin-top:10px">
                       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" runat="server" id="mnuButtonSeguridad" style="background-color:#00122f;border-color:#00122f">Dropdown Example<span class="caret" style="color:#ffffff"></span></button>
-                      <ul class="dropdown-menu" runat="server" ID="ListaSeguridad"></ul>
+                      <ul class="dropdown-menu" runat="server" ID="noTranslateListaSeguridad"></ul>
                     </div>
                   </li>
                 </ul>
               </div>
+            <%-- LOGOUT--%>              
+              <div class="col-sm-1" style="height:100%;margin-top:10px;text-align:right;">
+                  <asp:Button ID="mnuButtonLogout" cssclass="btn btn-danger" runat="server" style="width:100%" />
+              </div>
             <%-- IDIOMAS--%>              
-              <div class="col-sm-2" style="height:100%;margin-top:10px ;">
+              <div class="col-sm-1" style="height:100%;margin-top:10px ;">
                     <asp:DropDownList ID="dlIdiomas" runat="server" CssClass="form-control"  AutoPostBack="True" style="vertical-align:middle;"></asp:DropDownList>
               </div>
             </div>
         </div>
         </nav>
 
-
-
-
         <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+
+        <%-- FOOTER --%>              
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Enterprise Solutions</p>
             </footer>
         </div>
     </form>

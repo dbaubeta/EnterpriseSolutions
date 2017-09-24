@@ -107,6 +107,8 @@
     <Content Include="EditarLenguaje.aspx" />
     <Content Include="Enterprise.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GrupoEdicion.aspx" />
+    <Content Include="GrupoLista.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -142,6 +144,20 @@
     <Compile Include="Enterprise.Master.vb">
       <DependentUpon>Enterprise.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GrupoEdicion.aspx.designer.vb">
+      <DependentUpon>GrupoEdicion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrupoEdicion.aspx.vb">
+      <DependentUpon>GrupoEdicion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GrupoLista.aspx.designer.vb">
+      <DependentUpon>GrupoLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrupoLista.aspx.vb">
+      <DependentUpon>GrupoLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>

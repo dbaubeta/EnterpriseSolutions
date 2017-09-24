@@ -19,25 +19,24 @@
             u.Nombre = Me.txtUsuario.Text
 
             us = s.ObtenerUsuario(u)
+            Dim em As New BE.MensajeError
+
             If us Is Nothing Then ' Usuario Inexistente
-                Dim em As New BE.MensajeError
                 em.IDError = "msjErrorUsuarioIncorrecto"
-                Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
-                Me.msjError.Visible = True
-            ElseIf Not us.ValidarPassword(Me.txtPassword.Text) Then ' Contraseña incorrecta
-                Dim em As New BE.MensajeError
+            ElseIf Not us.ValidarPassword(Me.txtContraseña.Text) Then ' Contraseña incorrecta
                 em.IDError = "msjErrorContraseñaIncorrecta"
-                Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
-                Me.msjError.Visible = True
+            ElseIf us.Usuario.Habilitado = 0 Then ' Usuario Inhabilitado
+                em.IDError = "msjErrorUsuarioInhabilitado"
             Else ' Login correcto
                 Session("Usuario") = us
                 Session("Idioma") = us.Usuario.Idioma
                 Response.Redirect("~/Principal.aspx")
             End If
+            Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
+            Me.msjError.Visible = True
 
-            'FailureText.Text = "Invalid login attempt"
-            'ErrorMessage.Visible = True
         End If
+
     End Sub
 
 

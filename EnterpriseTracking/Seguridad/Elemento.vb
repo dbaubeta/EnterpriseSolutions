@@ -12,7 +12,7 @@
 
 
 
-    Public MustOverride Function Cargar() As Elemento
+    Public MustOverride Sub Cargar()
 
     Public MustOverride Function ObtenerPermisos() As List(Of Elemento)
 

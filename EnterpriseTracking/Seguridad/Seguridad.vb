@@ -1,11 +1,32 @@
 ﻿Public Class Seguridad
 
     Public Function ObtenerGrupo(ByVal o As BE.Elemento) As Grupo
-        ObtenerGrupo = Nothing
+        Dim u As New Grupo
+        u.Elemento = o
+        u.Cargar()
+
+        If IsNothing(u.Elemento) Then Return Nothing
+
+        Return u
     End Function
 
     Public Function ObtenerGrupos() As List(Of Grupo)
-        ObtenerGrupos = Nothing
+        '    Public Function ObtenerUsuarios() As List(Of BE.Usuario)
+        Dim d As New DAL.Elemento
+        Dim l As New List(Of Grupo)
+        Try
+
+            For Each bu As BE.Elemento In d.ObtenerGrupos()
+                Dim x As New Grupo
+                x.Elemento = bu
+                l.Add(x)
+            Next
+
+            Return l
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Function
 
     Public Function ObtenerPermiso(ByVal o As BE.Elemento) As Permiso

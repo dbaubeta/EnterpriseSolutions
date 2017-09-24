@@ -23,6 +23,78 @@ Partial Public Class Enterprise
     Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
+    '''mnuButtonTablas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonTablas As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateListaTablas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateListaTablas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''mnuButtonSecuencias control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonSecuencias As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateListaSecuencias control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateListaSecuencias As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''mnuButtonReportes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonReportes As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateListaReportes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateListaReportes As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''mnuButtonConcursos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonConcursos As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateListaConcursos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateListaConcursos As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''mnuButtonIdioma control.
     '''</summary>
     '''<remarks>
@@ -32,13 +104,13 @@ Partial Public Class Enterprise
     Protected WithEvents mnuButtonIdioma As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''ListaIdiomas control.
+    '''noTranslateListaIdiomas control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ListaIdiomas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents noTranslateListaIdiomas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''mnuButtonSeguridad control.
@@ -50,13 +122,22 @@ Partial Public Class Enterprise
     Protected WithEvents mnuButtonSeguridad As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''ListaSeguridad control.
+    '''noTranslateListaSeguridad control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ListaSeguridad As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents noTranslateListaSeguridad As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''mnuButtonLogout control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonLogout As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''dlIdiomas control.
