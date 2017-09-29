@@ -160,10 +160,33 @@
         Catch ex As Exception
             Throw ex
         End Try
+
     End Function
 
     Public Function ObtenerPermisos() As List(Of BE.Elemento)
-        ObtenerPermisos = Nothing
+
+        Dim params() As System.Data.SqlClient.SqlParameter = Nothing
+        Dim cadena As String = "select ID, nombre, tipo , dvh from Elemento where Tipo=0 order by id"
+        Dim dt As DataTable
+        Dim l As BE.Elemento
+        Dim ll As New List(Of BE.Elemento)
+
+        Try
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Elemento
+                l.ID = dr.Item("ID")
+                l.nombre = dr.Item("nombre")
+                l.Tipo = dr.Item("Tipo")
+                l.DVH = dr.Item("DVH")
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Function
 
     Public Sub QuitarPermiso(g As BE.Elemento, p As BE.Elemento, u As BE.Usuario)

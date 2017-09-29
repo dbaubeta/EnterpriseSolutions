@@ -104,6 +104,15 @@ Partial Public Class GrupoEdicion
     Protected WithEvents txtGrupoNombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''grdPermisos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdPermisos As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''btnAceptar control.
     '''</summary>
     '''<remarks>

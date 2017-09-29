@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-10">
             <div class="container-fluid" style="height:100vh; overflow: scroll;">
-                <asp:GridView ID="grdLeyendas" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+                <asp:GridView ID="grdLeyendas" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" >
                 <Columns>
                     <asp:BoundField DataField="IDLeyenda" HeaderText="IDLeyenda" >
                     <HeaderStyle Width="15%" />

@@ -36,6 +36,8 @@
 
         End If
 
+        CargarGrillaPermisos()
+
     End Sub
 
     Private Sub GrupoEdicion_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
@@ -99,5 +101,35 @@
         End If
 
     End Sub
+
+
+
+    Private Sub CargarGrillaPermisos()
+
+        Dim dt As DataTable = New DataTable
+        dt.Columns.Add("nombre")
+        dt.Columns.Add("nombretraducido")
+
+        Dim s As New Seguridad.Seguridad
+
+        For Each p As Seguridad.Permiso In s.ObtenerPermisos
+
+            Dim dr As DataRow = dt.NewRow
+            dr("nombre") = p.Elemento.nombre
+            dr("nombretraducido") = p.Elemento.nombre
+            dt.Rows.Add(dr)
+        Next
+
+        grdPermisos.DataSource = Nothing
+        grdPermisos.DataSource = dt
+        grdPermisos.DataBind()
+
+        grdPermisos.UseAccessibleHeader = True
+        grdPermisos.HeaderRow.TableSection = TableRowSection.TableHeader
+
+
+    End Sub
+
+
 
 End Class

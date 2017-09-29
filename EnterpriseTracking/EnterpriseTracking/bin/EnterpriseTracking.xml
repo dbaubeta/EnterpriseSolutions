@@ -6,183 +6,7 @@ EnterpriseTracking
 </name>
 </assembly>
 <members>
-<member name="F:EnterpriseTracking.GrupoLista.noTranslateModalMessageSiNo">
-	<summary>
-noTranslateModalMessageSiNo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnModalSi">
-	<summary>
-btnModalSi control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnModalNo">
-	<summary>
-btnModalNo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.noTranslateModalMessage">
-	<summary>
-noTranslateModalMessage control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnModalOk">
-	<summary>
-btnModalOk control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.lblGrupoListaTitulo">
-	<summary>
-lblGrupoListaTitulo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.grdGrupos">
-	<summary>
-grdGrupos control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnNuevoGrupo">
-	<summary>
-btnNuevoGrupo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnEditarGrupo">
-	<summary>
-btnEditarGrupo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoLista.btnEliminarGrupo">
-	<summary>
-btnEliminarGrupo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateModalMessageSiNo">
-	<summary>
-noTranslateModalMessageSiNo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalSi">
-	<summary>
-btnModalSi control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalNo">
-	<summary>
-btnModalNo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateModalMessage">
-	<summary>
-noTranslateModalMessage control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalOk">
-	<summary>
-btnModalOk control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.lblTitulo">
-	<summary>
-lblTitulo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.lblGrupoID">
-	<summary>
-lblGrupoID control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateGrupoID">
-	<summary>
-noTranslateGrupoID control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.lblGrupoNombre">
-	<summary>
-lblGrupoNombre control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.txtGrupoNombre">
-	<summary>
-txtGrupoNombre control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.btnAceptar">
-	<summary>
-btnAceptar control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.btnCancelar">
-	<summary>
-btnCancelar control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.Enterprise.head">
+<member name="F:EnterpriseTracking.Enterprise.head">
 	<summary>
 head control.
 </summary>
@@ -305,6 +129,110 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.Enterprise.MainContent">
 	<summary>
 MainContent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.lblTitulo">
+	<summary>
+lblTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.lblGrupoID">
+	<summary>
+lblGrupoID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateGrupoID">
+	<summary>
+noTranslateGrupoID control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.lblGrupoNombre">
+	<summary>
+lblGrupoNombre control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.txtGrupoNombre">
+	<summary>
+txtGrupoNombre control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.grdPermisos">
+	<summary>
+grdPermisos control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.btnAceptar">
+	<summary>
+btnAceptar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.btnCancelar">
+	<summary>
+btnCancelar control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -730,6 +658,86 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.UsuarioLista.btnEliminarUsuario">
 	<summary>
 btnEliminarUsuario control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.lblGrupoListaTitulo">
+	<summary>
+lblGrupoListaTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.grdGrupos">
+	<summary>
+grdGrupos control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnNuevoGrupo">
+	<summary>
+btnNuevoGrupo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnEditarGrupo">
+	<summary>
+btnEditarGrupo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.btnEliminarGrupo">
+	<summary>
+btnEliminarGrupo control.
 </summary>
 	<remarks>
 Auto-generated field.

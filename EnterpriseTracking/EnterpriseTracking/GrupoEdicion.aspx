@@ -76,6 +76,34 @@
 <%--                <asp:RequiredFieldValidator ID="RqFVtxtGrupoNombre" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtGrupoNombre" ></asp:RequiredFieldValidator>--%>
             </div>        
         </div>
+
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-5" style="padding-top:8px">
+                <div class=" container-fluid " style="height:30vh; overflow-y: scroll;" >
+                    <asp:GridView ID="grdPermisos" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:100%">
+                    <Columns>
+                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="nombretraducido" HeaderText="nombretraducido" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chkSelected" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                        <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+                        <rowstyle height="10" />
+                    </asp:GridView>
+                </div>
+            </div>
+            <div class="col-sm-2" style="padding-top:8px">
+
+            </div>
+            <div class="col-sm-5" style="padding-top:8px">
+
+            </div>
+        </div>
+
+
         <div class="row" style="margin-top:20px">
             <div class="col-sm-9">
             </div>
@@ -90,6 +118,9 @@
                 </div>
             </div>        
         </div>
+
+
+
 
 
     </div>

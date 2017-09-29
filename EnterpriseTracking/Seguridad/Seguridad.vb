@@ -34,7 +34,20 @@
     End Function
 
     Public Function ObtenerPermisos() As List(Of Permiso)
-        ObtenerPermisos = Nothing
+        Dim d As New DAL.Elemento
+        Dim l As New List(Of Permiso)
+        Try
+
+            For Each bu As BE.Elemento In d.ObtenerPermisos()
+                Dim x As New Permiso
+                x.Elemento = bu
+                l.Add(x)
+            Next
+
+            Return l
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
     Public Function ObtenerUsuario(ByVal o As BE.Usuario) As Usuario
