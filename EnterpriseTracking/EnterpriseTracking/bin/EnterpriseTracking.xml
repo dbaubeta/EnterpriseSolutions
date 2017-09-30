@@ -214,9 +214,41 @@ txtGrupoNombre control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.GrupoEdicion.grdPermisos">
+</member><member name="F:EnterpriseTracking.GrupoEdicion.grdGruposDisponibles">
 	<summary>
-grdPermisos control.
+grdGruposDisponibles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.grdPermisosDisponibles">
+	<summary>
+grdPermisosDisponibles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateImgFlechaDerecha">
+	<summary>
+noTranslateImgFlechaDerecha control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateImgFlechaIzquierda">
+	<summary>
+noTranslateImgFlechaIzquierda control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.grdElementosSeleccionados">
+	<summary>
+grdElementosSeleccionados control.
 </summary>
 	<remarks>
 Auto-generated field.

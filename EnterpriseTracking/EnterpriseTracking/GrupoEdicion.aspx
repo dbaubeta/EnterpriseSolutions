@@ -78,34 +78,81 @@
         </div>
 
         <div class="row" style="margin-top:20px">
-            <div class="col-sm-5" style="padding-top:8px">
-                <div class=" container-fluid " style="height:30vh; overflow-y: scroll;" >
-                    <asp:GridView ID="grdPermisos" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:100%">
+            <div class="col-sm-2" style="padding-top:3px">
+                <%--<asp:Label ID="Label1" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>--%>
+            </div>  
+            <div class="col-sm-4" style="padding-top:8px">
+                <div class="container-fluid" style="min-height:25vh; height:25vh; overflow-y: scroll; overflow-x:hidden; border:1px solid #cecece; padding-left:0px"  >
+                    <asp:GridView ID="grdGruposDisponibles" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:103%">
                     <Columns>
-                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="nombretraducido" HeaderText="nombretraducido" />
+                        <asp:BoundField DataField="ID" HeaderText="ID"></asp:BoundField>
+                        <asp:BoundField DataField="nombretraducido" HeaderText="nombretraducido" ><HeaderStyle Width="84.9%" /></asp:BoundField>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:CheckBox ID="chkSelected" runat="server" />
                             </ItemTemplate>
+                            <HeaderStyle Width="15%" />
+                            <ItemStyle HorizontalAlign="Center"  />
                         </asp:TemplateField>
                     </Columns>
                         <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
                         <rowstyle height="10" />
                     </asp:GridView>
                 </div>
-            </div>
-            <div class="col-sm-2" style="padding-top:8px">
+                <div class=" container-fluid " style="min-height:25vh; height:25vh; overflow-y: scroll; overflow-x:hidden; border:1px solid #cecece; padding-left:0px"  >
+                    <asp:GridView ID="grdPermisosDisponibles" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:103%">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID"></asp:BoundField >
+                        <asp:BoundField DataField="nombretraducido" HeaderText="nombretraducido" ><HeaderStyle Width="84.9%" /></asp:BoundField>
+                        <asp:TemplateField  >
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chkSelected" runat="server" />
+                            </ItemTemplate>
+                            <HeaderStyle Width="15%" />
+                            <ItemStyle HorizontalAlign="Center"  />
+                        </asp:TemplateField>
+                    </Columns>
+                        <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+                        <rowstyle height="10" />
+                    </asp:GridView>
+                </div>
+
 
             </div>
-            <div class="col-sm-5" style="padding-top:8px">
+
+            <div class="col-sm-1" style="padding-top:8px; text-align:center;">
+                <br/><br/>
+                <asp:ImageButton ID="noTranslateImgFlechaDerecha" runat="server" ImageUrl='/Images/Flecha-derecha.png' Width="90px" Height="90px"></asp:ImageButton>
+                <br/>
+                <asp:ImageButton ID="noTranslateImgFlechaIzquierda" runat="server" ImageUrl='/Images/Flecha-izquierda.png' Width="90px" Height="90px"></asp:ImageButton>
+            </div>
+            
+
+            <div class="col-sm-4" style="padding-top:8px">
+                <div class=" container-fluid " style="min-height:50vh; height:100%; overflow-y: scroll; overflow-x:hidden; border:1px solid #cecece; padding-left:0px"  >
+                    <asp:GridView ID="grdElementosSeleccionados" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:103%">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID"></asp:BoundField>
+                        <asp:BoundField DataField="nombretraducido" HeaderText="nombretraducido" ><HeaderStyle Width="84.9%" /></asp:BoundField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chkSelected" runat="server" />
+                            </ItemTemplate>
+                            <HeaderStyle Width="15%" />
+                            <ItemStyle HorizontalAlign="Center"  />
+                        </asp:TemplateField>
+                    </Columns>
+                        <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+                        <rowstyle height="10" />
+                    </asp:GridView>
+                </div>
 
             </div>
         </div>
 
 
         <div class="row" style="margin-top:20px">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
             </div>
             <div class="col-sm-3">
                 <div class="row">

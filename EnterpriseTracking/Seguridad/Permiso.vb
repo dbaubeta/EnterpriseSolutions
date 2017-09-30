@@ -3,6 +3,20 @@
 
 
     Public Overrides Sub Cargar()
+
+        Dim l As New List(Of BE.Elemento)
+        Dim du As New DAL.Elemento
+
+        ' Cargar permiso
+        ' =============================================================
+        l.Add(Me.Elemento)
+        l = du.ObtenerElementos(l)
+        If l.Count > 0 Then
+            Me.Elemento = l.Item(0)
+        Else
+            Me.Elemento = Nothing
+        End If
+
     End Sub
 
 

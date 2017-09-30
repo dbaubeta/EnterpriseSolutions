@@ -83,12 +83,14 @@ Public Class GrupoLista
 
     Protected Sub btnNuevoGrupo_Click(sender As Object, e As EventArgs) Handles btnNuevoGrupo.Click
         Session("GrupoAEditar") = Nothing
+        Session("EditandoGrupo") = Nothing
         Response.Redirect("~/GrupoEdicion.aspx")
     End Sub
 
     Protected Sub btnEditarGrupo_Click(sender As Object, e As EventArgs) Handles btnEditarGrupo.Click
         If Not IsNothing(grdGrupos.SelectedRow) Then
             Session("GrupoAEditar") = grdGrupos.SelectedRow.Cells(0).Text
+            Session("EditandoGrupo") = Nothing
             Response.Redirect("~/GrupoEdicion.aspx")
         End If
     End Sub

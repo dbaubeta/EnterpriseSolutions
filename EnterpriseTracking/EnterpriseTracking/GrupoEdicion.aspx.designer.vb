@@ -104,13 +104,49 @@ Partial Public Class GrupoEdicion
     Protected WithEvents txtGrupoNombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''grdPermisos control.
+    '''grdGruposDisponibles control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdPermisos As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents grdGruposDisponibles As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''grdPermisosDisponibles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdPermisosDisponibles As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''noTranslateImgFlechaDerecha control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateImgFlechaDerecha As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''noTranslateImgFlechaIzquierda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateImgFlechaIzquierda As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''grdElementosSeleccionados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdElementosSeleccionados As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnAceptar control.

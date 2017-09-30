@@ -20,9 +20,6 @@
 
     End Sub
 
-    Public Function Cargar(e As BE.Elemento) As BE.Elemento
-        Cargar = Nothing
-    End Function
 
     Public Sub Guardar(e As BE.Elemento)
 
@@ -72,12 +69,12 @@
         End Try
     End Sub
 
-    Public Function ObtenerGrupos(i As List(Of BE.Elemento)) As List(Of BE.Elemento)
+    Public Function ObtenerElementos(i As List(Of BE.Elemento)) As List(Of BE.Elemento)
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
         Dim in1 As String = ""
         Dim in2 As String = ""
-        Dim cadena As String = "select * from Elemento where tipo=1"
+        Dim cadena As String = "select * from Elemento "
         Dim idx1 As Integer = 0
         Dim idx2 As Integer = 0
         Dim dt As DataTable
@@ -94,7 +91,7 @@
 
                 If i.Count > 0 Then
 
-                    cadena = cadena + " and "
+                    cadena = cadena + " where "
                     For Each x As BE.Elemento In i
                         If Not IsNothing(x.ID) And x.ID <> 0 Then
                             idx2 += 1
@@ -118,6 +115,7 @@
                 l = New BE.Elemento
                 l.ID = dr.Item("ID")
                 l.nombre = dr.Item("Nombre")
+                l.Tipo = dr.Item("Tipo")
                 l.DVH = dr.Item("DVH")
                 ll.Add(l)
             Next
@@ -223,7 +221,7 @@
 
     End Function
 
-    Public Function ObtenerElementos(e As BE.Elemento) As List(Of BE.Elemento)
+    Public Function ObtenerHijos(e As BE.Elemento) As List(Of BE.Elemento)
 
         Dim params(0) As System.Data.SqlClient.SqlParameter
         Dim cadena As String = "select IDHijo as ID, e.nombre, e.Tipo, e.dvh from ElementoElemento ee join elemento e on e.id = ee.IDHijo where ee.IDPadre=@P1"

@@ -149,7 +149,7 @@
         Dim de As New DAL.Elemento
         Dim l As New List(Of Elemento)
 
-        For Each x As BE.Elemento In de.ObtenerElementos(e)
+        For Each x As BE.Elemento In de.ObtenerHijos(e)
             If x.Tipo = 0 Then ' Permiso
                 Dim y As New Permiso
                 y.Elemento = x

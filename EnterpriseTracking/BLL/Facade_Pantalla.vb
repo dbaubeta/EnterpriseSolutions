@@ -88,7 +88,7 @@ Public Class Facade_Pantalla
                         'Gridview
                     ElseIf TypeOf c Is GridView Then
                         Dim gv As GridView = DirectCast(c, GridView)
-                        If gv.Rows.Count > 1 Then
+                        If gv.Rows.Count > 0 Then
                             For i = 0 To gv.Columns.Count - 1
                                 Dim nombrecol As String = "columna" + i.ToString.Trim
                                 gv.HeaderRow.Cells(i).Text = ObtenerLeyenda(c.ID.ToString + "_" + nombrecol, p_idioma)
