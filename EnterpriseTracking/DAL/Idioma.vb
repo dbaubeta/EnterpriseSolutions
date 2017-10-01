@@ -8,26 +8,28 @@ Public Class Idioma
 
     Public Sub Guardar(ByRef p_idioma As BE.Idioma)
 
-        Dim params(1) As System.Data.SqlClient.SqlParameter
+        Dim params(2) As System.Data.SqlClient.SqlParameter
 
         Try
             If IsNothing(p_idioma.ID) Or p_idioma.ID = 0 Then
                 ' Insert
                 params(0) = DBH.CrearParametro("@P1", p_idioma.Nombre)
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(p_idioma.DVH))
+                params(2) = DBH.CrearParametro("@P3", p_idioma.borrado)
 
-                Dim resultado As Long = DBH.Insert("INSERT INTO Idioma(Nombre ,DVH) VALUES(@P1,@P2); SELECT SCOPE_IDENTITY();", params)
+                Dim resultado As Long = DBH.Insert("INSERT INTO Idioma(Nombre ,DVH, borrado) VALUES(@P1,@P2, @P3); SELECT SCOPE_IDENTITY();", params)
                 If resultado <> -1 Then
                     p_idioma.ID = resultado
                 End If
             Else
                 ' Update 
-                ReDim params(2)
+                ReDim params(3)
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(p_idioma.ID))
                 params(1) = DBH.CrearParametro("@P2", p_idioma.Nombre)
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(p_idioma.DVH))
+                params(3) = DBH.CrearParametro("@P4", p_idioma.borrado)
 
-                DBH.Update("update Idioma set Nombre=@P2, DVH=@P3 where ID=@P1", params)
+                DBH.Update("update Idioma set Nombre=@P2, DVH=@P3, borrado=@P4 where ID=@P1", params)
 
             End If
 
@@ -40,7 +42,7 @@ Public Class Idioma
     Public Function Obtener_Idiomas(Optional i As List(Of BE.Idioma) = Nothing) As List(Of BE.Idioma)
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
-        Dim cadena As String = "select * from idioma"
+        Dim cadena As String = "select * from idioma where borrado = 0 "
         Dim idx As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Idioma
@@ -53,7 +55,7 @@ Public Class Idioma
                 ReDim params(i.Count - 1)
 
                 If i.Count > 0 Then
-                    cadena += " where Id in ("
+                    cadena += " and Id in ("
 
                     For Each x As BE.Idioma In i
                         idx += 1
@@ -72,6 +74,7 @@ Public Class Idioma
                 l.ID = dr.Item("ID")
                 l.Nombre = dr.Item("Nombre")
                 l.DVH = dr.Item("DVH")
+                l.borrado = dr.Item("borrado")
                 l.Leyendas = dl.ObtenerLeyendas(l)
                 ll.Add(l)
             Next

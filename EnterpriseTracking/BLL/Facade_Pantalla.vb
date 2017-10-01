@@ -18,7 +18,7 @@ Public Class Facade_Pantalla
 
             'Ocultar controles
             If Not c.ID Is Nothing Then
-                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Then
+                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Or c.ID.StartsWith("btnAsignar") Then
                     Dim o As Seguridad.Elemento = lp.Find(Function(x) x.Elemento.nombre = formname + "_" + c.ID)
                     If IsNothing(o) And p_usuario.Usuario.ID <> 1 Then
                         c.Visible = False

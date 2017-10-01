@@ -1,5 +1,8 @@
 ﻿Imports System.IO
 
+
+
+
 Public Class Enterprise
     Inherits System.Web.UI.MasterPage
 
@@ -15,11 +18,11 @@ Public Class Enterprise
         End If
 
         ' Cargo la lista de permisos del usuario en memoria una unica vez
-        If Not IsPostBack Then
-            For Each el As Seguridad.Elemento In DirectCast(Session("Usuario"), Seguridad.Usuario).Elementos
-                lp.AddRange(el.ObtenerPermisos)
-            Next
-        End If
+        'If Not IsPostBack Then
+        For Each el As Seguridad.Elemento In DirectCast(Session("Usuario"), Seguridad.Usuario).Elementos
+            lp.AddRange(el.ObtenerPermisos)
+        Next
+        'End If
 
         ' Si la pantalla actual no esta en la lista de permisos del usuario o no es admin lo mando a login
         Dim formname As String = Path.GetFileName(Request.PhysicalPath).Replace(".aspx", "")
@@ -55,7 +58,6 @@ Public Class Enterprise
 
         Dim f As New BLL.Facade_Pantalla
         Dim b As New BLL.Idioma
-        Dim l As New List(Of BE.Idioma)
 
         ' Creo los permisos de la pagina si no existen -- ESTO NO ES CODIGO FINAL. SOLO SIRVE PARA ACELERAR EL DESARROLLO
         Dim formname As String = Path.GetFileName(Request.PhysicalPath).Replace(".aspx", "")
@@ -65,11 +67,7 @@ Public Class Enterprise
         s.Guardar()
         cargarpermisosbase(Me)
 
-
-
-        l = b.Obtener_Idiomas()
-
-        'Solo cargo la lista si no es postback (por ejemplo cuando cambio el idioma en el dropdwon
+        'Solo cargo la lista si no es postback (evito cargar cuando cambio el idioma en el dropdwon
         If Not IsPostBack Then
             Me.dlIdiomas.DataValueField = "ID"
             Me.dlIdiomas.DataTextField = "Nombre"
@@ -77,13 +75,17 @@ Public Class Enterprise
             Me.dlIdiomas.DataBind()
         End If
 
+        If Not (IsNothing(Session("Idioma"))) Then
+            dlIdiomas.SelectedValue = DirectCast(Session("Idioma"), BE.Idioma).ID
+        End If
+
         'Traduzco la pagina
-        'Session("Idioma") = l.Find(Function(c) c.ID = dlIdiomas.SelectedValue)
         f.Traducir(Me, DirectCast(Session("Idioma"), BE.Idioma))
 
+        'Aplico los permisos
         f.Aplicar_Permisos(Me, DirectCast(Session("Usuario"), Seguridad.Usuario), formname)
 
-
+        ' Genero el menu
         GenerarMenu(DirectCast(Session("Usuario"), Seguridad.Usuario))
 
     End Sub
@@ -94,7 +96,7 @@ Public Class Enterprise
 
         If TypeOf c Is Button Or TypeOf c Is Page Or TypeOf c Is HtmlButton Then
             If Not IsNothing(c.ID) Then
-                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Then
+                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Or c.ID.StartsWith("btnAsignar") Then
                     Dim s As New Seguridad.Permiso
                     s.Elemento.nombre = IIf(c.ID.StartsWith("mnuButton"), "", formname + "_") + c.ID
                     s.Elemento.Tipo = 0

@@ -60,7 +60,7 @@
             Else
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(e.ID))
 
-                DBH.Delete("delete from ElementoUsuario where IDElemento=@P1", params)
+                DBH.Delete("delete from UsuarioElemento where IDElemento=@P1", params)
                 DBH.Delete("delete from ElementoElemento where IDHijo=@P1 or IDPadre=@P1", params)
                 DBH.Delete("delete from Elemento where ID=@P1", params)
 
@@ -196,7 +196,7 @@
     Public Function ObtenerElementos(u As BE.Usuario) As List(Of BE.Elemento)
 
         Dim params(0) As System.Data.SqlClient.SqlParameter
-        Dim cadena As String = "select IDelemento as ID, e.nombre, e.Tipo, e.dvh from ElementoUsuario ee join elemento e on e.id = ee.IDelemento where ee.IDUsuario=@P1"
+        Dim cadena As String = "select IDelemento as ID, e.nombre, e.Tipo, e.dvh from UsuarioElemento ee join elemento e on e.id = ee.IDelemento where ee.IDUsuario=@P1"
         Dim dt As DataTable
         Dim l As BE.Elemento
         Dim ll As New List(Of BE.Elemento)

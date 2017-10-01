@@ -18,6 +18,7 @@
             u.Usuario.ID = Session("UsuarioAEditar")
             u.Cargar()
         End If
+
         If Not IsPostBack Then
 
             l = b.Obtener_Idiomas()
@@ -29,15 +30,11 @@
             Me.dlIdiomas.DataBind()
             'dlIdiomas_SelectedIndexChanged(sender, e)
             If Not IsNothing(Session("UsuarioAEditar")) Then
-                m.IDError = "tituloEditarUsuario"
                 noTranslateUsuarioID.Text = u.Usuario.ID.ToString
                 txtUsuarioNombre.Text = u.Usuario.Nombre
                 dlIdiomas.SelectedValue = u.Usuario.Idioma.ID
                 chkHabilitado.Checked = u.Usuario.Habilitado
-            Else
-                m.IDError = "tituloNuevoUsuario"
             End If
-            lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
 
         End If
 
@@ -48,6 +45,16 @@
     End Sub
 
     Private Sub UsuarioEdicion_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+        Dim f As New BLL.Facade_Pantalla
+        Dim m As New BE.MensajeError
+
+        If Not IsNothing(Session("UsuarioAEditar")) Then
+            m.IDError = "tituloEditarUsuario"
+        Else
+            m.IDError = "tituloNuevoUsuario"
+        End If
+        lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
 
 
     End Sub

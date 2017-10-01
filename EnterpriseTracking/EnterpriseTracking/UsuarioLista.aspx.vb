@@ -13,6 +13,7 @@ Public Class UsuarioLista
 
         Me.btnEditarUsuario.Enabled = False
         Me.btnEliminarUsuario.Enabled = False
+        Me.btnAsignarPermisosUsuario.Enabled = False
 
     End Sub
 
@@ -74,9 +75,11 @@ Public Class UsuarioLista
         Next
         If grdUsuarios.SelectedRow.Cells(0).Text <> "1" Then
             Me.btnEditarUsuario.Enabled = True
+            Me.btnAsignarPermisosUsuario.Enabled = True
             Me.btnEliminarUsuario.Enabled = True
         Else
             Me.btnEditarUsuario.Enabled = False
+            Me.btnAsignarPermisosUsuario.Enabled = False
             Me.btnEliminarUsuario.Enabled = False
         End If
 
@@ -92,6 +95,15 @@ Public Class UsuarioLista
             Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
             Response.Redirect("~/UsuarioEdicion.aspx")
         End If
+    End Sub
+
+    Private Sub btnAsignarPermisosUsuario_Click(sender As Object, e As EventArgs) Handles btnAsignarPermisosUsuario.Click
+        If Not IsNothing(grdUsuarios.SelectedRow) Then
+            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+            Session("EditandoUsuario") = Nothing
+            Response.Redirect("~/UsuarioAsignarPermisos.aspx")
+        End If
+
     End Sub
 
     Protected Sub btnEliminarUsuario_Click(sender As Object, e As EventArgs) Handles btnEliminarUsuario.Click
@@ -127,4 +139,6 @@ Public Class UsuarioLista
         End If
 
     End Sub
+
+
 End Class

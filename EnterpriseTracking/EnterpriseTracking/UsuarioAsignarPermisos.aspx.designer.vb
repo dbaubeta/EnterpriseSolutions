@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class UsuarioLista
+Partial Public Class UsuarioAsignarPermisos
 
     '''<summary>
     '''noTranslateModalMessageSiNo control.
@@ -59,56 +59,92 @@ Partial Public Class UsuarioLista
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''lblUsuarioListaTitulo control.
+    '''lblTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblUsuarioListaTitulo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''grdUsuarios control.
+    '''lblUsuarioNombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdUsuarios As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lblUsuarioNombre As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnNuevoUsuario control.
+    '''noTranslatelblUsuarioNombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnNuevoUsuario As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents noTranslatelblUsuarioNombre As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnEditarUsuario control.
+    '''grdGruposDisponibles control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnEditarUsuario As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents grdGruposDisponibles As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''btnAsignarPermisosUsuario control.
+    '''grdPermisosDisponibles control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnAsignarPermisosUsuario As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents grdPermisosDisponibles As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''btnEliminarUsuario control.
+    '''noTranslateImgFlechaDerecha control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnEliminarUsuario As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents noTranslateImgFlechaDerecha As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''noTranslateImgFlechaIzquierda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateImgFlechaIzquierda As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''grdElementosSeleccionados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdElementosSeleccionados As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''btnAceptar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAceptar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancelar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
 End Class

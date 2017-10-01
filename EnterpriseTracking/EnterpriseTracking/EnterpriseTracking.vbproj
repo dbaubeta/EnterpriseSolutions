@@ -104,11 +104,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EditarLenguaje.aspx" />
+    <Content Include="IdiomaEdicion.aspx" />
     <Content Include="Enterprise.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GrupoEdicion.aspx" />
     <Content Include="GrupoLista.aspx" />
+    <Content Include="IdiomaLista.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -126,16 +127,17 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="UsuarioAsignarPermisos.aspx" />
     <Content Include="UsuarioEdicion.aspx" />
     <Content Include="UsuarioLista.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditarLenguaje.aspx.designer.vb">
-      <DependentUpon>EditarLenguaje.aspx</DependentUpon>
+    <Compile Include="IdiomaEdicion.aspx.designer.vb">
+      <DependentUpon>IdiomaEdicion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditarLenguaje.aspx.vb">
-      <DependentUpon>EditarLenguaje.aspx</DependentUpon>
+    <Compile Include="IdiomaEdicion.aspx.vb">
+      <DependentUpon>IdiomaEdicion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Enterprise.Master.designer.vb">
@@ -157,6 +159,13 @@
     </Compile>
     <Compile Include="GrupoLista.aspx.vb">
       <DependentUpon>GrupoLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="IdiomaLista.aspx.designer.vb">
+      <DependentUpon>IdiomaLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IdiomaLista.aspx.vb">
+      <DependentUpon>IdiomaLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.vb">
@@ -190,6 +199,13 @@
     </Compile>
     <Compile Include="Principal.aspx.vb">
       <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioAsignarPermisos.aspx.designer.vb">
+      <DependentUpon>UsuarioAsignarPermisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioAsignarPermisos.aspx.vb">
+      <DependentUpon>UsuarioAsignarPermisos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="UsuarioEdicion.aspx.designer.vb">

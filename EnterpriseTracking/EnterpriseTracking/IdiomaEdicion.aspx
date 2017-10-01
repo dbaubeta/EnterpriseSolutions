@@ -1,7 +1,58 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="EditarLenguaje.aspx.vb" Inherits="EnterpriseTracking.EditarLenguaje" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="IdiomaEdicion.aspx.vb" Inherits="EnterpriseTracking.EditarLenguaje" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- Modal Si No -->
+    <div id="modalConfirmar" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+              <asp:Label ID="noTranslateModalMessageSiNo" runat="server" Text="Label"></asp:Label>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  ID="btnModalSi" runat="server" class="btn btn-success" data-dismiss="modal"></button>
+            <button type="button"  ID="btnModalNo" runat="server" class="btn btn-danger" data-dismiss="modal"></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal Mensaje -->
+    <div id="modalMensaje" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+              <asp:Label ID="noTranslateModalMessage" runat="server" Text="Label"></asp:Label>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  ID="btnModalOk" runat="server" class="btn btn-success" data-dismiss="modal"></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%-- CONTENIDO DE PANTALLA --%>
+    <div class="row" style="margin-top:15px;margin-bottom:15px">
+        <div class="col-sm-12">
+            <asp:Label ID="lblTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+        </div>
+    </div>
+    <hr />
     <div class="container-fluid">
       <div class="row" style="margin-bottom:20px">
         <div class="col-sm-1"></div>
@@ -25,7 +76,7 @@
             <asp:TextBox ID="txtLenguajeNombre" runat="server" style="width:100%" CssClass="form-control" />
         </div>        
         <div class="col-sm-4" style="vertical-align:middle">
-            <asp:RequiredFieldValidator ID="RequiredFieldValidatorLenguajeNombre" runat="server" ErrorMessage="Error!" ControlToValidate="txtLenguajeNombre" />
+<%--            <asp:RequiredFieldValidator ID="RequiredFieldValidatorLenguajeNombre" runat="server" ErrorMessage="Error!" ControlToValidate="txtLenguajeNombre" />--%>
         </div>
 
       </div>
@@ -49,7 +100,7 @@
                                     <asp:TextBox ID="txtNuevoTextoLeyenda" runat="server" style="width:100%" CssClass="form-control"/>
                                 </div>
                                 <div class="col-sm-4">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorNuevaLeyenda" runat="server" ErrorMessage="Error!" ControlToValidate="txtNuevoTextoLeyenda" />
+<%--                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorNuevaLeyenda" runat="server" ErrorMessage="Error!" ControlToValidate="txtNuevoTextoLeyenda" />--%>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -64,14 +115,14 @@
         </div>
       </div>
       <div class="row" style="margin-top:10px">
-        <div class="col-sm-10">
+        <div class="col-sm-9">
         </div>
         <div class="col-sm-1">
           <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-success" style="width: 100%;" />
         </div>
-<%--        <div class="col-sm-1">
+        <div class="col-sm-1">
           <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass ="btn btn-danger" style="width: 100%;"/>
-        </div>--%>
+        </div>
         <div class="col-sm-1">
         </div>
     </div>
