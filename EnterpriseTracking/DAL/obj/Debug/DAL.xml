@@ -15,9 +15,17 @@ DAL
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:DAL.My.Resources.Resources.BackupFolder">
+	<summary>
+  Looks up a localized string similar to F:\.
+</summary>
 </member><member name="P:DAL.My.Resources.Resources.StrSql">
 	<summary>
   Looks up a localized string similar to Data Source=Localhost;Initial Catalog=EnterpriseSolutionsBD; Integrated Security=SSPI;.
+</summary>
+</member><member name="P:DAL.My.Resources.Resources.StrSqlMaster">
+	<summary>
+  Looks up a localized string similar to Data Source=Localhost;Initial Catalog=master; Integrated Security=SSPI;.
 </summary>
 </member><member name="T:DAL.My.Resources.Resources">
 	<summary>

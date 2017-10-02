@@ -9,6 +9,7 @@ Imports System.Data
 Public Class SqlHelper
 
     Private strCon As [String] = My.Resources.StrSql
+    Private strConMaster As [String] = My.Resources.StrSqlMaster
 
 #Region "Insert"
 
@@ -182,6 +183,21 @@ Public Class SqlHelper
     End Function
 
 #End Region
+
+
+    Public Function ObtenerConexion() As SqlConnection
+
+        Dim cn As New SqlConnection(strCon)
+        Return cn
+
+    End Function
+
+    Public Function ObtenerConexionMaster() As SqlConnection
+
+        Dim cn As New SqlConnection(strConMaster)
+        Return cn
+
+    End Function
 
 
 End Class

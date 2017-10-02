@@ -100,6 +100,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackupLista.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -133,6 +134,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupLista.aspx.designer.vb">
+      <DependentUpon>BackupLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BackupLista.aspx.vb">
+      <DependentUpon>BackupLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="IdiomaEdicion.aspx.designer.vb">
       <DependentUpon>IdiomaEdicion.aspx</DependentUpon>
     </Compile>

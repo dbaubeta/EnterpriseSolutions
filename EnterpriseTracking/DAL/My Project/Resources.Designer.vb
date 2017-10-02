@@ -61,11 +61,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to F:\.
+        '''</summary>
+        Friend ReadOnly Property BackupFolder() As String
+            Get
+                Return ResourceManager.GetString("BackupFolder", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Data Source=Localhost;Initial Catalog=EnterpriseSolutionsBD; Integrated Security=SSPI;.
         '''</summary>
         Friend ReadOnly Property StrSql() As String
             Get
                 Return ResourceManager.GetString("StrSql", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Data Source=Localhost;Initial Catalog=master; Integrated Security=SSPI;.
+        '''</summary>
+        Friend ReadOnly Property StrSqlMaster() As String
+            Get
+                Return ResourceManager.GetString("StrSqlMaster", resourceCulture)
             End Get
         End Property
     End Module
