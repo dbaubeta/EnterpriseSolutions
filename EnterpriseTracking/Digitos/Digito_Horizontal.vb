@@ -28,7 +28,7 @@ Public Class Digito_Horizontal
         ' Calcular el DVH
         Dim dvh As Long
         For j As Integer = 0 To cadena.Length - 1
-            dvh += Asc(cadena(j))
+            dvh += Asc(cadena.Substring(j, 1))
         Next
 
         Return dvh

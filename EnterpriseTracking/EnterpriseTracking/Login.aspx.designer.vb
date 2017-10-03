@@ -23,6 +23,51 @@ Partial Public Class Login
     Protected WithEvents dlIdiomas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''noTranslateModalMessageSiNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalMessageSiNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnModalSi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalSi As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''btnModalNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''noTranslateModalMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnModalOk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
     '''msjError control.
     '''</summary>
     '''<remarks>

@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Globalization
 
 Public Class BackupLista
     Inherits System.Web.UI.Page
@@ -32,7 +33,7 @@ Public Class BackupLista
 
         For Each l As BE.BROperation In bl.Obtener_Backups()
             Dim dr As DataRow = dt.NewRow
-            dr("Fecha") = l.Fecha
+            dr("Fecha") = l.Fecha.ToString("yyyy-MM-dd HH:mm:ss")
             dr("Path") = l.Path
             dt.Rows.Add(dr)
         Next
@@ -81,7 +82,7 @@ Public Class BackupLista
     Protected Sub btnRestore_Click(sender As Object, e As EventArgs) Handles btnRestore.Click
         If Not IsNothing(grdBackups.SelectedRow) Then
             Session("AccionBackup") = "Restaurar"
-            MostrarMensajeModal("EstaSeguroBorrarBackupSeleccionado", False)
+            MostrarMensajeModal("EstaSeguroRestaurarBackupSeleccionado", False)
         End If
     End Sub
 
@@ -95,23 +96,30 @@ Public Class BackupLista
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
 
         Dim x As New BE.BROperation
+        Dim d As New BLL.BackupRestore
 
         If Session("AccionBackup") = "Crear" Then
             x.Fecha = Now
-
+            d.Backup(x)
+            CargarGrilla()
+            MostrarMensajeModal("BackupCompleto", True)
         End If
 
-        If Session("AccionBackup") = "Crear" Then
-
+        If Session("AccionBackup") = "Restaurar" Then
+            x.Fecha = DateTime.ParseExact(grdBackups.SelectedRow.Cells(0).Text.Replace(":", "_"), "yyyy-MM-dd HH_mm_ss", CultureInfo.InvariantCulture)
+            d.Restore(x)
+            MostrarMensajeModal("RestoreCompleto", True)
         End If
 
-        If Session("AccionBackup") = "Crear" Then
-
+        If Session("AccionBackup") = "Eliminar" Then
+            x.Fecha = DateTime.ParseExact(grdBackups.SelectedRow.Cells(0).Text.Replace(":", "_"), "yyyy-MM-dd HH_mm_ss", CultureInfo.InvariantCulture)
+            d.Eliminar(x)
+            CargarGrilla()
         End If
 
 
         Session("AccionBackup") = Nothing
-        Response.Redirect(Request.RawUrl)
+
 
     End Sub
 
@@ -122,10 +130,10 @@ Public Class BackupLista
 
         m.IDError = Msg
         If Not simple Then
-            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Backup")).texto_Leyenda
+            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
         Else
-            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Backup")).texto_Leyenda
+            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
         End If
 

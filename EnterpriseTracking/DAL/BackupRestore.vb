@@ -2,7 +2,7 @@
 Imports System.Data
 Imports System.Data.SqlClient
 
-Public Class Backup
+Public Class BackupRestore
 
     Dim DBH As New SqlHelper
 
@@ -10,6 +10,7 @@ Public Class Backup
 
 
         Dim bkpcmd As String
+        b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
         bkpcmd = "BACKUP DATABASE EnterpriseSolutionsBD TO  DISK = '" + b.Path + "' WITH INIT, SKIP , DESCRIPTION = 'Backup', NAME = 'EnterpriseSolutionsBD' "
         Dim cmd As New SqlCommand
         cmd.CommandType = CommandType.Text
@@ -19,6 +20,7 @@ Public Class Backup
         cmd.Connection.Open()
         cmd.ExecuteNonQuery()
         cmd.Connection.Close()
+        cmd.Dispose()
 
 
     End Sub
@@ -52,12 +54,15 @@ Public Class Backup
         cmd.Connection.Close()
 
         Dim rstcmd As String
+        b.Path = My.Resources.BackupFolder + "\Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
         rstcmd = "RESTORE DATABASE EnterpriseSolutionsBD FROM DISK = '" + b.Path + "' WITH REPLACE, RECOVERY "
         cmd.CommandText = rstcmd
 
         cmd.Connection.Open()
         cmd.ExecuteNonQuery()
         cmd.Connection.Close()
+        cmd.Dispose()
+
 
     End Sub
 
@@ -76,7 +81,7 @@ Public Class Backup
             dt = DBH.SelectTabla(cadena)
             For Each dr As DataRow In dt.Rows
                 l = New BE.BROperation
-                l.Path = My.Resources.BackupFolder + "\" + dr.Item("Archivo")
+                l.Path = My.Resources.BackupFolder + dr.Item("Archivo")
                 l.Fecha = DateTime.ParseExact(dr.Item("Archivo").replace("Backup_EnterpriseSolutionsDB_", "").replace(".bkp", ""), "yyyy-MM-dd HH_mm_ss", CultureInfo.InvariantCulture)
                 ll.Add(l)
             Next
@@ -88,9 +93,31 @@ Public Class Backup
 
     End Function
 
-    Public Function ObtenerRestores(ByVal f As List(Of BE.BROperation)) As List(Of BE.BROperation)
-        ObtenerRestores = Nothing
-    End Function
+    Public Sub Eliminar(b As BE.BROperation)
+
+
+        Dim cmd As New SqlCommand
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = DBH.ObtenerConexionMaster()
+
+        Dim rstcmd As String
+        b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
+        rstcmd = "EXEC sp_configure 'show advanced options', 1;" + Environment.NewLine + _
+                 "RECONFIGURE" + Environment.NewLine + _
+                 "EXEC sp_configure 'xp_cmdshell',1" + Environment.NewLine + _
+                 "RECONFIGURE" + Environment.NewLine + _
+                 "EXEC xp_cmdshell 'DEL """ + b.Path + """'"
+
+        cmd.CommandText = rstcmd
+
+        cmd.Connection.Open()
+        cmd.ExecuteNonQuery()
+        cmd.Connection.Close()
+        cmd.Dispose()
+
+
+
+    End Sub
 
 
 End Class

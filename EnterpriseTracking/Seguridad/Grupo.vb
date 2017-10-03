@@ -3,16 +3,6 @@
 
     Dim DBH As New DAL.SqlHelper
 
-    Private Class ElementoElemento
-        Public IDPadre As Long
-        Public IdHijo As Long
-        Public Sub New(p As Long, h As Long)
-            IDPadre = p
-            IdHijo = h
-        End Sub
-    End Class
-
-
     Private _hijos As List(Of Elemento)
         Public Property Hijos() As List(Of Elemento)
             Get
@@ -73,29 +63,52 @@
 
         Dim d As New DAL.Elemento
         Dim DVH As New Digitos.Digito_Horizontal
+        Dim DVV As New Digitos.Digito_Vertical
+
         Me.Elemento.DVH = DVH.calcular(Me.Elemento)
 
         DBH.Delete("delete from ElementoElemento where IDPadre=" + Me.Elemento.ID.ToString)
         d.Guardar(Me.Elemento)
+        DVV.tabla = "Elemento"
+        DVV.calcular()
+
         GuardarPermisos(Me)
+        DVV.tabla = "ElementoElemento"
+        DVV.calcular()
+
 
     End Sub
 
     Public Sub Eliminar()
 
         Dim d As New DAL.Elemento
+        Dim DVV As New Digitos.Digito_Vertical
 
         d.Eliminar(Me.Elemento)
+        DVV.tabla = "Elemento"
+        DVV.calcular()
+        DVV.tabla = "ElementoElemento"
+        DVV.calcular()
+        DVV.tabla = "UsuarioElemento"
+        DVV.calcular()
+
+
 
     End Sub
 
     Private Sub GuardarPermisos(e As Grupo)
-        Dim DVH As New Digitos.Digito_Horizontal
         Dim d As New DAL.Elemento
 
         For Each h As Elemento In e.Hijos
-            Dim ee As New ElementoElemento(e.Elemento.ID, h.Elemento.ID)
-            d.AgregarPermiso(e.Elemento, h.Elemento, DVH.calcular(ee))
+
+            Dim dvh As Long = 0
+            For j As Integer = 0 To e.Elemento.ID.ToString.Length - 1
+                dvh += Asc(e.Elemento.ID.ToString.Substring(j, 1))
+            Next
+            For j As Integer = 0 To h.Elemento.ID.ToString.Length - 1
+                dvh += Asc(h.Elemento.ID.ToString.Substring(j, 1))
+            Next
+            d.AgregarPermiso(e.Elemento, h.Elemento, dvh)
             'If h.Elemento.Tipo = 1 Then GuardarPermisos(h)
         Next
 

@@ -8,7 +8,7 @@ Public Class BackupRestore
 
     Public Sub Backup(b As BE.BROperation)
 
-        Dim d As New DAL.Backup
+        Dim d As New DAL.BackupRestore
         d.Backup(b)
 
 
@@ -17,13 +17,16 @@ Public Class BackupRestore
 
     Public Sub Restore(b As BE.BROperation)
 
-        Dim d As New DAL.Backup
+        Dim d As New DAL.BackupRestore
         d.Restore(b)
 
     End Sub
 
 
-    Public Sub Eliminar()
+    Public Sub Eliminar(b As BE.BROperation)
+
+        Dim d As New DAL.BackupRestore
+        d.Eliminar(b)
 
     End Sub
 
@@ -33,7 +36,7 @@ Public Class BackupRestore
 
     Public Function Obtener_Backups() As List(Of BE.BROperation)
 
-        Dim d As New DAL.Backup
+        Dim d As New DAL.BackupRestore
         Return d.Obtener_Backups
 
     End Function

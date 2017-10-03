@@ -184,6 +184,7 @@ Public Class SqlHelper
 
 #End Region
 
+#Region "Conexiones"
 
     Public Function ObtenerConexion() As SqlConnection
 
@@ -199,6 +200,7 @@ Public Class SqlHelper
 
     End Function
 
+#End Region
 
 End Class
 

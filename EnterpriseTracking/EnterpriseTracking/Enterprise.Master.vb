@@ -96,7 +96,7 @@ Public Class Enterprise
 
         If TypeOf c Is Button Or TypeOf c Is Page Or TypeOf c Is HtmlButton Then
             If Not IsNothing(c.ID) Then
-                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Or c.ID.StartsWith("btnAsignar") Then
+                If c.ID.StartsWith("btnNuevo") Or c.ID.StartsWith("btnEditar") Or c.ID.StartsWith("btnEliminar") Or c.ID.StartsWith("btnAsignar") Or c.ID.StartsWith("btnRestore") Then
                     Dim s As New Seguridad.Permiso
                     s.Elemento.nombre = IIf(c.ID.StartsWith("mnuButton"), "", formname + "_") + c.ID
                     s.Elemento.Tipo = 0

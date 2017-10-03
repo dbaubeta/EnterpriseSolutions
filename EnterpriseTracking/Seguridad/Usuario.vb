@@ -2,16 +2,6 @@
 
     Dim DBH As New DAL.SqlHelper
 
-    Private Class UsuarioElemento
-        Public IDUsuario As Long
-        Public IdElemento As Long
-        Public Sub New(u As Long, e As Long)
-            IDUsuario = u
-            IdElemento = e
-        End Sub
-    End Class
-
-
     Private _elementos As List(Of Elemento)
     Public Property Elementos() As List(Of Elemento)
         Get
@@ -42,13 +32,25 @@
     End Sub
 
     Public Sub Eliminar()
+        Dim dvv As New Digitos.Digito_Vertical
 
         Dim d As New DAL.Usuario
-        If IsNothing(Me.Usuario.ID) Or Me.Usuario.ID = 0 Then
-        Else
-            DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
-            d.Eliminar(Me.Usuario)
-        End If
+        Try
+            If IsNothing(Me.Usuario.ID) Or Me.Usuario.ID = 0 Then
+            Else
+                DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
+                d.Eliminar(Me.Usuario)
+                dvv.tabla = "IdiomaLeyenda"
+                dvv.calcular()
+            End If
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
 
     End Sub
@@ -59,17 +61,39 @@
 
         Dim d As New DAL.Usuario
         Dim DVH As New Digitos.Digito_Horizontal
-        Me.Usuario.DVH = DVH.calcular(Me.Usuario)
+        Dim dvv As New Digitos.Digito_Vertical
 
-        d.Guardar(Me.Usuario)
+        Try
+            Me.Usuario.DVH = DVH.calcular(Me.Usuario)
+            d.Guardar(Me.Usuario)
+            dvv.tabla = "Usuario"
+            dvv.calcular()
 
-        If Me.Elementos.Count > 0 Then
-            DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
-            For Each h As Elemento In Me.Elementos
-                Dim ue As New UsuarioElemento(Me.Usuario.ID, h.Elemento.ID)
-                d.Agregar_Elemento(Me.Usuario, h.Elemento, DVH.calcular(ue))
-            Next
-        End If
+            If Me.Elementos.Count > 0 Then
+                DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
+                For Each h As Elemento In Me.Elementos
+
+                    Dim dvhue As Long = 0
+                    For j As Integer = 0 To Me.Usuario.ID.ToString.Length - 1
+                        dvhue += Asc(Me.Usuario.ID.ToString.Substring(j, 1))
+                    Next
+                    For j As Integer = 0 To h.Elemento.ID.ToString.Length - 1
+                        dvhue += Asc(h.Elemento.ID.ToString.Substring(j, 1))
+                    Next
+
+                    d.Agregar_Elemento(Me.Usuario, h.Elemento, dvhue)
+                Next
+                dvv.tabla = "UsuarioElemento"
+                dvv.calcular()
+            End If
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
@@ -78,32 +102,41 @@
         Dim l As New List(Of BE.Usuario)
         Dim du As New DAL.Usuario
 
-        ' Cargar usuario
-        ' =============================================================
-        l.Add(Me.Usuario)
-        l = du.ObtenerUsuarios(l)
-        If l.Count > 0 Then
-            Me.Usuario = l.Item(0)
-            ' Cargar permisos 
+        Try
+            ' Cargar usuario
             ' =============================================================
-            Dim de As New DAL.Elemento
-            For Each x As BE.Elemento In de.ObtenerElementos(Me.Usuario)
-                If x.Tipo = 0 Then ' Permiso
-                    Dim y As New Permiso
-                    y.Elemento = x
-                    Me.Elementos.Add(y)
-                Else
-                    Dim y As New Grupo
-                    y.Elemento = x
-                    y.Hijos = ObtenerElementos(x) ' si es grupo uso funcion recursiva.
-                    Me.Elementos.Add(y)
-                End If
-            Next
+            l.Add(Me.Usuario)
+            l = du.ObtenerUsuarios(l)
+            If l.Count > 0 Then
+                Me.Usuario = l.Item(0)
+                ' Cargar permisos 
+                ' =============================================================
+                Dim de As New DAL.Elemento
+                For Each x As BE.Elemento In de.ObtenerElementos(Me.Usuario)
+                    If x.Tipo = 0 Then ' Permiso
+                        Dim y As New Permiso
+                        y.Elemento = x
+                        Me.Elementos.Add(y)
+                    Else
+                        Dim y As New Grupo
+                        y.Elemento = x
+                        y.Hijos = ObtenerElementos(x) ' si es grupo uso funcion recursiva.
+                        Me.Elementos.Add(y)
+                    End If
+                Next
 
-        Else
-            Me.Usuario = Nothing
-        End If
+            Else
+                Me.Usuario = Nothing
+            End If
 
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
@@ -116,25 +149,45 @@
 
         Dim l As New List(Of BE.MensajeError)
 
-        If s.Nombre = "" Or IsNothing(s.Nombre) Then
-            Dim m As New BE.MensajeError
-            m.IDError = "NombreUsuarioRequerido"
-            l.Add(m)
-        End If
-        If s.Password = "" Or IsNothing(s.Password) Then
-            Dim m As New BE.MensajeError
-            m.IDError = "ContraseñaUsuarioRequerido"
-            l.Add(m)
-        End If
+        Try
+            If s.Nombre = "" Or IsNothing(s.Nombre) Then
+                Dim m As New BE.MensajeError
+                m.IDError = "NombreUsuarioRequerido"
+                l.Add(m)
+            End If
+            If s.Password = "" Or IsNothing(s.Password) Then
+                Dim m As New BE.MensajeError
+                m.IDError = "ContraseñaUsuarioRequerido"
+                l.Add(m)
+            End If
 
-        Return l
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
 
     End Function
 
     Public Function ValidarPassword(s As String) As Boolean
-        Dim c As New Cifrado.Cifrado
-        Return c.encriptar_md5(s) = Me.Usuario.Password
+
+        Try
+            Dim c As New Cifrado.Cifrado
+            Return c.encriptar_md5(s) = Me.Usuario.Password
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
     End Function
 
     Public Sub New()
@@ -149,20 +202,29 @@
         Dim de As New DAL.Elemento
         Dim l As New List(Of Elemento)
 
-        For Each x As BE.Elemento In de.ObtenerHijos(e)
-            If x.Tipo = 0 Then ' Permiso
-                Dim y As New Permiso
-                y.Elemento = x
-                l.Add(y)
-            Else
-                Dim y As New Grupo
-                y.Elemento = x
-                y.Hijos = ObtenerElementos(x)
-                l.Add(y)
-            End If
-        Next
+        Try
+            For Each x As BE.Elemento In de.ObtenerHijos(e)
+                If x.Tipo = 0 Then ' Permiso
+                    Dim y As New Permiso
+                    y.Elemento = x
+                    l.Add(y)
+                Else
+                    Dim y As New Grupo
+                    y.Elemento = x
+                    y.Hijos = ObtenerElementos(x)
+                    l.Add(y)
+                End If
+            Next
 
-        Return l
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
 
     End Function

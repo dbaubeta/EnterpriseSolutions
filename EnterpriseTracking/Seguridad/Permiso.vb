@@ -31,8 +31,14 @@
 
     Public Sub Guardar()
 
+        Dim dvh As New Digitos.Digito_Horizontal
+        Dim dvv As New Digitos.Digito_Vertical
+
         Dim d As New DAL.Elemento
+        Me.Elemento.DVH = dvh.calcular(Me.Elemento)
         d.Guardar(Me.Elemento)
+        dvv.tabla = "Elemento"
+        dvv.calcular()
 
     End Sub
 

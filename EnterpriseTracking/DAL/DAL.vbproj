@@ -62,7 +62,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backup.vb" />
+    <Compile Include="BackupRestore.vb" />
     <Compile Include="Elemento.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />

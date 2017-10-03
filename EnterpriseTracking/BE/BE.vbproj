@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="BROperation.vb" />
     <Compile Include="Elemento.vb" />
+    <Compile Include="Excepcion.vb" />
     <Compile Include="MensajeError.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />

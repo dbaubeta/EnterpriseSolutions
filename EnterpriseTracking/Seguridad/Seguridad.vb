@@ -2,18 +2,31 @@
 
     Public Function ObtenerGrupo(ByVal o As BE.Elemento) As Grupo
         Dim u As New Grupo
-        u.Elemento = o
-        u.Cargar()
 
-        If IsNothing(u.Elemento) Then Return Nothing
+        Try
+            u.Elemento = o
+            u.Cargar()
 
-        Return u
+            If IsNothing(u.Elemento) Then Return Nothing
+
+            Return u
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
     End Function
 
     Public Function ObtenerGrupos() As List(Of Grupo)
         '    Public Function ObtenerUsuarios() As List(Of BE.Usuario)
         Dim d As New DAL.Elemento
         Dim l As New List(Of Grupo)
+
         Try
 
             For Each bu As BE.Elemento In d.ObtenerGrupos()
@@ -23,8 +36,13 @@
             Next
 
             Return l
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function
@@ -45,25 +63,40 @@
             Next
 
             Return l
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Function
 
     Public Function ObtenerUsuario(ByVal o As BE.Usuario) As Usuario
 
         Dim u As New Usuario
-        u.Usuario = o
-        u.Cargar()
 
-        If IsNothing(u.Usuario) Then Return Nothing
+        Try
+            u.Usuario = o
+            u.Cargar()
 
-        Return u
+            If IsNothing(u.Usuario) Then Return Nothing
+
+            Return u
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Function
 
     Public Function ObtenerUsuarios() As List(Of Usuario)
-        '    Public Function ObtenerUsuarios() As List(Of BE.Usuario)
         Dim d As New DAL.Usuario
         Dim l As New List(Of Usuario)
         Try
@@ -75,11 +108,15 @@
             Next
 
             Return l
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
-        '   End Function
     End Function
 
 End Class

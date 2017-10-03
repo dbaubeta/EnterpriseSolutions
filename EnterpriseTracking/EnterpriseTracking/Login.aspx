@@ -6,6 +6,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script type="text/javascript">
+        function openModalSiNo() {
+            $('#modalConfirmar').modal('show');
+        }
+   </script>
+    <script type="text/javascript">
+        function openModalOk() {
+            $('#modalMensaje').modal('show');
+        }
+   </script>
 </head>
 <body>
     <form runat="server">
@@ -25,6 +35,51 @@
             </div>
         </div>
         </nav>
+
+
+<!-- Modal Si No -->
+<div id="modalConfirmar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+          <asp:Label ID="noTranslateModalMessageSiNo" runat="server" Text="Label"></asp:Label>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  ID="btnModalSi" runat="server" class="btn btn-success" data-dismiss="modal"></button>
+        <button type="button"  ID="btnModalNo" runat="server" class="btn btn-danger" data-dismiss="modal"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Mensaje -->
+<div id="modalMensaje" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+          <asp:Label ID="noTranslateModalMessage" runat="server" Text="Label"></asp:Label>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  ID="btnModalOk" runat="server" class="btn btn-success" data-dismiss="modal"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
     <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
     <div class="alert alert-danger" id="msjError" runat="server">

@@ -34,8 +34,13 @@
 
             End If
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub
@@ -53,8 +58,13 @@
 
             End If
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub
@@ -90,8 +100,14 @@
             Next
 
             Return ll
+
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function
@@ -155,13 +171,14 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
-
-
-
-
 
     End Function
 
@@ -177,7 +194,13 @@
 
             Dim resultado As Long = DBH.Insert("INSERT INTO UsuarioElemento(IDUsuario, IDElemento ,DVH) VALUES(@P1,@P2,@P3);", params)
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub

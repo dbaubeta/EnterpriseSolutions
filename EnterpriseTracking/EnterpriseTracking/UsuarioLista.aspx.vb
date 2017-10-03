@@ -5,15 +5,21 @@ Public Class UsuarioLista
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If IsNothing(Session("Usuario")) Then
-            Response.Redirect("~/Login.aspx")
-        End If
+        Try
+            If IsNothing(Session("Usuario")) Then
+                Response.Redirect("~/Login.aspx")
+            End If
 
-        CargarGrilla()
+            CargarGrilla()
 
-        Me.btnEditarUsuario.Enabled = False
-        Me.btnEliminarUsuario.Enabled = False
-        Me.btnAsignarPermisosUsuario.Enabled = False
+            Me.btnEditarUsuario.Enabled = False
+            Me.btnEliminarUsuario.Enabled = False
+            Me.btnAsignarPermisosUsuario.Enabled = False
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
@@ -24,117 +30,176 @@ Public Class UsuarioLista
         Dim bl As New Seguridad.Seguridad
         Dim il As New List(Of BE.Usuario)
 
-        Dim dt As DataTable = New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("Nombre")
-        dt.Columns.Add("Idioma")
-        dt.Columns.Add("Habilitado")
+        Try
+            Dim dt As DataTable = New DataTable
+            dt.Columns.Add("ID")
+            dt.Columns.Add("Nombre")
+            dt.Columns.Add("Idioma")
+            dt.Columns.Add("Habilitado")
 
-        For Each l As Seguridad.Usuario In bl.ObtenerUsuarios()
-            Dim dr As DataRow = dt.NewRow
-            dr("ID") = l.Usuario.ID
-            dr("Nombre") = l.Usuario.Nombre
-            dr("Idioma") = l.Usuario.Idioma.Nombre
-            dr("Habilitado") = l.Usuario.Habilitado
-            dt.Rows.Add(dr)
-        Next
+            For Each l As Seguridad.Usuario In bl.ObtenerUsuarios()
+                Dim dr As DataRow = dt.NewRow
+                dr("ID") = l.Usuario.ID
+                dr("Nombre") = l.Usuario.Nombre
+                dr("Idioma") = l.Usuario.Idioma.Nombre
+                dr("Habilitado") = l.Usuario.Habilitado
+                dt.Rows.Add(dr)
+            Next
 
-        grdUsuarios.DataSource = Nothing
-        grdUsuarios.DataSource = dt
-        grdUsuarios.DataBind()
+            grdUsuarios.DataSource = Nothing
+            grdUsuarios.DataSource = dt
+            grdUsuarios.DataBind()
 
-        grdUsuarios.UseAccessibleHeader = True
-        grdUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader
+            grdUsuarios.UseAccessibleHeader = True
+            grdUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
     Protected Overrides Sub Render(writer As System.Web.UI.HtmlTextWriter)
-        For Each r As GridViewRow In Me.grdUsuarios.Rows
-            If r.RowType = DataControlRowType.DataRow Then
-                r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
-                r.Attributes("onmouseout") = "this.style.textDecoration='none';"
-                r.ToolTip = "Click to select row"
-                r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdUsuarios, "Select$" + r.RowIndex.ToString, True)
-            End If
-        Next
-        MyBase.Render(writer)
+        Try
+            For Each r As GridViewRow In Me.grdUsuarios.Rows
+                If r.RowType = DataControlRowType.DataRow Then
+                    r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
+                    r.Attributes("onmouseout") = "this.style.textDecoration='none';"
+                    r.ToolTip = "Click to select row"
+                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdUsuarios, "Select$" + r.RowIndex.ToString, True)
+                End If
+            Next
+            MyBase.Render(writer)
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
     Private Sub grdUsuarios_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdUsuarios.SelectedIndexChanged
 
-        'MsgBox(grdUsuarios.SelectedRow.Cells(0).Text)
-        For Each row As GridViewRow In grdUsuarios.Rows
-            If row.RowIndex = grdUsuarios.SelectedIndex Then
-                row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
-                row.ToolTip = String.Empty
+        Try
+            For Each row As GridViewRow In grdUsuarios.Rows
+                If row.RowIndex = grdUsuarios.SelectedIndex Then
+                    row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
+                    row.ToolTip = String.Empty
+                Else
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
+                    row.ToolTip = String.Empty
+                End If
+            Next
+            If grdUsuarios.SelectedRow.Cells(0).Text <> "1" Then
+                Me.btnEditarUsuario.Enabled = True
+                Me.btnAsignarPermisosUsuario.Enabled = True
+                Me.btnEliminarUsuario.Enabled = True
             Else
-                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
-                row.ToolTip = String.Empty
+                Me.btnEditarUsuario.Enabled = False
+                Me.btnAsignarPermisosUsuario.Enabled = False
+                Me.btnEliminarUsuario.Enabled = False
             End If
-        Next
-        If grdUsuarios.SelectedRow.Cells(0).Text <> "1" Then
-            Me.btnEditarUsuario.Enabled = True
-            Me.btnAsignarPermisosUsuario.Enabled = True
-            Me.btnEliminarUsuario.Enabled = True
-        Else
-            Me.btnEditarUsuario.Enabled = False
-            Me.btnAsignarPermisosUsuario.Enabled = False
-            Me.btnEliminarUsuario.Enabled = False
-        End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
     Protected Sub btnNuevoUsuario_Click(sender As Object, e As EventArgs) Handles btnNuevoUsuario.Click
+
         Session("UsuarioAEditar") = Nothing
         Response.Redirect("~/UsuarioEdicion.aspx")
     End Sub
 
     Protected Sub btnEditarUsuario_Click(sender As Object, e As EventArgs) Handles btnEditarUsuario.Click
-        If Not IsNothing(grdUsuarios.SelectedRow) Then
-            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
-            Response.Redirect("~/UsuarioEdicion.aspx")
-        End If
+        Try
+            If Not IsNothing(grdUsuarios.SelectedRow) Then
+                Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+                Response.Redirect("~/UsuarioEdicion.aspx")
+            End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
+
+
     End Sub
 
     Private Sub btnAsignarPermisosUsuario_Click(sender As Object, e As EventArgs) Handles btnAsignarPermisosUsuario.Click
-        If Not IsNothing(grdUsuarios.SelectedRow) Then
-            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
-            Session("EditandoUsuario") = Nothing
-            Response.Redirect("~/UsuarioAsignarPermisos.aspx")
-        End If
+
+        Try
+            If Not IsNothing(grdUsuarios.SelectedRow) Then
+                Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+                Session("EditandoUsuario") = Nothing
+                Response.Redirect("~/UsuarioAsignarPermisos.aspx")
+            End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
     Protected Sub btnEliminarUsuario_Click(sender As Object, e As EventArgs) Handles btnEliminarUsuario.Click
-        If Not IsNothing(grdUsuarios.SelectedRow) Then
-            MostrarMensajeModal("EstaSeguroBorrarElementoSeleccionado", False)
-        End If
+
+        Try
+            If Not IsNothing(grdUsuarios.SelectedRow) Then
+                MostrarMensajeModal("EstaSeguroBorrarElementoSeleccionado", False)
+            End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
     End Sub
 
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
 
         'elimino el usuario
-        Dim nu As New Seguridad.Usuario
-        nu.Usuario.ID = grdUsuarios.SelectedRow.Cells(0).Text
-        nu.Eliminar()
+        Try
+            Dim nu As New Seguridad.Usuario
+            nu.Usuario.ID = grdUsuarios.SelectedRow.Cells(0).Text
+            nu.Eliminar()
 
-        Session("UsuarioAEditar") = Nothing
-        Response.Redirect(Request.RawUrl)
-        'Response.Redirect("~/UsuarioLista.aspx")
+            Session("UsuarioAEditar") = Nothing
+            Response.Redirect(Request.RawUrl)
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
     End Sub
 
-    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean)
+    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean, Optional traducir As Boolean = True)
 
         Dim m As New BE.MensajeError
         Dim f As New BLL.Facade_Pantalla
 
         m.IDError = Msg
         If Not simple Then
-            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            If traducir Then
+                noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            Else
+                noTranslateModalMessageSiNo.Text = Msg
+            End If
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
         Else
-            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            If traducir Then
+                noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            Else
+                noTranslateModalMessage.Text = Msg
+            End If
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
         End If
 

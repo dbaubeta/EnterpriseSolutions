@@ -34,6 +34,9 @@
                 txtUsuarioNombre.Text = u.Usuario.Nombre
                 dlIdiomas.SelectedValue = u.Usuario.Idioma.ID
                 chkHabilitado.Checked = u.Usuario.Habilitado
+            Else
+                noTranslateUsuarioID.Text = 0
+
             End If
 
         End If
