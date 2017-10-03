@@ -33,8 +33,13 @@ Public Class Idioma
 
             End If
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub
@@ -80,8 +85,13 @@ Public Class Idioma
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function

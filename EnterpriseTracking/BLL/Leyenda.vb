@@ -21,8 +21,13 @@
             dvv.tabla = "IdiomaLeyenda"
             dvv.calcular()
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Sub
 
@@ -32,8 +37,13 @@
         Try
             Return l.ObtenerLeyendas(i)
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Function
 
@@ -41,9 +51,15 @@
         Dim l As New DAL.Leyenda
         Try
             Return l.ObtenerLeyendas(i, m)
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
+
     End Function
 
 

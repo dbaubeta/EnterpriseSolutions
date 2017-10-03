@@ -14,7 +14,13 @@
 
             Dim resultado As Long = DBH.Insert("INSERT INTO ElementoElemento(IDPadre, IDHijo ,DVH) VALUES(@P1,@P2,@P3);", params)
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
 
@@ -47,7 +53,13 @@
                 DBH.Update("update Elemento set nombre=@P2, tipo=@P3, DVH=@P4 where ID=@P1", params)
 
             End If
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Sub
 
@@ -65,7 +77,13 @@
                 DBH.Delete("delete from Elemento where ID=@P1", params)
 
             End If
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Sub
 
@@ -121,8 +139,13 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
 
@@ -155,8 +178,13 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function
@@ -181,8 +209,13 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function
@@ -215,8 +248,13 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function
@@ -244,8 +282,13 @@
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function

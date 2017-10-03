@@ -8,61 +8,76 @@ Public Class BackupRestore
 
     Public Sub Backup(b As BE.BROperation)
 
+        Try
+            Dim bkpcmd As String
+            b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
+            bkpcmd = "BACKUP DATABASE EnterpriseSolutionsBD TO  DISK = '" + b.Path + "' WITH INIT, SKIP , DESCRIPTION = 'Backup', NAME = 'EnterpriseSolutionsBD' "
+            Dim cmd As New SqlCommand
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = bkpcmd
+            cmd.Connection = DBH.ObtenerConexionMaster()
 
-        Dim bkpcmd As String
-        b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
-        bkpcmd = "BACKUP DATABASE EnterpriseSolutionsBD TO  DISK = '" + b.Path + "' WITH INIT, SKIP , DESCRIPTION = 'Backup', NAME = 'EnterpriseSolutionsBD' "
-        Dim cmd As New SqlCommand
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = bkpcmd
-        cmd.Connection = DBH.ObtenerConexionMaster()
-
-        cmd.Connection.Open()
-        cmd.ExecuteNonQuery()
-        cmd.Connection.Close()
-        cmd.Dispose()
-
+            cmd.Connection.Open()
+            cmd.ExecuteNonQuery()
+            cmd.Connection.Close()
+            cmd.Dispose()
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
 
     Public Sub Restore(b As BE.BROperation)
 
+        Try
+            Dim dsccmd As String = "DECLARE @ProcessId varchar(4) " + Environment.NewLine + _
+                       "DECLARE CurrentProcesses SCROLL CURSOR FOR" + Environment.NewLine + _
+                       "select spid from sysprocesses where dbid = (select dbid from sysdatabases where name = 'EnterpriseSolutionsBD' ) order by spid " + Environment.NewLine + _
+                       "FOR READ ONLY" + Environment.NewLine + _
+                       "OPEN CurrentProcesses" + Environment.NewLine + _
+                       "FETCH NEXT FROM CurrentProcesses INTO @ProcessId" + Environment.NewLine + _
+                       "WHILE @@FETCH_STATUS <> -1" + Environment.NewLine + _
+                       "BEGIN" + Environment.NewLine + _
+                       "	Exec ('KILL ' +  @ProcessId)" + Environment.NewLine + _
+                       "	FETCH NEXT FROM CurrentProcesses INTO @ProcessId" + Environment.NewLine + _
+                       "                    End" + Environment.NewLine + _
+                       "CLOSE CurrentProcesses" + Environment.NewLine + _
+                       "DeAllocate CurrentProcesses"
 
-        Dim dsccmd As String = "DECLARE @ProcessId varchar(4) " + Environment.NewLine + _
-                   "DECLARE CurrentProcesses SCROLL CURSOR FOR" + Environment.NewLine + _
-                   "select spid from sysprocesses where dbid = (select dbid from sysdatabases where name = 'EnterpriseSolutionsBD' ) order by spid " + Environment.NewLine + _
-                   "FOR READ ONLY" + Environment.NewLine + _
-                   "OPEN CurrentProcesses" + Environment.NewLine + _
-                   "FETCH NEXT FROM CurrentProcesses INTO @ProcessId" + Environment.NewLine + _
-                   "WHILE @@FETCH_STATUS <> -1" + Environment.NewLine + _
-                   "BEGIN" + Environment.NewLine + _
-                   "	Exec ('KILL ' +  @ProcessId)" + Environment.NewLine + _
-                   "	FETCH NEXT FROM CurrentProcesses INTO @ProcessId" + Environment.NewLine + _
-                   "                    End" + Environment.NewLine + _
-                   "CLOSE CurrentProcesses" + Environment.NewLine + _
-                   "DeAllocate CurrentProcesses"
 
+            Dim cmd As New SqlCommand
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = dsccmd
+            cmd.Connection = DBH.ObtenerConexionMaster()
 
-        Dim cmd As New SqlCommand
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = dsccmd
-        cmd.Connection = DBH.ObtenerConexionMaster()
+            cmd.Connection.Open()
+            cmd.ExecuteNonQuery()
+            cmd.Connection.Close()
 
-        cmd.Connection.Open()
-        cmd.ExecuteNonQuery()
-        cmd.Connection.Close()
+            Dim rstcmd As String
+            b.Path = My.Resources.BackupFolder + "\Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
+            rstcmd = "RESTORE DATABASE EnterpriseSolutionsBD FROM DISK = '" + b.Path + "' WITH REPLACE, RECOVERY "
+            cmd.CommandText = rstcmd
 
-        Dim rstcmd As String
-        b.Path = My.Resources.BackupFolder + "\Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
-        rstcmd = "RESTORE DATABASE EnterpriseSolutionsBD FROM DISK = '" + b.Path + "' WITH REPLACE, RECOVERY "
-        cmd.CommandText = rstcmd
+            cmd.Connection.Open()
+            cmd.ExecuteNonQuery()
+            cmd.Connection.Close()
+            cmd.Dispose()
 
-        cmd.Connection.Open()
-        cmd.ExecuteNonQuery()
-        cmd.Connection.Close()
-        cmd.Dispose()
-
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
@@ -87,35 +102,46 @@ Public Class BackupRestore
             Next
 
             Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
-
     End Function
 
     Public Sub Eliminar(b As BE.BROperation)
 
+        Try
+            Dim cmd As New SqlCommand
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = DBH.ObtenerConexionMaster()
 
-        Dim cmd As New SqlCommand
-        cmd.CommandType = CommandType.Text
-        cmd.Connection = DBH.ObtenerConexionMaster()
+            Dim rstcmd As String
+            b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
+            rstcmd = "EXEC sp_configure 'show advanced options', 1;" + Environment.NewLine + _
+                     "RECONFIGURE" + Environment.NewLine + _
+                     "EXEC sp_configure 'xp_cmdshell',1" + Environment.NewLine + _
+                     "RECONFIGURE" + Environment.NewLine + _
+                     "EXEC xp_cmdshell 'DEL """ + b.Path + """'"
 
-        Dim rstcmd As String
-        b.Path = My.Resources.BackupFolder + "Backup_EnterpriseSolutionsDB_" + b.Fecha.ToString("yyyy-MM-dd HH_mm_ss") + ".bkp"
-        rstcmd = "EXEC sp_configure 'show advanced options', 1;" + Environment.NewLine + _
-                 "RECONFIGURE" + Environment.NewLine + _
-                 "EXEC sp_configure 'xp_cmdshell',1" + Environment.NewLine + _
-                 "RECONFIGURE" + Environment.NewLine + _
-                 "EXEC xp_cmdshell 'DEL """ + b.Path + """'"
+            cmd.CommandText = rstcmd
 
-        cmd.CommandText = rstcmd
+            cmd.Connection.Open()
+            cmd.ExecuteNonQuery()
+            cmd.Connection.Close()
+            cmd.Dispose()
 
-        cmd.Connection.Open()
-        cmd.ExecuteNonQuery()
-        cmd.Connection.Close()
-        cmd.Dispose()
-
-
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 

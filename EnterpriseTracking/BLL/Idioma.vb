@@ -16,8 +16,13 @@
             l.Guardar_Leyendas(p_idioma)
 
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub
@@ -34,8 +39,13 @@
             Next
 
             Return l
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function

@@ -45,8 +45,13 @@ Public Class Digito_Vertical
 
             DBH.Insert(consulta)
             Return 0
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Function

@@ -5,35 +5,31 @@ Public Class Cifrado
 
     Public Function encriptar_md5(s As String) As String
 
-
-        Using encriptador As MD5 = MD5.Create()
-
-
-            ' Convert to byte array and get hash
-            Dim dbytes As Byte() =
-                 encriptador.ComputeHash(Encoding.UTF8.GetBytes(s))
-
-            ' sb to create string from bytes
-            Dim sBuilder As New StringBuilder()
-
-            ' convert byte data to hex string
-            For n As Integer = 0 To dbytes.Length - 1
-                sBuilder.Append(dbytes(n).ToString("X2"))
-            Next n
+        Try
+            Using encriptador As MD5 = MD5.Create()
 
 
-            Return sBuilder.ToString()
+                ' Convert to byte array and get hash
+                Dim dbytes As Byte() =
+                     encriptador.ComputeHash(Encoding.UTF8.GetBytes(s))
 
-        End Using
+                ' sb to create string from bytes
+                Dim sBuilder As New StringBuilder()
 
+                ' convert byte data to hex string
+                For n As Integer = 0 To dbytes.Length - 1
+                    sBuilder.Append(dbytes(n).ToString("X2"))
+                Next n
+
+
+                Return sBuilder.ToString()
+
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
-    'Usage
-    'strContent = AES_Encrypt(strContent, "somepassword")
-    'File.WriteAllText("encrypted.txt", strContent)
-
-    'strContent = AES_Decrypt(strContent, "somepassword")
-    'File.WriteAllText("decrypted.txt", strContent)
 
     Public Function Encriptar_str(ByVal input As String) As String
         Dim AES As New System.Security.Cryptography.RijndaelManaged
@@ -52,7 +48,7 @@ Public Class Cifrado
             encrypted = Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
             Return encrypted
         Catch ex As Exception
-            Return input
+            Throw ex
         End Try
     End Function
 
@@ -74,7 +70,7 @@ Public Class Cifrado
             decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
             Return decrypted
         Catch ex As Exception
-            Return input
+            Throw ex
         End Try
     End Function
 

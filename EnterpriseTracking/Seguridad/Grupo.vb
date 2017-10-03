@@ -17,44 +17,62 @@
         Dim l As New List(Of BE.Elemento)
         Dim du As New DAL.Elemento
 
-        ' Cargar grupo
-        ' =============================================================
-        l.Add(Me.Elemento)
-        l = du.ObtenerElementos(l)
-        If l.Count > 0 Then
-            Me.Elemento = l.Item(0)
-            ' Cargar permisos 
+        Try
+            ' Cargar grupo
             ' =============================================================
-            Dim de As New DAL.Elemento
-            For Each x As BE.Elemento In de.ObtenerHijos(Me.Elemento)
-                If x.Tipo = 0 Then ' Permiso
-                    Dim y As New Permiso
-                    y.Elemento = x
-                    Me.Hijos.Add(y)
-                Else
-                    Dim y As New Grupo
-                    y.Elemento = x
-                    y.Hijos = ObtenerElementos(x) ' si es grupo uso funcion recursiva.
-                    Me.Hijos.Add(y)
-                End If
-            Next
+            l.Add(Me.Elemento)
+            l = du.ObtenerElementos(l)
+            If l.Count > 0 Then
+                Me.Elemento = l.Item(0)
+                ' Cargar permisos 
+                ' =============================================================
+                Dim de As New DAL.Elemento
+                For Each x As BE.Elemento In de.ObtenerHijos(Me.Elemento)
+                    If x.Tipo = 0 Then ' Permiso
+                        Dim y As New Permiso
+                        y.Elemento = x
+                        Me.Hijos.Add(y)
+                    Else
+                        Dim y As New Grupo
+                        y.Elemento = x
+                        y.Hijos = ObtenerElementos(x) ' si es grupo uso funcion recursiva.
+                        Me.Hijos.Add(y)
+                    End If
+                Next
 
-        Else
-            Me.Elemento = Nothing
-        End If
-
+            Else
+                Me.Elemento = Nothing
+            End If
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
     End Sub
 
 
     Public Overrides Function ObtenerPermisos() As List(Of Elemento)
         Dim l As New List(Of Elemento)
-        l.Add(Me)
 
-        For Each el As Elemento In Hijos
-            l.AddRange(el.ObtenerPermisos)
-        Next
+        Try
+            l.Add(Me)
 
-        Return l
+            For Each el As Elemento In Hijos
+                l.AddRange(el.ObtenerPermisos)
+            Next
+
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Function
 
@@ -65,17 +83,25 @@
         Dim DVH As New Digitos.Digito_Horizontal
         Dim DVV As New Digitos.Digito_Vertical
 
-        Me.Elemento.DVH = DVH.calcular(Me.Elemento)
+        Try
+            Me.Elemento.DVH = DVH.calcular(Me.Elemento)
 
-        DBH.Delete("delete from ElementoElemento where IDPadre=" + Me.Elemento.ID.ToString)
-        d.Guardar(Me.Elemento)
-        DVV.tabla = "Elemento"
-        DVV.calcular()
+            DBH.Delete("delete from ElementoElemento where IDPadre=" + Me.Elemento.ID.ToString)
+            d.Guardar(Me.Elemento)
+            DVV.tabla = "Elemento"
+            DVV.calcular()
 
-        GuardarPermisos(Me)
-        DVV.tabla = "ElementoElemento"
-        DVV.calcular()
-
+            GuardarPermisos(Me)
+            DVV.tabla = "ElementoElemento"
+            DVV.calcular()
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
@@ -84,33 +110,50 @@
         Dim d As New DAL.Elemento
         Dim DVV As New Digitos.Digito_Vertical
 
-        d.Eliminar(Me.Elemento)
-        DVV.tabla = "Elemento"
-        DVV.calcular()
-        DVV.tabla = "ElementoElemento"
-        DVV.calcular()
-        DVV.tabla = "UsuarioElemento"
-        DVV.calcular()
+        Try
+            d.Eliminar(Me.Elemento)
+            DVV.tabla = "Elemento"
+            DVV.calcular()
+            DVV.tabla = "ElementoElemento"
+            DVV.calcular()
+            DVV.tabla = "UsuarioElemento"
+            DVV.calcular()
 
-
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
     Private Sub GuardarPermisos(e As Grupo)
         Dim d As New DAL.Elemento
 
-        For Each h As Elemento In e.Hijos
+        Try
+            For Each h As Elemento In e.Hijos
 
-            Dim dvh As Long = 0
-            For j As Integer = 0 To e.Elemento.ID.ToString.Length - 1
-                dvh += Asc(e.Elemento.ID.ToString.Substring(j, 1))
+                Dim dvh As Long = 0
+                For j As Integer = 0 To e.Elemento.ID.ToString.Length - 1
+                    dvh += Asc(e.Elemento.ID.ToString.Substring(j, 1))
+                Next
+                For j As Integer = 0 To h.Elemento.ID.ToString.Length - 1
+                    dvh += Asc(h.Elemento.ID.ToString.Substring(j, 1))
+                Next
+                d.AgregarPermiso(e.Elemento, h.Elemento, dvh)
+                'If h.Elemento.Tipo = 1 Then GuardarPermisos(h)
             Next
-            For j As Integer = 0 To h.Elemento.ID.ToString.Length - 1
-                dvh += Asc(h.Elemento.ID.ToString.Substring(j, 1))
-            Next
-            d.AgregarPermiso(e.Elemento, h.Elemento, dvh)
-            'If h.Elemento.Tipo = 1 Then GuardarPermisos(h)
-        Next
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
@@ -119,14 +162,22 @@
 
         Dim l As New List(Of BE.MensajeError)
 
-        If s.nombre = "" Or IsNothing(s.nombre) Then
-            Dim m As New BE.MensajeError
-            m.IDError = "NombreGrupoRequerido"
-            l.Add(m)
-        End If
+        Try
+            If s.nombre = "" Or IsNothing(s.nombre) Then
+                Dim m As New BE.MensajeError
+                m.IDError = "NombreGrupoRequerido"
+                l.Add(m)
+            End If
 
-        Return l
-
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Function
 
@@ -138,21 +189,29 @@
         Dim de As New DAL.Elemento
         Dim l As New List(Of Elemento)
 
-        For Each x As BE.Elemento In de.ObtenerHijos(e)
-            If x.Tipo = 0 Then ' Permiso
-                Dim y As New Permiso
-                y.Elemento = x
-                l.Add(y)
-            Else
-                Dim y As New Grupo
-                y.Elemento = x
-                y.Hijos = ObtenerElementos(x)
-                l.Add(y)
-            End If
-        Next
+        Try
+            For Each x As BE.Elemento In de.ObtenerHijos(e)
+                If x.Tipo = 0 Then ' Permiso
+                    Dim y As New Permiso
+                    y.Elemento = x
+                    l.Add(y)
+                Else
+                    Dim y As New Grupo
+                    y.Elemento = x
+                    y.Hijos = ObtenerElementos(x)
+                    l.Add(y)
+                End If
+            Next
 
-        Return l
-
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Function
 

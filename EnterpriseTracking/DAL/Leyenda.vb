@@ -22,8 +22,13 @@ Public Class Leyenda
                 DBH.Insert("INSERT INTO IdiomaLeyenda(IDIdioma,IDLeyenda,Texto,DVH) VALUES(@P1,@P2,@P3,@P4)", params)
 
             Next
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
 
     End Sub
@@ -47,8 +52,13 @@ Public Class Leyenda
             Next
 
             ObtenerLeyendas = ll
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Function
 
@@ -72,8 +82,13 @@ Public Class Leyenda
             ObtenerLeyendas = l
 
 
+        Catch bex As BE.Excepcion
+            Throw bex
         Catch ex As Exception
-            Throw ex
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
         End Try
     End Function
 

@@ -38,7 +38,7 @@
             Throw bex
         Catch ex As Exception
             Dim bex As New BE.Excepcion
-            bex.excepcion = ex
+            bex.Excepcion = ex
             bex.Capa = Me.GetType().ToString
             Throw bex
         End Try

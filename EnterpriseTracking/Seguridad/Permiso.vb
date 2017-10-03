@@ -7,16 +7,24 @@
         Dim l As New List(Of BE.Elemento)
         Dim du As New DAL.Elemento
 
-        ' Cargar permiso
-        ' =============================================================
-        l.Add(Me.Elemento)
-        l = du.ObtenerElementos(l)
-        If l.Count > 0 Then
-            Me.Elemento = l.Item(0)
-        Else
-            Me.Elemento = Nothing
-        End If
-
+        Try
+            ' Cargar permiso
+            ' =============================================================
+            l.Add(Me.Elemento)
+            l = du.ObtenerElementos(l)
+            If l.Count > 0 Then
+                Me.Elemento = l.Item(0)
+            Else
+                Me.Elemento = Nothing
+            End If
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
     End Sub
 
 
@@ -33,12 +41,20 @@
 
         Dim dvh As New Digitos.Digito_Horizontal
         Dim dvv As New Digitos.Digito_Vertical
-
-        Dim d As New DAL.Elemento
-        Me.Elemento.DVH = dvh.calcular(Me.Elemento)
-        d.Guardar(Me.Elemento)
-        dvv.tabla = "Elemento"
-        dvv.calcular()
+        Try
+            Dim d As New DAL.Elemento
+            Me.Elemento.DVH = dvh.calcular(Me.Elemento)
+            d.Guardar(Me.Elemento)
+            dvv.tabla = "Elemento"
+            dvv.calcular()
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
