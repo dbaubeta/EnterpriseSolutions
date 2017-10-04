@@ -140,7 +140,7 @@ Public Class Facade_Pantalla
     Private Function obtenerLeyenda(ID As String, p_idioma As BE.Idioma) As String
 
         Try
-            Dim o As BE.Leyenda = p_idioma.Leyendas.Find(Function(c) c.IDLeyenda = ID)
+            Dim o As BE.Leyenda = p_idioma.Leyendas.Find(Function(c) c.IDLeyenda.ToLower = ID.ToLower)
 
             ' Este codigo es para que me pida por pantalla las leyendas y no tener que cargarla en la base de datos
             ' ** NO ES UN CODIGO PARA LA VERSION FINAL, SINO PARA HACERME MAS FACIL LA VIDA

@@ -158,13 +158,13 @@ Partial Public Class Login
     Protected WithEvents lblPassword As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtContraseña control.
+    '''txtcontrasena control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtcontrasena As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''RequiredFieldValidatorErrorPassword control.

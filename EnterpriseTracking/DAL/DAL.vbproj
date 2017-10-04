@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackupRestore.vb" />
+    <Compile Include="Bitacora.vb" />
     <Compile Include="Elemento.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />

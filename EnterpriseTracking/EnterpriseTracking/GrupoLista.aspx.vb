@@ -9,11 +9,16 @@ Public Class GrupoLista
         If IsNothing(Session("Usuario")) Then
             Response.Redirect("~/Login.aspx")
         End If
+        Try
 
-        CargarGrilla()
+            CargarGrilla()
 
-        'Me.btnEditarGrupo.Enabled = False
-        'Me.btnEliminarGrupo.Enabled = False
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
@@ -24,60 +29,74 @@ Public Class GrupoLista
         Dim bl As New Seguridad.Seguridad
         Dim il As New List(Of BE.Elemento)
 
-        Dim dt As DataTable = New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("Nombre")
-        dt.Columns.Add("Idioma")
-        dt.Columns.Add("Habilitado")
+        Try
+            Dim dt As DataTable = New DataTable
+            dt.Columns.Add("ID")
+            dt.Columns.Add("Nombre")
+            dt.Columns.Add("Idioma")
+            dt.Columns.Add("Habilitado")
 
-        For Each l As Seguridad.Grupo In bl.ObtenerGrupos()
-            Dim dr As DataRow = dt.NewRow
-            dr("ID") = l.Elemento.ID
-            dr("Nombre") = l.Elemento.nombre
-            dt.Rows.Add(dr)
-        Next
+            For Each l As Seguridad.Grupo In bl.ObtenerGrupos()
+                Dim dr As DataRow = dt.NewRow
+                dr("ID") = l.Elemento.ID
+                dr("Nombre") = l.Elemento.nombre
+                dt.Rows.Add(dr)
+            Next
 
-        grdGrupos.DataSource = Nothing
-        grdGrupos.DataSource = dt
-        grdGrupos.DataBind()
+            grdGrupos.DataSource = Nothing
+            grdGrupos.DataSource = dt
+            grdGrupos.DataBind()
 
-        grdGrupos.UseAccessibleHeader = True
-        grdGrupos.HeaderRow.TableSection = TableRowSection.TableHeader
+            If grdGrupos.Rows.Count > 0 Then
+                grdGrupos.UseAccessibleHeader = True
+                grdGrupos.HeaderRow.TableSection = TableRowSection.TableHeader
+            End If
+
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
     Protected Overrides Sub Render(writer As System.Web.UI.HtmlTextWriter)
-        For Each r As GridViewRow In Me.grdGrupos.Rows
-            If r.RowType = DataControlRowType.DataRow Then
-                r.Attributes("onmouseover") = "this.style.cursor='pointer'"
-                r.Attributes("onmouseout") = "this.style.textDecoration='none';"
-                r.ToolTip = "Click to select row"
-                r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdGrupos, "Select$" + r.RowIndex.ToString, True)
-            End If
-        Next
-        MyBase.Render(writer)
+        Try
+            For Each r As GridViewRow In Me.grdGrupos.Rows
+                If r.RowType = DataControlRowType.DataRow Then
+                    r.Attributes("onmouseover") = "this.style.cursor='pointer'"
+                    r.Attributes("onmouseout") = "this.style.textDecoration='none';"
+                    r.ToolTip = "Click to select row"
+                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdGrupos, "Select$" + r.RowIndex.ToString, True)
+                End If
+            Next
+            MyBase.Render(writer)
+
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
     Private Sub grdGrupos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdGrupos.SelectedIndexChanged
+        Try
+            For Each row As GridViewRow In grdGrupos.Rows
+                If row.RowIndex = grdGrupos.SelectedIndex Then
+                    row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
+                    row.ToolTip = String.Empty
+                Else
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
+                    row.ToolTip = String.Empty
+                End If
+            Next
 
-        'MsgBox(grdGrupos.SelectedRow.Cells(0).Text)
-        For Each row As GridViewRow In grdGrupos.Rows
-            If row.RowIndex = grdGrupos.SelectedIndex Then
-                row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
-                row.ToolTip = String.Empty
-            Else
-                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
-                row.ToolTip = String.Empty
-            End If
-        Next
-        'If grdGrupos.SelectedRow.Cells(0).Text <> "1" Then
-        '    Me.btnEditarGrupo.Enabled = True
-        '    Me.btnEliminarGrupo.Enabled = True
-        'Else
-        '    Me.btnEditarGrupo.Enabled = False
-        '    Me.btnEliminarGrupo.Enabled = False
-        'End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
@@ -103,30 +122,54 @@ Public Class GrupoLista
 
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
 
-        'elimino el Grupo
-        Dim nu As New Seguridad.Grupo
-        nu.Elemento.ID = grdGrupos.SelectedRow.Cells(0).Text
-        nu.Eliminar()
+        Try
+            'elimino el Grupo
+            Dim nu As New Seguridad.Grupo
+            nu.Elemento.ID = grdGrupos.SelectedRow.Cells(0).Text
+            nu.Eliminar()
+
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
         Session("GrupoAEditar") = Nothing
         Response.Redirect(Request.RawUrl)
 
+
     End Sub
 
-    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean)
+    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean, Optional traducir As Boolean = True)
 
         Dim m As New BE.MensajeError
         Dim f As New BLL.Facade_Pantalla
-
         m.IDError = Msg
         If Not simple Then
-            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            If traducir Then
+                Try
+                    noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessageSiNo.Text = Msg
+                End Try
+            Else
+                noTranslateModalMessageSiNo.Text = Msg
+            End If
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
         Else
-            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+            If traducir Then
+                Try
+                    noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessage.Text = Msg
+                End Try
+            Else
+                noTranslateModalMessage.Text = Msg
+            End If
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
         End If
 
     End Sub
+
 
 End Class

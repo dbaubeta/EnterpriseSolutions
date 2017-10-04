@@ -63,6 +63,10 @@
       <Project>{331aba68-7bbb-4d10-9c6b-b4e23c956c52}</Project>
       <Name>BE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bitacora\Bitacora.vbproj">
+      <Project>{ff07c0ac-3fbd-4af7-bec2-45b7c6b72da9}</Project>
+      <Name>Bitacora</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLL\BLL.vbproj">
       <Project>{6de977e4-f188-49b3-9ff3-b78e6213a839}</Project>
       <Name>BLL</Name>

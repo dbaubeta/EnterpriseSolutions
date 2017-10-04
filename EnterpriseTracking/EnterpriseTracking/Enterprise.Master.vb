@@ -64,8 +64,11 @@ Public Class Enterprise
         Dim s As New Seguridad.Permiso
         s.Elemento.nombre = formname
         s.Elemento.Tipo = 0
-        s.Guardar()
-        cargarpermisosbase(Me)
+        Try
+            s.Guardar()
+            cargarpermisosbase(Me)
+        Catch
+        End Try
 
         'Solo cargo la lista si no es postback (evito cargar cuando cambio el idioma en el dropdwon
         If Not IsPostBack Then
@@ -116,7 +119,10 @@ Public Class Enterprise
 
     Protected Sub mnuButtonLogout_Click(sender As Object, e As EventArgs) Handles mnuButtonLogout.Click
 
+        Dim bit As New Bitacora.Bitacora
+
         Session("Idioma") = Nothing
+        bit.Guardar(New BE.Bitacora("BIT_Logout", "Logout", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID))
         Session("Usuario") = Nothing
         Response.Redirect("~/Login.aspx")
 

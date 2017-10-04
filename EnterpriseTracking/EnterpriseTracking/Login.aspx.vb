@@ -8,42 +8,58 @@
 
     Protected Sub LogIn(sender As Object, e As EventArgs) Handles btnLogin.Click
 
-        Try
-            If IsValid Then
-                ' Validate the user password
-                'IdentityHelper.RedirectToReturnUrl(Request.QueryString("ReturnUrl"), Response)
-                Dim s As New Seguridad.Seguridad
-                Dim u As New BE.Usuario
-                Dim us As New Seguridad.Usuario
-                Dim b As New BLL.Facade_Pantalla
-                Dim bi As New BLL.Idioma
+        If IsValid Then
+            ' Validate the user password
+            'IdentityHelper.RedirectToReturnUrl(Request.QueryString("ReturnUrl"), Response)
+            Dim s As New Seguridad.Seguridad
+            Dim u As New BE.Usuario
+            Dim us As New Seguridad.Usuario
+            Dim b As New BLL.Facade_Pantalla
+            Dim bi As New BLL.Idioma
+            Dim bit As New Bitacora.Bitacora
 
-                u.Nombre = Me.txtUsuario.Text
-
+            u.Nombre = Me.txtUsuario.Text
+            Try
                 us = s.ObtenerUsuario(u)
-                Dim em As New BE.MensajeError
+            Catch bex As BE.Excepcion
+                MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+            Catch ex As Exception
+                MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+            End Try
 
-                If us Is Nothing Then ' Usuario Inexistente
-                    em.IDError = "msjErrorUsuarioIncorrecto"
-                ElseIf Not us.ValidarPassword(Me.txtContraseña.Text) Then ' Contraseña incorrecta
-                    em.IDError = "msjErrorContraseñaIncorrecta"
-                ElseIf us.Usuario.Habilitado = 0 Then ' Usuario Inhabilitado
-                    em.IDError = "msjErrorUsuarioInhabilitado"
-                Else ' Login correcto
-                    Session("Usuario") = us
-                    Session("Idioma") = us.Usuario.Idioma
-                    Response.Redirect("~/Principal.aspx")
-                End If
-                Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
-                Me.msjError.Visible = True
+            Dim em As New BE.MensajeError
 
+            If us Is Nothing Then ' Usuario Inexistente
+                em.IDError = "msjErrorUsuarioIncorrecto"
+            ElseIf Not us.ValidarPassword(Me.txtcontrasena.Text) Then ' Contraseña incorrecta
+                em.IDError = "msjErrorcontrasenaIncorrecta"
+            ElseIf us.Usuario.Habilitado = 0 Then ' Usuario Inhabilitado
+                em.IDError = "msjErrorUsuarioInhabilitado"
+            Else ' Login correcto
+                Session("Usuario") = us
+                Session("Idioma") = us.Usuario.Idioma
+                Try
+                    bit.Guardar(New BE.Bitacora("BIT_Login", "Login", us.Usuario.ID))
+                Catch bex As BE.Excepcion
+                    MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+                Catch ex As Exception
+                    MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+                End Try
+
+                Response.Redirect("~/Principal.aspx")
             End If
+            Try 
+            Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
+                Me.msjError.Visible = True
+            Catch bex As BE.Excepcion
+                MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+            Catch ex As Exception
+                MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+            End Try
 
-        Catch bex As BE.Excepcion
-            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
-        Catch ex As Exception
-            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
-        End Try
+
+        End If
+
 
     End Sub
 
@@ -103,29 +119,32 @@
 
         Dim m As New BE.MensajeError
         Dim f As New BLL.Facade_Pantalla
-        Try
-            m.IDError = Msg
-            If Not simple Then
-                If traducir Then
+        m.IDError = Msg
+        If Not simple Then
+            If traducir Then
+                Try
                     noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
-                Else
+                Catch ex As Exception
                     noTranslateModalMessageSiNo.Text = Msg
-                End If
-                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
+                End Try
             Else
-                If traducir Then
-                    noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
-                Else
-                    noTranslateModalMessage.Text = Msg
-                End If
-                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
+                noTranslateModalMessageSiNo.Text = Msg
             End If
-        Catch bex As BE.Excepcion
-            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
-        Catch ex As Exception
-            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
-        End Try
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
+        Else
+            If traducir Then
+                Try
+                    noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessage.Text = Msg
+                End Try
+            Else
+                noTranslateModalMessage.Text = Msg
+            End If
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
+        End If
 
     End Sub
+
 
 End Class

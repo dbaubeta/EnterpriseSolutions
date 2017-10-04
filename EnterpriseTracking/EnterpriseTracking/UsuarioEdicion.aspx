@@ -79,10 +79,10 @@
         <%-- LABEL + TEXTBOX --%>
         <div class="row" style="margin-top:10px" >
             <div class="col-sm-2" style="padding-top:8px">
-                <asp:Label ID="lblContraseña" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
+                <asp:Label ID="lblcontrasena" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
             </div>    
             <div class="col-sm-3" style="padding-top:3px">
-                <asp:TextBox ID="txtContraseña" runat="server" style="width:100%" CssClass="form-control" textmode="Password"  />
+                <asp:TextBox ID="txtcontrasena" runat="server" style="width:100%" CssClass="form-control" textmode="Password"  />
             </div>        
         </div>
         <%-- DROPDOWN LIST --%>

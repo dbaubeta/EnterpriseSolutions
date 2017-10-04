@@ -5,11 +5,11 @@ Public Class UsuarioLista
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Try
-            If IsNothing(Session("Usuario")) Then
-                Response.Redirect("~/Login.aspx")
-            End If
+        If IsNothing(Session("Usuario")) Then
+            Response.Redirect("~/Login.aspx")
+        End If
 
+        Try
             CargarGrilla()
 
             Me.btnEditarUsuario.Enabled = False
@@ -50,8 +50,10 @@ Public Class UsuarioLista
             grdUsuarios.DataSource = dt
             grdUsuarios.DataBind()
 
-            grdUsuarios.UseAccessibleHeader = True
-            grdUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader
+            If grdUsuarios.Rows.Count > 0 Then
+                grdUsuarios.UseAccessibleHeader = True
+                grdUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader
+            End If
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
@@ -117,36 +119,20 @@ Public Class UsuarioLista
     End Sub
 
     Protected Sub btnEditarUsuario_Click(sender As Object, e As EventArgs) Handles btnEditarUsuario.Click
-        Try
-            If Not IsNothing(grdUsuarios.SelectedRow) Then
-                Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
-                Response.Redirect("~/UsuarioEdicion.aspx")
-            End If
-        Catch bex As BE.Excepcion
-            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
-        Catch ex As Exception
-            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
-        End Try
-
-
-
+        If Not IsNothing(grdUsuarios.SelectedRow) Then
+            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+            Response.Redirect("~/UsuarioEdicion.aspx")
+        End If
     End Sub
 
     Private Sub btnAsignarPermisosUsuario_Click(sender As Object, e As EventArgs) Handles btnAsignarPermisosUsuario.Click
 
-        Try
-            If Not IsNothing(grdUsuarios.SelectedRow) Then
-                Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
-                Session("EditandoUsuario") = Nothing
-                Response.Redirect("~/UsuarioAsignarPermisos.aspx")
-            End If
-        Catch bex As BE.Excepcion
-            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
-        Catch ex As Exception
-            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
-        End Try
-
-
+        If Not IsNothing(grdUsuarios.SelectedRow) Then
+            Session("UsuarioAEditar") = grdUsuarios.SelectedRow.Cells(0).Text
+            Session("EditandoUsuario") = Nothing
+            Response.Redirect("~/UsuarioAsignarPermisos.aspx")
+        End If
+        
     End Sub
 
     Protected Sub btnEliminarUsuario_Click(sender As Object, e As EventArgs) Handles btnEliminarUsuario.Click
@@ -170,14 +156,14 @@ Public Class UsuarioLista
             Dim nu As New Seguridad.Usuario
             nu.Usuario.ID = grdUsuarios.SelectedRow.Cells(0).Text
             nu.Eliminar()
-
-            Session("UsuarioAEditar") = Nothing
-            Response.Redirect(Request.RawUrl)
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
+
+        Session("UsuarioAEditar") = Nothing
+        Response.Redirect(Request.RawUrl)
 
     End Sub
 
@@ -185,18 +171,25 @@ Public Class UsuarioLista
 
         Dim m As New BE.MensajeError
         Dim f As New BLL.Facade_Pantalla
-
         m.IDError = Msg
         If Not simple Then
             If traducir Then
-                noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Try
+                    noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessageSiNo.Text = Msg
+                End Try
             Else
                 noTranslateModalMessageSiNo.Text = Msg
             End If
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
         Else
             If traducir Then
-                noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Try
+                    noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessage.Text = Msg
+                End Try
             Else
                 noTranslateModalMessage.Text = Msg
             End If
@@ -204,6 +197,7 @@ Public Class UsuarioLista
         End If
 
     End Sub
+
 
 
 End Class

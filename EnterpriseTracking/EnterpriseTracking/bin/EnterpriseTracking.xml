@@ -702,9 +702,9 @@ lblPassword control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.Login.txtContraseña">
+</member><member name="F:EnterpriseTracking.Login.txtcontrasena">
 	<summary>
-txtContraseña control.
+txtcontrasena control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -839,17 +839,17 @@ txtUsuarioNombre control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.UsuarioEdicion.lblContraseña">
+</member><member name="F:EnterpriseTracking.UsuarioEdicion.lblcontrasena">
 	<summary>
-lblContraseña control.
+lblcontrasena control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.UsuarioEdicion.txtContraseña">
+</member><member name="F:EnterpriseTracking.UsuarioEdicion.txtcontrasena">
 	<summary>
-txtContraseña control.
+txtcontrasena control.
 </summary>
 	<remarks>
 Auto-generated field.

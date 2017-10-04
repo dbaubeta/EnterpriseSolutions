@@ -38,10 +38,10 @@
         Try
             If IsNothing(Me.Usuario.ID) Or Me.Usuario.ID = 0 Then
             Else
-                DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
-                d.Eliminar(Me.Usuario)
-                dvv.tabla = "IdiomaLeyenda"
-                dvv.calcular()
+                'DBH.Delete("delete from UsuarioElemento where IDUsuario=" + Me.Usuario.ID.ToString)
+                Me.Cargar()
+                Me.Usuario.borrado = True
+                Me.Guardar()
             End If
         Catch bex As BE.Excepcion
             Throw bex
@@ -157,7 +157,7 @@
             End If
             If s.Password = "" Or IsNothing(s.Password) Then
                 Dim m As New BE.MensajeError
-                m.IDError = "ContraseñaUsuarioRequerido"
+                m.IDError = "contrasenaUsuarioRequerido"
                 l.Add(m)
             End If
 

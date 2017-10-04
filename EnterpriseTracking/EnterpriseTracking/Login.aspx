@@ -108,10 +108,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" ID="lblPassword" AssociatedControlID="txtContraseña" CssClass="col-md-2 control-label">Password</asp:Label>
+                        <asp:Label runat="server" ID="lblPassword" AssociatedControlID="txtcontrasena" CssClass="col-md-2 control-label">Password</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="txtContraseña" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidatorErrorPassword" ControlToValidate="txtContraseña" CssClass="text-danger" ErrorMessage="The password field is required." />
+                            <asp:TextBox runat="server" ID="txtcontrasena" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidatorErrorPassword" ControlToValidate="txtcontrasena" CssClass="text-danger" ErrorMessage="The password field is required." />
                         </div>
                     </div>
                     <div class="form-group">

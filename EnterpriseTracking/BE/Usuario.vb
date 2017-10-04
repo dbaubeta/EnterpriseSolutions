@@ -7,6 +7,8 @@
     Private _Nombre As String
     Private _Password As String
     Private _Habilitado As String
+    Private _borrado As Boolean
+
 
     Public Property DVH() As Long
         Get
@@ -70,6 +72,17 @@
             _Habilitado = value
         End Set
     End Property
+
+    Public Property borrado() As Boolean
+        Get
+            Return _borrado
+        End Get
+        Set(ByVal value As Boolean)
+            _borrado = value
+        End Set
+    End Property
+
+
 
     Public Sub New()
         Me.Idioma = New BE.Idioma

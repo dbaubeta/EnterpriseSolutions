@@ -15,7 +15,7 @@ Public Class Leyenda
             For Each l As BE.Leyenda In i.Leyendas
 
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(i.ID))
-                params(1) = DBH.CrearParametro("@P2", l.IDLeyenda)
+                params(1) = DBH.CrearParametro("@P2", l.IDLeyenda.ToLower)
                 params(2) = DBH.CrearParametro("@P3", l.texto_Leyenda)
                 params(3) = DBH.CrearParametro("@P4", Long.Parse(l.DVH))
 

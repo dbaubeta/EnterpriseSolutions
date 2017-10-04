@@ -73,7 +73,7 @@
 
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
-        Dim cadena As String = "select * from usuario"
+        Dim cadena As String = "select * from usuario where borrado=0"
         Dim idx As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Usuario

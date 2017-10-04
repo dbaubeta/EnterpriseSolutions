@@ -10,37 +10,45 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+
         If IsNothing(Session("Usuario")) Then
             Response.Redirect("~/Login.aspx")
         End If
+        Try
 
-        Dim f As New BLL.Facade_Pantalla
-        Dim b As New BLL.Idioma
-        Dim l As New List(Of BE.Idioma)
-        Dim m As New BE.MensajeError
+            Dim f As New BLL.Facade_Pantalla
+            Dim b As New BLL.Idioma
+            Dim l As New List(Of BE.Idioma)
+            Dim m As New BE.MensajeError
 
 
-        If Not IsNothing(Session("EditandoGrupo")) Then
-            u = DirectCast(Session("EditandoGrupo"), Seguridad.Grupo)
-        End If
-
-        If Not IsPostBack Then
-
-            l = b.Obtener_Idiomas()
-            'dlIdiomas_SelectedIndexChanged(sender, e)
-            If Not IsNothing(Session("GrupoAEditar")) Then
-
-                u.Elemento.ID = Session("GrupoAEditar")
-                u.Cargar()
-                Session("EditandoGrupo") = u
-
-                noTranslateGrupoID.Text = u.Elemento.ID.ToString
-                txtGrupoNombre.Text = u.Elemento.nombre
-            Else
-                noTranslateGrupoID.Text = 0
+            If Not IsNothing(Session("EditandoGrupo")) Then
+                u = DirectCast(Session("EditandoGrupo"), Seguridad.Grupo)
             End If
 
-        End If
+            If Not IsPostBack Then
+
+                l = b.Obtener_Idiomas()
+                'dlIdiomas_SelectedIndexChanged(sender, e)
+                If Not IsNothing(Session("GrupoAEditar")) Then
+
+                    u.Elemento.ID = Session("GrupoAEditar")
+                    u.Cargar()
+                    Session("EditandoGrupo") = u
+
+                    noTranslateGrupoID.Text = u.Elemento.ID.ToString
+                    txtGrupoNombre.Text = u.Elemento.nombre
+                Else
+                    noTranslateGrupoID.Text = 0
+                End If
+
+            End If
+
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
@@ -64,11 +72,19 @@
         If erroresval.Count > 0 Then
             MostrarMensajeModal(erroresval(0).IDError, True)
         Else
-            nu.Guardar()
+            Try
+                nu.Guardar()
+            Catch bex As BE.Excepcion
+                MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+            Catch ex As Exception
+                MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+            End Try
+
             Session("GrupoAEditar") = Nothing
             Session("EditandoGrupo") = Nothing
             Response.Redirect("~/GrupoLista.aspx")
         End If
+
 
     End Sub
 
@@ -84,96 +100,93 @@
         Response.Redirect("~/GrupoLista.aspx")
     End Sub
 
-    Private Sub btnModalNo_ServerClick(sender As Object, e As EventArgs) Handles btnModalNo.ServerClick
-
-    End Sub
-
-
-    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean)
-
-        Dim m As New BE.MensajeError
-        Dim f As New BLL.Facade_Pantalla
-
-        m.IDError = Msg
-        If Not simple Then
-            noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
-        Else
-            noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
-        End If
-
-    End Sub
 
 
 
     Private Sub CargarGrillaPermisos()
 
-        Dim dt As DataTable = New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("nombretraducido")
+        Try
+            Dim dt As DataTable = New DataTable
+            dt.Columns.Add("ID")
+            dt.Columns.Add("nombretraducido")
 
-        Dim s As New Seguridad.Seguridad
-        Dim f As New BLL.Facade_Pantalla
-        Dim m As New BE.MensajeError
+            Dim s As New Seguridad.Seguridad
+            Dim f As New BLL.Facade_Pantalla
+            Dim m As New BE.MensajeError
 
-        lp = s.ObtenerPermisos
+            lp = s.ObtenerPermisos
 
-        For Each p As Seguridad.Permiso In lp
+            For Each p As Seguridad.Permiso In lp
 
-            If Not ElementoYaSeleccionado(p) Then
-                Dim dr As DataRow = dt.NewRow
-                dr("ID") = p.Elemento.ID.ToString
-                m.IDError = "Permiso_" + p.Elemento.nombre
-                dr("nombretraducido") = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
-                dt.Rows.Add(dr)
+                If Not ElementoYaSeleccionado(p) Then
+                    Dim dr As DataRow = dt.NewRow
+                    dr("ID") = p.Elemento.ID.ToString
+                    m.IDError = "Permiso_" + p.Elemento.nombre
+                    dr("nombretraducido") = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                    dt.Rows.Add(dr)
+                End If
+            Next
+
+            grdPermisosDisponibles.Columns(0).Visible = True
+            grdPermisosDisponibles.DataSource = Nothing
+            grdPermisosDisponibles.DataSource = dt
+            grdPermisosDisponibles.DataBind()
+            grdPermisosDisponibles.Columns(0).Visible = False
+
+            If grdPermisosDisponibles.Rows.Count > 0 Then
+                grdPermisosDisponibles.UseAccessibleHeader = True
+                grdPermisosDisponibles.HeaderRow.TableSection = TableRowSection.TableHeader
             End If
-        Next
 
-        grdPermisosDisponibles.Columns(0).Visible = True
-        grdPermisosDisponibles.DataSource = Nothing
-        grdPermisosDisponibles.DataSource = dt
-        grdPermisosDisponibles.DataBind()
-        grdPermisosDisponibles.Columns(0).Visible = False
-
-        grdPermisosDisponibles.UseAccessibleHeader = True
-        grdPermisosDisponibles.HeaderRow.TableSection = TableRowSection.TableHeader
-
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
 
     Private Sub CargarGrillaGrupos()
 
-        Dim dt As DataTable = New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("nombretraducido")
+        Try
+            Dim dt As DataTable = New DataTable
+            dt.Columns.Add("ID")
+            dt.Columns.Add("nombretraducido")
 
-        Dim s As New Seguridad.Seguridad
+            Dim s As New Seguridad.Seguridad
 
-        lg = s.ObtenerGrupos
+            lg = s.ObtenerGrupos
 
-        For Each p As Seguridad.Grupo In lg
+            For Each p As Seguridad.Grupo In lg
 
-            If p.Elemento.ID <> u.Elemento.ID Then
-                If Not ElementoYaSeleccionado(p) Then
-                    Dim dr As DataRow = dt.NewRow
-                    dr("ID") = p.Elemento.ID.ToString
-                    dr("nombretraducido") = p.Elemento.nombre
-                    dt.Rows.Add(dr)
+                If p.Elemento.ID <> u.Elemento.ID Then
+                    If Not ElementoYaSeleccionado(p) Then
+                        Dim dr As DataRow = dt.NewRow
+                        dr("ID") = p.Elemento.ID.ToString
+                        dr("nombretraducido") = p.Elemento.nombre
+                        dt.Rows.Add(dr)
+                    End If
                 End If
+
+            Next
+
+            grdGruposDisponibles.Columns(0).Visible = True
+            grdGruposDisponibles.DataSource = Nothing
+            grdGruposDisponibles.DataSource = dt
+            grdGruposDisponibles.DataBind()
+            grdGruposDisponibles.Columns(0).Visible = False
+
+            If grdGruposDisponibles.Rows.Count > 0 Then
+                grdGruposDisponibles.UseAccessibleHeader = True
+                grdGruposDisponibles.HeaderRow.TableSection = TableRowSection.TableHeader
             End If
 
-        Next
-
-        grdGruposDisponibles.Columns(0).Visible = True
-        grdGruposDisponibles.DataSource = Nothing
-        grdGruposDisponibles.DataSource = dt
-        grdGruposDisponibles.DataBind()
-        grdGruposDisponibles.Columns(0).Visible = False
-
-        grdGruposDisponibles.UseAccessibleHeader = True
-        grdGruposDisponibles.HeaderRow.TableSection = TableRowSection.TableHeader
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
@@ -181,37 +194,45 @@
 
     Private Sub CargarGrillaElementosSeleccionados()
 
-        Dim dt As DataTable = New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("nombretraducido")
+        Try
+            Dim dt As DataTable = New DataTable
+            dt.Columns.Add("ID")
+            dt.Columns.Add("nombretraducido")
 
-        Dim s As New Seguridad.Seguridad
-        Dim f As New BLL.Facade_Pantalla
-        Dim m As New BE.MensajeError
+            Dim s As New Seguridad.Seguridad
+            Dim f As New BLL.Facade_Pantalla
+            Dim m As New BE.MensajeError
 
-        For Each p As Seguridad.Elemento In u.Hijos
+            For Each p As Seguridad.Elemento In u.Hijos
 
-            Dim dr As DataRow = dt.NewRow
-            dr("ID") = p.Elemento.ID.ToString
-            m.IDError = "Permiso_" + p.Elemento.nombre
-            If p.Elemento.Tipo = 0 Then
-                dr("nombretraducido") = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
-            Else
-                dr("nombretraducido") = p.Elemento.nombre
+                Dim dr As DataRow = dt.NewRow
+                dr("ID") = p.Elemento.ID.ToString
+                m.IDError = "Permiso_" + p.Elemento.nombre
+                If p.Elemento.Tipo = 0 Then
+                    dr("nombretraducido") = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                Else
+                    dr("nombretraducido") = p.Elemento.nombre
+                End If
+
+                dt.Rows.Add(dr)
+
+            Next
+
+            grdElementosSeleccionados.Columns(0).Visible = True
+            grdElementosSeleccionados.DataSource = Nothing
+            grdElementosSeleccionados.DataSource = dt
+            grdElementosSeleccionados.DataBind()
+            grdElementosSeleccionados.Columns(0).Visible = False
+
+            If grdElementosSeleccionados.Rows.Count > 0 Then
+                grdElementosSeleccionados.UseAccessibleHeader = True
+                grdElementosSeleccionados.HeaderRow.TableSection = TableRowSection.TableHeader
             End If
-
-            dt.Rows.Add(dr)
-
-        Next
-
-        grdElementosSeleccionados.Columns(0).Visible = True
-        grdElementosSeleccionados.DataSource = Nothing
-        grdElementosSeleccionados.DataSource = dt
-        grdElementosSeleccionados.DataBind()
-        grdElementosSeleccionados.Columns(0).Visible = False
-
-        grdElementosSeleccionados.UseAccessibleHeader = True
-        grdElementosSeleccionados.HeaderRow.TableSection = TableRowSection.TableHeader
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
@@ -227,85 +248,134 @@
 
     Private Sub noTranslateImgFlechaDerecha_Click(sender As Object, e As ImageClickEventArgs) Handles noTranslateImgFlechaDerecha.Click
 
+        Try
+            For Each i As GridViewRow In grdGruposDisponibles.Rows
+
+                Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
+                If chk.Checked Then
+                    Dim g As New Seguridad.Grupo
+                    g.Elemento.ID = Long.Parse(i.Cells(0).Text)
+                    g.Cargar()
+                    u.Hijos.Add(g)
+                End If
+
+            Next
 
 
-        For Each i As GridViewRow In grdGruposDisponibles.Rows
+            For Each i As GridViewRow In grdPermisosDisponibles.Rows
 
-            Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
-            If chk.Checked Then
-                Dim g As New Seguridad.Grupo
-                g.Elemento.ID = Long.Parse(i.Cells(0).Text)
-                g.Cargar()
-                u.Hijos.Add(g)
-            End If
+                Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
+                If chk.Checked Then
+                    Dim p As New Seguridad.Permiso
+                    p.Elemento.ID = Long.Parse(i.Cells(0).Text)
+                    p.Cargar()
+                    u.Hijos.Add(p)
+                End If
 
-        Next
+            Next
 
+            Session("EditandoGrupo") = u
 
-        For Each i As GridViewRow In grdPermisosDisponibles.Rows
+            CargarGrillaPermisos()
+            CargarGrillaGrupos()
+            CargarGrillaElementosSeleccionados()
 
-            Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
-            If chk.Checked Then
-                Dim p As New Seguridad.Permiso
-                p.Elemento.ID = Long.Parse(i.Cells(0).Text)
-                p.Cargar()
-                u.Hijos.Add(p)
-            End If
-
-        Next
-
-        Session("EditandoGrupo") = u
-
-        CargarGrillaPermisos()
-        CargarGrillaGrupos()
-        CargarGrillaElementosSeleccionados()
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
 
     Private Sub noTranslateImgFlechaIzquierda_Click(sender As Object, e As ImageClickEventArgs) Handles noTranslateImgFlechaIzquierda.Click
 
+        Try
+            For Each i As GridViewRow In grdElementosSeleccionados.Rows
 
-        For Each i As GridViewRow In grdElementosSeleccionados.Rows
+                Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
+                If chk.Checked Then
+                    Dim r As Seguridad.Elemento
+                    r = u.Hijos.Find(Function(x) x.Elemento.ID = Long.Parse(i.Cells(0).Text))
+                    u.Hijos.Remove(r)
+                End If
 
-            Dim chk As CheckBox = DirectCast(i.FindControl("chkSelected"), CheckBox)
-            If chk.Checked Then
-                Dim r As Seguridad.Elemento
-                r = u.Hijos.Find(Function(x) x.Elemento.ID = Long.Parse(i.Cells(0).Text))
-                u.Hijos.Remove(r)
-            End If
+            Next
 
-        Next
+            Session("EditandoGrupo") = u
 
-        Session("EditandoGrupo") = u
+            CargarGrillaPermisos()
+            CargarGrillaGrupos()
+            CargarGrillaElementosSeleccionados()
 
-        CargarGrillaPermisos()
-        CargarGrillaGrupos()
-        CargarGrillaElementosSeleccionados()
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
 
     Private Sub GrupoEdicion_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+        Try
+            Dim m As New BE.MensajeError
+            Dim f As New BLL.Facade_Pantalla
+
+            If Not IsNothing(Session("GrupoAEditar")) Then
+                m.IDError = "tituloEditarGrupo"
+            Else
+                m.IDError = "tituloNuevoGrupo"
+            End If
+            lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+
+
+            CargarGrillaPermisos()
+            CargarGrillaGrupos()
+            CargarGrillaElementosSeleccionados()
+
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
+    End Sub
+
+
+
+    Private Sub MostrarMensajeModal(Msg As String, simple As Boolean, Optional traducir As Boolean = True)
+
         Dim m As New BE.MensajeError
         Dim f As New BLL.Facade_Pantalla
-
-        If Not IsNothing(Session("GrupoAEditar")) Then
-            m.IDError = "tituloEditarGrupo"
+        m.IDError = Msg
+        If Not simple Then
+            If traducir Then
+                Try
+                    noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessageSiNo.Text = Msg
+                End Try
+            Else
+                noTranslateModalMessageSiNo.Text = Msg
+            End If
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
         Else
-            m.IDError = "tituloNuevoGrupo"
+            If traducir Then
+                Try
+                    noTranslateModalMessage.Text = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                Catch ex As Exception
+                    noTranslateModalMessage.Text = Msg
+                End Try
+            Else
+                noTranslateModalMessage.Text = Msg
+            End If
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
         End If
-        lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
-
-
-        CargarGrillaPermisos()
-        CargarGrillaGrupos()
-        CargarGrillaElementosSeleccionados()
 
     End Sub
 
-    Private Sub GrupoEdicion_Unload(sender As Object, e As EventArgs) Handles Me.Unload
 
-
-    End Sub
 End Class
