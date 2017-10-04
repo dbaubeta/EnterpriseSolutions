@@ -1,5 +1,6 @@
 ﻿Imports System.IO
-
+Imports System.Globalization
+Imports System.Threading
 
 
 
@@ -49,6 +50,9 @@ Public Class Enterprise
 
         f.Traducir(Me, b)
         Session("Idioma") = b
+
+        Threading.Thread.CurrentThread.CurrentCulture = New System.Globalization.CultureInfo(b.culture)
+        Threading.Thread.CurrentThread.CurrentUICulture = New System.Globalization.CultureInfo(b.culture)
 
     End Sub
 
@@ -272,6 +276,12 @@ Public Class Enterprise
 
         li = New HtmlGenericControl("li")
         itemname = "Backup"
+        err.IDError = "mnuButtonSeguridad_" + itemname
+        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaSeguridad.Controls.Add(li)
+
+        li = New HtmlGenericControl("li")
+        itemname = "Bitacora"
         err.IDError = "mnuButtonSeguridad_" + itemname
         li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
         If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaSeguridad.Controls.Add(li)

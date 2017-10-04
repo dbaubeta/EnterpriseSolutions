@@ -8,7 +8,7 @@ Public Class Idioma
 
     Public Sub Guardar(ByRef p_idioma As BE.Idioma)
 
-        Dim params(2) As System.Data.SqlClient.SqlParameter
+        Dim params(3) As System.Data.SqlClient.SqlParameter
 
         Try
             If IsNothing(p_idioma.ID) Or p_idioma.ID = 0 Then
@@ -16,20 +16,22 @@ Public Class Idioma
                 params(0) = DBH.CrearParametro("@P1", p_idioma.Nombre)
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(p_idioma.DVH))
                 params(2) = DBH.CrearParametro("@P3", p_idioma.borrado)
+                params(3) = DBH.CrearParametro("@P4", p_idioma.Culture)
 
-                Dim resultado As Long = DBH.Insert("INSERT INTO Idioma(Nombre ,DVH, borrado) VALUES(@P1,@P2, @P3); SELECT SCOPE_IDENTITY();", params)
+                Dim resultado As Long = DBH.Insert("INSERT INTO Idioma(Nombre ,DVH, borrado, culture) VALUES(@P1,@P2, @P3, @P4); SELECT SCOPE_IDENTITY();", params)
                 If resultado <> -1 Then
                     p_idioma.ID = resultado
                 End If
             Else
                 ' Update 
-                ReDim params(3)
+                ReDim params(4)
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(p_idioma.ID))
                 params(1) = DBH.CrearParametro("@P2", p_idioma.Nombre)
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(p_idioma.DVH))
                 params(3) = DBH.CrearParametro("@P4", p_idioma.borrado)
+                params(4) = DBH.CrearParametro("@P5", p_idioma.Culture)
 
-                DBH.Update("update Idioma set Nombre=@P2, DVH=@P3, borrado=@P4 where ID=@P1", params)
+                DBH.Update("update Idioma set Nombre=@P2, DVH=@P3, borrado=@P4 , culture=@P5 where ID=@P1", params)
 
             End If
 
@@ -80,6 +82,7 @@ Public Class Idioma
                 l.Nombre = dr.Item("Nombre")
                 l.DVH = dr.Item("DVH")
                 l.borrado = dr.Item("borrado")
+                l.Culture = dr.Item("culture")
                 l.Leyendas = dl.ObtenerLeyendas(l)
                 ll.Add(l)
             Next

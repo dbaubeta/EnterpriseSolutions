@@ -51,6 +51,15 @@
         End Set
     End Property
 
+    Private _cuture As String
+    Public Property Culture() As String
+        Get
+            Return _cuture
+        End Get
+        Set(ByVal value As String)
+            _cuture = value
+        End Set
+    End Property
 
 
     Public Sub New()

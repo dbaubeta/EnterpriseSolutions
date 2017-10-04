@@ -6,7 +6,63 @@ EnterpriseTracking
 </name>
 </assembly>
 <members>
-<member name="F:EnterpriseTracking.UsuarioAsignarPermisos.noTranslateModalMessageSiNo">
+<member name="F:EnterpriseTracking.BitacoraLista.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.lblBackupListaTitulo">
+	<summary>
+lblBackupListaTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.grdBitacora">
+	<summary>
+grdBitacora control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.UsuarioAsignarPermisos.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
 </summary>
@@ -201,6 +257,22 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.EditarLenguaje.txtLenguajeNombre">
 	<summary>
 txtLenguajeNombre control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.lblLenguajeCultura">
+	<summary>
+lblLenguajeCultura control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.txtLenguajeCultura">
+	<summary>
+txtLenguajeCultura control.
 </summary>
 	<remarks>
 Auto-generated field.

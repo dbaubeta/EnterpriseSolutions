@@ -1,4 +1,6 @@
-﻿Public Class EditarLenguaje
+﻿Imports System.Globalization
+
+Public Class EditarLenguaje
     Inherits System.Web.UI.Page
 
     Dim u As New BE.Idioma
@@ -57,15 +59,26 @@
         Dim x As New BE.Idioma
         Dim bi As New BLL.Idioma
         Dim hayerror As Boolean = False
+        Dim textoerror As String = ""
 
         Try
             For Each gvr As GridViewRow In Me.grdLeyendas.Rows
                 Dim l As New BE.Leyenda
                 If DirectCast(gvr.FindControl("txtNuevoTextoLeyenda"), TextBox).Text = "" Then
                     hayerror = True
+                    textoerror = "HayLeyendasFaltantes"
                     Exit For
                 End If
             Next
+
+            If Not hayerror Then
+                Try
+                    Dim Culture As CultureInfo = CultureInfo.GetCultureInfo(Me.txtLenguajeCultura.Text)
+                Catch
+                    hayerror = True
+                    textoerror = "CulturaInvalida"
+                End Try
+            End If
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
@@ -73,13 +86,14 @@
         End Try
 
         If hayerror Then
-            MostrarMensajeModal("HayLeyendasFaltantes", True)
+            MostrarMensajeModal(textoerror, True)
         Else
             Try
                 If Not IsNothing(Session("IdiomaAEditar")) Then
                     x.ID = Session("IdiomaAEditar")
                 End If
                 x.Nombre = Me.txtLenguajeNombre.Text
+                x.Culture = Me.txtLenguajeCultura.Text
                 x.Leyendas = New List(Of BE.Leyenda)
                 For Each gvr As GridViewRow In Me.grdLeyendas.Rows
                     Dim l As New BE.Leyenda
@@ -155,7 +169,7 @@
 
         Try
             Me.txtLenguajeNombre.Text = u.Nombre
-
+            Me.txtLenguajeCultura.Text = u.Culture
 
             For Each grd As GridViewRow In grdLeyendas.Rows
 

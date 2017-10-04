@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BackupLista.aspx" />
+    <Content Include="BitacoraLista.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="BackupLista.aspx.vb">
       <DependentUpon>BackupLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="BitacoraLista.aspx.designer.vb">
+      <DependentUpon>BitacoraLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BitacoraLista.aspx.vb">
+      <DependentUpon>BitacoraLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="IdiomaEdicion.aspx.designer.vb">

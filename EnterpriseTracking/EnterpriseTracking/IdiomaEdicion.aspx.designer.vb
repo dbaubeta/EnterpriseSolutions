@@ -104,6 +104,24 @@ Partial Public Class EditarLenguaje
     Protected WithEvents txtLenguajeNombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblLenguajeCultura control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblLenguajeCultura As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtLenguajeCultura control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtLenguajeCultura As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''grdLeyendas control.
     '''</summary>
     '''<remarks>

@@ -75,11 +75,19 @@
         <div class="col-sm-5" style="vertical-align:middle">
             <asp:TextBox ID="txtLenguajeNombre" runat="server" style="width:100%" CssClass="form-control" />
         </div>        
-        <div class="col-sm-4" style="vertical-align:middle">
-<%--            <asp:RequiredFieldValidator ID="RequiredFieldValidatorLenguajeNombre" runat="server" ErrorMessage="Error!" ControlToValidate="txtLenguajeNombre" />--%>
-        </div>
-
       </div>
+
+      <div class="row" style="margin-bottom:20px">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-1" style="vertical-align:middle">
+            <asp:Label ID="lblLenguajeCultura" runat="server" Text="Label" Width="100%"></asp:Label>
+        </div>
+        <div class="col-sm-5" style="vertical-align:middle">
+            <asp:TextBox ID="txtLenguajeCultura" runat="server" style="width:100%" CssClass="form-control" />
+        </div>        
+      </div>
+
       <div class="row">
         <div class="col-sm-1">
         </div>

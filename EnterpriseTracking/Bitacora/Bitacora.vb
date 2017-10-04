@@ -14,10 +14,16 @@
 
         b.DVH = dvh.calcular(b)
         d.Guardar(b)
+        dvv.tabla = "EntradasBitacora"
+        dvv.calcular()
+
     End Sub
 
     Public Function ObtenerEntradas(f As List(Of BE.Bitacora)) As List(Of BE.Bitacora)
-        ObtenerEntradas = Nothing
+
+        Dim d As New DAL.Bitacora
+        Return d.ObtenerEntradas(f)
+
     End Function
 
     Public Sub VolcarXML()
