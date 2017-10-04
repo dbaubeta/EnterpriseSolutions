@@ -78,10 +78,7 @@
         </div>
 
         <div class="row" style="margin-top:20px">
-            <div class="col-sm-2" style="padding-top:3px">
-                <%--<asp:Label ID="Label1" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>--%>
-            </div>  
-            <div class="col-sm-4" style="padding-top:8px">
+            <div class="col-sm-5" style="padding-top:8px">
                 <div class="container-fluid" style="min-height:25vh; height:25vh; overflow-y: scroll; overflow-x:hidden; border:1px solid #cecece; padding-left:0px"  >
                     <asp:GridView ID="grdGruposDisponibles" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:103%">
                     <Columns>
@@ -128,7 +125,7 @@
             </div>
             
 
-            <div class="col-sm-4" style="padding-top:8px">
+            <div class="col-sm-5" style="padding-top:8px">
                 <div class=" container-fluid " style="min-height:50vh; height:100%; overflow-y: scroll; overflow-x:hidden; border:1px solid #cecece; padding-left:0px"  >
                     <asp:GridView ID="grdElementosSeleccionados" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" CssClass="table-condensed" GridLines="None" style="width:103%">
                     <Columns>

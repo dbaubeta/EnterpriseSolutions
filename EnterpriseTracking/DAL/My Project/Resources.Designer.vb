@@ -61,7 +61,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to F:\.
+        '''  Looks up a localized string similar to C:\Users\daniel.baubeta\Documents\Backups\.
         '''</summary>
         Friend ReadOnly Property BackupFolder() As String
             Get
