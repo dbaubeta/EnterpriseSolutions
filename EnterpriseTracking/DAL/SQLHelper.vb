@@ -31,6 +31,8 @@ Public Class SqlHelper
             End If
             con.Close()
             con.Dispose()
+            cmd.Parameters.Clear()
+            cmd.Dispose()
             Return Resultado
         Catch ex As SqlException
             'Dim Log As New Seguridad.Log()
@@ -53,7 +55,10 @@ Public Class SqlHelper
             Dim dt As New DataTable()
             da.Fill(dt)
             Return dt
+            da.SelectCommand.Parameters.Clear()
             da.Dispose()
+
+
         Catch ex As SqlException
             Throw ex
         End Try
@@ -74,7 +79,9 @@ Public Class SqlHelper
             If Params IsNot Nothing Then cmd.Parameters.AddRange(Params)
             con.Open()
             Dim Resultado = cmd.ExecuteScalar()
-            con.Close()
+            con.Dispose()
+            cmd.Parameters.Clear()
+            cmd.Dispose()
             Return CInt(Resultado)
 
         Catch ex As SqlException
@@ -98,6 +105,8 @@ Public Class SqlHelper
             Dim Resultado = cmd.ExecuteNonQuery()
             con.Close()
             con.Dispose()
+            cmd.Parameters.Clear()
+            cmd.Dispose()
             Return Resultado
         Catch ex As SqlException
             'Dim Log As New Seguridad.Log()
@@ -122,6 +131,8 @@ Public Class SqlHelper
             Dim Resultado = cmd.ExecuteNonQuery()
             con.Close()
             con.Dispose()
+            cmd.Parameters.Clear()
+            cmd.Dispose()
             Return Resultado
         Catch ex As SqlException
             'Dim Log As New Seguridad.Log()

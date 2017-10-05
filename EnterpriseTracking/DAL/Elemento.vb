@@ -69,11 +69,12 @@
 
         Try
             If Not (IsNothing(e.ID)) And e.ID <> 0 Then
-            Else
+
                 params(0) = DBH.CrearParametro("@P1", Int32.Parse(e.ID))
 
                 DBH.Delete("delete from UsuarioElemento where IDElemento=@P1", params)
-                DBH.Delete("delete from ElementoElemento where IDHijo=@P1 or IDPadre=@P1", params)
+                DBH.Delete("delete from ElementoElemento where IDHijo=@P1", params)
+                DBH.Delete("delete from ElementoElemento where IDPadre=@P1", params)
                 DBH.Delete("delete from Elemento where ID=@P1", params)
 
             End If
