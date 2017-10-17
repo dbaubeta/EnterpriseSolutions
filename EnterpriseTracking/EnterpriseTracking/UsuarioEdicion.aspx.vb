@@ -76,7 +76,7 @@
 
     Protected Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
 
-
+        Dim bit As New Bitacora.Bitacora
         Dim nu As New Seguridad.Usuario
         Dim c As New Cifrado.Cifrado
         Try
@@ -104,15 +104,26 @@
         If erroresval.Count > 0 Then
             MostrarMensajeModal(erroresval(0).IDError, True)
         Else
+            Dim hayerror As Boolean = False
             Try
                 nu.Guardar()
+                If IsNothing(Session("UsuarioAEditar")) Then
+                    bit.Guardar(New BE.Bitacora("BIT_UsuarioAlta", "Usuario", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, nu.Usuario.ID.ToString))
+                Else
+                    bit.Guardar(New BE.Bitacora("BIT_UsuarioModificacion", "Usuario", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, nu.Usuario.ID.ToString))
+                End If
             Catch bex As BE.Excepcion
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+                hayerror = True
             Catch ex As Exception
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+                hayerror = True
             End Try
-            Session("UsuarioAEditar") = Nothing
-            Response.Redirect("~/UsuarioLista.aspx")
+            If Not hayerror Then
+                Session("UsuarioAEditar") = Nothing
+                Response.Redirect("~/UsuarioLista.aspx")
+            End If
+
         End If
 
     End Sub

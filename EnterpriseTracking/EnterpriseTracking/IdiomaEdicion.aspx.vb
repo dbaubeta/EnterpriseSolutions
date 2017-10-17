@@ -106,13 +106,18 @@ Public Class EditarLenguaje
 
             Catch bex As BE.Excepcion
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+                hayerror = True
             Catch ex As Exception
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+                hayerror = True
             End Try
 
-            Session("IdiomaAEditar") = Nothing
-            Session("EditandoIdioma") = Nothing
-            Response.Redirect("~/IdiomaLista.aspx")
+            If Not hayerror Then
+                Session("IdiomaAEditar") = Nothing
+                Session("EditandoIdioma") = Nothing
+                Response.Redirect("~/IdiomaLista.aspx")
+            End If
+
         End If
 
 

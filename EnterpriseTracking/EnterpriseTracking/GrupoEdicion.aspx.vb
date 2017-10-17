@@ -72,18 +72,25 @@
         If erroresval.Count > 0 Then
             MostrarMensajeModal(erroresval(0).IDError, True)
         Else
+            Dim hayerror As Boolean = False
             Try
                 nu.Guardar()
+
             Catch bex As BE.Excepcion
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+                hayerror = True
             Catch ex As Exception
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+                hayerror = True
             End Try
 
-            Session("GrupoAEditar") = Nothing
-            Session("EditandoGrupo") = Nothing
-            Response.Redirect("~/GrupoLista.aspx")
-        End If
+            If Not hayerror Then
+                Session("GrupoAEditar") = Nothing
+                Session("EditandoGrupo") = Nothing
+                Response.Redirect("~/GrupoLista.aspx")
+            End If
+
+            End If
 
 
     End Sub

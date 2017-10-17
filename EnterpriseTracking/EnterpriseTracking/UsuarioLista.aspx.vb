@@ -151,11 +151,15 @@ Public Class UsuarioLista
 
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
 
+        Dim bit As New Bitacora.Bitacora
+
         'elimino el usuario
         Try
             Dim nu As New Seguridad.Usuario
             nu.Usuario.ID = grdUsuarios.SelectedRow.Cells(0).Text
             nu.Eliminar()
+            bit.Guardar(New BE.Bitacora("BIT_UsuarioEliminacion", "Usuario", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, nu.Usuario.ID.ToString))
+
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception

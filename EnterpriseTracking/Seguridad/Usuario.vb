@@ -33,6 +33,7 @@
 
     Public Sub Eliminar()
         Dim dvv As New Digitos.Digito_Vertical
+        Dim bit As New Bitacora.Bitacora
 
         Dim d As New DAL.Usuario
         Try

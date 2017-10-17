@@ -45,29 +45,29 @@
 
     End Sub
 
-    Public Sub Eliminar(u As BE.Usuario)
+    'Public Sub Eliminar(u As BE.Usuario)
 
-        Dim params(0) As System.Data.SqlClient.SqlParameter
+    '    Dim params(0) As System.Data.SqlClient.SqlParameter
 
-        Try
-            If IsNothing(u.ID) Or u.ID = 0 Then
-            Else
-                'Delete
-                params(0) = DBH.CrearParametro("@P1", Int32.Parse(u.ID))
-                DBH.Delete("delete from Usuario where ID=@P1", params)
+    '    Try
+    '        If IsNothing(u.ID) Or u.ID = 0 Then
+    '        Else
+    '            'Delete
+    '            params(0) = DBH.CrearParametro("@P1", Int32.Parse(u.ID))
+    '            DBH.Delete("delete from Usuario where ID=@P1", params)
 
-            End If
+    '        End If
 
-        Catch bex As BE.Excepcion
-            Throw bex
-        Catch ex As Exception
-            Dim bex As New BE.Excepcion
-            bex.excepcion = ex
-            bex.Capa = Me.GetType().ToString
-            Throw bex
-        End Try
+    '    Catch bex As BE.Excepcion
+    '        Throw bex
+    '    Catch ex As Exception
+    '        Dim bex As New BE.Excepcion
+    '        bex.excepcion = ex
+    '        bex.Capa = Me.GetType().ToString
+    '        Throw bex
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Public Function ObtenerUsuarios() As List(Of BE.Usuario)
 
@@ -106,6 +106,48 @@
         Catch ex As Exception
             Dim bex As New BE.Excepcion
             bex.excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
+    Public Function ObtenerUsuariosSinAsignar() As List(Of BE.Usuario)
+
+
+        Dim params() As System.Data.SqlClient.SqlParameter = Nothing
+        Dim cadena As String = "select * from usuario where Id not in (select IDUsuario from cliente where borrado = 0 union select IDUsuario from Distribuidor where borrado = 0) and borrado=0 and id !=1"
+        Dim idx As Integer = 0
+        Dim dt As DataTable
+        Dim l As BE.Usuario
+        Dim ll As New List(Of BE.Usuario)
+        Dim di As New DAL.Idioma
+        Dim c As New Cifrado.Cifrado
+
+        Try
+
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Usuario
+                l.ID = dr.Item("ID")
+                l.Nombre = c.Desencriptar_str(dr.Item("Nombre"))
+                l.DVH = dr.Item("DVH")
+                l.Idioma.ID = dr.Item("IDIdioma")
+                Dim li As New List(Of BE.Idioma)
+                li.Add(l.Idioma)
+                l.Idioma = di.Obtener_Idiomas(li)(0)
+                l.Intentos_fallidos = dr.Item("IntentosFallidos")
+                l.Password = dr.Item("password")
+                l.Habilitado = dr.Item("Habilitado")
+                ll.Add(l)
+            Next
+
+            Return ll
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
             bex.Capa = Me.GetType().ToString
             Throw bex
         End Try

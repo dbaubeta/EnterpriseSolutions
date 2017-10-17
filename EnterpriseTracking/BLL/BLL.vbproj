@@ -63,7 +63,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM.vb" />
     <Compile Include="BackupRestore.vb" />
+    <Compile Include="Categoria.vb" />
+    <Compile Include="Cliente.vb" />
+    <Compile Include="Distribuidor.vb" />
     <Compile Include="Facade_Pantalla.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />
@@ -82,6 +86,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Persistencia.vb" />
+    <Compile Include="Producto.vb" />
+    <Compile Include="Provincia.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -106,6 +113,10 @@
     <ProjectReference Include="..\BE\BE.vbproj">
       <Project>{331aba68-7bbb-4d10-9c6b-b4e23c956c52}</Project>
       <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bitacora\Bitacora.vbproj">
+      <Project>{ff07c0ac-3fbd-4af7-bec2-45b7c6b72da9}</Project>
+      <Name>Bitacora</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.vbproj">
       <Project>{f9e048cb-7c0c-4a92-be46-87fecf82d6cc}</Project>

@@ -62,8 +62,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM.vb" />
     <Compile Include="Bitacora.vb" />
     <Compile Include="BROperation.vb" />
+    <Compile Include="Categoria.vb" />
+    <Compile Include="Cliente.vb" />
+    <Compile Include="Distribuidor.vb" />
     <Compile Include="Elemento.vb" />
     <Compile Include="Excepcion.vb" />
     <Compile Include="MensajeError.vb" />
@@ -84,8 +88,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Producto.vb" />
+    <Compile Include="Provincia.vb" />
     <Compile Include="Secuencia.vb" />
     <Compile Include="Usuario.vb" />
+    <Compile Include="Vendedor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

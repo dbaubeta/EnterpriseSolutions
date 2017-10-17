@@ -119,4 +119,28 @@
 
     End Function
 
+
+    Public Function ObtenerUsuariosSinAsignar() As List(Of Usuario)
+        Dim d As New DAL.Usuario
+        Dim l As New List(Of Usuario)
+        Try
+
+            For Each bu As BE.Usuario In d.ObtenerUsuariosSinAsignar()
+                Dim x As New Usuario
+                x = ObtenerUsuario(bu)
+                l.Add(x)
+            Next
+
+            Return l
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
+
 End Class
