@@ -1,17 +1,3 @@
-'Public MustInherit Class ABM
-
-
-'    Public MustOverride Sub Eliminar(ByVal o As BE.ABM)
-
-'    Public MustOverride Sub Guardar(ByVal ob As BE.ABM)
-
-'    Public MustOverride Function ObtenerLista(ByVal f As List(Of BE.ABM)) As List(Of BE.ABM)
-
-'   
-
-'End Class
-
-
 Public MustInherit Class ABM
 
 
@@ -60,6 +46,22 @@ Public MustInherit Class ABM
 
         Try
             Return d.ObtenerLista(f)
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
+
+    Public Overridable Function ObtenerListaUsuario(u As BE.Usuario) As List(Of BE.ABM)
+
+        Try
+            Return d.ObtenerListaUsuario(u)
 
         Catch bex As BE.Excepcion
             Throw bex

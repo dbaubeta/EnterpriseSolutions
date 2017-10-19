@@ -79,7 +79,7 @@ Public Class ClienteLista
 
     End Sub
 
-    Private Sub grdClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdClientes.SelectedIndexChanged
+    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdClientes.SelectedIndexChanged
 
         Try
             For Each row As GridViewRow In grdClientes.Rows
@@ -100,20 +100,20 @@ Public Class ClienteLista
 
     End Sub
 
-    Protected Sub btnNuevoCliente_Click(sender As Object, e As EventArgs) Handles btnNuevoCliente.Click
+    Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevoCliente.Click
 
         Session(strClase + "AEditar") = Nothing
         Response.Redirect("~/" + strClase + "Edicion.aspx")
     End Sub
 
-    Protected Sub btnEditarCliente_Click(sender As Object, e As EventArgs) Handles btnEditarCliente.Click
+    Protected Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditarCliente.Click
         If Not IsNothing(grdClientes.SelectedRow) Then
             Session(strClase + "AEditar") = grdClientes.SelectedRow.Cells(0).Text
             Response.Redirect("~/" + strClase + "Edicion.aspx")
         End If
     End Sub
 
-    Protected Sub btnEliminarCliente_Click(sender As Object, e As EventArgs) Handles btnEliminarCliente.Click
+    Protected Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminarCliente.Click
 
         Try
             If Not IsNothing(grdClientes.SelectedRow) Then

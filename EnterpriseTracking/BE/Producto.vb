@@ -26,16 +26,16 @@
 			End Set
 		End Property
 
-		Public Property ID_Real() As Long
-			Get
-				Return _ID_Real
-			End Get
-			Set(ByVal Value as Long)
-				_ID_Real = Value
-			End Set
-		End Property
+    Public Property IDReal() As Long
+        Get
+            Return _ID_Real
+        End Get
+        Set(ByVal Value As Long)
+            _ID_Real = Value
+        End Set
+    End Property
 
-		Public Property Precio() As Double
+    Public Property Precio() As Double
 			Get
 				Return _Precio
 			End Get

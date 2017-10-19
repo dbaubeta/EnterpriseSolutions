@@ -64,3 +64,6 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Seguridad\bin\Debug\Bitacora.xml
