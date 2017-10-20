@@ -38,6 +38,15 @@
             Else ' Login correcto
                 Session("Usuario") = us
                 Session("Idioma") = us.Usuario.Idioma
+
+                ' Verifico si el usuario esta asociado a un cliente
+                Dim bx As New BLL.Cliente
+                Session("EsCliente") = bx.ObtenerLista().Find(Function(z) DirectCast(z, BE.Cliente).Usuario.ID = DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID)
+
+                ' Verifico si el usuario esta asociado a un Distribuidor
+                Dim by As New BLL.Distribuidor
+                Session("EsDistribuidor") = by.ObtenerLista().Find(Function(z) DirectCast(z, BE.Distribuidor).Usuario.ID = DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID)
+
                 Try
                     bit.Guardar(New BE.Bitacora("BIT_Login", "Login", us.Usuario.ID))
                 Catch bex As BE.Excepcion

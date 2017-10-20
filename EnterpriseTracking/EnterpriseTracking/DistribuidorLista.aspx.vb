@@ -20,18 +20,14 @@ Public Class DistribuidorLista
                 Me.dlClientes.DataValueField = "ID"
                 Me.dlClientes.DataTextField = "Nombre"
                 ' Busco si el usuario logueado es un cliente
-                Dim xl As New List(Of BE.ABM)
-                Dim bx As New BLL.Cliente
-                xl = bx.ObtenerListaUsuario(DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario)
-                ' Si no es un tipo cliente, entonces cargo la lista completa para que seleccione en el combobox.
-                If xl.Count = 0 Then
+                If IsNothing(Session("EsCliente")) Then
                     Me.dlClientes.DataSource = b.ObtenerLista()
                     Me.dlClientes.DataBind()
                     Me.dlClientes.SelectedIndex = 0
                 Else
-                    Me.dlClientes.DataSource = xl
+                    Me.dlClientes.DataSource = b.ObtenerLista().FindAll(Function(z) z.ID = DirectCast(Session("EsCliente"), BE.Cliente).ID)
                     Me.dlClientes.DataBind()
-                    Me.dlClientes.SelectedValue = xl(0).ID
+                    Me.dlClientes.SelectedValue = DirectCast(Session("EsCliente"), BE.Cliente).ID
                     Me.dlClientes.Visible = False
                     Me.lblCliente.Visible = False
 
@@ -69,7 +65,7 @@ Public Class DistribuidorLista
                 dt.Columns.Add("Provincia")
 
 
-                For Each l As BE.Distribuidor In p.ObtenerListaUsuario(x.Usuario)
+                For Each l As BE.Distribuidor In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = x.ID)
                     Dim dr As DataRow = dt.NewRow
                     dr("ID") = l.ID
                     dr("Nombre") = l.Nombre
@@ -136,16 +132,44 @@ Public Class DistribuidorLista
     End Sub
 
     Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevoDistribuidor.Click
+        Dim l As New List(Of BE.ABM)
+        Dim x As New BE.Cliente
+        Try
+            If Not IsNothing(dlClientes.SelectedValue) Then
+                x.ID = dlClientes.SelectedValue
+                l.Add(x)
+                Session("ClientePadre") = DirectCast(p.ObtenerLista(l)(0), BE.Cliente)
+                Session(strClase + "AEditar") = Nothing
+            End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
-        Session(strClase + "AEditar") = Nothing
         Response.Redirect("~/" + strClase + "Edicion.aspx")
+
     End Sub
 
     Protected Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditarDistribuidor.Click
-        If Not IsNothing(grdDistribuidors.SelectedRow) Then
-            Session(strClase + "AEditar") = grdDistribuidors.SelectedRow.Cells(0).Text
-            Response.Redirect("~/" + strClase + "Edicion.aspx")
-        End If
+        Dim l As New List(Of BE.ABM)
+        Dim x As New BE.Cliente
+        Try
+            If Not IsNothing(grdDistribuidors.SelectedRow) Then
+                x.ID = dlClientes.SelectedValue
+                l.Add(x)
+                Session("ClientePadre") = DirectCast(p.ObtenerLista(l)(0), BE.Cliente)
+                Session(strClase + "AEditar") = grdDistribuidors.SelectedRow.Cells(0).Text
+            End If
+        Catch bex As BE.Excepcion
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
+        Response.Redirect("~/" + strClase + "Edicion.aspx")
+
+
     End Sub
 
     Protected Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminarDistribuidor.Click

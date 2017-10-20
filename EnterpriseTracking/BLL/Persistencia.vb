@@ -63,20 +63,20 @@ Public Class Persistencia
 
     End Function
 
-    Public Function ObtenerListaUsuario(u As BE.Usuario) As List(Of BE.ABM)
+    'Public Function ObtenerListaUsuario(u As BE.Usuario) As List(Of BE.ABM)
 
-        Try
-            Return abm.ObtenerListaUsuario(u)
-        Catch bex As BE.Excepcion
-            Throw bex
-        Catch ex As Exception
-            Dim bex As New BE.Excepcion
-            bex.Excepcion = ex
-            bex.Capa = Me.GetType().ToString
-            Throw bex
-        End Try
+    '    Try
+    '        Return abm.ObtenerListaUsuario(u)
+    '    Catch bex As BE.Excepcion
+    '        Throw bex
+    '    Catch ex As Exception
+    '        Dim bex As New BE.Excepcion
+    '        bex.Excepcion = ex
+    '        bex.Capa = Me.GetType().ToString
+    '        Throw bex
+    '    End Try
 
-    End Function
+    'End Function
 
 
     Public Function ValidarDatos(p As BE.ABM) As List(Of BE.MensajeError)

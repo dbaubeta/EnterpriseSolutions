@@ -128,6 +128,8 @@ Public Class Enterprise
         Session("Idioma") = Nothing
         bit.Guardar(New BE.Bitacora("BIT_Logout", "Logout", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID))
         Session("Usuario") = Nothing
+        Session("EsCliente") = Nothing
+        Session("EsDistribuidor") = Nothing
         Response.Redirect("~/Login.aspx")
 
     End Sub

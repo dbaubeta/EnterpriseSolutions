@@ -139,66 +139,65 @@
     End Function
 
 
-    Public Overrides Function ObtenerListaUsuario(u As BE.Usuario) As List(Of BE.ABM)
+    'Public Overrides Function ObtenerListaUsuario(u As BE.Usuario) As List(Of BE.ABM)
 
 
-        Dim params(0) As System.Data.SqlClient.SqlParameter
-        Dim in1 As String = ""
-        Dim in2 As String = ""
-        Dim cadena As String = "select d.* from Distribuidor d join cliente c on d.Idcliente = c.Id where d.borrado = 0 and c.borrado=0 and c.IDUsuario = @P1"
-        Dim idx1 As Integer = 0
-        Dim idx2 As Integer = 0
-        Dim dt As DataTable
-        Dim l As BE.Distribuidor
-        Dim ll As New List(Of BE.ABM)
-        Dim c As New Cifrado.Cifrado
-        Dim dp As New DAL.Provincia
-        Dim du As New DAL.Usuario
-        Dim dc As New DAL.Cliente
+    '    Dim params(0) As System.Data.SqlClient.SqlParameter
+    '    Dim in1 As String = ""
+    '    Dim in2 As String = ""
+    '    Dim cadena As String = "select d.* from Distribuidor d join cliente c on d.Idcliente = c.Id where d.borrado = 0 and c.borrado=0 and c.IDUsuario = @P1"
+    '    Dim idx1 As Integer = 0
+    '    Dim idx2 As Integer = 0
+    '    Dim dt As DataTable
+    '    Dim l As BE.Distribuidor
+    '    Dim ll As New List(Of BE.ABM)
+    '    Dim c As New Cifrado.Cifrado
+    '    Dim dp As New DAL.Provincia
+    '    Dim du As New DAL.Usuario
+    '    Dim dc As New DAL.Cliente
 
 
-        Try
+    '    Try
 
-            params(0) = DBH.CrearParametro("@P1", u.ID)
-            dt = DBH.SelectTabla(cadena, params)
-            For Each dr As DataRow In dt.Rows
-                l = New BE.Distribuidor
-                l.ID = dr.Item("ID")
-                l.Nombre = dr.Item("Nombre")
-                l.Mail = dr.Item("Mail")
-                l.borrado = dr.Item("borrado")
-                l.DVH = dr.Item("DVH")
+    '        params(0) = DBH.CrearParametro("@P1", u.ID)
+    '        dt = DBH.SelectTabla(cadena, params)
+    '        For Each dr As DataRow In dt.Rows
+    '            l = New BE.Distribuidor
+    '            l.ID = dr.Item("ID")
+    '            l.Nombre = dr.Item("Nombre")
+    '            l.Mail = dr.Item("Mail")
+    '            l.borrado = dr.Item("borrado")
+    '            l.DVH = dr.Item("DVH")
 
-                l.Provincia.ID = dr.Item("IDProvincia")
-                Dim li As New List(Of BE.Provincia)
-                li.Add(l.Provincia)
-                l.Provincia = dp.ObtenerProvincias(li)(0)
+    '            l.Provincia.ID = dr.Item("IDProvincia")
+    '            Dim li As New List(Of BE.Provincia)
+    '            li.Add(l.Provincia)
+    '            l.Provincia = dp.ObtenerProvincias(li)(0)
 
-                l.Usuario.ID = dr.Item("IDUsuario")
-                Dim lu As New List(Of BE.Usuario)
-                lu.Add(l.Usuario)
-                l.Usuario = du.ObtenerUsuarios(lu)(0)
+    '            l.Usuario.ID = dr.Item("IDUsuario")
+    '            Dim lu As New List(Of BE.Usuario)
+    '            lu.Add(l.Usuario)
+    '            l.Usuario = du.ObtenerUsuarios(lu)(0)
 
-                l.Cliente.ID = dr.Item("IDCliente")
-                Dim lc As New List(Of BE.ABM)
-                lc.Add(l.Cliente)
-                l.Cliente = dc.ObtenerLista(lc)(0)
+    '            l.Cliente.ID = dr.Item("IDCliente")
+    '            Dim lc As New List(Of BE.ABM)
+    '            lc.Add(l.Cliente)
+    '            l.Cliente = dc.ObtenerLista(lc)(0)
 
-                ll.Add(l)
-            Next
+    '            ll.Add(l)
+    '        Next
 
-            Return ll
-        Catch bex As BE.Excepcion
-            Throw bex
-        Catch ex As Exception
-            Dim bex As New BE.Excepcion
-            bex.Excepcion = ex
-            bex.Capa = Me.GetType().ToString
-            Throw bex
-        End Try
+    '        Return ll
+    '    Catch bex As BE.Excepcion
+    '        Throw bex
+    '    Catch ex As Exception
+    '        Dim bex As New BE.Excepcion
+    '        bex.Excepcion = ex
+    '        bex.Capa = Me.GetType().ToString
+    '        Throw bex
+    '    End Try
 
-    End Function
-
+    'End Function
 
 
 End Class ' DAL.Distribuidor
