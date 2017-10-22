@@ -1,10 +1,9 @@
-﻿Public Class DistribuidorEdicion
+﻿Public Class CategoriaEdicion
     Inherits System.Web.UI.Page
 
-
     Dim p As New BLL.Persistencia
-    Dim u As New BE.Distribuidor
-    Dim strClase As String = "Distribuidor"
+    Dim u As New BE.Categoria
+    Dim strClase As String = "Categoria"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -22,7 +21,7 @@
         Try
 
             ' Establezco el objeto strategy que va a atender el requerimiento
-            p.EstablecerObjetoNegocio(New BLL.Distribuidor)
+            p.EstablecerObjetoNegocio(New BLL.Categoria)
 
 
         Catch bex As BE.Excepcion
@@ -52,39 +51,15 @@
             End If
 
             If Not IsPostBack Then
-                ' Cargo la lista de provincias
-                lp = b.ObtenerProvincias()
-                Me.dlProvincias.DataValueField = "ID"
-                Me.dlProvincias.DataTextField = "Nombre"
-                Me.dlProvincias.DataSource = lp
-                Me.dlProvincias.DataBind()
-
-                ' Cargo la lista de usuarios
-                lu = bu.ObtenerUsuariosSinAsignar()
-                Dim lu2 As New List(Of BE.Usuario)
-                lu2.Clear()
-                For Each x As Seguridad.Usuario In lu
-                    lu2.Add(x.Usuario)
-                Next
-                If Not IsNothing(Session(strClase + "AEditar")) Then lu2.Add(u.Usuario)
-                Me.dlUsuarios.DataValueField = "ID"
-                Me.dlUsuarios.DataTextField = "Nombre"
-                Me.dlUsuarios.DataSource = lu2
-                Me.dlUsuarios.DataBind()
 
                 ' Cargo los campos de la pantalla por primera vez 
                 If Not IsNothing(Session(strClase + "AEditar")) Then
-                    noTranslateDistribuidorID.Text = u.ID.ToString
-                    txtDistribuidorNombre.Text = u.Nombre
-                    txtmail.Text = u.Mail
-                    dlProvincias.SelectedValue = u.Provincia.ID
-                    dlUsuarios.SelectedValue = u.Usuario.ID
+                    noTranslateCategoriaID.Text = u.ID.ToString
+                    txtCategoriaNombre.Text = u.Nombre
                     m.IDError = "tituloEditar" + strClase
-                    txtIDRealDistribuidor.Text = u.IDReal
+                    txtIDRealCategoria.Text = u.IDReal
                 Else
-                    noTranslateDistribuidorID.Text = 0
-                    If dlProvincias.Items.Count > 0 Then dlProvincias.SelectedIndex = 0
-                    If dlUsuarios.Items.Count > 0 Then dlUsuarios.SelectedIndex = 0
+                    noTranslateCategoriaID.Text = 0
                     m.IDError = "tituloNuevo" + strClase
                 End If
                 lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
@@ -109,15 +84,12 @@
             If IsNothing(Session(strClase + "AEditar")) Then
                 u.ID = 0
             Else
-                u.ID = Long.Parse(noTranslateDistribuidorID.Text)
+                u.ID = Long.Parse(noTranslateCategoriaID.Text)
             End If
-            u.Nombre = txtDistribuidorNombre.Text
-            u.Provincia.ID = dlProvincias.SelectedValue
+            u.Nombre = txtCategoriaNombre.Text
             u.borrado = False
-            u.Mail = txtmail.Text
-            u.Usuario.ID = dlUsuarios.SelectedValue
             u.Cliente = DirectCast(Session("ClientePadre"), BE.Cliente)
-            u.IDReal = txtIDRealDistribuidor.Text
+            u.IDReal = txtIDRealCategoria.Text
 
             erroresval = p.ValidarDatos(u)
 

@@ -23,5 +23,9 @@ Public Class Categoria
         End Set
     End Property
 
+    Public Sub New()
+        Cliente = New BE.Cliente
+    End Sub
+
 
 End Class

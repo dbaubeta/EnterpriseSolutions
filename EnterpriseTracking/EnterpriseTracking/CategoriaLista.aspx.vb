@@ -1,22 +1,42 @@
 ﻿Imports System.Drawing
 
-Public Class ClienteLista
+Public Class CategoriaLista
     Inherits System.Web.UI.Page
 
+
     Dim p As New BLL.Persistencia
-    Dim strClase As String = "Cliente"
+    Dim strClase As String = "Categoria"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsNothing(Session("Usuario")) Then
             Response.Redirect("~/Login.aspx")
         End If
-
-        p.EstablecerObjetoNegocio(New BLL.Cliente)
+        Dim b As New BLL.Cliente
+        p.EstablecerObjetoNegocio(New BLL.Categoria)
 
         Try
+            If Not IsPostBack Then
 
-            CargarGrilla()
+                Me.dlClientes.DataValueField = "ID"
+                Me.dlClientes.DataTextField = "Nombre"
+                ' Busco si el usuario logueado es un cliente
+                If IsNothing(Session("EsCliente")) Then
+                    Me.dlClientes.DataSource = b.ObtenerLista()
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedIndex = 0
+                Else
+                    Me.dlClientes.DataSource = b.ObtenerLista().FindAll(Function(z) z.ID = DirectCast(Session("EsCliente"), BE.Cliente).ID)
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedValue = DirectCast(Session("EsCliente"), BE.Cliente).ID
+                    Me.dlClientes.Visible = False
+                    Me.lblCliente.Visible = False
+
+                End If
+
+            End If
+
+            If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
 
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
@@ -30,26 +50,35 @@ Public Class ClienteLista
     Private Sub CargarGrilla()
 
         Try
-            Dim dt As DataTable = New DataTable
-            dt.Columns.Add("ID")
-            dt.Columns.Add("Nombre")
-            dt.Columns.Add("Provincia")
 
-            For Each l As BE.Cliente In p.ObtenerLista()
-                Dim dr As DataRow = dt.NewRow
-                dr("ID") = l.ID
-                dr("Nombre") = l.Nombre
-                dr("Provincia") = l.Provincia.Nombre
-                dt.Rows.Add(dr)
-            Next
+            Dim x As New BE.Cliente
+            Dim bx As New BLL.Cliente
+            Dim lx As New List(Of BE.ABM)
 
-            grdClientes.DataSource = Nothing
-            grdClientes.DataSource = dt
-            grdClientes.DataBind()
+            If Not IsNothing(dlClientes.SelectedValue) Then
+                x.ID = dlClientes.SelectedValue
+                lx.Add(x)
+                x = bx.ObtenerLista(lx)(0)
 
-            If grdClientes.Rows.Count > 0 Then
-                grdClientes.UseAccessibleHeader = True
-                grdClientes.HeaderRow.TableSection = TableRowSection.TableHeader
+                Dim dt As DataTable = New DataTable
+                dt.Columns.Add("ID")
+                dt.Columns.Add("Nombre")
+
+                For Each l As BE.Categoria In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Categoria).Cliente.ID = x.ID)
+                    Dim dr As DataRow = dt.NewRow
+                    dr("ID") = l.ID
+                    dr("Nombre") = l.Nombre
+                    dt.Rows.Add(dr)
+                Next
+
+                grdCategorias.DataSource = Nothing
+                grdCategorias.DataSource = dt
+                grdCategorias.DataBind()
+
+                If grdCategorias.Rows.Count > 0 Then
+                    grdCategorias.UseAccessibleHeader = True
+                    grdCategorias.HeaderRow.TableSection = TableRowSection.TableHeader
+                End If
             End If
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
@@ -61,12 +90,12 @@ Public Class ClienteLista
 
     Protected Overrides Sub Render(writer As System.Web.UI.HtmlTextWriter)
         Try
-            For Each r As GridViewRow In Me.grdClientes.Rows
+            For Each r As GridViewRow In Me.grdCategorias.Rows
                 If r.RowType = DataControlRowType.DataRow Then
                     r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
                     r.Attributes("onmouseout") = "this.style.textDecoration='none';"
                     r.ToolTip = "Click to select row"
-                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdClientes, "Select$" + r.RowIndex.ToString, True)
+                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdCategorias, "Select$" + r.RowIndex.ToString, True)
                 End If
             Next
             MyBase.Render(writer)
@@ -79,11 +108,11 @@ Public Class ClienteLista
 
     End Sub
 
-    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdClientes.SelectedIndexChanged
+    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdCategorias.SelectedIndexChanged
 
         Try
-            For Each row As GridViewRow In grdClientes.Rows
-                If row.RowIndex = grdClientes.SelectedIndex Then
+            For Each row As GridViewRow In grdCategorias.Rows
+                If row.RowIndex = grdCategorias.SelectedIndex Then
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
                     row.ToolTip = String.Empty
                 Else
@@ -100,28 +129,18 @@ Public Class ClienteLista
 
     End Sub
 
-    Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevoCliente.Click
+    Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevoCategoria.Click
+        Dim l As New List(Of BE.ABM)
+        Dim x As New BE.Cliente
         Dim hayerror As Boolean
-        Try
-            Session(strClase + "AEditar") = Nothing
-        Catch bex As BE.Excepcion
-            hayerror = True
-            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
-        Catch ex As Exception
-            hayerror = True
-            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
-        End Try
+        Dim p2 As New BLL.Persistencia(New BLL.Cliente)
 
-        If Not hayerror Then Response.Redirect("~/" + strClase + "Edicion.aspx")
-    End Sub
-
-    Protected Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditarCliente.Click
-        Dim hayerror As Boolean
         Try
-            If Not IsNothing(grdClientes.SelectedRow) Then
-                Session(strClase + "AEditar") = grdClientes.SelectedRow.Cells(0).Text
-            Else
-                hayerror = True
+            If Not IsNothing(dlClientes.SelectedValue) Then
+                x.ID = dlClientes.SelectedValue
+                l.Add(x)
+                Session("ClientePadre") = DirectCast(p2.ObtenerLista(l)(0), BE.Cliente)
+                Session(strClase + "AEditar") = Nothing
             End If
         Catch bex As BE.Excepcion
             hayerror = True
@@ -135,10 +154,38 @@ Public Class ClienteLista
 
     End Sub
 
-    Protected Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminarCliente.Click
+    Protected Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditarCategoria.Click
+        Dim l As New List(Of BE.ABM)
+        Dim x As New BE.Cliente
+        Dim hayerror As Boolean
+        Dim p2 As New BLL.Persistencia(New BLL.Cliente)
 
         Try
-            If Not IsNothing(grdClientes.SelectedRow) Then
+            If Not IsNothing(grdCategorias.SelectedRow) Then
+                x.ID = dlClientes.SelectedValue
+                l.Add(x)
+                Session("ClientePadre") = DirectCast(p2.ObtenerLista(l)(0), BE.Cliente)
+                Session(strClase + "AEditar") = grdCategorias.SelectedRow.Cells(0).Text
+            Else
+                hayerror = True
+            End If
+        Catch bex As BE.Excepcion
+            hayerror = True
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            hayerror = True
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
+        If Not hayerror Then Response.Redirect("~/" + strClase + "Edicion.aspx")
+
+
+    End Sub
+
+    Protected Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminarCategoria.Click
+
+        Try
+            If Not IsNothing(grdCategorias.SelectedRow) Then
                 MostrarMensajeModal("EstaSeguroBorrarElementoSeleccionado", False)
             End If
         Catch bex As BE.Excepcion
@@ -154,10 +201,10 @@ Public Class ClienteLista
         Dim bit As New Bitacora.Bitacora
 
         Try
-            Dim cl As New BE.Cliente
+            Dim cl As New BE.Categoria
             Dim li As New List(Of BE.ABM)
 
-            cl.ID = grdClientes.SelectedRow.Cells(0).Text
+            cl.ID = grdCategorias.SelectedRow.Cells(0).Text
             li.Add(cl)
             cl = p.ObtenerLista(li)(0)
 
@@ -205,6 +252,7 @@ Public Class ClienteLista
         End If
 
     End Sub
+
 
 
 

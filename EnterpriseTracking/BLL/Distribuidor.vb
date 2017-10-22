@@ -24,6 +24,11 @@ Public Class Distribuidor
                 m.IDError = "MailDistribuidorRequerido"
                 l.Add(m)
             End If
+            If s.IDReal = "" Or IsNothing(s.IDReal) Then
+                Dim m As New BE.MensajeError
+                m.IDError = "IDRealDistribuidorRequerido"
+                l.Add(m)
+            End If
             If s.Provincia.ID = 0 Or IsNothing(s.Provincia.ID) Then
                 Dim m As New BE.MensajeError
                 m.IDError = "ProvinciaDistribuidorRequerido"

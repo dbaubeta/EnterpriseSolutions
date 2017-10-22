@@ -55,6 +55,11 @@
         End Set
     End Property
 
+    Public Sub New()
+        Usuario = New BE.Usuario
+        Provincia = New BE.Provincia
+        Cliente = New BE.Cliente
+    End Sub
 
 End Class
 

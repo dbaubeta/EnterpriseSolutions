@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class DistribuidorEdicion
+Partial Public Class CategoriaEdicion
 
     '''<summary>
     '''noTranslateModalMessageSiNo control.
@@ -68,22 +68,22 @@ Partial Public Class DistribuidorEdicion
     Protected WithEvents lblTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblDistribuidorID control.
+    '''lblCategoriaID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDistribuidorID As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblCategoriaID As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''noTranslateDistribuidorID control.
+    '''noTranslateCategoriaID control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents noTranslateDistribuidorID As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents noTranslateCategoriaID As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblIDReal control.
@@ -95,85 +95,31 @@ Partial Public Class DistribuidorEdicion
     Protected WithEvents lblIDReal As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtIDRealDistribuidor control.
+    '''txtIDRealCategoria control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtIDRealDistribuidor As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtIDRealCategoria As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblDistribuidorNombre control.
+    '''lblCategoriaNombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDistribuidorNombre As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblCategoriaNombre As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtDistribuidorNombre control.
+    '''txtCategoriaNombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDistribuidorNombre As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblmail As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtmail control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtmail As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblDistribuidorProvincia control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDistribuidorProvincia As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''dlProvincias control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlProvincias As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''lblDistribuidorUsuario control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDistribuidorUsuario As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''dlUsuarios control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlUsuarios As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtCategoriaNombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnAceptar control.

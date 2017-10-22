@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="DistribuidorEdicion.aspx.vb" Inherits="EnterpriseTracking.DistribuidorEdicion" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="CategoriaEdicion.aspx.vb" Inherits="EnterpriseTracking.CategoriaEdicion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    
     <!-- Modal Si No -->
 <div id="modalConfirmar" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -60,10 +60,10 @@
 
         <div class="row" style="margin-top:10px;margin-bottom:15px;">
             <div class="col-sm-2" style="padding-top:3px">
-                <asp:Label ID="lblDistribuidorID" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>
+                <asp:Label ID="lblCategoriaID" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>
             </div>    
             <div class="col-sm-3" style="padding-top:3px">
-                <asp:Label ID="noTranslateDistribuidorID" runat="server" Text="Label" Width="100%"></asp:Label>
+                <asp:Label ID="noTranslateCategoriaID" runat="server" Text="Label" Width="100%"></asp:Label>
             </div>        
         </div>
         <%-- LABEL + TEXTBOX --%>
@@ -72,45 +72,18 @@
                 <asp:Label ID="lblIDReal" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
             </div>    
             <div class="col-sm-3" style="padding-top:3px">
-                <asp:TextBox ID="txtIDRealDistribuidor" runat="server" style="width:100%" CssClass="form-control" />
-<%--                <asp:RequiredFieldValidator ID="RqFVtxtDistribuidorNombre" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtDistribuidorNombre" ></asp:RequiredFieldValidator>--%>
+                <asp:TextBox ID="txtIDRealCategoria" runat="server" style="width:100%" CssClass="form-control" />
+<%--                <asp:RequiredFieldValidator ID="RqFVtxtCategoriaNombre" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtCategoriaNombre" ></asp:RequiredFieldValidator>--%>
             </div>        
         </div>
         <%-- LABEL + TEXTBOX --%>
         <div class="row" style="margin-top:10px" >
             <div class="col-sm-2" style="padding-top:8px">
-                <asp:Label ID="lblDistribuidorNombre" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
+                <asp:Label ID="lblCategoriaNombre" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
             </div>    
             <div class="col-sm-3" style="padding-top:3px">
-                <asp:TextBox ID="txtDistribuidorNombre" runat="server" style="width:100%" CssClass="form-control" />
-<%--                <asp:RequiredFieldValidator ID="RqFVtxtDistribuidorNombre" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtDistribuidorNombre" ></asp:RequiredFieldValidator>--%>
-            </div>        
-        </div>
-        <%-- LABEL + TEXTBOX --%>
-        <div class="row" style="margin-top:10px" >
-            <div class="col-sm-2" style="padding-top:8px">
-                <asp:Label ID="lblmail" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
-            </div>    
-            <div class="col-sm-3" style="padding-top:3px">
-                <asp:TextBox ID="txtmail" runat="server" style="width:100%" CssClass="form-control" />
-            </div>        
-        </div>
-        <%-- DROPDOWN LIST --%>
-        <div class="row" style="margin-top:10px">
-            <div class="col-sm-2" style="padding-top:8px">
-                <asp:Label ID="lblDistribuidorProvincia" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>
-            </div>    
-            <div class="col-sm-3" style="padding-top:3px">
-                <asp:DropDownList ID="dlProvincias" runat="server" CssClass="form-control"  AutoPostBack="False"></asp:DropDownList>
-            </div>        
-        </div>
-        <%-- DROPDOWN LIST --%>
-        <div class="row" style="margin-top:10px">
-            <div class="col-sm-2" style="padding-top:8px">
-                <asp:Label ID="lblDistribuidorUsuario" runat="server" Text="Label" Width="100%" Font-Bold="true" style="text-align:right;"></asp:Label><br/>
-            </div>    
-            <div class="col-sm-3" style="padding-top:3px">
-                <asp:DropDownList ID="dlUsuarios" runat="server" CssClass="form-control"  AutoPostBack="False"></asp:DropDownList>
+                <asp:TextBox ID="txtCategoriaNombre" runat="server" style="width:100%" CssClass="form-control" />
+<%--                <asp:RequiredFieldValidator ID="RqFVtxtCategoriaNombre" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtCategoriaNombre" ></asp:RequiredFieldValidator>--%>
             </div>        
         </div>
         <div class="row" style="margin-top:20px">
@@ -133,4 +106,5 @@
     <div class="col-sm-1" style="vertical-align:middle">
     </div>
 </div>
+
 </asp:Content>

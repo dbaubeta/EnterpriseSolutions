@@ -134,40 +134,52 @@ Public Class DistribuidorLista
     Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevoDistribuidor.Click
         Dim l As New List(Of BE.ABM)
         Dim x As New BE.Cliente
+        Dim hayerror As Boolean
+        Dim p2 As New BLL.Persistencia(New BLL.Cliente)
+
         Try
             If Not IsNothing(dlClientes.SelectedValue) Then
                 x.ID = dlClientes.SelectedValue
                 l.Add(x)
-                Session("ClientePadre") = DirectCast(p.ObtenerLista(l)(0), BE.Cliente)
+                Session("ClientePadre") = DirectCast(p2.ObtenerLista(l)(0), BE.Cliente)
                 Session(strClase + "AEditar") = Nothing
             End If
         Catch bex As BE.Excepcion
+            hayerror = True
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            hayerror = True
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
-        Response.Redirect("~/" + strClase + "Edicion.aspx")
+        If Not hayerror Then Response.Redirect("~/" + strClase + "Edicion.aspx")
 
     End Sub
 
     Protected Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditarDistribuidor.Click
         Dim l As New List(Of BE.ABM)
         Dim x As New BE.Cliente
+        Dim hayerror As Boolean
+        Dim p2 As New BLL.Persistencia(New BLL.Cliente)
+
         Try
             If Not IsNothing(grdDistribuidors.SelectedRow) Then
                 x.ID = dlClientes.SelectedValue
                 l.Add(x)
-                Session("ClientePadre") = DirectCast(p.ObtenerLista(l)(0), BE.Cliente)
+                Session("ClientePadre") = DirectCast(p2.ObtenerLista(l)(0), BE.Cliente)
                 Session(strClase + "AEditar") = grdDistribuidors.SelectedRow.Cells(0).Text
+            Else
+                hayerror = True
             End If
         Catch bex As BE.Excepcion
+            hayerror = True
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            hayerror = True
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
-        Response.Redirect("~/" + strClase + "Edicion.aspx")
+        If Not hayerror Then Response.Redirect("~/" + strClase + "Edicion.aspx")
 
 
     End Sub

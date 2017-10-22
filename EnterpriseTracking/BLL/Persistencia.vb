@@ -95,4 +95,14 @@ Public Class Persistencia
     End Function
 
 
+    Public Sub New()
+
+    End Sub
+
+    Public Sub New(o As BLL.ABM)
+
+        Me.abm = o
+
+    End Sub
+
 End Class

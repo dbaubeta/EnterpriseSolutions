@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="DistribuidorLista.aspx.vb" Inherits="EnterpriseTracking.DistribuidorLista" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="CategoriaLista.aspx.vb" Inherits="EnterpriseTracking.CategoriaLista" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
+        
 <!-- Modal Si No -->
 <div id="modalConfirmar" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -49,7 +49,7 @@
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:15px;margin-bottom:15px">
     <div class="col-sm-12">
-        <asp:Label ID="lblDistribuidorListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+        <asp:Label ID="lblCategoriaListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
     </div>
 </div>
 <hr />
@@ -69,7 +69,7 @@
     <div class="row" style="margin-top:30px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
         <div class="col-md-8">
-            <asp:GridView ID="grdDistribuidors" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+            <asp:GridView ID="grdCategorias" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >
                     <HeaderStyle Width="15%" />
@@ -77,18 +77,15 @@
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
                     <HeaderStyle Width="70%" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Provincia" HeaderText="Provincia" >
-                    <HeaderStyle Width="15%" />
-                    </asp:BoundField>
                 </Columns>
                     <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
         </div>
         <div class="col-md-3">
             <%-- BOTONES ABM --%>
-            <asp:Button ID="btnNuevoDistribuidor" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary" /> <br/><br/>
-            <asp:Button ID="btnEditarDistribuidor" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary"/> <br/><br/>
-            <asp:Button ID="btnEliminarDistribuidor" runat="server" Text="Button" style="width:50%" CssClass="btn btn-danger"/> <br/>
+            <asp:Button ID="btnNuevoCategoria" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary" /> <br/><br/>
+            <asp:Button ID="btnEditarCategoria" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary"/> <br/><br/>
+            <asp:Button ID="btnEliminarCategoria" runat="server" Text="Button" style="width:50%" CssClass="btn btn-danger"/> <br/>
         </div>
     </div>
 </div>

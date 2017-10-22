@@ -106,6 +106,8 @@
   <ItemGroup>
     <Content Include="BackupLista.aspx" />
     <Content Include="BitacoraLista.aspx" />
+    <Content Include="CategoriaEdicion.aspx" />
+    <Content Include="CategoriaLista.aspx" />
     <Content Include="ClienteEdicion.aspx" />
     <Content Include="ClienteLista.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -155,6 +157,20 @@
     </Compile>
     <Compile Include="BitacoraLista.aspx.vb">
       <DependentUpon>BitacoraLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaEdicion.aspx.designer.vb">
+      <DependentUpon>CategoriaEdicion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaEdicion.aspx.vb">
+      <DependentUpon>CategoriaEdicion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaLista.aspx.designer.vb">
+      <DependentUpon>CategoriaLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaLista.aspx.vb">
+      <DependentUpon>CategoriaLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ClienteEdicion.aspx.designer.vb">
