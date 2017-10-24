@@ -89,6 +89,7 @@
     <Compile Include="Persistencia.vb" />
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
+    <Compile Include="Secuencia.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

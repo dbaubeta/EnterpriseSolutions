@@ -67,9 +67,11 @@
     <Compile Include="BROperation.vb" />
     <Compile Include="Categoria.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="Detalle_Factura.vb" />
     <Compile Include="Distribuidor.vb" />
     <Compile Include="Elemento.vb" />
     <Compile Include="Excepcion.vb" />
+    <Compile Include="Factura.vb" />
     <Compile Include="MensajeError.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />
@@ -90,7 +92,9 @@
     </Compile>
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
+    <Compile Include="PuntodeVenta.vb" />
     <Compile Include="Secuencia.vb" />
+    <Compile Include="Stock.vb" />
     <Compile Include="Usuario.vb" />
     <Compile Include="Vendedor.vb" />
   </ItemGroup>

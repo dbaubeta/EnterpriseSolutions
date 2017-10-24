@@ -135,6 +135,8 @@
     <Content Include="Enterprise.Master" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Principal.aspx" />
+    <Content Include="ProductoEdicion.aspx" />
+    <Content Include="ProductoLista.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -267,6 +269,20 @@
     </Compile>
     <Compile Include="Principal.aspx.vb">
       <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ProductoEdicion.aspx.designer.vb">
+      <DependentUpon>ProductoEdicion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoEdicion.aspx.vb">
+      <DependentUpon>ProductoEdicion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ProductoLista.aspx.designer.vb">
+      <DependentUpon>ProductoLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoLista.aspx.vb">
+      <DependentUpon>ProductoLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="UsuarioAsignarPermisos.aspx.designer.vb">

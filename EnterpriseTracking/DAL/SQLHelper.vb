@@ -176,6 +176,14 @@ Public Class SqlHelper
         Return P
     End Function
 
+    Public Function CrearParametro(Nombre As String, Value As Double) As SqlParameter
+        Dim P As New SqlParameter()
+        P.DbType = DbType.Double
+        P.ParameterName = Nombre
+        P.Value = Value
+        Return P
+    End Function
+
 
     Public Function CrearParametro(Nombre As String, Value As DateTime) As SqlParameter
         Dim P As New SqlParameter()
