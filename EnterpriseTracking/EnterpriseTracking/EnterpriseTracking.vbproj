@@ -106,6 +106,7 @@
   <ItemGroup>
     <Content Include="BackupLista.aspx" />
     <Content Include="BitacoraLista.aspx" />
+    <Content Include="CargaManual.aspx" />
     <Content Include="CategoriaEdicion.aspx" />
     <Content Include="CategoriaLista.aspx" />
     <Content Include="ClienteEdicion.aspx" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="BitacoraLista.aspx.vb">
       <DependentUpon>BitacoraLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CargaManual.aspx.designer.vb">
+      <DependentUpon>CargaManual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CargaManual.aspx.vb">
+      <DependentUpon>CargaManual.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CategoriaEdicion.aspx.designer.vb">

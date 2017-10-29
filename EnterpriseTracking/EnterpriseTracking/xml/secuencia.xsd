@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+      <!-- Definimos un tipo para Strings que no pueden estar vacios -->
+      <xs:simpleType name="StringRequerido">
+        <xs:restriction base="xs:string">
+           <xs:minLength value="1"/>
+        </xs:restriction>
+      </xs:simpleType>      
+      <!-- Definimos un tupo para integers que no pueden estar vacios -->
+      <xs:simpleType name="intRequerido">
+        <xs:restriction base="xs:integer">
+           <xs:minInclusive value="0"/>
+        </xs:restriction>
+      </xs:simpleType>      
+      <!-- Definimos un tupo para Fechas que no pueden estar vacios -->
+      <xs:simpleType name="FechaRequerido">
+        <xs:restriction base="xs:date">
+        </xs:restriction>
+      </xs:simpleType>
+      <!-- Definimos un tipo para el borrado -->
+      <xs:simpleType name="borradoRequerido">
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="1"/>
+         </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="secuencia">
+         <xs:complexType>
+            <xs:sequence>
+               <xs:element name="distribuidor" type="intRequerido" minOccurs="1" maxOccurs="1"></xs:element>
+               <xs:element name="IDReal" type="intRequerido" minOccurs="1" maxOccurs="1"></xs:element>
+               <xs:element name="vendedores" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="vendedor" minOccurs="1" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="id" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="nombre" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="puntosventa" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="puntoventa" minOccurs="1" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="id" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="nombre" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="calle" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="numero" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="depto" nillable="true"></xs:element>
+                                 <xs:element name="cp" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="provincia" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="cuit" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="facturas" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="factura" minOccurs="1" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="NroFactura" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="Fecha" type="FechaRequerido" nillable="false"></xs:element>
+                                 <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="puntoventa" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
+                                 <xs:element name="detallesFactura" minOccurs="1" maxOccurs="1">
+                                    <xs:complexType>
+                                       <xs:sequence>
+                                          <xs:element name="detalleFactura" maxOccurs="unbounded">
+                                             <xs:complexType>
+                                                <xs:sequence>
+                                                   <xs:element name="linea" type="intRequerido" nillable="false"></xs:element>
+                                                   <xs:element name="producto" type="StringRequerido" nillable="false"></xs:element>
+                                                   <xs:element name="cantidad" type="intRequerido" nillable="false"></xs:element>
+                                                   <xs:element name="precio" type="xs:double" nillable="false"></xs:element>
+                                                </xs:sequence>
+                                             </xs:complexType>
+                                          </xs:element>
+                                       </xs:sequence>
+                                    </xs:complexType>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="stocks" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="stock" minOccurs="1" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="Fecha" type="FechaRequerido" nillable="false"></xs:element>
+                                 <xs:element name="Tipo" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="producto" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="cantidad" type="intRequerido" nillable="false"></xs:element>
+                                 <xs:element name="precio" type="xs:double" nillable="false"></xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:element>
+</xs:schema>

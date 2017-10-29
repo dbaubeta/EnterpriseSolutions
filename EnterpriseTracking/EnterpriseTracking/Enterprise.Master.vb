@@ -181,8 +181,8 @@ Public Class Enterprise
         li = New HtmlGenericControl("li")
         itemname = "CargaManual"
         err.IDError = "mnuButtonSecuencias_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaSecuencias.Controls.Add(li)
+        li.InnerHtml = "<a href=""" + itemname + ".aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname)) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaSecuencias.Controls.Add(li)
 
         li = New HtmlGenericControl("li")
         itemname = "Transmisiones"

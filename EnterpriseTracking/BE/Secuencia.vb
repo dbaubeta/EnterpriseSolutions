@@ -102,6 +102,16 @@ Public Class Secuencia
 		End Set
 	End Property
 
+    Public Sub New()
+
+        Me.Lista_Vendedores = New List(Of BE.Vendedor)
+        Me.Lista_Facturas = New List(Of BE.Factura)
+        Me.Lista_PDV = New List(Of BE.PuntodeVenta)
+        Me.Lista_Stock = New List(Of BE.Stock)
+
+    End Sub
+
+
 
 End Class ' BE.Secuencia
 
