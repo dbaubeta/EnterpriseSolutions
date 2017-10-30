@@ -7,7 +7,7 @@ Public Class Stock
 	Private _ID As Long
 	Private _Precio As double
 	Private _Producto As BE.Producto
-	Private _Tipo As Long
+    Private _Tipo As String
 
 	Public Property Cantidad() As long
 		Get

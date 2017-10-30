@@ -24,6 +24,42 @@
             <xs:maxInclusive value="1"/>
          </xs:restriction>
       </xs:simpleType>
+      <!-- Definimos un tipo para la provincia -->
+      <xs:simpleType name="ProvinciaRequerida">
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="C.A.B.A."/>
+            <xs:enumeration value="Buenos Aires"/>
+            <xs:enumeration value="Catamarca"/>
+            <xs:enumeration value="Chaco"/>
+            <xs:enumeration value="Chubut"/>
+            <xs:enumeration value="Córdoba"/>
+            <xs:enumeration value="Corrientes"/>
+            <xs:enumeration value="Entre Ríos"/>
+            <xs:enumeration value="Formosa"/>
+            <xs:enumeration value="Jujuy"/>
+            <xs:enumeration value="La Pampa"/>
+            <xs:enumeration value="La Rioja"/>
+            <xs:enumeration value="Mendoza"/>
+            <xs:enumeration value="Misiones"/>
+            <xs:enumeration value="Neuquén"/>
+            <xs:enumeration value="Río Negro"/>
+            <xs:enumeration value="Salta"/>
+            <xs:enumeration value="San Juan"/>
+            <xs:enumeration value="San Luis"/>
+            <xs:enumeration value="Santa Cruz"/>
+            <xs:enumeration value="Santa Fe"/>
+            <xs:enumeration value="Santiago del Estero"/>
+            <xs:enumeration value="Tierra del Fuego"/>
+            <xs:enumeration value="Tucumán"/>
+			</xs:restriction>
+      </xs:simpleType>
+      <!-- Definimos un tipo para la provincia -->
+      <xs:simpleType name="TipoStock">
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="Entrada"/>
+            <xs:enumeration value="Salida"/>
+			</xs:restriction>
+      </xs:simpleType>
       <xs:element name="secuencia">
          <xs:complexType>
             <xs:sequence>
@@ -56,7 +92,7 @@
                                  <xs:element name="numero" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="depto" nillable="true"></xs:element>
                                  <xs:element name="cp" type="StringRequerido" nillable="false"></xs:element>
-                                 <xs:element name="provincia" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="provincia" type="ProvinciaRequerida" nillable="false"></xs:element>
                                  <xs:element name="cuit" type="StringRequerido" nillable="false"></xs:element>
                                  <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
@@ -72,15 +108,15 @@
                         <xs:element name="factura" minOccurs="1" maxOccurs="unbounded">
                            <xs:complexType>
                               <xs:sequence>
-                                 <xs:element name="NroFactura" type="StringRequerido" nillable="false"></xs:element>
-                                 <xs:element name="Fecha" type="FechaRequerido" nillable="false"></xs:element>
+                                 <xs:element name="nrofactura" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="fecha" type="FechaRequerido" nillable="false"></xs:element>
                                  <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="puntoventa" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
-                                 <xs:element name="detallesFactura" minOccurs="1" maxOccurs="1">
+                                 <xs:element name="detallesfactura" minOccurs="1" maxOccurs="1">
                                     <xs:complexType>
                                        <xs:sequence>
-                                          <xs:element name="detalleFactura" maxOccurs="unbounded">
+                                          <xs:element name="detallefactura" maxOccurs="unbounded">
                                              <xs:complexType>
                                                 <xs:sequence>
                                                    <xs:element name="linea" type="intRequerido" nillable="false"></xs:element>
@@ -105,8 +141,8 @@
                         <xs:element name="stock" minOccurs="1" maxOccurs="unbounded">
                            <xs:complexType>
                               <xs:sequence>
-                                 <xs:element name="Fecha" type="FechaRequerido" nillable="false"></xs:element>
-                                 <xs:element name="Tipo" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="fecha" type="FechaRequerido" nillable="false"></xs:element>
+                                 <xs:element name="tipo" type="TipoStock" nillable="false"></xs:element>
                                  <xs:element name="producto" type="StringRequerido" nillable="false"></xs:element>
                                  <xs:element name="cantidad" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="precio" type="xs:double" nillable="false"></xs:element>

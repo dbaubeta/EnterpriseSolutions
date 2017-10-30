@@ -81,5 +81,23 @@ Public Class Factura
 		End Set
 	End Property
 
+    Private _borrado As Boolean
+    Public Property borrado() As Boolean
+        Get
+            Return _borrado
+        End Get
+        Set(ByVal value As Boolean)
+            _borrado = value
+        End Set
+    End Property
+
+    Public Sub New()
+        Me.Detalles_Factura = New List(Of Detalle_Factura)()
+        Me.Distribuidor = New BE.Distribuidor
+        Me.PuntoVenta = New BE.PuntodeVenta
+        Me.Vendedor = New BE.Vendedor
+
+    End Sub
+
 
 End Class ' BE.Factura

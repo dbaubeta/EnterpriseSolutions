@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class UsuarioAsignarPermisos
 
     '''<summary>
+    '''ImagenSiNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImagenSiNo As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
     '''noTranslateModalMessageSiNo control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class UsuarioAsignarPermisos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''ImagenMensaje control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImagenMensaje As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
     '''noTranslateModalMessage control.

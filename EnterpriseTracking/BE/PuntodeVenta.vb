@@ -11,7 +11,8 @@ Public Class PuntodeVenta
 	Private _IDReal As String
 	Private _Nombre As String
 	Private _Provincia As BE.Provincia
-	Private _Vendedor As BE.Vendedor
+    Private _Vendedor As BE.Vendedor
+    Private _borrado As Boolean
 
 	Public Property Calle() As String
 		Get
@@ -111,6 +112,25 @@ Public Class PuntodeVenta
 			_Vendedor = Value
 		End Set
 	End Property
+
+    Public Property borrado() As Boolean
+        Get
+            Return _borrado
+        End Get
+        Set(ByVal value As Boolean)
+            _borrado = value
+        End Set
+    End Property
+
+    Private _numero As Integer
+    Public Property numero() As Integer
+        Get
+            Return _numero
+        End Get
+        Set(ByVal value As Integer)
+            _numero = value
+        End Set
+    End Property
 
 
 End Class ' BE.PuntodeVenta

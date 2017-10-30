@@ -88,6 +88,8 @@ Public Class Enterprise
 
         'Traduzco la pagina
         f.Traducir(Me, DirectCast(Session("Idioma"), BE.Idioma))
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(DirectCast(Session("Idioma"), BE.Idioma).Culture)
+        Thread.CurrentThread.CurrentUICulture = New CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture)
 
         'Aplico los permisos
         f.Aplicar_Permisos(Me, DirectCast(Session("Usuario"), Seguridad.Usuario), formname)

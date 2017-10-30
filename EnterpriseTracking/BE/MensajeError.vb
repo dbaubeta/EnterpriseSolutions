@@ -62,7 +62,21 @@
     End Property
 
 
+    Public Sub New()
 
+    End Sub
+    Public Sub New(p_IDError As String)
+
+        Me.IDError = p_IDError
+
+    End Sub
+
+    Public Sub New(p_IDError As String, p_mensaje As String)
+
+        Me.IDError = p_IDError
+        Me.Mensaje = p_mensaje
+
+    End Sub
 
 
 

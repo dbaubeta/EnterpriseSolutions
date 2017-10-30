@@ -2,6 +2,7 @@ Imports System.IO
 Imports System.Text
 Imports System.Xml
 Imports System.Xml.Schema
+Imports System.Globalization
 
 Public Class Secuencia
 
@@ -13,19 +14,25 @@ Public Class Secuencia
 
         Dim xmlDoc As New XmlDocument()
         Dim l As New List(Of BE.MensajeError)
+        Dim l2 As New List(Of BE.MensajeError)
         Dim f As New Facade_Pantalla
+        Dim m As New BE.MensajeError
 
         Try
 
             If Not XMLBienFormado(Archivo, xmlDoc) Then
-                Dim m As New BE.MensajeError
-                m.IDError = "XMLNoEstaBienFormado"
-                l.Add(m)
+                l.Add(New BE.MensajeError("CargaSeqListaBienFormado", "Fallo"))
             Else
-                l = ValidarXMLconXSD(xmlDoc, xsd)
-                If IsNothing(l) Then
+                l.Add(New BE.MensajeError("CargaSeqListaBienFormado", "Correcto"))
+                l2 = ValidarXMLconXSD(xmlDoc, xsd)
+                If IsNothing(l2) Then
                     ' CARGAR el objeto secuencia
-                    cargarVendedores(xmlDoc, seq)
+                    cargarSecuencia(xmlDoc, seq)
+                Else
+                    l.Add(New BE.MensajeError("CargaSeqListaValido", "Fallo"))
+                    l.Add(New BE.MensajeError(Nothing, " "))
+                    l.Add(New BE.MensajeError("ListaErrores", Nothing))
+                    l.AddRange(l2)
                 End If
             End If
 
@@ -51,36 +58,170 @@ Public Class Secuencia
     End Function
 
     Public Function Validar(ByVal s As BE.Secuencia) As List(Of BE.MensajeError)
+
+        Dim p As New BLL.Persistencia
+        Dim bp As New BLL.Provincia
+
+
+        p.EstablecerObjetoNegocio(New BLL.Distribuidor)
+        Dim ld As New List(Of BE.ABM)
+        ld = p.ObtenerLista()
+
+
+
+        'provincias
+        'vendedores
+        ' producto
+        'Punto de venta
+
+        p.EstablecerObjetoNegocio(New BLL.Categoria)
+        Dim lc As New List(Of BE.ABM)
+        lc = p.ObtenerLista()
+
+
         Validar = Nothing
+
+
     End Function
 
 
 #Region "CargaSecuencia"
 
-    Private Sub cargarVendedores(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
+    Private Sub cargarSecuencia(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
 
         Dim root As XmlElement = xmldoc.DocumentElement
         Dim distribuidor As String = root("distribuidor").InnerText
+
+        Dim d As New BE.Distribuidor
+        d.IDReal = distribuidor
+        s.Distribuidor = d
+        ' Obtengo el distribuidor
+        '            Dim bd As New BLL.Distribuidor
+        '            Dim l As New List(Of BE.ABM)
+        '            l.Add(d)
+        '            d = bd.ObtenerLista(l)(0)
+        cargarVendedores(xmldoc, s)
+        cargarPuntodeVenta(xmldoc, s)
+        cargarFacturas(xmldoc, s)
+        cargarStock(xmldoc, s)
+
+
+    End Sub
+
+    Private Sub cargarVendedores(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
+
+        Dim root As XmlElement = xmldoc.DocumentElement
         Dim vendedores As XmlElement = root("vendedores")
         Dim nodelist As XmlNodeList = vendedores.GetElementsByTagName("vendedor")
 
         For Each node As XmlElement In nodelist
             Dim x As New BE.Vendedor
 
-            ' Obtengo el distribuidor
-            Dim bd As New BLL.Distribuidor
-            Dim d As New BE.Distribuidor
-            d.IDReal = distribuidor
-            Dim l As New List(Of BE.ABM)
-            l.Add(d)
-            d = bd.ObtenerLista(l)(0)
-
-            x.Distribuidor = d
+            x.Distribuidor = s.Distribuidor
             x.IDReal = node("id").InnerText
             x.Nombre = node("nombre").InnerText
             x.borrado = IIf(node("borrado").InnerText = "1", True, False)
 
             s.Lista_Vendedores.Add(x)
+
+        Next
+
+    End Sub
+
+    Private Sub cargarPuntodeVenta(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
+
+        Dim root As XmlElement = xmldoc.DocumentElement
+        Dim puntosventa As XmlElement = root("puntosventa")
+        Dim nodelist As XmlNodeList = puntosventa.GetElementsByTagName("puntoventa")
+
+        For Each node As XmlElement In nodelist
+            Dim x As New BE.PuntodeVenta
+
+            x.Distribuidor = s.Distribuidor
+            x.IDReal = node("id").InnerText
+            x.Nombre = node("nombre").InnerText
+            x.Calle = node("calle").InnerText
+            x.numero = Int32.Parse(node("numero").InnerText)
+            x.Depto = node("depto").InnerText
+            x.CodigoPostal = node("cp").InnerText
+            Dim p As New BE.Provincia
+            p.Nombre = node("provincia").InnerText
+            x.Provincia = p
+            Dim v As New BE.Vendedor
+            v.IDReal = node("vendedor").InnerText
+            x.Vendedor = v
+            x.CUIT = node("cuit").InnerText
+            x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+
+            s.Lista_PDV.Add(x)
+
+        Next
+
+    End Sub
+
+
+    Private Sub cargarFacturas(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
+
+        Dim root As XmlElement = xmldoc.DocumentElement
+        Dim facturas As XmlElement = root("facturas")
+        Dim nodelist As XmlNodeList = facturas.GetElementsByTagName("factura")
+
+        For Each node As XmlElement In nodelist
+            Dim x As New BE.Factura
+
+            x.Distribuidor = s.Distribuidor
+            x.Nro_Factura_Real = node("nrofactura").InnerText
+            x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+            Dim p As New BE.PuntodeVenta
+            p.IDReal = node("puntoventa").InnerText
+            x.PuntoVenta = p
+            Dim v As New BE.Vendedor
+            v.IDReal = node("vendedor").InnerText
+            x.Vendedor = v
+            x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+
+            ' Cargo el detalle de la factura
+            Dim detalles As XmlElement = node("detallesfactura")
+            Dim detalleslist As XmlNodeList = detalles.GetElementsByTagName("detallefactura")
+            For Each nodedetalle As XmlElement In detalleslist
+
+                Dim xd As New BE.Detalle_Factura
+
+                xd.Linea = Int32.Parse(nodedetalle("linea").InnerText)
+                Dim pr As New BE.Producto
+                pr.IDReal = nodedetalle("producto").InnerText
+                xd.Producto = pr
+                xd.Cantidad = Int64.Parse(nodedetalle("cantidad").InnerText)
+                xd.Precio = Double.Parse(nodedetalle("cantidad").InnerText)
+                x.Detalles_Factura.Add(xd)
+
+            Next
+
+
+            s.Lista_Facturas.Add(x)
+
+        Next
+
+    End Sub
+
+    Private Sub cargarStock(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
+
+        Dim root As XmlElement = xmldoc.DocumentElement
+        Dim stocks As XmlElement = root("stocks")
+        Dim nodelist As XmlNodeList = stocks.GetElementsByTagName("stock")
+
+        For Each node As XmlElement In nodelist
+            Dim x As New BE.Stock
+
+            x.Distribuidor = s.Distribuidor
+            x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+            Dim pr As New BE.Producto
+            pr.IDReal = node("producto").InnerText
+            x.Producto = pr
+            x.Cantidad = Int64.Parse(node("cantidad").InnerText)
+            x.Precio = Double.Parse(node("precio").InnerText)
+            x.Tipo = node("tipo").InnerText
+            s.Lista_Stock.Add(x)
 
         Next
 

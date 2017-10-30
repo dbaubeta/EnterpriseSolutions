@@ -6,7 +6,71 @@ EnterpriseTracking
 </name>
 </assembly>
 <members>
-<member name="F:EnterpriseTracking.CargaManual.fuArchivo">
+<member name="F:EnterpriseTracking.CargaManual.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.lblCargaManualSeq">
+	<summary>
+lblCargaManualSeq control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.fuArchivo">
 	<summary>
 fuArchivo control.
 </summary>
@@ -17,6 +81,22 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.CargaManual.btnUpload">
 	<summary>
 btnUpload control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.litMensajes">
+	<summary>
+litMensajes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.UsuarioAsignarPermisos.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -41,6 +121,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.UsuarioAsignarPermisos.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.UsuarioAsignarPermisos.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -142,6 +230,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.EditarLenguaje.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -161,6 +257,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.EditarLenguaje.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.EditarLenguaje.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -390,6 +494,14 @@ MainContent control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.GrupoEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -409,6 +521,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.GrupoEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -526,6 +646,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.IdiomaLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.IdiomaLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -545,6 +673,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.IdiomaLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.IdiomaLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -606,6 +742,14 @@ btnEliminarIdioma control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.DistribuidorLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.DistribuidorLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -625,6 +769,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.DistribuidorLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.DistribuidorLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -710,6 +862,14 @@ dlIdiomas control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.Login.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.Login.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -729,6 +889,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.Login.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.Login.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -854,6 +1022,14 @@ btnLogin control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.ProductoLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.ProductoLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -873,6 +1049,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.ProductoLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ProductoLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -950,6 +1134,14 @@ btnEliminarProducto control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.ClienteEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.ClienteEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -969,6 +1161,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.ClienteEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ClienteEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1119,6 +1319,14 @@ To modify move field declaration from designer file to code-behind file.
  Module used to define the properties that are available in the My Namespace for Web projects.
  </summary>
 	<remarks></remarks>
+</member><member name="F:EnterpriseTracking.UsuarioEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.UsuarioEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1138,6 +1346,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.UsuarioEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.UsuarioEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1263,6 +1479,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.BackupLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.BackupLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1282,6 +1506,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.BackupLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BackupLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1343,6 +1575,14 @@ btnEliminarBackup control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.ClienteLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.ClienteLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1362,6 +1602,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.ClienteLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ClienteLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1423,6 +1671,14 @@ btnEliminarCliente control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.CategoriaEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.CategoriaEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1442,6 +1698,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.CategoriaEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CategoriaEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1535,6 +1799,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.ProductoEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.ProductoEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1554,6 +1826,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.ProductoEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ProductoEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1679,6 +1959,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.BitacoraLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1698,6 +1986,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.BitacoraLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.BitacoraLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1735,6 +2031,14 @@ grdBitacora control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.CategoriaLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.CategoriaLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1754,6 +2058,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.CategoriaLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CategoriaLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1831,6 +2143,14 @@ btnEliminarCategoria control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.UsuarioLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.UsuarioLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1850,6 +2170,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.UsuarioLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.UsuarioLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1919,6 +2247,14 @@ btnEliminarUsuario control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.DistribuidorEdicion.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.DistribuidorEdicion.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -1938,6 +2274,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.DistribuidorEdicion.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.DistribuidorEdicion.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -2079,6 +2423,14 @@ btnCancelar control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.GrupoLista.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
@@ -2098,6 +2450,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.GrupoLista.btnModalNo">
 	<summary>
 btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.GrupoLista.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
 </summary>
 	<remarks>
 Auto-generated field.
