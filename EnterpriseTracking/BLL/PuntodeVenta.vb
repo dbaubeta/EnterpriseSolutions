@@ -12,13 +12,30 @@ Public Class PuntodeVenta
         Dim bd As New BLL.Distribuidor
         Dim l As New List(Of BE.ABM)
 
+        Dim bp As New BLL.Provincia
+        Dim lp As New List(Of BE.Provincia)
+
+        Dim bv As New BLL.Vendedor
+        Dim lv As New List(Of BE.Vendedor)
+
+
         Try
             l.Add(ob.Distribuidor)
             ob.Distribuidor = bd.ObtenerLista(l)(0)
 
             For Each v As BE.PuntodeVenta In ob.Lista_PDV
-                v.DVH = dvh.calcular(v)
                 v.Distribuidor.ID = ob.Distribuidor.ID
+
+                lp.Clear()
+                lp.Add(v.Provincia)
+                v.Provincia = bp.ObtenerProvincias(lp)(0)
+
+                lv.Clear()
+                lv.Add(v.Vendedor)
+                v.Vendedor = bv.ObtenerVendedores(lv)(0)
+
+                v.DVH = dvh.calcular(v)
+
             Next
             d.Guardar(ob.Lista_PDV)
             dvv.tabla = "PuntoDeVenta"

@@ -4,41 +4,69 @@ Public Class PuntodeVenta
 
     Public Sub Guardar(s As List(Of BE.PuntodeVenta))
 
-        Dim params(4) As System.Data.SqlClient.SqlParameter
+        Dim params(11) As System.Data.SqlClient.SqlParameter
 
         Try
 
-            Dim cmd As String = "MERGE Vendedor AS target " + _
-                    "USING (SELECT @P1 as IDReal, @P2 as Nombre, @P3 as DVH, @P4 as Borrado, @P5 as IDDistribuidor) AS source " + _
+            Dim cmd As String = "MERGE PuntoDeVenta AS target " + _
+                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero) AS source " + _
                     "ON target.IDReal = source.IDReal AND target.IDDistribuidor = source.IDDistribuidor " + _
                     "WHEN NOT MATCHED THEN " + _
-                    "INSERT (IDReal " + _
-                    "        ,Nombre " + _
-                    "        ,DVH " + _
-                    "        ,Borrado " + _
-                    "        ,IDDistribuidor) " + _
+                    "INSERT (IDReal  " + _
+                           ",Nombre " + _
+                           ",CUIT " + _
+                           ",Calle " + _
+                           ",Depto " + _
+                           ",CodigoPostal " + _
+                           ",DVH " + _
+                           ",Borrado " + _
+                           ",IDProvincia " + _
+                           ",IDDistribuidor " + _
+                           ",IDVendedor " + _
+                           ",Numero) " + _
                     "VALUES " + _
-                    "        (source.IDReal " + _
-                    "        ,source.Nombre " + _
-                    "        ,source.DVH " + _
-                    "        ,source.Borrado " + _
-                    "        ,source.IDDistribuidor) " + _
+                           "(source.IDReal  " + _
+                           ",source.Nombre " + _
+                           ",source.CUIT " + _
+                           ",source.Calle " + _
+                           ",source.Depto " + _
+                           ",source.CodigoPostal " + _
+                           ",source.DVH " + _
+                           ",source.Borrado " + _
+                           ",source.IDProvincia " + _
+                           ",source.IDDistribuidor " + _
+                           ",source.IDVendedor " + _
+                           ",source.Numero) " + _
                     "WHEN MATCHED THEN " + _
                     "    UPDATE SET " + _
-                    "        IDReal = source.IDReal " + _
-                    "       ,Nombre = source.Nombre " + _
-                    "       ,DVH = source.DVH " + _
-                    "       ,Borrado = source.Borrado " + _
-                    "       ,IDDistribuidor = source.IDDistribuidor;"
+                           "IDReal = source.IDReal  " + _
+                           ",Nombre = source.Nombre " + _
+                           ",CUIT = source.CUIT " + _
+                           ",Calle = source.Calle " + _
+                           ",Depto = source.Depto " + _
+                           ",CodigoPostal = source.CodigoPostal " + _
+                           ",DVH = source.DVH " + _
+                           ",Borrado = source.Borrado " + _
+                           ",IDProvincia = source.IDProvincia " + _
+                           ",IDDistribuidor = source.IDDistribuidor " + _
+                           ",IDVendedor = source.IDVendedor " + _
+                           ",Numero = source.Numero;"
 
             For Each u As BE.PuntodeVenta In s
 
                 ' Merge
                 params(0) = DBH.CrearParametro("@P1", u.IDReal)
                 params(1) = DBH.CrearParametro("@P2", u.Nombre)
-                params(2) = DBH.CrearParametro("@P3", Long.Parse(u.DVH))
-                params(3) = DBH.CrearParametro("@P4", u.borrado)
-                params(4) = DBH.CrearParametro("@P5", Long.Parse(u.Distribuidor.ID))
+                params(2) = DBH.CrearParametro("@P3", u.CUIT)
+                params(3) = DBH.CrearParametro("@P4", u.Calle)
+                params(4) = DBH.CrearParametro("@P5", u.Depto)
+                params(5) = DBH.CrearParametro("@P6", u.CodigoPostal)
+                params(6) = DBH.CrearParametro("@P7", Long.Parse(u.DVH))
+                params(7) = DBH.CrearParametro("@P8", u.borrado)
+                params(8) = DBH.CrearParametro("@P9", Long.Parse(u.Provincia.ID))
+                params(9) = DBH.CrearParametro("@P10", Long.Parse(u.Distribuidor.ID))
+                params(10) = DBH.CrearParametro("@P11", Long.Parse(u.Vendedor.ID))
+                params(11) = DBH.CrearParametro("@P12", u.numero)
 
                 DBH.Update(cmd, params)
 
