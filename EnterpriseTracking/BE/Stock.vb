@@ -82,4 +82,11 @@ Public Class Stock
 	End Property
 
 
+    Public Sub New()
+
+        Me.Distribuidor = New BE.Distribuidor
+        Me.Producto = New BE.Producto
+
+    End Sub
+
 End Class ' BE.Stock

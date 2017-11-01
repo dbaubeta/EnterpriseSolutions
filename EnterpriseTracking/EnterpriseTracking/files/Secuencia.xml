@@ -26,7 +26,7 @@
       <cp>C1112AAH</cp><provincia>C.A.B.A.</provincia><cuit>21654987652</cuit><vendedor>4</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
-      <idx></id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1530</numero><depto></depto>
+      <id>5</id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1530</numero><depto></depto>
       <cp>C111	2ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>
   </puntosventa>

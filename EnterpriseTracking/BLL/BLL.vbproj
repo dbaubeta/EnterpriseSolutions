@@ -67,8 +67,10 @@
     <Compile Include="BackupRestore.vb" />
     <Compile Include="Categoria.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="Detalle_Factura.vb" />
     <Compile Include="Distribuidor.vb" />
     <Compile Include="Facade_Pantalla.vb" />
+    <Compile Include="Factura.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -89,7 +91,10 @@
     <Compile Include="Persistencia.vb" />
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
+    <Compile Include="PuntodeVenta.vb" />
     <Compile Include="Secuencia.vb" />
+    <Compile Include="Stock.vb" />
+    <Compile Include="Vendedor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

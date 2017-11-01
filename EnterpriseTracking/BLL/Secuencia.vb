@@ -6,8 +6,17 @@ Imports System.Globalization
 
 Public Class Secuencia
 
-    Private _errors As New List(Of ValidationEventArgs)()
 
+    Private _errors As New List(Of ValidationEventArgs)()
+    Private listapuntoventa As New List(Of BE.PuntodeVenta)
+    Private listaprovincias As New List(Of BE.Provincia)
+    Private listaproductos As New List(Of BE.ABM)
+    Private listavendedores As New List(Of BE.Vendedor)
+
+    Dim dvh As New Digitos.Digito_Horizontal
+    Dim dvv As New Digitos.Digito_Vertical
+
+    Dim d As New DAL.Secuencia
 
 
     Public Function Cargar(Archivo As String, xsd As String, seq As BE.Secuencia) As List(Of BE.MensajeError)
@@ -23,12 +32,12 @@ Public Class Secuencia
             If Not XMLBienFormado(Archivo, xmlDoc) Then
                 l.Add(New BE.MensajeError("CargaSeqListaBienFormado", "Fallo"))
             Else
-                l.Add(New BE.MensajeError("CargaSeqListaBienFormado", "Correcto"))
                 l2 = ValidarXMLconXSD(xmlDoc, xsd)
                 If IsNothing(l2) Then
                     ' CARGAR el objeto secuencia
                     cargarSecuencia(xmlDoc, seq)
                 Else
+                    l.Add(New BE.MensajeError("CargaSeqListaBienFormado", "Correcto"))
                     l.Add(New BE.MensajeError("CargaSeqListaValido", "Fallo"))
                     l.Add(New BE.MensajeError(Nothing, " "))
                     l.Add(New BE.MensajeError("ListaErrores", Nothing))
@@ -49,38 +58,135 @@ Public Class Secuencia
 
     End Function
 
-    Public Sub Guardar(ByVal ob As BE.Secuencia)
+    Public Sub Guardar(ob As BE.Secuencia)
+
+        Dim bv As New BLL.Vendedor
+        Dim bp As New BLL.PuntodeVenta
+        Dim bf As New BLL.Factura
+        Dim bs As New BLL.Stock
+
+        Try
+
+            bv.Guardar(ob)
+            bp.Guardar(ob)
+            bf.Guardar(ob)
+            bs.Guardar(ob)
+
+            ' Recalculo todos los digitos verificadores horizontales
+            ob.DVH = dvh.calcular(ob)
+            d.Guardar(ob)
+            dvv.tabla = "Secuencia"
+            ' Recalculo todos los digitos verificadores Verticales
+            dvv.calcular()
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Sub
 
-    Public Function ObtenerSecuencias(ByVal f As List(Of BE.Secuencia)) As List(Of BE.Secuencia)
+    Public Function ObtenerSecuencias(f As List(Of BE.Secuencia)) As List(Of BE.Secuencia)
         ObtenerSecuencias = Nothing
     End Function
 
-    Public Function Validar(ByVal s As BE.Secuencia) As List(Of BE.MensajeError)
+    Public Function Validar(s As BE.Secuencia) As List(Of BE.MensajeError)
 
         Dim p As New BLL.Persistencia
         Dim bp As New BLL.Provincia
+        Dim bpu As New BLL.PuntodeVenta
+        Dim bv As New BLL.Vendedor
+        Dim errores As New List(Of BE.MensajeError)
+
+        Try
+            'Inicializo listas de validacion
+            listapuntoventa = New List(Of BE.PuntodeVenta)
+            listaprovincias = New List(Of BE.Provincia)
+            listaproductos = New List(Of BE.ABM)
+            listavendedores = New List(Of BE.Vendedor)
+
+            'Obtengo el distribuidor
+            p.EstablecerObjetoNegocio(New BLL.Distribuidor)
+            Dim ll As New List(Of BE.ABM)
+            Dim d As New BE.Distribuidor
+            ll.Add(s.Distribuidor)
+            d = p.ObtenerLista(ll)(0)
+
+            If Not IsNothing(d) Then
+                s.Distribuidor = d
+
+                listaprovincias = bp.ObtenerProvincias()
+
+                listavendedores.AddRange(bv.ObtenerVendedores().FindAll(Function(x) DirectCast(x, BE.Vendedor).Distribuidor.ID = s.Distribuidor.ID))
+                listavendedores.AddRange(s.Lista_Vendedores)
+
+                'Validar lista de punto de ventas
+                For Each pu As BE.PuntodeVenta In s.Lista_PDV
+                    If IsNothing(listavendedores.Find(Function(x) x.IDReal = pu.Vendedor.IDReal)) Then
+                        errores.Add(New BE.MensajeError("PDVNoExisteVendedor", Nothing, pu.IDReal.ToString + vbTab + pu.Vendedor.IDReal.ToString))
+                    End If
+                    If IsNothing(listaprovincias.Find(Function(x) x.Nombre = pu.Provincia.Nombre)) Then
+                        errores.Add(New BE.MensajeError("PDVNoExisteProvincia", Nothing, pu.IDReal.ToString + vbTab + pu.Provincia.Nombre))
+                    End If
+
+                Next
+
+                listapuntoventa.AddRange(bpu.ObtenerPDVs().FindAll(Function(x) DirectCast(x, BE.PuntodeVenta).Distribuidor.ID = s.Distribuidor.ID))
+                listapuntoventa.AddRange(s.Lista_PDV)
+
+                p.EstablecerObjetoNegocio(New BLL.Producto)
+                listaproductos = p.ObtenerLista().FindAll(Function(x) DirectCast(x, BE.Producto).Cliente.ID = s.Distribuidor.Cliente.ID)
+
+                'Validar Facturas
+                For Each fa As BE.Factura In s.Lista_Facturas
+                    If IsNothing(listavendedores.Find(Function(x) x.IDReal = fa.Vendedor.IDReal)) Then
+                        errores.Add(New BE.MensajeError("FacturaNoExisteVendedor", Nothing, fa.Nro_Factura_Real.ToString + vbTab + fa.Vendedor.IDReal.ToString))
+                    End If
+                    If IsNothing(listapuntoventa.Find(Function(x) x.IDReal = fa.PuntoVenta.IDReal)) Then
+                        errores.Add(New BE.MensajeError("FacturaNoExistePDV", Nothing, fa.Nro_Factura_Real.ToString + vbTab + fa.PuntoVenta.IDReal.ToString))
+                    End If
 
 
-        p.EstablecerObjetoNegocio(New BLL.Distribuidor)
-        Dim ld As New List(Of BE.ABM)
-        ld = p.ObtenerLista()
+                    ' Valido detalles de la factura
+                    For Each df As BE.Detalle_Factura In fa.Detalles_Factura
+
+                        'producto
+                        If IsNothing(listaproductos.Find(Function(x) DirectCast(x, BE.Producto).IDReal = df.Producto.IDReal)) Then
+                            errores.Add(New BE.MensajeError("DetalleFacturaNoExisteProducto", Nothing, df.Linea.ToString + vbTab + fa.Nro_Factura_Real.ToString + vbTab + df.Producto.IDReal.ToString))
+                        End If
 
 
+                    Next
 
-        'provincias
-        'vendedores
-        ' producto
-        'Punto de venta
+                Next
 
-        p.EstablecerObjetoNegocio(New BLL.Categoria)
-        Dim lc As New List(Of BE.ABM)
-        lc = p.ObtenerLista()
+                'Validar Stock
+                For Each st As BE.Stock In s.Lista_Stock
+                    'producto
+                    If IsNothing(listaproductos.Find(Function(x) DirectCast(x, BE.Producto).IDReal = st.Producto.IDReal)) Then
+                        errores.Add(New BE.MensajeError("StockNoExisteProducto", Nothing, st.Fecha.ToString + vbTab + st.Producto.IDReal.ToString))
+                    End If
+                Next
 
 
-        Validar = Nothing
+            Else
+                'Error no existe el distribuidor
+            End If
 
+            Return errores
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
 
     End Function
 
@@ -95,6 +201,7 @@ Public Class Secuencia
         Dim d As New BE.Distribuidor
         d.IDReal = distribuidor
         s.Distribuidor = d
+        s.Nro_Secuencia_Real = Long.Parse(root("IDReal").InnerText)
         ' Obtengo el distribuidor
         '            Dim bd As New BLL.Distribuidor
         '            Dim l As New List(Of BE.ABM)

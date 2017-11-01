@@ -67,8 +67,10 @@
     <Compile Include="Bitacora.vb" />
     <Compile Include="Categoria.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="Detalle_Factura.vb" />
     <Compile Include="Distribuidor.vb" />
     <Compile Include="Elemento.vb" />
+    <Compile Include="Factura.vb" />
     <Compile Include="Idioma.vb" />
     <Compile Include="Leyenda.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -88,8 +90,12 @@
     </Compile>
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
+    <Compile Include="PuntodeVenta.vb" />
+    <Compile Include="Secuencia.vb" />
     <Compile Include="SQLHelper.vb" />
+    <Compile Include="Stock.vb" />
     <Compile Include="Usuario.vb" />
+    <Compile Include="Vendedor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

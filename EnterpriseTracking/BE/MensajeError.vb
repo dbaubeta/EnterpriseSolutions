@@ -61,6 +61,17 @@
         End Set
     End Property
 
+    Private _datos As String
+    Public Property Datos() As String
+        Get
+            Return _datos
+        End Get
+        Set(ByVal value As String)
+            _datos = value
+        End Set
+    End Property
+
+
 
     Public Sub New()
 
@@ -71,11 +82,11 @@
 
     End Sub
 
-    Public Sub New(p_IDError As String, p_mensaje As String)
+    Public Sub New(p_IDError As String, p_mensaje As String, Optional p_datos As String = Nothing)
 
         Me.IDError = p_IDError
         Me.Mensaje = p_mensaje
-
+        Me.Datos = p_datos
     End Sub
 
 

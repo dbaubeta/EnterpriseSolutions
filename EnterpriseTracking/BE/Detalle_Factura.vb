@@ -52,5 +52,21 @@ Public Class Detalle_Factura
 		End Set
 	End Property
 
+    Private _facturaID As Long
+    Public Property FacturaID() As Long
+        Get
+            Return _facturaID
+        End Get
+        Set(ByVal value As Long)
+            _facturaID = value
+        End Set
+    End Property
+
+
+
+    Public Sub New()
+        Me.Producto = New BE.Producto
+    End Sub
+
 
 End Class ' BE.Detalle_Factura

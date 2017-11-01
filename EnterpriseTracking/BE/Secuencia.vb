@@ -102,8 +102,20 @@ Public Class Secuencia
 		End Set
 	End Property
 
+    Private _ID As Long
+    Public Property ID() As Long
+        Get
+            Return _ID
+        End Get
+        Set(ByVal value As Long)
+            _ID = value
+        End Set
+    End Property
+
+
     Public Sub New()
 
+        Me.Fecha = Now()
         Me.Lista_Vendedores = New List(Of BE.Vendedor)
         Me.Lista_Facturas = New List(Of BE.Factura)
         Me.Lista_PDV = New List(Of BE.PuntodeVenta)
