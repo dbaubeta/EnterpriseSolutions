@@ -199,8 +199,8 @@ Public Class Enterprise
         If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaSecuencias.Controls.Add(li)
 
 
-        ' Generar Menu Reportes
-        ' =====================================================================================================================
+        'Generar Menu Reportes
+        '=====================================================================================================================
         li = New HtmlGenericControl("li")
         itemname = "VtasxDistVend"
         err.IDError = "mnuButtonReportes_" + itemname

@@ -25,7 +25,7 @@ Public Class Factura
 
             For Each v As BE.Factura In ob.Lista_Facturas
 
-                v.Distribuidor.ID = ob.Distribuidor.ID
+                v.Distribuidor = ob.Distribuidor
 
                 lp.Clear()
                 lp.Add(v.PuntoVenta)
@@ -63,5 +63,21 @@ Public Class Factura
         ObtenerFacturas = Nothing
     End Function
 
+    Public Function ObtenerFacturas(desde As BE.Factura, hasta As BE.Factura) As List(Of BE.Factura)
+        Try
+
+            Return d.ObtenerFacturas(desde, hasta)
+
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
 
 End Class

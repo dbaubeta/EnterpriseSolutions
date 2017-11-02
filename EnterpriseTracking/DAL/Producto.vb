@@ -62,9 +62,11 @@
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
         Dim in1 As String = ""
         Dim in2 As String = ""
+        Dim in3 As String = ""
         Dim cadena As String = "select * from Producto where borrado = 0 "
         Dim idx1 As Integer = 0
         Dim idx2 As Integer = 0
+        Dim idx3 As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Producto
         Dim ll As New List(Of BE.ABM)
@@ -80,21 +82,36 @@
                 ReDim params(f.Count - 1)
 
                 If f.Count > 0 Then
-                    cadena = cadena + " and "
+                    cadena = cadena + " and ("
                     For Each x As BE.Producto In f
                         If Not IsNothing(x.ID) And x.ID <> 0 Then
                             idx2 += 1
                             If idx2 > 1 Then in2 += "," Else in2 += " ID in ("
-                            in2 += "@P" + (idx1 + idx2).ToString.Trim
-                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.ID)
+                            in2 += "@P" + (idx1 + idx2 + idx3).ToString.Trim
+                            params((idx1 + idx2 + idx3) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2 + idx3).ToString.Trim, x.ID)
+                        ElseIf Not IsNothing(x.IDReal) Then
+                            idx3 += 1
+                            If idx3 > 1 Then in3 += "," Else in3 += " IDReal in ("
+                            in3 += "@P" + (idx1 + idx2 + idx3).ToString.Trim
+                            params((idx1 + idx2 + idx3) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2 + idx3).ToString.Trim, x.IDReal)
                         ElseIf Not IsNothing(x.Nombre) Then
                             idx1 += 1
                             If idx1 > 1 Then in1 += "," Else in1 += " nombre in ("
-                            in1 += "@P" + (idx1 + idx2).ToString.Trim
-                            params((idx1 + idx2) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2).ToString.Trim, x.Nombre)
+                            in1 += "@P" + (idx1 + idx2 + idx3).ToString.Trim
+                            params((idx1 + idx2 + idx3) - 1) = DBH.CrearParametro("@P" + (idx1 + idx2 + idx3).ToString.Trim, x.Nombre)
                         End If
                     Next
-                    cadena += IIf(idx1 > 0, in1 + ")", "") + IIf(idx1 > 0 And idx2 > 0, " or ", "") + IIf(idx2 > 0, in2 + ")", "")
+                    If idx1 > 0 Then
+                        cadena += in1 + ")" + IIf(idx2 + idx3 > 0, " or ", "")
+                    End If
+                    If idx2 > 0 Then
+                        cadena += in2 + ")" + IIf(idx3 > 0, " or ", "")
+                    End If
+                    If idx3 > 0 Then
+                        cadena += in3 + ")"
+                    End If
+
+                    cadena += ")"
                 End If
             End If
 

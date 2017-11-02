@@ -7,11 +7,19 @@ Public Class Detalle_Factura
 
     Public Sub Guardar(ByVal ob As BE.Factura)
 
+        Dim bp As New BLL.Producto
+        Dim lp As New List(Of BE.ABM)
+
         Try
             ' Recalculo todos los digitos verificadores horizontales
             For Each v As BE.Detalle_Factura In ob.Detalles_Factura
-                v.DVH = dvh.calcular(v)
                 v.FacturaID = ob.ID
+
+                lp.Clear()
+                lp.Add(v.Producto)
+                v.Producto = bp.ObtenerLista(lp).Find(Function(x) DirectCast(x, BE.Producto).Cliente.ID = ob.Distribuidor.Cliente.ID)
+
+                v.DVH = dvh.calcular(v)
                 d.Guardar(v)
             Next
             ' Recalculo todos los digitos verificadores Verticales

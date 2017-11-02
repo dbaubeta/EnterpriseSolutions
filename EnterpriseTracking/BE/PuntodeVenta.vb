@@ -132,5 +132,14 @@ Public Class PuntodeVenta
         End Set
     End Property
 
+    Public Sub New()
+
+        Me.Distribuidor = New BE.Distribuidor
+        Me.Provincia = New BE.Provincia
+        Me.Vendedor = New BE.Vendedor
+
+
+    End Sub
+
 
 End Class ' BE.PuntodeVenta

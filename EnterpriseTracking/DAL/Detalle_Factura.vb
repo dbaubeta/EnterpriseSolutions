@@ -5,34 +5,36 @@
     Public Sub Guardar(u As BE.Detalle_Factura)
 
 
-        Dim params(11) As System.Data.SqlClient.SqlParameter
+        Dim params(5) As System.Data.SqlClient.SqlParameter
 
         Try
 
-            Dim cmd As String = "MERGE PuntoDeVenta AS target " + _
-                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero) AS source " + _
-                    "ON target.IDReal = source.IDReal AND target.IDDistribuidor = source.IDDistribuidor " + _
-                    "WHEN NOT MATCHED THEN " + _
-                    "INSERT (IDFactura " + _
-                            ",Linea " + _
-                            ",IDProducto " + _
-                            ",Cantidad " + _
-                            ",Precio " + _
-                            ",DVH) " + _
-                    "VALUES " + _
-                           "(source.IDFactura " + _
-                            ",source.Linea " + _
-                            ",source.IDProducto " + _
-                            ",source.Cantidad " + _
-                            ",source.Precio " + _
-                            ",source.DVH) " + _
-                    "WHEN MATCHED THEN " + _
-                    "    UPDATE SET " + _
-                           "IDFactura = source.IDFactura " + _
-                            ",Linea = source.Linea " + _
-                            ",IDProducto = source.IDProducto " + _
-                            ",Cantidad = source.Cantidad " + _
-                            ",Precio = source.Precio " + _
+            Dim del As String = "delete from FacturaDetalle where IDFactura = '" + u.FacturaID.ToString + "'"
+
+            Dim cmd As String = "MERGE FacturaDetalle AS target " +
+                    "USING (SELECT @P1 as IDFactura ,@P2 as Linea ,@P3 as IDProducto ,@P4 as Cantidad ,@P5 as precio ,@P6 as DVH ) AS source " +
+                    "ON target.IDFactura = source.IDFactura AND target.linea = source.linea " +
+                    "WHEN NOT MATCHED THEN " +
+                    "INSERT (IDFactura " +
+                            ",Linea " +
+                            ",IDProducto " +
+                            ",Cantidad " +
+                            ",Precio " +
+                            ",DVH) " +
+                    "VALUES " +
+                           "(source.IDFactura " +
+                            ",source.Linea " +
+                            ",source.IDProducto " +
+                            ",source.Cantidad " +
+                            ",source.Precio " +
+                            ",source.DVH) " +
+                    "WHEN MATCHED THEN " +
+                    "    UPDATE SET " +
+                           "IDFactura = source.IDFactura " +
+                            ",Linea = source.Linea " +
+                            ",IDProducto = source.IDProducto " +
+                            ",Cantidad = source.Cantidad " +
+                            ",Precio = source.Precio " +
                             ",DVH = source.DVH;"
 
 
@@ -44,6 +46,7 @@
             params(4) = DBH.CrearParametro("@P5", Double.Parse(u.Precio))
             params(5) = DBH.CrearParametro("@P6", Long.Parse(u.DVH))
 
+            DBH.Delete(del)
             DBH.Update(cmd, params)
 
         Catch bex As BE.Excepcion
