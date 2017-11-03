@@ -132,6 +132,28 @@ Public Class PuntodeVenta
         End Set
     End Property
 
+    Private _latitud As Double
+    Public Property Latitud() As Double
+        Get
+            Return _latitud
+        End Get
+        Set(ByVal value As Double)
+            _latitud = value
+        End Set
+    End Property
+
+
+    Private _longitud As Double
+    Public Property Longitud() As Double
+        Get
+            Return _longitud
+        End Get
+        Set(ByVal value As Double)
+            _longitud = value
+        End Set
+    End Property
+
+
     Public Sub New()
 
         Me.Distribuidor = New BE.Distribuidor

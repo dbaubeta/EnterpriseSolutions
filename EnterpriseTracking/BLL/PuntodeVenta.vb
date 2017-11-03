@@ -1,3 +1,5 @@
+Imports System.Net
+
 Public Class PuntodeVenta
 
     Dim d As New DAL.PuntodeVenta
@@ -34,6 +36,25 @@ Public Class PuntodeVenta
                 lv.Add(v.Vendedor)
                 v.Vendedor = bv.ObtenerVendedores(lv)(0)
 
+                ' Geocodifico
+                Dim direccion = v.Calle + " " + v.numero.ToString + "," + v.CodigoPostal + " " + v.Provincia.Nombre + ", Argentina"
+                Dim requestUri = String.Format("https://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false&key=AIzaSyBclJiCQNdKGN5FV5Xr1elig-2Yk32vx8A", Uri.EscapeDataString(direccion))
+
+                Dim request = WebRequest.Create(requestUri)
+                Dim response = request.GetResponse()
+                Dim xdoc = XDocument.Load(response.GetResponseStream())
+
+                Dim result = xdoc.Element("GeocodeResponse").Element("result")
+                If xdoc.Element("GeocodeResponse").Element("result").Value = "ZERO_RESULTS" Then
+                    v.Latitud = 0
+                    v.Longitud = 0
+                Else
+                    Dim locationElement = result.Element("geometry").Element("location")
+                    v.Latitud = Double.Parse(locationElement.Element("lat").Value)
+                    v.Longitud = Double.Parse(locationElement.Element("lng").Value)
+
+                End If
+
                 v.DVH = dvh.calcular(v)
 
             Next
@@ -69,4 +90,4 @@ Public Class PuntodeVenta
 
 
 
-End Class 
+End Class

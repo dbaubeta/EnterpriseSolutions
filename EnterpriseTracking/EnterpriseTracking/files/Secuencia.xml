@@ -27,7 +27,7 @@
     </puntoventa>
     <puntoventa>
       <id>5</id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1530</numero><depto></depto>
-      <cp>C111	2ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><vendedor>3</vendedor><borrado>0</borrado>
+      <cp>C1112ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>
   </puntosventa>
   <facturas>

@@ -9,7 +9,7 @@ Public Class PuntodeVenta
         Try
 
             Dim cmd As String = "MERGE PuntoDeVenta AS target " + _
-                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero) AS source " + _
+                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero, @P13 as Latitud ,@P14 as Longitud) AS source " + _
                     "ON target.IDReal = source.IDReal AND target.IDDistribuidor = source.IDDistribuidor " + _
                     "WHEN NOT MATCHED THEN " + _
                     "INSERT (IDReal  " + _
@@ -23,7 +23,9 @@ Public Class PuntodeVenta
                            ",IDProvincia " + _
                            ",IDDistribuidor " + _
                            ",IDVendedor " + _
-                           ",Numero) " + _
+                           ",Numero " + _
+                           ",Latitud " + _
+                           ",Longitud) " + _
                     "VALUES " + _
                            "(source.IDReal  " + _
                            ",source.Nombre " + _
@@ -36,7 +38,9 @@ Public Class PuntodeVenta
                            ",source.IDProvincia " + _
                            ",source.IDDistribuidor " + _
                            ",source.IDVendedor " + _
-                           ",source.Numero) " + _
+                           ",source.Numero " + _
+                           ",source.Latitud " + _
+                           ",source.Longitud) " + _
                     "WHEN MATCHED THEN " + _
                     "    UPDATE SET " + _
                            "IDReal = source.IDReal  " + _
@@ -50,7 +54,9 @@ Public Class PuntodeVenta
                            ",IDProvincia = source.IDProvincia " + _
                            ",IDDistribuidor = source.IDDistribuidor " + _
                            ",IDVendedor = source.IDVendedor " + _
-                           ",Numero = source.Numero;"
+                           ",Numero = source.Numero " + _
+                           ",Latitud = source.Latitud " + _
+                           ",Longitud = source.Longitud;"
 
             For Each u As BE.PuntodeVenta In s
 
@@ -67,6 +73,10 @@ Public Class PuntodeVenta
                 params(9) = DBH.CrearParametro("@P10", Long.Parse(u.Distribuidor.ID))
                 params(10) = DBH.CrearParametro("@P11", Long.Parse(u.Vendedor.ID))
                 params(11) = DBH.CrearParametro("@P12", u.numero)
+                params(12) = DBH.CrearParametro("@P13", u.Latitud)
+                params(13) = DBH.CrearParametro("@P14", u.Longitud
+                                                )
+
 
                 DBH.Update(cmd, params)
 
@@ -155,6 +165,16 @@ Public Class PuntodeVenta
                 l.CUIT = dr.Item("CUIT")
                 l.borrado = dr.Item("borrado")
                 l.DVH = dr.Item("DVH")
+                If dr.Item("Latitud") Is GetType(DBNull) Then
+                    l.Latitud = Nothing
+                Else
+                    l.Latitud = dr.Item("Latitud")
+                End If
+                If dr.Item("Longitud") Is GetType(DBNull) Then
+                    l.Longitud = Nothing
+                Else
+                    l.Longitud = dr.Item("Longitud")
+                End If
 
                 l.Distribuidor.ID = dr.Item("IDDistribuidor")
                 Dim lc As New List(Of BE.ABM)
@@ -164,7 +184,7 @@ Public Class PuntodeVenta
                 l.Provincia.ID = dr.Item("IDProvincia")
                 Dim lp As New List(Of BE.Provincia)
                 lp.Add(l.Provincia)
-                l.Provincia = dp.Obtenerprovincias(lp)(0)
+                l.Provincia = dp.ObtenerProvincias(lp)(0)
 
                 l.Vendedor.ID = dr.Item("IDVendedor")
                 Dim lv As New List(Of BE.Vendedor)

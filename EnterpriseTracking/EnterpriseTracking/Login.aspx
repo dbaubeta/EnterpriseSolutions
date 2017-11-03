@@ -16,8 +16,10 @@
             $('#modalMensaje').modal('show');
         }
    </script>
+         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBclJiCQNdKGN5FV5Xr1elig-2Yk32vx8A&sensor=false">
+     </script>
 </head>
-<body>
+<body  onload="initialize()">
     <form runat="server">
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -80,7 +82,6 @@
       </div>
     </div>
 
-
     <div class="container-fluid body-content" style="margin-left:15px; margin-right:15px">
     <div class="alert alert-danger" id="msjError" runat="server">
         <strong>Danger!</strong> 
@@ -120,16 +121,17 @@
                         </div>
                     </div>
                 </div>
-<%--                <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>--%>
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
-                </p>
+                <p> </p>
             </section>
         </div>
+
+          <div id="mapArea" style="width: 500px; height: 500px;">
+          </div>
+ 
+          <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+
+<%--        <script type='text/javascript'>function initialize() {var mapOptions = {center: new google.maps.LatLng(28.3213, 77.5435),zoom: 2,mapTypeId : google.maps.MapTypeId.ROADMAP};var myMap = new google.maps.Map(document.getElementById('mapArea'), mapOptions);var marker1 = new google.maps.Marker({ position: new google.maps.LatLng(28.8, 77.03), map: myMap, title: 'New Delhi'}); var marker2 = new google.maps.Marker({ position: new google.maps.LatLng(18.98, 72.83), map: myMap, title: 'Mumbai'});}</script>--%>
+
     </div>
 
             <hr />
@@ -138,6 +140,10 @@
             </footer>
         </div>
     </form>
+
+
+    
+
 </body>
 </html>
 
