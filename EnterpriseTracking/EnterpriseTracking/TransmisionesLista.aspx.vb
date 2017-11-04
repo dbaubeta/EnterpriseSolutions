@@ -18,22 +18,14 @@ Public Class TransmisionesLista
         Try
             If Not IsPostBack Then
 
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Enero", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Febrero", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Marzo", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Abril", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Mayo", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Junio", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Julio", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Agosto", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Septiembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Octubre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Noviembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Diciembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
-                Me.dlano.Items.Add("2017")
-                Me.dlano.Items.Add("2016")
-                Me.dlano.SelectedIndex = 0
-                Me.dlmes.SelectedIndex = 0
+                Me.dlano.Items.Add(Now.Year.ToString)
+                Me.dlano.Items.Add((Now.Year - 1).ToString)
+                Me.dlano.Items.Add((Now.Year - 2).ToString)
+                Me.dlano.Items.Add((Now.Year - 3).ToString)
+                Me.dlano.Items.Add((Now.Year - 4).ToString)
+                Me.dlano.SelectedValue = (Now.Year.ToString)
+                CargarMeses()
+
 
                 Me.dlClientes.DataValueField = "ID"
                 Me.dlClientes.DataTextField = "Nombre"
@@ -50,6 +42,11 @@ Public Class TransmisionesLista
                     Me.lblCliente.Visible = False
 
                 End If
+
+                Me.noTranslateFactFaltante.Text = f.ObtenerLeyenda(New BE.MensajeError("noTranslateFactFaltante"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                Me.noTranslateFactPresente.Text = f.ObtenerLeyenda(New BE.MensajeError("noTranslateFactPresente"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                Me.noTranslateJustificado.Text = f.ObtenerLeyenda(New BE.MensajeError("noTranslateJustificado"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+
 
             End If
 
@@ -78,91 +75,49 @@ Public Class TransmisionesLista
                 lx.Add(x)
                 x = bx.ObtenerLista(lx)(0)
 
+                'Creo la tabla para el data bind
                 Dim dt As DataTable = New DataTable
+                dt.Columns.Add("ID")
                 dt.Columns.Add("Distribuidor")
-                dt.Columns.Add("dia01")
-                dt.Columns.Add("dia02")
-                dt.Columns.Add("dia03")
-                dt.Columns.Add("dia04")
-                dt.Columns.Add("dia05")
-                dt.Columns.Add("dia06")
-                dt.Columns.Add("dia07")
-                dt.Columns.Add("dia08")
-                dt.Columns.Add("dia09")
-                dt.Columns.Add("dia10")
-                dt.Columns.Add("dia11")
-                dt.Columns.Add("dia12")
-                dt.Columns.Add("dia13")
-                dt.Columns.Add("dia14")
-                dt.Columns.Add("dia15")
-                dt.Columns.Add("dia16")
-                dt.Columns.Add("dia17")
-                dt.Columns.Add("dia18")
-                dt.Columns.Add("dia19")
-                dt.Columns.Add("dia20")
-                dt.Columns.Add("dia21")
-                dt.Columns.Add("dia22")
-                dt.Columns.Add("dia23")
-                dt.Columns.Add("dia24")
-                dt.Columns.Add("dia25")
-                dt.Columns.Add("dia26")
-                dt.Columns.Add("dia27")
-                dt.Columns.Add("dia28")
-                dt.Columns.Add("dia29")
-                dt.Columns.Add("dia30")
-                dt.Columns.Add("dia31")
 
+                'Seteo los valores desde hasta, en base al mes y año
                 Dim desde As New BE.Factura
                 Dim hasta As New BE.Factura
-
                 desde.Fecha = Convert.ToDateTime(New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, 1))
                 hasta.Fecha = Convert.ToDateTime(New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Date.DaysInMonth(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1)))
 
+                ' Cargo la grilla
                 p.EstablecerObjetoNegocio(New BLL.Distribuidor)
                 For Each d In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = x.ID)
-
-                    desde.Distribuidor = d
-                    Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = d.ID)
-
                     Dim dr As DataRow = dt.NewRow
+                    dr("ID") = d.ID
                     dr("Distribuidor") = d.Nombre
-                    dr("dia01") = IIf(IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, 1).Date)), " ", "X")
-                    dr("dia02") = IIf(IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, 2).Date)), " ", "X")
-                    dr("dia03") = IIf(IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, 3).Date)), " ", "X")
-                    dr("dia04") = " "
-                    dr("dia05") = " "
-                    dr("dia06") = " "
-                    dr("dia07") = " "
-                    dr("dia08") = " "
-                    dr("dia09") = " "
-                    dr("dia10") = " "
-                    dr("dia11") = " "
-                    dr("dia12") = " "
-                    dr("dia13") = " "
-                    dr("dia14") = " "
-                    dr("dia15") = " "
-                    dr("dia16") = " "
-                    dr("dia17") = " "
-                    dr("dia18") = " "
-                    dr("dia19") = " "
-                    dr("dia20") = " "
-                    dr("dia21") = " "
-                    dr("dia22") = " "
-                    dr("dia23") = " "
-                    dr("dia24") = " "
-                    dr("dia25") = " "
-                    dr("dia26") = " "
-                    dr("dia27") = " "
-                    dr("dia28") = " "
-                    dr("dia29") = " "
-                    dr("dia30") = " "
-                    dr("dia31") = " "
                     dt.Rows.Add(dr)
                 Next
 
                 grdTransmisioness.DataSource = Nothing
                 grdTransmisioness.DataSource = dt
                 grdTransmisioness.DataBind()
+
+
+                'Recorro la grilla asignando las imagenes a los botones de cada dia.
+                For Each gr As GridViewRow In grdTransmisioness.Rows
+                    Dim did As Long = Long.Parse(gr.Cells(0).Text)
+                    desde.Distribuidor.ID = did
+                    Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
+                    For idx = 1 To 31
+                        Dim dia As Integer = idx
+                        If idx <= hasta.Fecha.Day Then
+                            DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
+                            If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
+                                DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/Warning.png"
+                            End If
+                        Else
+                            DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
+                            ' Oculto la columna
+                        End If
+                    Next
+                Next
 
                 If grdTransmisioness.Rows.Count > 0 Then
                     grdTransmisioness.UseAccessibleHeader = True
@@ -183,7 +138,7 @@ Public Class TransmisionesLista
                 If r.RowType = DataControlRowType.DataRow Then
                     r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
                     r.Attributes("onmouseout") = "this.style.textDecoration='none';"
-                    r.ToolTip = "Click to select row"
+                    'r.ToolTip = "Click to select row"
                     r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdTransmisioness, "Select$" + r.RowIndex.ToString, True)
                 End If
             Next
@@ -255,4 +210,49 @@ Public Class TransmisionesLista
     End Sub
 
 
+    Protected Sub ImagenClick(sender As Object, e As EventArgs)
+
+        Dim button As ImageButton = DirectCast(sender, ImageButton)
+        MsgBox(Convert.ToInt32(button.CommandArgument))
+        MsgBox(button.ID)
+    End Sub
+
+    Private Sub cargarMeses()
+        Dim f As New BLL.Facade_Pantalla
+
+        Dim maxmonth As Integer = 12
+        If Me.dlano.SelectedItem.Text = Now.Year.ToString Then
+            maxmonth = Now.Month
+        End If
+        Dim beforemonth As Integer = Me.dlmes.SelectedIndex
+
+        Me.dlmes.Items.Clear()
+
+        If maxmonth >= 1 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Enero", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 2 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Febrero", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 3 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Marzo", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 4 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Abril", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 5 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Mayo", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 6 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Junio", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 7 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Julio", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 8 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Agosto", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 9 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Septiembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 10 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Octubre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 11 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Noviembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+        If maxmonth >= 12 Then Me.dlmes.Items.Add(f.ObtenerLeyenda(New BE.MensajeError("Diciembre", ""), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+
+        If Not IsPostBack Then
+            Me.dlmes.SelectedIndex = (Now.Month - 1)
+        Else
+            If (beforemonth + 1) > maxmonth Then
+                Me.dlmes.SelectedIndex = maxmonth - 1
+            Else
+                Me.dlmes.SelectedIndex = beforemonth
+            End If
+        End If
+    End Sub
+
+    Private Sub dlano_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlano.SelectedIndexChanged
+        cargarMeses()
+    End Sub
 End Class

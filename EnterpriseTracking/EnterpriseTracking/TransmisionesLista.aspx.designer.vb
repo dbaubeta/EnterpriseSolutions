@@ -122,6 +122,60 @@ Partial Public Class TransmisionesLista
     Protected WithEvents dlano As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''ImgFactPresente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImgFactPresente As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''noTranslateFactPresente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateFactPresente As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ImgFactFaltante control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImgFactFaltante As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''noTranslateFactFaltante control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateFactFaltante As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''ImgJustificado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImgJustificado As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''noTranslateJustificado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateJustificado As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''grdTransmisioness control.
     '''</summary>
     '''<remarks>
