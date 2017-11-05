@@ -3,7 +3,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-            
+<script type="text/javascript">
+    function openModalJustificacion() {
+        $('#modalJustificacion').modal('show');
+    }
+    function openModalJustificacionBorrado() {
+        $('#modalJustificacionborrado').modal('show');
+    }
+</script>
+
+
 <!-- Modal Si No -->
 <div id="modalConfirmar" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -13,7 +22,6 @@
       <div class="modal-header">
         <asp:Image ID="ImagenSiNo" runat="server" Width="60px" Height="60px"  ImageUrl="~/images/question.png" />
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
           <asp:Label ID="noTranslateModalMessageSiNo" runat="server" Text="Label"></asp:Label>
@@ -36,7 +44,6 @@
       <div class="modal-header">
         <asp:Image ID="ImagenMensaje" runat="server" Width="60px" Height="60px"  ImageUrl="~/images/Warning.png" />
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
           <asp:Label ID="noTranslateModalMessage" runat="server" Text="Label"></asp:Label>
@@ -48,6 +55,33 @@
 
   </div>
 </div>
+
+<!-- Modal Justificacion -->
+<div id="modalJustificacion" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <asp:Label ID="lblJustificacionTitulo" runat="server" Text="Label" Font-Size="X-Large" ></asp:Label>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+          <asp:Label ID="noTranslateModalDistribuidorJustificacion" runat="server" Text="Label"></asp:Label>
+          <asp:Label ID="noTranslateModalFechaJustificacion" runat="server" Text="Label"></asp:Label><br/>
+          <asp:TextBox ID="txtjustificacion" runat="server" style="width:100%" CssClass="form-control" />
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" ID="btnModalAceptar" Text="" cssclass="btn btn-success" OnClick="Aceptar_Click" />
+        <button type="button"  ID="btnModalCancelar" runat="server" class="btn btn-danger" data-dismiss="modal"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
 
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:10px;margin-bottom:15px">
@@ -83,13 +117,13 @@
             <asp:Label ID="noTranslateFactPresente" runat="server" Text="Label"></asp:Label>
             <asp:Image ID="ImgFactFaltante" runat="server" ImageUrl="~/Images/Error.png" style="margin-left:10px" Height="20px" Width="20px"/>
             <asp:Label ID="noTranslateFactFaltante" runat="server" Text="Label"></asp:Label>
-            <asp:Image ID="ImgJustificado" runat="server" ImageUrl="~/Images/Warning.png" style="margin-left:10px" Height="20px" Width="20px"/>
+            <asp:Image ID="ImgJustificado" runat="server" ImageUrl="~/Images/justificado.png" style="margin-left:10px" Height="20px" Width="20px"/>
             <asp:Label ID="noTranslateJustificado" runat="server" Text="Label"></asp:Label>
         </div>
     </div>
     <div class="row" style="margin-top:5px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
-        <div class="col-md-11" style=" overflow-x:auto; box-shadow: 2px 2px 1px #888888; min-height:100%">
+        <div class="col-md-10" style=" overflow-x:auto; box-shadow: 2px 2px 1px #888888; min-height:100%">
             <asp:GridView ID="grdTransmisioness" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >
@@ -319,7 +353,8 @@
                     <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
         </div>
-        <%--<div class="col-md-3"></div>--%>
+        <div class="col-sm-1" style="vertical-align:middle"></div>
+        
 
     </div>
 

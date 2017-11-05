@@ -51,4 +51,9 @@
         End Set
     End Property
 
+    Public Sub New()
+        Me.Distribuidor = New BE.Distribuidor
+    End Sub
+
+
 End Class

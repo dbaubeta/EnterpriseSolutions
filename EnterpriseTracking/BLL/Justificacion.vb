@@ -25,9 +25,41 @@
         End Try
 
     End Sub
+    Public Sub Eliminar(v As BE.Justificacion)
 
-    Public Function Obtenerjustificaciones(f As List(Of BE.Justificacion)) As List(Of BE.Justificacion)
-        Obtenerjustificaciones = Nothing
+
+        Try
+            d.Eliminar(v)
+            dvv.tabla = "justificacion"
+            ' Recalculo todos los digitos verificadores Verticales
+            dvv.calcular()
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Sub
+
+    Public Function ObtenerJustificaciones(desde As BE.Justificacion, hasta As BE.Justificacion) As List(Of BE.Justificacion)
+        Try
+
+            Return d.Obtenerjustificaciones(desde, hasta)
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
     End Function
+
 
 End Class

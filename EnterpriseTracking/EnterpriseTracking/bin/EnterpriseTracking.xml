@@ -2485,6 +2485,60 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:EnterpriseTracking.TransmisionesLista._lblJustificacionTitulo">
+<summary>
+lblJustificacionTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.TransmisionesLista._noTranslateModalDistribuidorJustificacion">
+<summary>
+noTranslateModalDistribuidorJustificacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.TransmisionesLista._noTranslateModalFechaJustificacion">
+<summary>
+noTranslateModalFechaJustificacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.TransmisionesLista._txtjustificacion">
+<summary>
+txtjustificacion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.TransmisionesLista._btnModalAceptar">
+<summary>
+btnModalAceptar control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:EnterpriseTracking.TransmisionesLista._btnModalCancelar">
+<summary>
+btnModalCancelar control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:EnterpriseTracking.TransmisionesLista._lblTransmisionesListaTitulo">
 <summary>
 lblTransmisionesListaTitulo control.

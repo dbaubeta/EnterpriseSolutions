@@ -77,6 +77,60 @@ Partial Public Class TransmisionesLista
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
+    '''lblJustificacionTitulo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblJustificacionTitulo As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''noTranslateModalDistribuidorJustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalDistribuidorJustificacion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''noTranslateModalFechaJustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalFechaJustificacion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txtjustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtjustificacion As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''btnModalAceptar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalAceptar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnModalCancelar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalCancelar As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
     '''lblTransmisionesListaTitulo control.
     '''</summary>
     '''<remarks>

@@ -6,6 +6,8 @@ Public Class TransmisionesLista
 
     Dim p As New BLL.Persistencia
     Dim strClase As String = "Transmisiones"
+    Dim Fechajustificacion As Date
+    Dim DistribuidorJustificacion As Long
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim f As New BLL.Facade_Pantalla
@@ -69,6 +71,7 @@ Public Class TransmisionesLista
             Dim bx As New BLL.Cliente
             Dim lx As New List(Of BE.ABM)
             Dim bf As New BLL.Factura
+            Dim bj As New BLL.Justificacion
 
             If Not IsNothing(dlClientes.SelectedValue) Then
                 x.ID = dlClientes.SelectedValue
@@ -85,6 +88,12 @@ Public Class TransmisionesLista
                 Dim hasta As New BE.Factura
                 desde.Fecha = Convert.ToDateTime(New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, 1))
                 hasta.Fecha = Convert.ToDateTime(New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Date.DaysInMonth(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1)))
+                If hasta.Fecha.Date >= Now.Date Then hasta.Fecha = Now.Date
+
+                Dim desdej As New BE.Justificacion
+                Dim hastaj As New BE.Justificacion
+                desdej.Fecha = desde.Fecha
+                hastaj.Fecha = hasta.Fecha
 
                 ' Cargo la grilla
                 p.EstablecerObjetoNegocio(New BLL.Distribuidor)
@@ -104,15 +113,25 @@ Public Class TransmisionesLista
                 For Each gr As GridViewRow In grdTransmisioness.Rows
                     Dim did As Long = Long.Parse(gr.Cells(0).Text)
                     desde.Distribuidor.ID = did
+                    desdej.Distribuidor.ID = did
                     Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
+                    Dim lj As List(Of BE.Justificacion) = bj.Obtenerjustificaciones(desdej, hastaj).FindAll(Function(z) DirectCast(z, BE.Justificacion).Distribuidor.ID = did)
                     For idx = 1 To 31
                         Dim dia As Integer = idx
                         If idx <= hasta.Fecha.Day Then
                             DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
                             If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
-                                DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/Warning.png"
+                                Dim jus As BE.Justificacion = lj.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)
+                                If IsNothing(jus) Then
+                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/error.png"
+                                Else
+                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/justificado.png"
+                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ToolTip = jus.Motivo
+                                End If
+                            Else
+                                DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/Success.png"
                             End If
-                        Else
+                            Else
                             DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
                             ' Oculto la columna
                         End If
@@ -173,11 +192,6 @@ Public Class TransmisionesLista
 
     End Sub
 
-
-    Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
-
-    End Sub
-
     Private Sub MostrarMensajeModal(Msg As String, simple As Boolean, Optional traducir As Boolean = True)
 
         Dim m As New BE.MensajeError
@@ -213,8 +227,44 @@ Public Class TransmisionesLista
     Protected Sub ImagenClick(sender As Object, e As EventArgs)
 
         Dim button As ImageButton = DirectCast(sender, ImageButton)
-        MsgBox(Convert.ToInt32(button.CommandArgument))
-        MsgBox(button.ID)
+        Dim f As New BLL.Facade_Pantalla
+
+        If button.ImageUrl = "~/Images/error.png" Then
+
+            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
+            Me.noTranslateModalDistribuidorJustificacion.Text = grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(1).Text
+            Me.noTranslateModalFechaJustificacion.Text = DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
+            Me.txtjustificacion.Text = ""
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalJustificacion();", True)
+
+        ElseIf button.ImageUrl = "~/Images/justificado.png" Then
+
+            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
+            Me.noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(New BE.MensajeError("SeguroBorrarJustificacion"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda + DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
+
+
+        End If
+    End Sub
+
+
+    Public Sub Aceptar_Click()
+        If txtjustificacion.Text = "" Then
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalJustificacion();", True)
+        Else
+            Dim j As New BE.Justificacion
+            Dim bj As New BLL.Justificacion
+            j.Distribuidor = New BE.Distribuidor
+            j.Distribuidor.ID = DirectCast(Session("DistribuidorJustificacion"), Long)
+            j.Fecha = DirectCast(Session("Fechajustificacion"), Date)
+            j.Motivo = txtjustificacion.Text
+            bj.Guardar(j)
+            If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+        End If
+
+
     End Sub
 
     Private Sub cargarMeses()
@@ -254,5 +304,16 @@ Public Class TransmisionesLista
 
     Private Sub dlano_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlano.SelectedIndexChanged
         cargarMeses()
+    End Sub
+
+    Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
+        Dim j As New BE.Justificacion
+        Dim bj As New BLL.Justificacion
+        j.Distribuidor = New BE.Distribuidor
+        j.Distribuidor.ID = DirectCast(Session("DistribuidorJustificacion"), Long)
+        j.Fecha = DirectCast(Session("Fechajustificacion"), Date)
+        bj.Eliminar(j)
+        If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+
     End Sub
 End Class

@@ -4,53 +4,39 @@
 
     Public Sub Guardar(u As BE.Justificacion)
 
-        Dim params(6) As System.Data.SqlClient.SqlParameter
+        Dim params(3) As System.Data.SqlClient.SqlParameter
 
         Try
 
             Dim cmd As String = "MERGE justificacion AS target " +
-                    "USING (SELECT @P1 as Nrojustificacion,@P2 as Fecha,@P3 as DVH,@P4 as Borrado,@P5 as IDPuntoVenta,@P6 as IDDistribuidor,@P7 as IDVendedor) AS source " +
-                    "ON target.Nrojustificacion = source.Nrojustificacion AND target.IDDistribuidor = source.IDDistribuidor " +
+                    "USING (SELECT @P1 as IDDistribuidor,@P2 as Fecha,@P3 as DVH,@P4 as motivo) AS source " +
+                    "ON target.IDDistribuidor = source.IDDistribuidor AND target.Fecha = source.Fecha " +
                     "WHEN NOT MATCHED THEN " +
-                    "INSERT (Nrojustificacion " +
+                    "INSERT (IdDistribuidor " +
                           ",Fecha " +
                           ",DVH " +
-                          ",Borrado " +
-                          ",IDPuntoVenta " +
-                          ",IDDistribuidor " +
-                          ",IDVendedor) " +
+                          ",motivo) " +
                     "VALUES " +
-                          "(source.Nrojustificacion " +
+                          "(source.IDDistribuidor " +
                           ",source.Fecha " +
                           ",source.DVH " +
-                          ",source.Borrado " +
-                          ",source.IDPuntoVenta " +
-                          ",source.IDDistribuidor " +
-                          ",source.IDVendedor) " +
+                          ",source.motivo) " +
                     "WHEN MATCHED THEN " +
                     "    UPDATE SET " +
-                          "Nrojustificacion = source.Nrojustificacion " +
+                          "IDDistribuidor = source.IDDistribuidor " +
                           ",Fecha = source.Fecha " +
                           ",DVH = source.DVH " +
-                          ",Borrado = source.Borrado " +
-                          ",IDPuntoVenta = source.IDPuntoVenta " +
-                          ",IDDistribuidor = source.IDDistribuidor " +
-                          ",IDVendedor = source.IDVendedor;"
+                          ",motivo = source.motivo;"
 
 
 
             ' Merge
-            params(0) = DBH.CrearParametro("@P1", u.Nro_justificacion_Real)
+            params(0) = DBH.CrearParametro("@P1", u.Distribuidor.ID)
             params(1) = DBH.CrearParametro("@P2", u.Fecha)
             params(2) = DBH.CrearParametro("@P3", Long.Parse(u.DVH))
-            params(3) = DBH.CrearParametro("@P4", u.borrado)
-            params(4) = DBH.CrearParametro("@P5", Long.Parse(u.PuntoVenta.ID))
-            params(5) = DBH.CrearParametro("@P6", Long.Parse(u.Distribuidor.ID))
-            params(6) = DBH.CrearParametro("@P7", Long.Parse(u.Vendedor.ID))
+            params(3) = DBH.CrearParametro("@P4", u.Motivo)
 
             DBH.Update(cmd, params)
-
-            u.ID = DBH.RetrieveScalar("select id from justificacion where IDdistribuidor= " + u.Distribuidor.ID.ToString + " and Nrojustificacion='" + u.Nro_justificacion_Real + "'")
 
         Catch bex As BE.Excepcion
             Throw bex
@@ -64,13 +50,43 @@
 
     End Sub
 
-    Public Function Obtenerjustificacions(ByVal f As List(Of BE.Justificacion)) As List(Of BE.Justificacion)
-        Obtenerjustificacions = Nothing
+
+    Public Sub Eliminar(u As BE.Justificacion)
+
+        Dim params(1) As System.Data.SqlClient.SqlParameter
+
+        Try
+
+            Dim cmd As String = "delete from justificacion " +
+                    "where IDDistribuidor = @P1 AND cast(Fecha as date) = cast(@P2 as date);"
+
+            ' Eliminar
+            params(0) = DBH.CrearParametro("@P1", u.Distribuidor.ID)
+            params(1) = DBH.CrearParametro("@P2", u.Fecha)
+
+            DBH.Delete(cmd, params)
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+
+    End Sub
+
+
+
+    Public Function Obtenerjustificaciones(ByVal f As List(Of BE.Justificacion)) As List(Of BE.Justificacion)
+        Obtenerjustificaciones = Nothing
     End Function
 
-    Public Function Obtenerjustificacions(Desde As BE.Justificacion, hasta As BE.Justificacion) As List(Of BE.Justificacion)
+    Public Function Obtenerjustificaciones(Desde As BE.Justificacion, hasta As BE.Justificacion) As List(Of BE.Justificacion)
         Dim params(2) As System.Data.SqlClient.SqlParameter
-        Dim cadena As String = "select * from justificacion where borrado = 0 and IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date)"
+        Dim cadena As String = "select * from justificacion where IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date)"
         Dim dt As DataTable
         Dim l As BE.Justificacion
         Dim ll As New List(Of BE.Justificacion)
@@ -87,26 +103,14 @@
             For Each dr As DataRow In dt.Rows
                 l = New BE.Justificacion
                 l.ID = dr.Item("ID")
-                l.Nro_justificacion_Real = dr.Item("Nrojustificacion")
-                l.borrado = dr.Item("borrado")
                 l.Fecha = dr.Item("Fecha")
                 l.DVH = dr.Item("DVH")
+                l.Motivo = dr.Item("motivo")
 
                 l.Distribuidor.ID = dr.Item("IDDistribuidor")
                 Dim li As New List(Of BE.ABM)
                 li.Add(l.Distribuidor)
                 l.Distribuidor = dd.ObtenerLista(li)(0)
-
-                l.PuntoVenta.ID = dr.Item("IDPuntoVenta")
-                Dim lp As New List(Of BE.PuntodeVenta)
-                lp.Add(l.PuntoVenta)
-                l.PuntoVenta = dp.ObtenerPDVs(lp)(0)
-
-                l.Vendedor.ID = dr.Item("IDVendedor")
-                Dim lv As New List(Of BE.Vendedor)
-                lv.Add(l.Vendedor)
-                l.Vendedor = dv.ObtenerVendedores(lv)(0)
-
 
                 ll.Add(l)
             Next
