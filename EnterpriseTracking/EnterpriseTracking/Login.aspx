@@ -16,10 +16,8 @@
             $('#modalMensaje').modal('show');
         }
    </script>
-         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBclJiCQNdKGN5FV5Xr1elig-2Yk32vx8A&sensor=false">
-     </script>
 </head>
-<body  onload="initialize()">
+<body>
     <form runat="server">
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -124,26 +122,13 @@
                 <p> </p>
             </section>
         </div>
-
-          <div id="mapArea" style="width: 500px; height: 500px;">
-          </div>
- 
-          <asp:Literal ID="Literal2" runat="server"></asp:Literal>
-
-<%--        <script type='text/javascript'>function initialize() {var mapOptions = {center: new google.maps.LatLng(28.3213, 77.5435),zoom: 2,mapTypeId : google.maps.MapTypeId.ROADMAP};var myMap = new google.maps.Map(document.getElementById('mapArea'), mapOptions);var marker1 = new google.maps.Marker({ position: new google.maps.LatLng(28.8, 77.03), map: myMap, title: 'New Delhi'}); var marker2 = new google.maps.Marker({ position: new google.maps.LatLng(18.98, 72.83), map: myMap, title: 'Mumbai'});}</script>--%>
-
     </div>
-
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Enterprise Solutions</p>
-            </footer>
-        </div>
-    </form>
-
-
-    
-
+    <hr />
+    <footer>
+        <p>&copy; <%: DateTime.Now.Year %> - Enterprise Solutions</p>
+    </footer>
+</div>
+</form>
 </body>
 </html>
 

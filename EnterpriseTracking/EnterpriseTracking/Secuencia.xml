@@ -29,7 +29,10 @@
       <id>5</id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1530</numero><depto></depto>
       <cp>C1112ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>
-  </puntosventa>
+    <puntoventa>
+      <id>6</id><nombre>Despensa El Patovica Alegre</nombre><calle>Serrano</calle><numero>850</numero><depto></depto>
+      <cp>C1414DEQ</cp><provincia>C.A.B.A.</provincia><cuit>65465499879</cuit><vendedor>3</vendedor><borrado>0</borrado>
+    </puntoventa>  </puntosventa>
   <facturas>
     <factura><nrofactura>0001A00000001</nrofactura><fecha>2017-01-01</fecha><vendedor>1</vendedor><puntoventa>1</puntoventa><borrado>0</borrado>
       <detallesfactura>

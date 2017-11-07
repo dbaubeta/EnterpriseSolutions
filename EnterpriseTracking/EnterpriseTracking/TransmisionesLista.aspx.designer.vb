@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class TransmisionesLista
-    
+
     '''<summary>
     '''ImagenSiNo control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImagenSiNo As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''noTranslateModalMessageSiNo control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateModalMessageSiNo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnModalSi control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalSi As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnModalNo control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalNo As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''ImagenMensaje control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImagenMensaje As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''noTranslateModalMessage control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateModalMessage As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnModalOk control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''lblJustificacionTitulo control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblJustificacionTitulo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''noTranslateModalDistribuidorJustificacion control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateModalDistribuidorJustificacion As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''noTranslateModalFechaJustificacion control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateModalFechaJustificacion As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtjustificacion control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtjustificacion As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnModalAceptar control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalAceptar As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnModalCancelar control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnModalCancelar As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''lblTransmisionesListaTitulo control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTransmisionesListaTitulo As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCliente control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCliente As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''dlClientes control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlClientes As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''dlmes control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlmes As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''dlano control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlano As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''ImgFactPresente control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImgFactPresente As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''noTranslateFactPresente control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateFactPresente As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ImgFactFaltante control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImgFactFaltante As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''noTranslateFactFaltante control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateFactFaltante As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ImgJustificado control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImgJustificado As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''noTranslateJustificado control.
     '''</summary>
@@ -228,13 +228,13 @@ Partial Public Class TransmisionesLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents noTranslateJustificado As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
-    '''grdTransmisioness control.
+    '''noTranslategrdTransmisiones control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdTransmisioness As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents noTranslategrdTransmisiones As Global.System.Web.UI.WebControls.GridView
 End Class

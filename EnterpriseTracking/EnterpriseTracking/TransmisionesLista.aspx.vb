@@ -8,9 +8,10 @@ Public Class TransmisionesLista
     Dim strClase As String = "Transmisiones"
     Dim Fechajustificacion As Date
     Dim DistribuidorJustificacion As Long
+    Dim f As New BLL.Facade_Pantalla
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim f As New BLL.Facade_Pantalla
+
 
         If IsNothing(Session("Usuario")) Then
             Response.Redirect("~/Login.aspx")
@@ -104,13 +105,13 @@ Public Class TransmisionesLista
                     dt.Rows.Add(dr)
                 Next
 
-                grdTransmisioness.DataSource = Nothing
-                grdTransmisioness.DataSource = dt
-                grdTransmisioness.DataBind()
+                noTranslategrdTransmisiones.DataSource = Nothing
+                noTranslategrdTransmisiones.DataSource = dt
+                noTranslategrdTransmisiones.DataBind()
 
 
                 'Recorro la grilla asignando las imagenes a los botones de cada dia.
-                For Each gr As GridViewRow In grdTransmisioness.Rows
+                For Each gr As GridViewRow In noTranslategrdTransmisiones.Rows
                     Dim did As Long = Long.Parse(gr.Cells(0).Text)
                     desde.Distribuidor.ID = did
                     desdej.Distribuidor.ID = did
@@ -120,27 +121,63 @@ Public Class TransmisionesLista
                         Dim dia As Integer = idx
                         If idx <= hasta.Fecha.Day Then
                             DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
-                            If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
-                                Dim jus As BE.Justificacion = lj.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)
-                                If IsNothing(jus) Then
-                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/error.png"
+                            If DirectCast(p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).ID = did)(0), BE.Distribuidor).diasfactura.Substring(Int32.Parse(New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).DayOfWeek), 1) = "1" Then
+
+                                If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
+                                    Dim jus As BE.Justificacion = lj.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)
+                                    If IsNothing(jus) Then
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/error.png"
+                                    Else
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/justificado.png"
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("data-toggle", "popover")
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("data-trigger", "hover focus")
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("data-html", "true")
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("data-container", "body")
+                                        If dia > 15 Then
+                                            DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("placement", "left")
+                                        Else
+                                            DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("placement", "right")
+
+                                        End If
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("title", "<b>" + f.ObtenerLeyenda(New BE.MensajeError("Justificado:"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda + "</b>")
+                                        DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).Attributes.Add("data-content", jus.Motivo + "<br><br>" + f.ObtenerLeyenda(New BE.MensajeError("ClickParaEliminarJustificacion"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda)
+                                    End If
                                 Else
-                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/justificado.png"
-                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ToolTip = jus.Motivo
+                                    DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/Success.png"
                                 End If
-                            Else
-                                DirectCast(gr.FindControl("idia" + dia.ToString), ImageButton).ImageUrl = "~/Images/Success.png"
                             End If
-                            Else
+                        Else
                             DirectCast(gr.FindControl("idia" + (dia).ToString), ImageButton).ImageUrl = "~/Images/nada.png"
                             ' Oculto la columna
                         End If
+
                     Next
                 Next
 
-                If grdTransmisioness.Rows.Count > 0 Then
-                    grdTransmisioness.UseAccessibleHeader = True
-                    grdTransmisioness.HeaderRow.TableSection = TableRowSection.TableHeader
+                Dim leyendasdias(6) As String
+                leyendasdias(0) = f.ObtenerLeyenda(New BE.MensajeError("DomingoCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(1) = f.ObtenerLeyenda(New BE.MensajeError("LunesCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(2) = f.ObtenerLeyenda(New BE.MensajeError("MartesCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(3) = f.ObtenerLeyenda(New BE.MensajeError("MiercolesCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(4) = f.ObtenerLeyenda(New BE.MensajeError("JuevesCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(5) = f.ObtenerLeyenda(New BE.MensajeError("ViernesCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                leyendasdias(6) = f.ObtenerLeyenda(New BE.MensajeError("SabadoCorto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+                If noTranslategrdTransmisiones.Rows.Count > 0 Then
+                    For i = 2 To noTranslategrdTransmisiones.Columns.Count - 1
+                        If (i - 1) <= Date.DaysInMonth(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1) Then
+                            noTranslategrdTransmisiones.Columns(i).Visible = True
+                            noTranslategrdTransmisiones.HeaderRow.Cells(i).Text = leyendasdias(Int32.Parse(New DateTime(desde.Fecha.Year, desde.Fecha.Month, i - 1).DayOfWeek)) + Environment.NewLine + (i - 1).ToString
+                        Else
+                            noTranslategrdTransmisiones.Columns(i).Visible = False
+                        End If
+                    Next
+                End If
+
+
+
+                If noTranslategrdTransmisiones.Rows.Count > 0 Then
+                    noTranslategrdTransmisiones.UseAccessibleHeader = True
+                    noTranslategrdTransmisiones.HeaderRow.TableSection = TableRowSection.TableHeader
                 End If
             End If
         Catch bex As BE.Excepcion
@@ -153,12 +190,12 @@ Public Class TransmisionesLista
 
     Protected Overrides Sub Render(writer As System.Web.UI.HtmlTextWriter)
         Try
-            For Each r As GridViewRow In Me.grdTransmisioness.Rows
+            For Each r As GridViewRow In Me.noTranslategrdTransmisiones.Rows
                 If r.RowType = DataControlRowType.DataRow Then
                     r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
                     r.Attributes("onmouseout") = "this.style.textDecoration='none';"
                     'r.ToolTip = "Click to select row"
-                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdTransmisioness, "Select$" + r.RowIndex.ToString, True)
+                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.noTranslategrdTransmisiones, "Select$" + r.RowIndex.ToString, True)
                 End If
             Next
             MyBase.Render(writer)
@@ -171,11 +208,11 @@ Public Class TransmisionesLista
 
     End Sub
 
-    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdTransmisioness.SelectedIndexChanged
+    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles noTranslategrdTransmisiones.SelectedIndexChanged
 
         Try
-            For Each row As GridViewRow In grdTransmisioness.Rows
-                If row.RowIndex = grdTransmisioness.SelectedIndex Then
+            For Each row As GridViewRow In noTranslategrdTransmisiones.Rows
+                If row.RowIndex = noTranslategrdTransmisiones.SelectedIndex Then
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
                     row.ToolTip = String.Empty
                 Else
@@ -195,7 +232,7 @@ Public Class TransmisionesLista
     Private Sub MostrarMensajeModal(Msg As String, simple As Boolean, Optional traducir As Boolean = True)
 
         Dim m As New BE.MensajeError
-        Dim f As New BLL.Facade_Pantalla
+
         m.IDError = Msg
         If Not simple Then
             If traducir Then
@@ -227,20 +264,20 @@ Public Class TransmisionesLista
     Protected Sub ImagenClick(sender As Object, e As EventArgs)
 
         Dim button As ImageButton = DirectCast(sender, ImageButton)
-        Dim f As New BLL.Facade_Pantalla
+
 
         If button.ImageUrl = "~/Images/error.png" Then
 
-            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("DistribuidorJustificacion") = Long.Parse(noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
             Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
-            Me.noTranslateModalDistribuidorJustificacion.Text = grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(1).Text
+            Me.noTranslateModalDistribuidorJustificacion.Text = noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(1).Text
             Me.noTranslateModalFechaJustificacion.Text = DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
             Me.txtjustificacion.Text = ""
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalJustificacion();", True)
 
         ElseIf button.ImageUrl = "~/Images/justificado.png" Then
 
-            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisioness.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("DistribuidorJustificacion") = Long.Parse(noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
             Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
             Me.noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(New BE.MensajeError("SeguroBorrarJustificacion"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda + DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)
@@ -268,7 +305,7 @@ Public Class TransmisionesLista
     End Sub
 
     Private Sub cargarMeses()
-        Dim f As New BLL.Facade_Pantalla
+
 
         Dim maxmonth As Integer = 12
         If Me.dlano.SelectedItem.Text = Now.Year.ToString Then

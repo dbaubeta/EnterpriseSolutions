@@ -4,7 +4,7 @@ Public Class PuntodeVenta
 
     Public Sub Guardar(s As List(Of BE.PuntodeVenta))
 
-        Dim params(11) As System.Data.SqlClient.SqlParameter
+        Dim params(13) As System.Data.SqlClient.SqlParameter
 
         Try
 

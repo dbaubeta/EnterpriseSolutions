@@ -194,6 +194,213 @@ Partial Public Class DistribuidorEdicion
     Protected WithEvents dlUsuarios As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblDiasFacturacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDiasFacturacion As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''DomingoCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DomingoCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkDomingo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkDomingo As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''LunesCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LunesCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkLunes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkLunes As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''MartesCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MartesCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkMartes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkMartes As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''MiercolesCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MiercolesCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkMiercoles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkMiercoles As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''JuevesCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents JuevesCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkJueves control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkJueves As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ViernesCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ViernesCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkViernes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkViernes As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''SabadoCorto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SabadoCorto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''chkSabado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkSabado As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''lblAreaVentas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAreaVentas As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblAreaVentasLat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAreaVentasLat As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAreaVentasLat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAreaVentasLat As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblAreaVentasLong control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAreaVentasLong As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAreaVentasLong control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAreaVentasLong As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblAreaVentasRadio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAreaVentasRadio As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtAreaVentasRadio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtAreaVentasRadio As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btndibujarmapa control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btndibujarmapa As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnAceptar control.
     '''</summary>
     '''<remarks>

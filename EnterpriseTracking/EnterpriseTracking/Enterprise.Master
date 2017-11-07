@@ -1,10 +1,10 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Enterprise.master.vb" Inherits="EnterpriseTracking.Enterprise" %>
 
 <!DOCTYPE html>
-<link href="Enterprise.css" rel="stylesheet" />
 <link href="Content/bootstrap.css" rel="stylesheet" />
 <script src="Scripts/jquery-1.9.1.js"></script>
 <script src="Scripts/bootstrap.js"></script>
+<link href="Enterprise.css" rel="stylesheet" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -12,16 +12,31 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <%--Abre el modal de confirmacion--%>
     <script type="text/javascript">
         function openModalSiNo() {
             $('#modalConfirmar').modal('show');
         }
    </script>
+    <%--Abre el modal de mensajes--%>
     <script type="text/javascript">
         function openModalOk() {
             $('#modalMensaje').modal('show');
         }
    </script>
+   <%--Habilita los tooltips--%>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
+   </script>
+   <%--Habilita los popover--%>
+<%--    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+   </script>--%>
 </head>
 <body>
     <form runat="server">

@@ -12,7 +12,7 @@
     Public Overrides Sub Guardar(ob As BE.ABM)
 
 
-        Dim params(7) As System.Data.SqlClient.SqlParameter
+        Dim params(11) As System.Data.SqlClient.SqlParameter
 
         u = DirectCast(ob, BE.Distribuidor)
 
@@ -27,13 +27,17 @@
                 params(5) = DBH.CrearParametro("@P6", Long.Parse(u.Usuario.ID))
                 params(6) = DBH.CrearParametro("@P7", Long.Parse(u.Cliente.ID))
                 params(7) = DBH.CrearParametro("@P8", Long.Parse(u.IDReal))
-                Dim resultado As Long = DBH.Insert("INSERT INTO Distribuidor(Nombre ,DVH, IDProvincia, Mail, borrado, IDUsuario, IDCliente, IDReal) VALUES(@P1, @P2, @P3, @P4, @P5, @P6, @P7, @P8); SELECT SCOPE_IDENTITY();", params)
+                params(8) = DBH.CrearParametro("@P9", u.diasfactura)
+                params(9) = DBH.CrearParametro("@P10", u.AreaVentasCentroLat)
+                params(10) = DBH.CrearParametro("@P11", u.AreaVentasCentroLong)
+                params(11) = DBH.CrearParametro("@P12", u.AreaVentasRadio)
+                Dim resultado As Long = DBH.Insert("INSERT INTO Distribuidor(Nombre ,DVH, IDProvincia, Mail, borrado, IDUsuario, IDCliente, IDReal, diasfactura, AreaVentasCentroLat, AreaVentasCentroLong, AreaVentasRadio) VALUES(@P1, @P2, @P3, @P4, @P5, @P6, @P7, @P8, @P9, @P10, @P11, @P12); SELECT SCOPE_IDENTITY();", params)
                 If resultado <> -1 Then
                     u.ID = resultado
                 End If
             Else
                 ' Update 
-                ReDim params(8)
+                ReDim params(12)
                 params(0) = DBH.CrearParametro("@P1", u.Nombre)
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(u.DVH))
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(u.Provincia.ID))
@@ -43,8 +47,12 @@
                 params(6) = DBH.CrearParametro("@P7", Long.Parse(u.Cliente.ID))
                 params(7) = DBH.CrearParametro("@P8", Long.Parse(u.IDReal))
                 params(8) = DBH.CrearParametro("@P0", u.ID)
+                params(9) = DBH.CrearParametro("@P9", u.diasfactura)
+                params(10) = DBH.CrearParametro("@P10", u.AreaVentasCentroLat)
+                params(11) = DBH.CrearParametro("@P11", u.AreaVentasCentroLong)
+                params(12) = DBH.CrearParametro("@P12", u.AreaVentasRadio)
 
-                DBH.Update("update Distribuidor set Nombre=@P1, DVH=@P2, IDProvincia=@P3, Mail=@P4, borrado=@P5, IDUsuario=@P6, IDCliente=@P7, IDReal=@P8 where ID=@P0", params)
+                DBH.Update("update Distribuidor set Nombre=@P1, DVH=@P2, IDProvincia=@P3, Mail=@P4, borrado=@P5, IDUsuario=@P6, IDCliente=@P7, IDReal=@P8, diasfactura=@P9,  AreaVentasCentroLat=@P10, AreaVentasCentroLong=@P11, AreaVentasRadio=@P12 where ID=@P0", params)
 
             End If
 
@@ -128,6 +136,12 @@
                 l.IDReal = dr.Item("IDReal")
                 l.borrado = dr.Item("borrado")
                 l.DVH = dr.Item("DVH")
+                l.diasfactura = dr.Item("diasfactura")
+                l.AreaVentasCentroLat = dr.Item("AreaVentasCentroLat")
+                l.AreaVentasCentroLong = dr.Item("AreaVentasCentroLong")
+                l.AreaVentasRadio = dr.Item("AreaVentasRadio")
+
+
 
                 l.Provincia.ID = dr.Item("IDProvincia")
                 Dim li As New List(Of BE.Provincia)

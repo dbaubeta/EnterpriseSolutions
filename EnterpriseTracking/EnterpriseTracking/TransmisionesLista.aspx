@@ -79,8 +79,7 @@
 
   </div>
 </div>
-
-
+    
 
 
 <%-- CONTENIDO DE PANTALLA --%>
@@ -124,225 +123,225 @@
     <div class="row" style="margin-top:5px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
         <div class="col-md-10" style=" overflow-x:auto; box-shadow: 2px 2px 1px #888888; min-height:100%">
-            <asp:GridView ID="grdTransmisioness" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+            <asp:GridView ID="noTranslategrdTransmisiones" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >
-                    <HeaderStyle Width="5%" />
+                    <HeaderStyle Width="30px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Distribuidor" HeaderText="Distribuidor" >
-                    <HeaderStyle Width="25%" />
+                    <HeaderStyle Width="150px" />
                     </asp:BoundField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px" >
                         <ItemTemplate>
                             <asp:ImageButton ID="idia1" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia2" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia3" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia4" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia5" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia6" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia7" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia8" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia9" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia10" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia11" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia12" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia13" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia14" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia15" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia16" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia17" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia18" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia19" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia20" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia21" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia22" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia23" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia24" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia25" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia26" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia27" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia28" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia29" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia30" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"
                                 CommandArgument='<%# Container.DataItemIndex + 1 %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderStyle-Width="22px">
+                    <asp:TemplateField HeaderStyle-Width="22px" ItemStyle-Width="22px">
                         <ItemTemplate>
                             <asp:ImageButton ID="idia31" runat="server"  
                                  OnClick="ImagenClick" ToolTip="" Height="20px" Width="20px"

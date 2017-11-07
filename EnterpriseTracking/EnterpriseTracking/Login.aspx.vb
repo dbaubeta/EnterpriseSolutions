@@ -14,23 +14,6 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.msjError.Visible = False
 
-        Dim markers As String = ""
-        markers = GetMarkers()
-        Dim sb As New StringBuilder
-        sb.append("<script type='text/javascript'>")
-        sb.append("function initialize() {")
-        sb.append("var mapOptions = {")
-        sb.append("center: new google.maps.LatLng(28.3213, 77.5435),")
-        sb.append("zoom: 2,")
-        sb.append("mapTypeId : google.maps.MapTypeId.ROADMAP")
-        sb.append("};")
-        sb.append("var myMap = new google.maps.Map(document.getElementById('mapArea'), mapOptions);")
-        sb.append(markers)
-        sb.append("}")
-        sb.Append("</script>")
-
-        Me.Literal2.Text = sb.ToString
-
     End Sub
 
 
@@ -186,46 +169,6 @@
         End If
 
     End Sub
-
-
-
-
-
-    Protected Function GetMarkers() As String
-        Dim markers As String = "var marker1 = new google.maps.Marker({" + _
-"     position: new google.maps.LatLng(28.8, 77.03)," + _
-"     map: myMap," + _
-"     title: 'New Delhi'" + _
-"});" + _
- " " + _
-"var marker2 = new google.maps.Marker({" + _
-"     position: new google.maps.LatLng(18.98, 72.83)," + _
-"     map: myMap," + _
-"     title: 'Mumbai'" + _
-"});"
-
-
-
-
-
-        'Using con As New SqlConnection(ConfigurationManager.ConnectionStrings("ConString").ConnectionString)
-        '    Dim cmd As SqlCommand = New SqlCommand("SELECT Latitude, Longitude, City FROM Locations", con)
-        '    con.Open()
-        '    Dim reader As SqlDataReader = cmd.ExecuteReader()
-        '    Dim i As Integer = 0
-        '    While reader.Read()
-        '        i = i + 1
-        '        markers = markers + "var marker" + i.ToString() + "= new google.maps.Marker({" + _
-        '        "position: new google.maps.LatLng( " + reader("Latitude").ToString() + ", " + _
-        '        reader("Longitude").ToString() + ")," + _
-        '        "map: myMap," + _
-        '        "title:'" + reader("City").ToString() + "'});"
-        '    End While
-        '    con.Close()
-        'End Using
-        Return markers
-    End Function
-
 
 
 End Class

@@ -81,12 +81,31 @@
                     dlUsuarios.SelectedValue = u.Usuario.ID
                     m.IDError = "tituloEditar" + strClase
                     txtIDRealDistribuidor.Text = u.IDReal
+                    Me.chkDomingo.Checked = IIf(u.diasfactura.Substring(0, 1) = 1, True, False)
+                    Me.chkLunes.Checked = IIf(u.diasfactura.Substring(1, 1) = 1, True, False)
+                    Me.chkMartes.Checked = IIf(u.diasfactura.Substring(2, 1) = 1, True, False)
+                    Me.chkMiercoles.Checked = IIf(u.diasfactura.Substring(3, 1) = 1, True, False)
+                    Me.chkJueves.Checked = IIf(u.diasfactura.Substring(4, 1) = 1, True, False)
+                    Me.chkViernes.Checked = IIf(u.diasfactura.Substring(5, 1) = 1, True, False)
+                    Me.chkSabado.Checked = IIf(u.diasfactura.Substring(6, 1) = 1, True, False)
+                    Me.txtAreaVentasLat.Text = u.AreaVentasCentroLat.ToString
+                    Me.txtAreaVentasLong.Text = u.AreaVentasCentroLong.ToString
+                    Me.txtAreaVentasRadio.Text = u.AreaVentasRadio.ToString
                 Else
                     noTranslateDistribuidorID.Text = 0
                     If dlProvincias.Items.Count > 0 Then dlProvincias.SelectedIndex = 0
                     If dlUsuarios.Items.Count > 0 Then dlUsuarios.SelectedIndex = 0
                     m.IDError = "tituloNuevo" + strClase
+                    Me.chkDomingo.Checked = True
+                    Me.chkLunes.Checked = True
+                    Me.chkMartes.Checked = True
+                    Me.chkMiercoles.Checked = True
+                    Me.chkJueves.Checked = True
+                    Me.chkViernes.Checked = True
+                    Me.chkSabado.Checked = True
                 End If
+                Me.txtAreaVentasLat.Attributes.Add("ReadOnly", "ReadOnly")
+                Me.txtAreaVentasLong.Attributes.Add("ReadOnly", "ReadOnly")
                 lblTitulo.Text = f.ObtenerLeyenda(m, DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
 
             End If
@@ -118,6 +137,16 @@
             u.Usuario.ID = dlUsuarios.SelectedValue
             u.Cliente = DirectCast(Session("ClientePadre"), BE.Cliente)
             u.IDReal = txtIDRealDistribuidor.Text
+            u.diasfactura = IIf(Me.chkDomingo.Checked, "1", "0") + _
+            IIf(Me.chkLunes.Checked, "1", "0") + _
+            IIf(Me.chkMartes.Checked, "1", "0") + _
+            IIf(Me.chkMiercoles.Checked, "1", "0") + _
+            IIf(Me.chkJueves.Checked, "1", "0") + _
+            IIf(Me.chkViernes.Checked, "1", "0") + _
+            IIf(Me.chkSabado.Checked, "1", "0")
+            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text)
+            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text)
+            u.AreaVentasRadio = Long.Parse(Me.txtAreaVentasRadio.Text)
 
             erroresval = p.ValidarDatos(u)
 
@@ -166,6 +195,9 @@
 
     End Sub
 
+
+
+
 #Region "Modal"
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
         Session(strClase + "AEditar") = Nothing
@@ -204,5 +236,14 @@
 
     End Sub
 #End Region
+
+    Protected Sub btndibujarmapa_Click(sender As Object, e As EventArgs) Handles btndibujarmapa.Click
+
+
+
+
+    End Sub
+
+
 
 End Class

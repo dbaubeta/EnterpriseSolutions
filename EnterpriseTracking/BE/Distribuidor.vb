@@ -55,6 +55,48 @@
         End Set
     End Property
 
+    Private _diasfactura As String
+    Public Property diasfactura() As String
+        Get
+            Return _diasfactura
+        End Get
+        Set(ByVal value As String)
+            _diasfactura = value
+        End Set
+    End Property
+
+    Private _AreaVentasCentroLat As Double
+    Public Property AreaVentasCentroLat() As Double
+        Get
+            Return _AreaVentasCentroLat
+        End Get
+        Set(ByVal value As Double)
+            _AreaVentasCentroLat = value
+        End Set
+    End Property
+
+
+    Private _AreaVentasCentroLong As Double
+    Public Property AreaVentasCentroLong() As Double
+        Get
+            Return _AreaVentasCentroLong
+        End Get
+        Set(ByVal value As Double)
+            _AreaVentasCentroLong = value
+        End Set
+    End Property
+
+
+    Private _AreaVentasRadio As Long
+    Public Property AreaVentasRadio() As Long
+        Get
+            Return _AreaVentasRadio
+        End Get
+        Set(ByVal value As Long)
+            _AreaVentasRadio = value
+        End Set
+    End Property
+
     Public Sub New()
         Usuario = New BE.Usuario
         Provincia = New BE.Provincia

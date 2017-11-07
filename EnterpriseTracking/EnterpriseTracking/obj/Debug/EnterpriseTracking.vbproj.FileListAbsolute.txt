@@ -79,10 +79,12 @@ C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\Enterpr
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.dll
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.xml
 C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\EnterpriseTracking\bin\AjaxControlToolkit.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\EnterpriseTracking.dll.config
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\EnterpriseTracking.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\EnterpriseTracking.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\EnterpriseTracking.xml
+C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\AjaxControlToolkit.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\BE.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\Bitacora.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\BLL.dll
@@ -110,5 +112,3 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\obj\Debug\EnterpriseTracking.pdb
-C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\EnterpriseTracking\bin\AjaxControlToolkit.dll
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\EnterpriseTracking\bin\AjaxControlToolkit.dll

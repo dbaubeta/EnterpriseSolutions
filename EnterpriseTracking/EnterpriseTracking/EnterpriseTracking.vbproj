@@ -128,6 +128,7 @@
     <Content Include="GrupoEdicion.aspx" />
     <Content Include="GrupoLista.aspx" />
     <Content Include="IdiomaLista.aspx" />
+    <Content Include="InvasionZonas.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="IdiomaLista.aspx.vb">
       <DependentUpon>IdiomaLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="InvasionZonas.aspx.designer.vb">
+      <DependentUpon>InvasionZonas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InvasionZonas.aspx.vb">
+      <DependentUpon>InvasionZonas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.vb">
