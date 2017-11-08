@@ -71,7 +71,7 @@
     <div class="row" style="margin-top:30px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
         <div class="col-md-8">
-            <asp:GridView ID="grdCategorias" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+            <asp:GridView ID="grdCategorias" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >
                     <HeaderStyle Width="15%" />

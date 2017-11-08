@@ -73,7 +73,7 @@
     <div class="row" style="margin-top:30px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
         <div class="col-md-4">
-            <asp:GridView ID="grdPuntodeVentas" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Invade" >
+            <asp:GridView ID="grdPuntodeVentas" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" DataKeyNames="Invade" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >
                     <HeaderStyle Width="15%" />

@@ -113,9 +113,9 @@
 <div class="row" style="margin-top:20px;">
     <div class="col-sm-2" style="vertical-align:middle"></div>
     <div class="col-md-8" style=" overflow-x:auto; min-height:100%">
-        <asp:GridView ID="noTranslategrdTransmisiones" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="ID"  >
+        <asp:GridView ID="grdTransmisiones" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" DataKeyNames="ID"  >
             <Columns>
-                <asp:BoundField DataField="Distribuidor" HeaderText="Distribuidor" >
+                <asp:BoundField DataField="Distribuidor" HeaderText="Distribuidor" ItemStyle-HorizontalAlign="Left" >
                 <HeaderStyle Width="60%" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Porcentaje">
@@ -124,8 +124,22 @@
                     </ItemTemplate>
                     <HeaderStyle Width="20%" />
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Invasion"  >
+                    <ItemTemplate>
+                        <asp:Image ID="ImgInvasion" runat="server" ImageURL="Images/error.png" Width="20px" Height="20px"/>
+                    </ItemTemplate>
+                    <HeaderStyle Width="10%" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Stock critico" HeaderStyle-HorizontalAlign="Center" >
+                    <ItemTemplate>
+                        <asp:Image ID="ImgStockCritico" runat="server" ImageURL="Images/error.png"  Width="20px" Height="20px"/>
+                    </ItemTemplate>
+                    <HeaderStyle Width="10%" />
+                    
+                </asp:TemplateField>
             </Columns>
-                <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White"  HorizontalAlign="Center"/>
+                <RowStyle HorizontalAlign="Center" ></RowStyle>
         </asp:GridView>
     </div>
     <div class="col-sm-2" style="vertical-align:middle"></div>

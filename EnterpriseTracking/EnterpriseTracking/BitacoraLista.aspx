@@ -61,7 +61,7 @@
     <div class="col-md-10" style="height:100%">
         <div class="row" style="margin-top:30px;">
             <div class="col-md-12">
-                <asp:GridView ID="grdBitacora" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+                <asp:GridView ID="grdBitacora" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" >
                     <Columns>
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" >
                         <HeaderStyle Width="10%" />

@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class StockLista
+Partial Public Class VtasxCatProd
 
     '''<summary>
     '''ImagenSiNo control.
@@ -158,13 +158,13 @@ Partial Public Class StockLista
     Protected WithEvents txtFiltro As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''grdStocks control.
+    '''grdVentas control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdStocks As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents grdVentas As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''LitChart control.
@@ -174,4 +174,13 @@ Partial Public Class StockLista
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LitChart As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''LitTorta control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LitTorta As Global.System.Web.UI.WebControls.Literal
 End Class

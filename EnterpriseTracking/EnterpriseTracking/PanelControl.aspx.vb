@@ -99,15 +99,15 @@ Public Class PanelControl
                     dt.Rows.Add(dr)
                 Next
 
-                noTranslategrdTransmisiones.DataSource = Nothing
-                noTranslategrdTransmisiones.DataSource = dt
-                noTranslategrdTransmisiones.DataBind()
+                grdTransmisiones.DataSource = Nothing
+                grdTransmisiones.DataSource = dt
+                grdTransmisiones.DataBind()
 
 
                 'Recorro la grilla asignando las imagenes a los botones de cada dia.
-                For Each gr As GridViewRow In noTranslategrdTransmisiones.Rows
+                For Each gr As GridViewRow In grdTransmisiones.Rows
 
-                    Dim did As Long = Long.Parse(noTranslategrdTransmisiones.DataKeys(gr.RowIndex).Value)
+                    Dim did As Long = Long.Parse(grdTransmisiones.DataKeys(gr.RowIndex).Value)
                     desde.Distribuidor.ID = did
                     desdej.Distribuidor.ID = did
                     Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
@@ -155,9 +155,9 @@ Public Class PanelControl
                     DirectCast(gr.FindControl("LitPorcentaje"), Literal).Text = sb.ToString
                 Next
 
-                If noTranslategrdTransmisiones.Rows.Count > 0 Then
-                    noTranslategrdTransmisiones.UseAccessibleHeader = True
-                    noTranslategrdTransmisiones.HeaderRow.TableSection = TableRowSection.TableHeader
+                If grdTransmisiones.Rows.Count > 0 Then
+                    grdTransmisiones.UseAccessibleHeader = True
+                    grdTransmisiones.HeaderRow.TableSection = TableRowSection.TableHeader
                 End If
             End If
         Catch bex As BE.Excepcion
@@ -170,12 +170,12 @@ Public Class PanelControl
 
     Protected Overrides Sub Render(writer As System.Web.UI.HtmlTextWriter)
         Try
-            For Each r As GridViewRow In Me.noTranslategrdTransmisiones.Rows
+            For Each r As GridViewRow In Me.grdTransmisiones.Rows
                 If r.RowType = DataControlRowType.DataRow Then
                     r.Attributes("onmouseover") = "this.style.cursor='pointer';this.style.textDecoration='underline';"
                     r.Attributes("onmouseout") = "this.style.textDecoration='none';"
                     'r.ToolTip = "Click to select row"
-                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.noTranslategrdTransmisiones, "Select$" + r.RowIndex.ToString, True)
+                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdTransmisiones, "Select$" + r.RowIndex.ToString, True)
                 End If
             Next
             MyBase.Render(writer)
@@ -188,11 +188,11 @@ Public Class PanelControl
 
     End Sub
 
-    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles noTranslategrdTransmisiones.SelectedIndexChanged
+    Private Sub grd_SelectedIndexChanged(sender As Object, e As EventArgs) Handles grdTransmisiones.SelectedIndexChanged
 
         Try
-            For Each row As GridViewRow In noTranslategrdTransmisiones.Rows
-                If row.RowIndex = noTranslategrdTransmisiones.SelectedIndex Then
+            For Each row As GridViewRow In grdTransmisiones.Rows
+                If row.RowIndex = grdTransmisiones.SelectedIndex Then
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
                     row.ToolTip = String.Empty
                 Else
@@ -248,16 +248,16 @@ Public Class PanelControl
 
         If button.ImageUrl = "~/Images/error.png" Then
 
-            Session("DistribuidorJustificacion") = Long.Parse(noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
             Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
-            Me.noTranslateModalDistribuidorJustificacion.Text = noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(1).Text
+            Me.noTranslateModalDistribuidorJustificacion.Text = grdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(1).Text
             Me.noTranslateModalFechaJustificacion.Text = DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
             Me.txtjustificacion.Text = ""
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalJustificacion();", True)
 
         ElseIf button.ImageUrl = "~/Images/justificado.png" Then
 
-            Session("DistribuidorJustificacion") = Long.Parse(noTranslategrdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
+            Session("DistribuidorJustificacion") = Long.Parse(grdTransmisiones.Rows(Convert.ToInt32(button.CommandArgument) - 1).Cells(0).Text)
             Session("Fechajustificacion") = New Date(Int32.Parse(Me.dlano.SelectedItem.Text), Me.dlmes.SelectedIndex + 1, Int32.Parse(button.ID.Replace("idia", "")))
             Me.noTranslateModalMessageSiNo.Text = f.ObtenerLeyenda(New BE.MensajeError("SeguroBorrarJustificacion"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda + DirectCast(Session("Fechajustificacion"), Date).ToString("yyyy-MM-dd")
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalSiNo();", True)

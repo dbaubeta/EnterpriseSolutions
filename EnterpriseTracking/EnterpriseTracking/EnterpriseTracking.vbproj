@@ -152,10 +152,12 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="StockLista.aspx" />
+    <Content Include="Styles\calendar-blue.css" />
     <Content Include="TransmisionesLista.aspx" />
     <Content Include="UsuarioAsignarPermisos.aspx" />
     <Content Include="UsuarioEdicion.aspx" />
     <Content Include="UsuarioLista.aspx" />
+    <Content Include="VtasxCatProd.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +353,13 @@
     </Compile>
     <Compile Include="UsuarioLista.aspx.vb">
       <DependentUpon>UsuarioLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="VtasxCatProd.aspx.designer.vb">
+      <DependentUpon>VtasxCatProd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VtasxCatProd.aspx.vb">
+      <DependentUpon>VtasxCatProd.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

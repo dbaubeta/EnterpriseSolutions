@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="StockLista.aspx.vb" Inherits="EnterpriseTracking.StockLista" %>
-
-<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Enterprise.Master" CodeBehind="VtasxCatProd.aspx.vb" Inherits="EnterpriseTracking.VtasxCatProd" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script src="Scripts/Chart.js"></script>
+
+    <script src="Scripts/Chart.js"></script>
         
 <!-- Modal Si No -->
 <div id="modalConfirmar" class="modal fade" role="dialog">
@@ -95,31 +94,38 @@
 
 <div class="row" style="margin-top:30px;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
-    <div class="col-md-10">
-        <asp:GridView ID="grdStocks" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False"  DataKeyNames="ID">
+    <div class="col-md-6">
+        <asp:GridView ID="grdVentas" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False"  DataKeyNames="ID">
             <Columns>
                 <asp:BoundField DataField="Categoria" HeaderText="Categoria" >
                 <HeaderStyle Width="15%" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
-                <HeaderStyle Width="70%" />
+                <HeaderStyle Width="55%" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Stock" HeaderText="Stock" >
+                <asp:BoundField DataField="Unidades" HeaderText="Unidades" >
+                <HeaderStyle Width="15%" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Monto" HeaderText="Monto" >
                 <HeaderStyle Width="15%" />
                 </asp:BoundField>
             </Columns>
                 <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
         </asp:GridView>
     </div>
-    <div class="col-md-1">
+
+    <div class="col-md-4">
+        <canvas id="torta"></canvas>
     </div>
+
+    <div class="col-md-1"></div>
 </div>
 <%-- Grafico de Stock Anual --%>
 <div class="row" style="margin-top:30px;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
     <div class="col-md-10" style="max-height:200px">
         <div style="width:100%; height:200px;">
-            <canvas id="myChart"></canvas>
+            <canvas id="historial"></canvas>
         </div>
     </div>
     <div class="col-md-1">
@@ -127,5 +133,12 @@
 </div>
 
 <asp:Literal ID="LitChart" runat="server"></asp:Literal>
+<asp:Literal ID="LitTorta" runat="server"></asp:Literal>
+<script>
+    function dibujarcharts() {
+        dibujarhistorial();
+        dibujartorta();
+    }
+</script>
 
 </asp:Content>

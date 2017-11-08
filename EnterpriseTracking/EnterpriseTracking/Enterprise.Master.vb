@@ -207,11 +207,16 @@ Public Class Enterprise
         li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
         If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
+        'li = New HtmlGenericControl("li")
+        'itemname = "RankingDistVend"
+        'err.IDError = "mnuButtonReportes_" + itemname
+        'li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        'If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
         li = New HtmlGenericControl("li")
-        itemname = "RAnkingDistVend"
+        itemname = "VtasxCatProd"
         err.IDError = "mnuButtonReportes_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
+        li.InnerHtml = "<a href=""" + itemname + ".aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
         li = New HtmlGenericControl("li")
         itemname = "Stock"
@@ -220,22 +225,10 @@ Public Class Enterprise
         If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
         li = New HtmlGenericControl("li")
-        itemname = "ValStockPPP"
+        itemname = "ValStock"
         err.IDError = "mnuButtonReportes_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
-
-        li = New HtmlGenericControl("li")
-        itemname = "ValStockFIFO"
-        err.IDError = "mnuButtonReportes_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
-
-        li = New HtmlGenericControl("li")
-        itemname = "ValStockLIFO"
-        err.IDError = "mnuButtonReportes_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
+        li.InnerHtml = "<a href=""" + itemname + ".aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
         li = New HtmlGenericControl("li")
         itemname = "ProyeccionVtas"
@@ -247,21 +240,17 @@ Public Class Enterprise
         itemname = "InvasionZonas"
         err.IDError = "mnuButtonReportes_" + itemname
         li.InnerHtml = "<a href=""" + itemname + ".aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
-        li = New HtmlGenericControl("li")
-        itemname = "VtasxCatProd"
-        err.IDError = "mnuButtonReportes_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaReportes.Controls.Add(li)
 
-        ' Generar Menu Concursos
-        ' =====================================================================================================================
-        li = New HtmlGenericControl("li")
-        itemname = "Concurso"
-        err.IDError = "mnuButtonConcursos_" + itemname
-        li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaConcursos.Controls.Add(li)
+
+        '' Generar Menu Concursos
+        '' =====================================================================================================================
+        'li = New HtmlGenericControl("li")
+        'itemname = "Concurso"
+        'err.IDError = "mnuButtonConcursos_" + itemname
+        'li.InnerHtml = "<a href=""" + itemname + "Lista.aspx"">" + f.ObtenerLeyenda(err, Session("Idioma")).texto_Leyenda + "</a>"
+        'If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = itemname + "Lista")) Or p_usuario.Usuario.ID = 1 Then Me.noTranslateListaConcursos.Controls.Add(li)
 
 
         ' Generar Menu Seguridad

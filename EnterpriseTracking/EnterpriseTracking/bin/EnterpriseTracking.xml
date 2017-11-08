@@ -6,7 +6,7 @@ EnterpriseTracking
 </name>
 </assembly>
 <members>
-<member name="F:EnterpriseTracking.PanelControl.ImagenSiNo">
+<member name="F:EnterpriseTracking.VtasxCatProd.ImagenSiNo">
 	<summary>
 ImagenSiNo control.
 </summary>
@@ -14,7 +14,7 @@ ImagenSiNo control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalMessageSiNo">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.noTranslateModalMessageSiNo">
 	<summary>
 noTranslateModalMessageSiNo control.
 </summary>
@@ -22,7 +22,7 @@ noTranslateModalMessageSiNo control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.btnModalSi">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.btnModalSi">
 	<summary>
 btnModalSi control.
 </summary>
@@ -30,7 +30,7 @@ btnModalSi control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.btnModalNo">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.btnModalNo">
 	<summary>
 btnModalNo control.
 </summary>
@@ -38,7 +38,7 @@ btnModalNo control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.ImagenMensaje">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.ImagenMensaje">
 	<summary>
 ImagenMensaje control.
 </summary>
@@ -46,7 +46,7 @@ ImagenMensaje control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalMessage">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.noTranslateModalMessage">
 	<summary>
 noTranslateModalMessage control.
 </summary>
@@ -54,7 +54,7 @@ noTranslateModalMessage control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.btnModalOk">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.btnModalOk">
 	<summary>
 btnModalOk control.
 </summary>
@@ -62,63 +62,15 @@ btnModalOk control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.lblJustificacionTitulo">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.lblStockListaTitulo">
 	<summary>
-lblJustificacionTitulo control.
+lblStockListaTitulo control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalDistribuidorJustificacion">
-	<summary>
-noTranslateModalDistribuidorJustificacion control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalFechaJustificacion">
-	<summary>
-noTranslateModalFechaJustificacion control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.txtjustificacion">
-	<summary>
-txtjustificacion control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.btnModalAceptar">
-	<summary>
-btnModalAceptar control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.btnModalCancelar">
-	<summary>
-btnModalCancelar control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.lblTransmisionesListaTitulo">
-	<summary>
-lblTransmisionesListaTitulo control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.lblCliente">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.lblCliente">
 	<summary>
 lblCliente control.
 </summary>
@@ -126,7 +78,7 @@ lblCliente control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.dlClientes">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.dlClientes">
 	<summary>
 dlClientes control.
 </summary>
@@ -134,25 +86,73 @@ dlClientes control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.dlmes">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.ScriptManager1">
 	<summary>
-dlmes control.
+ScriptManager1 control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.dlano">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.lblFecha">
 	<summary>
-dlano control.
+lblFecha control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.PanelControl.noTranslategrdTransmisiones">
+</member><member name="F:EnterpriseTracking.VtasxCatProd.txtFecha">
 	<summary>
-noTranslategrdTransmisiones control.
+txtFecha control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.CalendarExtender1">
+	<summary>
+CalendarExtender1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.lblFiltro">
+	<summary>
+lblFiltro control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.txtFiltro">
+	<summary>
+txtFiltro control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.grdVentas">
+	<summary>
+grdVentas control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.LitChart">
+	<summary>
+LitChart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.VtasxCatProd.LitTorta">
+	<summary>
+LitTorta control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1807,9 +1807,65 @@ dlClientes control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:EnterpriseTracking.StockLista.grdProductos">
+</member><member name="F:EnterpriseTracking.StockLista.ScriptManager1">
 	<summary>
-grdProductos control.
+ScriptManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.lblFecha">
+	<summary>
+lblFecha control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.txtFecha">
+	<summary>
+txtFecha control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.CalendarExtender1">
+	<summary>
+CalendarExtender1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.lblFiltro">
+	<summary>
+lblFiltro control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.txtFiltro">
+	<summary>
+txtFiltro control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.grdStocks">
+	<summary>
+grdStocks control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.LitChart">
+	<summary>
+LitChart control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -2330,6 +2386,158 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.CategoriaEdicion.btnCancelar">
 	<summary>
 btnCancelar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.lblJustificacionTitulo">
+	<summary>
+lblJustificacionTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalDistribuidorJustificacion">
+	<summary>
+noTranslateModalDistribuidorJustificacion control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.noTranslateModalFechaJustificacion">
+	<summary>
+noTranslateModalFechaJustificacion control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.txtjustificacion">
+	<summary>
+txtjustificacion control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.btnModalAceptar">
+	<summary>
+btnModalAceptar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.btnModalCancelar">
+	<summary>
+btnModalCancelar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.lblTransmisionesListaTitulo">
+	<summary>
+lblTransmisionesListaTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.lblCliente">
+	<summary>
+lblCliente control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.dlClientes">
+	<summary>
+dlClientes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.dlmes">
+	<summary>
+dlmes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.dlano">
+	<summary>
+dlano control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.PanelControl.grdTransmisiones">
+	<summary>
+grdTransmisiones control.
 </summary>
 	<remarks>
 Auto-generated field.
