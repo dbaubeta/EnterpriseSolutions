@@ -64,34 +64,31 @@
     <div class="col-sm-5" style="vertical-align:middle">
             <asp:DropDownList ID="dlClientes" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
     </div> 
-    <div class="row" style="margin-top:30px;">
-        <div class="col-md-1"></div>
-        <div class="col-md-3"></div>
+</div>
+<div class="row" style="margin-top:30px;">
+    <div class="col-sm-1" style="vertical-align:middle"></div>
+    <div class="col-md-8">
+        <asp:GridView ID="grdProductos" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
+            <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" >
+                <HeaderStyle Width="15%" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
+                <HeaderStyle Width="70%" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Categoria" HeaderText="Categoria" >
+                <HeaderStyle Width="15%" />
+                </asp:BoundField>
+            </Columns>
+                <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+        </asp:GridView>
     </div>
-    <div class="row" style="margin-top:30px;">
-        <div class="col-sm-1" style="vertical-align:middle"></div>
-        <div class="col-md-8">
-            <asp:GridView ID="grdProductos" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" >
-                    <HeaderStyle Width="15%" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
-                    <HeaderStyle Width="70%" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Categoria" HeaderText="Categoria" >
-                    <HeaderStyle Width="15%" />
-                    </asp:BoundField>
-                </Columns>
-                    <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
-            </asp:GridView>
-        </div>
-        <div class="col-md-3">
-            <%-- BOTONES ABM --%>
-            <asp:Button ID="btnNuevoProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary" /> <br/><br/>
-            <asp:Button ID="btnEditarProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary"/> <br/><br/>
-            <asp:Button ID="btnEliminarProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-danger"/> <br/>
-        </div>
+    <div class="col-md-3">
+        <%-- BOTONES ABM --%>
+        <asp:Button ID="btnNuevoProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary" /> <br/><br/>
+        <asp:Button ID="btnEditarProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-primary"/> <br/><br/>
+        <asp:Button ID="btnEliminarProducto" runat="server" Text="Button" style="width:50%" CssClass="btn btn-danger"/> <br/>
     </div>
 </div>
+
 </asp:Content>

@@ -66,7 +66,11 @@
                     MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
                 End Try
 
-                Response.Redirect("~/Principal.aspx")
+                If IsNothing(Session("EsCliente")) Then
+                    Response.Redirect("~/Principal.aspx")
+                Else
+                    Response.Redirect("~/PanelControl.aspx")
+                End If
             End If
             Try
                 Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda

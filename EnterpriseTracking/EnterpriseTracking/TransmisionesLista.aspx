@@ -122,7 +122,7 @@
     </div>
     <div class="row" style="margin-top:5px;">
         <div class="col-sm-1" style="vertical-align:middle"></div>
-        <div class="col-md-10" style=" overflow-x:auto; box-shadow: 2px 2px 1px #888888; min-height:100%">
+        <div class="col-md-10" style=" overflow-x:auto;  min-height:100%">
             <asp:GridView ID="noTranslategrdTransmisiones" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" >

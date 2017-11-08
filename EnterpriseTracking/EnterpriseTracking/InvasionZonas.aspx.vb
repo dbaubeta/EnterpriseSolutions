@@ -69,6 +69,7 @@ Public Class InvasionZonas
                 Dim dt As DataTable = New DataTable
                 dt.Columns.Add("ID")
                 dt.Columns.Add("Nombre")
+                dt.Columns.Add("Invade")
 
                 Dim countmarkers As Integer = 0
                 Dim minlat As Double = 99999999
@@ -76,10 +77,18 @@ Public Class InvasionZonas
                 Dim maxlat As Double = -999999999
                 Dim maxlong As Double = -999999999
                 markers = ""
-                For Each l As BE.PuntodeVenta In p.ObtenerPDVs().FindAll(Function(z) DirectCast(z, BE.PuntodeVenta).Distribuidor.ID = x.ID)
+                For Each l As BE.PuntodeVenta In p.ObtenerPDVs().FindAll(Function(z) DirectCast(z, BE.PuntodeVenta).Distribuidor.ID = x.ID).OrderBy(Function(z) z.Nombre)
                     Dim dr As DataRow = dt.NewRow
                     dr("ID") = l.ID
                     dr("Nombre") = l.Nombre
+
+                    If (distancia(l.Latitud, l.Longitud, x.AreaVentasCentroLat, x.AreaVentasCentroLong, "K") * 1000 > x.AreaVentasRadio) And l.Latitud <> 0 And x.AreaVentasCentroLat <> 0 Then
+                        dr("Invade") = 1
+                    Else
+                        dr("Invade") = 0
+                    End If
+
+
                     dt.Rows.Add(dr)
 
                     countmarkers += 1
@@ -92,7 +101,6 @@ Public Class InvasionZonas
 
 
                 Next
-
 
                 mapcenterlat = minlat + (maxlat - minlat) / 2
                 mapcenterlong = minlong + (maxlong - minlong) / 2
@@ -228,10 +236,6 @@ Public Class InvasionZonas
 
     End Sub
 
-
-
-
-
     Public Function distancia(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double, ByVal unit As Char) As Double
         Dim theta As Double = lon1 - lon2
         Dim dist As Double = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta))
@@ -256,4 +260,17 @@ Public Class InvasionZonas
 
 
 
+    Private Sub InvasionZonas_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+        For i = 0 To grdPuntodeVentas.Rows.Count - 1
+
+            If grdPuntodeVentas.DataKeys(i).Value = "1" Then
+
+                grdPuntodeVentas.Rows(i).BackColor = ColorTranslator.FromHtml("#C64D45")
+
+            End If
+
+        Next
+
+    End Sub
 End Class

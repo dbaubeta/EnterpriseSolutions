@@ -190,6 +190,10 @@
                             navigator.geolocation.getCurrentPosition(function (position) {
                                 var latitude = position.coords.latitude;
                                 var longitude = position.coords.longitude;
+                                if (document.getElementById("<%=txtAreaVentasLat.ClientID%>").value != "0") {
+                                    var latitude = parseFloat(document.getElementById("<%=txtAreaVentasLat.ClientID%>").value);
+                                    var longitude = parseFloat(document.getElementById("<%=txtAreaVentasLong.ClientID%>").value);
+                                };
                                 var mapOptions = {
                                     center: new google.maps.LatLng(latitude, longitude),
                                     zoom: 14,
@@ -198,6 +202,20 @@
                                 var infoWindow = new google.maps.InfoWindow();
                                 var latlngbounds = new google.maps.LatLngBounds();
                                 var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+                                // Dibujo el area, si esta definida
+                                if (document.getElementById("<%=txtAreaVentasLat.ClientID%>").value != "0") {
+                                    oldmarker.setMap(null);
+                                    var latlng = new google.maps.LatLng(latitude, longitude);
+                                    var marker = new google.maps.Marker({ position: latlng, map: map });
+                                    oldmarker = marker;
+                                    oldcircle.setMap(null);
+                                    var circleoptions = { strokeColor: '#800000', strokeOpacity: 1.0, strokeWeight: 1, fillColor: '#C64D45', fillOpacity: 0.5, map: map, center: latlng, radius: parseInt(document.getElementById("<%=txtAreaVentasRadio.ClientID%>").value) };
+                                    circle = new google.maps.Circle(circleoptions);
+                                    oldcircle = circle;
+                                };
+
+
                                 google.maps.event.addListener(map, 'click', function (e) {
                                     var latlng = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng());
                                     var geocoder = geocoder = new google.maps.Geocoder();

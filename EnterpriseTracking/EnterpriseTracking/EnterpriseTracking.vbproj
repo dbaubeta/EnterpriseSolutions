@@ -141,11 +141,14 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Enterprise.Master" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="PanelControl.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="ProductoEdicion.aspx" />
     <Content Include="ProductoLista.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="StockLista.aspx" />
@@ -286,6 +289,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PanelControl.aspx.designer.vb">
+      <DependentUpon>PanelControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelControl.aspx.vb">
+      <DependentUpon>PanelControl.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Principal.aspx.designer.vb">
       <DependentUpon>Principal.aspx</DependentUpon>

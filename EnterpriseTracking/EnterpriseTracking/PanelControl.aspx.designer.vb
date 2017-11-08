@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class StockLista
+Partial Public Class PanelControl
 
     '''<summary>
     '''ImagenSiNo control.
@@ -77,13 +77,67 @@ Partial Public Class StockLista
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''lblStockListaTitulo control.
+    '''lblJustificacionTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblStockListaTitulo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblJustificacionTitulo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''noTranslateModalDistribuidorJustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalDistribuidorJustificacion As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''noTranslateModalFechaJustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslateModalFechaJustificacion As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtjustificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtjustificacion As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnModalAceptar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalAceptar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnModalCancelar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnModalCancelar As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''lblTransmisionesListaTitulo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTransmisionesListaTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblCliente control.
@@ -104,11 +158,29 @@ Partial Public Class StockLista
     Protected WithEvents dlClientes As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''grdProductos control.
+    '''dlmes control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grdProductos As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents dlmes As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''dlano control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlano As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''noTranslategrdTransmisiones control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents noTranslategrdTransmisiones As Global.System.Web.UI.WebControls.GridView
 End Class
