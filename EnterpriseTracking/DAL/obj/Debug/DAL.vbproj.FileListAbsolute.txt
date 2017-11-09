@@ -37,21 +37,6 @@ C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolution
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.dll
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.xml
 C:\Users\daniel.baubeta\Documents\Visual Studio 2015\Projects\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.pdb
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.dll
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.pdb
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.xml
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.dll
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.dll
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.pdb
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.xml
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.pdb
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.xml
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.vbprojResolveAssemblyReference.cache
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.Resources.resources
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.vbproj.GenerateResource.Cache
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.dll
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.xml
-C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\bin\Debug\DAL.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\bin\Debug\DAL.pdb
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\bin\Debug\DAL.xml
@@ -67,3 +52,18 @@ C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\Enterp
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.dll
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.xml
 C:\Users\dbaub\OneDrive\Documentos\Visual Studio 2013\Projects\Enterprise\EnterpriseTracking\DAL\obj\Debug\DAL.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\DAL.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\BE.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.pdb
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\bin\Debug\Cifrado.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.vbprojResolveAssemblyReference.cache
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.Resources.resources
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.vbproj.GenerateResource.Cache
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.dll
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.xml
+C:\Users\daniel.baubeta\Documents\EnterpriseSolutions\EnterpriseTracking\DAL\obj\Debug\DAL.pdb
