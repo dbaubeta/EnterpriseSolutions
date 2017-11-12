@@ -104,6 +104,24 @@ Partial Public Class InvasionZonas
     Protected WithEvents dlDistribuidores As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''dlmes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlmes As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''dlano control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlano As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''grdPuntodeVentas control.
     '''</summary>
     '''<remarks>

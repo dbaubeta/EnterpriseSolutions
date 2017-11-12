@@ -126,13 +126,13 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Invasion"  >
                     <ItemTemplate>
-                        <asp:Image ID="ImgInvasion" runat="server" ImageURL="Images/error.png" Width="20px" Height="20px"/>
+                        <asp:ImageButton ID="ImgInvasion" runat="server" ImageURL="Images/error.png" Width="20px" Height="20px"/>
                     </ItemTemplate>
                     <HeaderStyle Width="10%" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Stock critico" HeaderStyle-HorizontalAlign="Center" >
                     <ItemTemplate>
-                        <asp:Image ID="ImgStockCritico" runat="server" ImageURL="Images/error.png"  Width="20px" Height="20px"/>
+                        <asp:ImageButton ID="ImgStockCritico" runat="server"   Width="20px" Height="20px"/>
                     </ItemTemplate>
                     <HeaderStyle Width="10%" />
                     

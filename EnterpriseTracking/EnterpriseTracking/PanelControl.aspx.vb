@@ -67,6 +67,7 @@ Public Class PanelControl
             Dim lx As New List(Of BE.ABM)
             Dim bf As New BLL.Factura
             Dim bj As New BLL.Justificacion
+            Dim bp As New BLL.Producto
 
             If Not IsNothing(dlClientes.SelectedValue) Then
                 x.ID = dlClientes.SelectedValue
@@ -107,10 +108,13 @@ Public Class PanelControl
                 'Recorro la grilla asignando las imagenes a los botones de cada dia.
                 For Each gr As GridViewRow In grdTransmisiones.Rows
 
+                    ' SETEO % TRANSMISIONES
+                    ' ============================================================================================================================================================
                     Dim did As Long = Long.Parse(grdTransmisiones.DataKeys(gr.RowIndex).Value)
                     desde.Distribuidor.ID = did
                     desdej.Distribuidor.ID = did
                     Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
+
                     Dim lj As List(Of BE.Justificacion) = bj.ObtenerJustificaciones(desdej, hastaj).FindAll(Function(z) DirectCast(z, BE.Justificacion).Distribuidor.ID = did)
                     Dim total As Integer = 0
                     Dim faltante As Integer = 0
@@ -153,6 +157,41 @@ Public Class PanelControl
                     'sb.AppendLine("</div>")
                     'sb.AppendLine("</div>")
                     DirectCast(gr.FindControl("LitPorcentaje"), Literal).Text = sb.ToString
+
+
+                    ' SETEO INVASION
+                    ' ===============================================================================================
+                    Dim hayinvasion As Boolean = False
+                    For Each fact As BE.Factura In lf
+                        If fact.PuntoVenta.invade Then
+                            hayinvasion = True
+                        End If
+                    Next
+                    If hayinvasion Then
+                        DirectCast(gr.FindControl("ImgInvasion"), ImageButton).ImageUrl = "Images/error.png"
+                    Else
+                        DirectCast(gr.FindControl("ImgInvasion"), ImageButton).ImageUrl = "Images/success.png"
+                    End If
+
+                    ' SETEO STOCK CRITICO
+                    ' ===============================================================================================
+                    DirectCast(gr.FindControl("ImgStockCritico"), ImageButton).ImageUrl = "Images/success.png"
+
+                    Dim lp As List(Of BE.ABM) = bp.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Producto).Cliente.ID = x.ID)
+                    For Each p As BE.Producto In lp
+                        ' Hay que agregar una manera de saber que no tiene ningun movimiento , con un -1 por ejemplo y evitar que salte error por esa condicion
+                        Dim st As New BLL.Stock
+                        Dim hastast As New BE.Stock
+                        hastast.Distribuidor.ID = did
+                        hastast.Fecha = hasta.Fecha
+                        Dim sum = st.CalcularStock(hastast, p)
+                        If sum.Cantidad < p.stockminimo Then
+                            DirectCast(gr.FindControl("ImgStockCritico"), ImageButton).ImageUrl = "Images/error.png"
+                            Exit For
+                        End If
+
+                    Next
+
                 Next
 
                 If grdTransmisiones.Rows.Count > 0 Then

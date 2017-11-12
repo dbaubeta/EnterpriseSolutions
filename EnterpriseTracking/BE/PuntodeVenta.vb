@@ -153,15 +153,53 @@ Public Class PuntodeVenta
         End Set
     End Property
 
+    Public ReadOnly Property invade() As Boolean
+        Get
+
+            If Latitud <> 0 And Longitud <> 0 And Me.Distribuidor.AreaVentasCentroLat <> 0 And Me.Distribuidor.AreaVentasCentroLong <> 0 Then
+
+                If (distancia(Latitud, Longitud, Distribuidor.AreaVentasCentroLat, Distribuidor.AreaVentasCentroLong, "K") * 1000 > Distribuidor.AreaVentasRadio) Then
+                    Return True
+                End If
+            End If
+            Return False
+
+        End Get
+    End Property
+
+
 
     Public Sub New()
 
         Me.Distribuidor = New BE.Distribuidor
         Me.Provincia = New BE.Provincia
         Me.Vendedor = New BE.Vendedor
-
+        Me.Latitud = 0
+        Me.Longitud = 0
 
     End Sub
 
+
+    Private Function distancia(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double, ByVal unit As Char) As Double
+        Dim theta As Double = lon1 - lon2
+        Dim dist As Double = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta))
+        dist = Math.Acos(dist)
+        dist = rad2deg(dist)
+        dist = dist * 60 * 1.1515
+        If unit = "K" Then
+            dist = dist * 1.609344
+        ElseIf unit = "N" Then
+            dist = dist * 0.8684
+        End If
+        Return dist
+    End Function
+
+    Private Function deg2rad(ByVal deg As Double) As Double
+        Return (deg * Math.PI / 180.0)
+    End Function
+
+    Private Function rad2deg(ByVal rad As Double) As Double
+        Return rad / Math.PI * 180.0
+    End Function
 
 End Class ' BE.PuntodeVenta

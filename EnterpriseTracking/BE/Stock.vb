@@ -81,6 +81,17 @@ Public Class Stock
 		End Set
 	End Property
 
+    Private _borrado As Boolean
+    Public Property borrado() As Boolean
+        Get
+            Return _borrado
+        End Get
+        Set(ByVal value As Boolean)
+            _borrado = value
+        End Set
+    End Property
+
+
 
     Public Sub New()
 

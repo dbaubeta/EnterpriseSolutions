@@ -58,6 +58,7 @@
 </div>
 <hr />
 
+<%-- Selector de distribuidor --%>
 <div class="row" style="margin-top:30px;height:100%;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
     <div class="col-sm-1" style="vertical-align:middle">
@@ -66,34 +67,44 @@
     <div class="col-sm-5" style="vertical-align:middle">
             <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
     </div> 
-    <div class="row" style="margin-top:30px;">
-        <div class="col-md-1"></div>
-        <div class="col-md-3"></div>
+</div>
+
+<%-- Selector de Mes y año --%>
+<div class="row" style="margin-top:5px;">
+        <div class="col-sm-2" style="vertical-align:middle"></div>
+    <div class="col-sm-2" style="vertical-align:middle">
+        <asp:DropDownList ID="dlmes" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
     </div>
-    <div class="row" style="margin-top:30px;">
-        <div class="col-sm-1" style="vertical-align:middle"></div>
-        <div class="col-md-4">
-            <asp:GridView ID="grdPuntodeVentas" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" DataKeyNames="Invade" >
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" >
-                    <HeaderStyle Width="15%" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
-                    <HeaderStyle Width="70%" />
-                    </asp:BoundField>
-                </Columns>
-                    <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
-            </asp:GridView>
-        </div>
-        <div class="col-md-6">
-            <%-- MAPA --%>
-            <div id="mapArea" style="width: 100%; height: 500px;"></div>
-
-        </div>
-        <div class="col-sm-1" style="vertical-align:middle"></div>
-
+    <div class="col-sm-1" style="vertical-align:middle">
+        <asp:DropDownList ID="dlano" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
     </div>
 </div>
+
+<%-- Lista y mapa --%>
+<div class="row" style="margin-top:30px;">
+    <div class="col-sm-1" style="vertical-align:middle"></div>
+    <div class="col-md-4">
+        <asp:GridView ID="grdPuntodeVentas" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False" DataKeyNames="Invade" >
+            <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" >
+                <HeaderStyle Width="15%" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
+                <HeaderStyle Width="70%" />
+                </asp:BoundField>
+            </Columns>
+                <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+        </asp:GridView>
+    </div>
+    <div class="col-md-6">
+        <%-- MAPA --%>
+        <div id="mapArea" style="width: 100%; height: 500px;"></div>
+
+    </div>
+    <div class="col-sm-1" style="vertical-align:middle"></div>
+
+</div>
+
 <asp:Literal ID="LitMaps" runat="server"></asp:Literal>
 
 

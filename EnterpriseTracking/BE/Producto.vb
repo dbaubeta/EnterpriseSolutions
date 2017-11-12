@@ -44,6 +44,18 @@
 			End Set
 		End Property
 
+    Private _stockminimo As Long
+    Public Property stockminimo() As Long
+        Get
+            Return _stockminimo
+        End Get
+        Set(ByVal value As Long)
+            _stockminimo = value
+        End Set
+    End Property
+
+
+
     Public Sub New()
         Cliente = New BE.Cliente
         Categoria = New BE.Categoria

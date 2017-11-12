@@ -61,8 +61,45 @@
 
     End Sub
 
-    Public Function ObtenerDetalles(f As List(Of BE.Factura)) As List(Of BE.Detalle_Factura)
-        ObtenerDetalles = Nothing
+    Public Function ObtenerDetalles(f As BE.Factura) As List(Of BE.Detalle_Factura)
+        Dim params(0) As System.Data.SqlClient.SqlParameter
+        Dim cadena As String = "select fd.* from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and f.NroFactura = @P1 "
+        Dim dt As DataTable
+        Dim l As BE.Detalle_Factura
+        Dim ll As New List(Of BE.Detalle_Factura)
+        Dim dd As New DAL.Producto
+        Try
+
+            params(0) = DBH.CrearParametro("@P1", f.Nro_Factura_Real)
+
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Detalle_Factura
+
+                l.FacturaID = dr.Item("IDFactura")
+                l.Linea = dr.Item("linea")
+                l.Cantidad = dr.Item("cantidad")
+                l.Precio = dr.Item("precio")
+                l.DVH = dr.Item("DVH")
+
+                l.Producto.ID = dr.Item("IDProducto")
+                Dim li As New List(Of BE.ABM)
+                li.Add(l.Producto)
+                l.Producto = dd.ObtenerLista(li)(0)
+
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+
+        End Try
     End Function
 
 

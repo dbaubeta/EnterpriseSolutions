@@ -304,6 +304,18 @@ Public Class TransmisionesLista
 
     End Sub
 
+    Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
+        Dim j As New BE.Justificacion
+        Dim bj As New BLL.Justificacion
+        j.Distribuidor = New BE.Distribuidor
+        j.Distribuidor.ID = DirectCast(Session("DistribuidorJustificacion"), Long)
+        j.Fecha = DirectCast(Session("Fechajustificacion"), Date)
+        bj.Eliminar(j)
+        If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+
+    End Sub
+
+#Region "MesesAños"
     Private Sub cargarMeses()
 
 
@@ -343,14 +355,9 @@ Public Class TransmisionesLista
         cargarMeses()
     End Sub
 
-    Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
-        Dim j As New BE.Justificacion
-        Dim bj As New BLL.Justificacion
-        j.Distribuidor = New BE.Distribuidor
-        j.Distribuidor.ID = DirectCast(Session("DistribuidorJustificacion"), Long)
-        j.Fecha = DirectCast(Session("Fechajustificacion"), Date)
-        bj.Eliminar(j)
-        If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+#End Region
 
-    End Sub
+
+
+
 End Class

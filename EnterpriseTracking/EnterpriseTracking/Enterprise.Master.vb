@@ -18,6 +18,10 @@ Public Class Enterprise
             Response.Redirect("~/Login.aspx")
         End If
 
+        ' Seteo la cultura que esta definida en el idioma de la sesion
+        Threading.Thread.CurrentThread.CurrentCulture = New System.Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture)
+        Threading.Thread.CurrentThread.CurrentUICulture = New System.Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture)
+
         ' Cargo la lista de permisos del usuario en memoria una unica vez
         'If Not IsPostBack Then
         For Each el As Seguridad.Elemento In DirectCast(Session("Usuario"), Seguridad.Usuario).Elementos

@@ -38,9 +38,22 @@ Public Class Detalle_Factura
 
     End Sub
 
-	Public Function ObtenerDetalles(ByVal f As List(Of BE.Factura)) As List( Of BE.Detalle_Factura)
-		ObtenerDetalles = Nothing
-	End Function
+    Public Function ObtenerDetalles(f As BE.Factura) As List(Of BE.Detalle_Factura)
+
+        Try
+
+            Return d.ObtenerDetalles(f)
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
 
 
 End Class

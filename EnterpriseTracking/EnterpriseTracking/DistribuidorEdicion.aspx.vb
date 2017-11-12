@@ -1,4 +1,6 @@
-﻿Public Class DistribuidorEdicion
+﻿Imports System.Globalization
+
+Public Class DistribuidorEdicion
     Inherits System.Web.UI.Page
 
 
@@ -88,8 +90,9 @@
                     Me.chkJueves.Checked = IIf(u.diasfactura.Substring(4, 1) = 1, True, False)
                     Me.chkViernes.Checked = IIf(u.diasfactura.Substring(5, 1) = 1, True, False)
                     Me.chkSabado.Checked = IIf(u.diasfactura.Substring(6, 1) = 1, True, False)
-                    Me.txtAreaVentasLat.Text = u.AreaVentasCentroLat.ToString
-                    Me.txtAreaVentasLong.Text = u.AreaVentasCentroLong.ToString
+                    Dim us As CultureInfo = New CultureInfo("en-US")
+                    Me.txtAreaVentasLat.Text = u.AreaVentasCentroLat.ToString(us)
+                    Me.txtAreaVentasLong.Text = u.AreaVentasCentroLong.ToString(us)
                     Me.txtAreaVentasRadio.Text = u.AreaVentasRadio.ToString
                 Else
                     noTranslateDistribuidorID.Text = 0
@@ -144,8 +147,9 @@
             IIf(Me.chkJueves.Checked, "1", "0") + _
             IIf(Me.chkViernes.Checked, "1", "0") + _
             IIf(Me.chkSabado.Checked, "1", "0")
-            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text)
-            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text)
+            Dim us2 As CultureInfo = New CultureInfo("en-US")
+            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text, us2)
+            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text, us2)
             u.AreaVentasRadio = Long.Parse(Me.txtAreaVentasRadio.Text)
 
             erroresval = p.ValidarDatos(u)
