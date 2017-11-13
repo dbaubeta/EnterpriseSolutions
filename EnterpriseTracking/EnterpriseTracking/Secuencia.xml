@@ -34,14 +34,35 @@
       <cp>C1414DEQ</cp><provincia>C.A.B.A.</provincia><cuit>65465499879</cuit><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>  </puntosventa>
   <facturas>
-    <factura><nrofactura>0001A00000001</nrofactura><fecha>2017-01-01</fecha><vendedor>1</vendedor><puntoventa>1</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000001</nrofactura><fecha>2017-11-01</fecha><vendedor>1</vendedor><puntoventa>1</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>3</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>10</cantidad><precio>12.50</precio></detallefactura>
         <detallefactura><linea>3</linea><producto>200</producto><cantidad>50</cantidad><precio>20.00</precio></detallefactura>
       </detallesfactura>
     </factura>
-    <factura><nrofactura>0001A00000002</nrofactura><fecha>2017-01-03</fecha><vendedor>1</vendedor><puntoventa>2</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000002</nrofactura><fecha>2017-11-03</fecha><vendedor>1</vendedor><puntoventa>2</puntoventa><borrado>0</borrado>
+      <detallesfactura>
+        <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
+        <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
+        <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
+      </detallesfactura>
+    </factura>
+    <factura><nrofactura>0001A00000003</nrofactura><fecha>2017-11-06</fecha><vendedor>1</vendedor><puntoventa>3</puntoventa><borrado>0</borrado>
+      <detallesfactura>
+        <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
+        <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
+        <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
+      </detallesfactura>
+    </factura>
+    <factura><nrofactura>0001A00000004</nrofactura><fecha>2017-11-06</fecha><vendedor>1</vendedor><puntoventa>4</puntoventa><borrado>0</borrado>
+      <detallesfactura>
+        <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
+        <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
+        <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
+      </detallesfactura>
+    </factura>
+    <factura><nrofactura>0001A00000005</nrofactura><fecha>2017-11-08</fecha><vendedor>1</vendedor><puntoventa>6</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
@@ -50,8 +71,11 @@
     </factura>
   </facturas>
   <stocks>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>1000</cantidad><precio>10.00</precio></stock>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>1000</cantidad><precio>8.00</precio></stock>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>1000</cantidad><precio>12.00</precio></stock>
+    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>500</cantidad><precio>10.00</precio></stock>
+    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>500</cantidad><precio>8.00</precio></stock>
+    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>500</cantidad><precio>12.00</precio></stock>
+    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>500</cantidad><precio>10.00</precio></stock>
+    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>500</cantidad><precio>8.00</precio></stock>
+    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>500</cantidad><precio>12.00</precio></stock>
   </stocks>
 </secuencia>

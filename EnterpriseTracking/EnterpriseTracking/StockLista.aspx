@@ -52,7 +52,7 @@
 </div>
 
 <%-- CONTENIDO DE PANTALLA --%>
-<div class="row" style="margin-top:15px;margin-bottom:15px">
+<div class="row" style="margin-top:10px;margin-bottom:15px">
     <div class="col-sm-8">
         <asp:Label ID="lblStockListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
     </div>
@@ -67,19 +67,26 @@
 </div>
 <hr />
 
-<div class="row" style="margin-top:15px;margin-bottom:15px">
+<%-- Selector de distribuidor --%>
+<div class="row" style="margin-top:10px;height:100%;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
-    <div class="col-sm-3" style="vertical-align:middle">
-        <div class="row" style="margin-top:15px;margin-bottom:15px">
-            <div class="col-sm-3" style="vertical-align:middle">
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:Label ID="lblFecha" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
-            </div>
-            <div class="col-sm-9" style="vertical-align:middle">
-                <asp:TextBox ID="txtFecha" runat="server" ReadOnly = "true"  CssClass="form-control" ></asp:TextBox>
-                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha" Format="dd/MM/yyyy"/>
-            </div>
-        </div>
+    <div class="col-sm-1" style="vertical-align:middle">
+        <asp:Label ID="lblDistribuidor" runat="server" Text="Label" Width="100%"></asp:Label>
+    </div>
+    <div class="col-sm-5" style="vertical-align:middle">
+            <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+    </div> 
+</div>
+
+<div class="row" style="margin-top:10px;margin-bottom:15px">
+    <div class="col-sm-1" style="vertical-align:middle"></div>
+    <div class="col-sm-1" style="vertical-align:middle">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:Label ID="lblFecha" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
+    </div>
+    <div class="col-sm-2" style="vertical-align:middle">
+        <asp:TextBox ID="txtFecha" runat="server" ReadOnly = "true"  CssClass="form-control" ></asp:TextBox>
+        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> <%--Format="dd/MM/yyyy"/>--%>
     </div>
     <div class="col-sm-3" style="vertical-align:middle"></div>
     <div class="col-sm-4">

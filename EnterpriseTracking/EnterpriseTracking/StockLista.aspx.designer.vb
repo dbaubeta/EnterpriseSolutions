@@ -104,6 +104,24 @@ Partial Public Class StockLista
     Protected WithEvents dlClientes As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblDistribuidor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDistribuidor As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''dlDistribuidores control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlDistribuidores As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''ScriptManager1 control.
     '''</summary>
     '''<remarks>

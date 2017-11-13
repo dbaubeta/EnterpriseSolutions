@@ -1671,6 +1671,22 @@ dlClientes control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:EnterpriseTracking.StockLista.lblDistribuidor">
+	<summary>
+lblDistribuidor control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.StockLista.dlDistribuidores">
+	<summary>
+dlDistribuidores control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:EnterpriseTracking.StockLista.ScriptManager1">
 	<summary>
 ScriptManager1 control.

@@ -170,12 +170,12 @@ Public Class PanelControl
                     If hayinvasion Then
                         DirectCast(gr.FindControl("ImgInvasion"), ImageButton).ImageUrl = "Images/error.png"
                     Else
-                        DirectCast(gr.FindControl("ImgInvasion"), ImageButton).ImageUrl = "Images/success.png"
+                        DirectCast(gr.FindControl("ImgInvasion"), ImageButton).ImageUrl = "Images/success_small.png"
                     End If
 
                     ' SETEO STOCK CRITICO
                     ' ===============================================================================================
-                    DirectCast(gr.FindControl("ImgStockCritico"), ImageButton).ImageUrl = "Images/success.png"
+                    DirectCast(gr.FindControl("ImgStockCritico"), ImageButton).ImageUrl = "Images/success_small.png"
 
                     Dim lp As List(Of BE.ABM) = bp.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Producto).Cliente.ID = x.ID)
                     For Each p As BE.Producto In lp

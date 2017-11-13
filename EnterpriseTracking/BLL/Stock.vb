@@ -11,10 +11,8 @@ Public Class Stock
         Dim bp As New BLL.Producto
         Dim bd As New BLL.Distribuidor
         Dim bs As New BLL.Stock
+        Dim salida As New BE.Stock
 
-        Dim dt As New DataTable
-        dt.Columns.Add("fecha")
-        dt.Columns.Add("stock")
 
         Dim ldi As New List(Of BE.ABM)
         ldi.Add(fecha.Distribuidor)
@@ -28,46 +26,36 @@ Public Class Stock
         Dim desde As New BE.Factura
         Dim hasta As New BE.Factura
         desde.Fecha = Convert.ToDateTime(New Date(1900, 1, 1))
+        desde.Distribuidor = fecha.Distribuidor
         hasta.Fecha = fecha.Fecha
         If hasta.Fecha.Date >= Now.Date Then hasta.Fecha = Now.Date
 
         ' Obtengo los movimientos por factura
-        Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = fecha.Distribuidor.ID)
-        For Each f As BE.Factura In lf
+        'salida.Cantidad = 0
+        'Dim ldf As List(Of BE.Detalle_Factura) = bdf.ObtenerDetalles(desde, hasta, prod)
+        'For Each df As BE.Detalle_Factura In ldf
+        '    salida.Cantidad += df.Cantidad * -1
+        'Next
 
-            Dim ldf As List(Of BE.Detalle_Factura) = bdf.ObtenerDetalles(f).FindAll(Function(z) z.Producto.ID = prod.ID)
-            For Each df As BE.Detalle_Factura In ldf
-                Dim dr As DataRow = dt.NewRow
-                dr("fecha") = f.Fecha
-                dr("stock") = df.Cantidad * -1
-            Next
+        ''Next
 
-        Next
+        'Dim desdes As New BE.Stock
+        'Dim hastas As New BE.Stock
+        'desdes.Distribuidor = desde.Distribuidor
+        'desdes.Fecha = desde.Fecha
+        'hastas.Fecha = hasta.Fecha
 
-        Dim desdes As New BE.Stock
-        Dim hastas As New BE.Stock
-        desdes.Distribuidor = desde.Distribuidor
-        desdes.Fecha = desde.Fecha
-        hastas.Fecha = hasta.Fecha
-
-        ' Obtengo los movimientos por stock
-        Dim ls As List(Of BE.Stock) = bs.ObtenerStocks(desdes, hastas).FindAll(Function(z) DirectCast(z, BE.Stock).Distribuidor.ID = fecha.Distribuidor.ID)
-        For Each s As BE.Stock In ls
-            Dim dr As DataRow = dt.NewRow
-            dr("fecha") = s.Fecha
-            If s.Tipo = "Entrada" Then
-                dr("stock") = s.Cantidad
-            Else
-                dr("stock") = s.Cantidad * -1
-            End If
-        Next
-
-
-        Dim sum As Integer = Convert.ToInt32(dt.Compute("sum(stock)", ""))
-
-        Dim salida As New BE.Stock
+        '' Obtengo los movimientos por stock
+        'Dim ls As List(Of BE.Stock) = bs.ObtenerStocks(desdes, hastas).FindAll(Function(z) DirectCast(z, BE.Stock).Distribuidor.ID = fecha.Distribuidor.ID).FindAll(Function(zz) DirectCast(zz, BE.Stock).Producto.ID = prod.ID)
+        'For Each s As BE.Stock In ls
+        '    If s.Tipo = "Entrada" Then
+        '        salida.Cantidad += s.Cantidad
+        '    Else
+        '        salida.Cantidad += s.Cantidad * -1
+        '    End If
+        'Next
+        salida.Cantidad = d.CalcularStock(desde, hasta, prod).Cantidad
         salida.Fecha = hasta.Fecha
-        salida.Cantidad = sum
 
         Return salida
 

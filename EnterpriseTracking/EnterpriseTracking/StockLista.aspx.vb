@@ -2,10 +2,10 @@
 Public Class StockLista
     Inherits System.Web.UI.Page
 
-
-
     Dim p As New BLL.Persistencia
     Dim strClase As String = "Producto"
+    Dim bs As New BLL.Stock
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -37,9 +37,10 @@ Public Class StockLista
                 Me.CalendarExtender1.EndDate = Now.Date
                 Me.CalendarExtender1.SelectedDate = Now.Date
 
-            End If
+                If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
+                If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
 
-            If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+            End If
 
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
@@ -50,6 +51,20 @@ Public Class StockLista
     End Sub
 
 
+    Private Sub CargardlDistribuidores()
+
+        Dim b As New BLL.Distribuidor
+        Me.dlDistribuidores.Items.Clear()
+        Me.dlDistribuidores.DataValueField = "ID"
+        Me.dlDistribuidores.DataTextField = "Nombre"
+        Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = dlClientes.SelectedValue)
+        Me.dlDistribuidores.DataBind()
+        If Me.dlDistribuidores.Items.Count > 0 Then Me.dlDistribuidores.SelectedIndex = 0
+
+    End Sub
+
+
+
     Private Sub CargarGrilla()
 
         Try
@@ -58,7 +73,8 @@ Public Class StockLista
             Dim bx As New BLL.Cliente
             Dim lx As New List(Of BE.ABM)
 
-            If Not IsNothing(dlClientes.SelectedValue) Then
+            If Not IsNothing(dlClientes.SelectedValue) And Not IsNothing(dlDistribuidores.SelectedValue) Then
+
                 x.ID = dlClientes.SelectedValue
                 lx.Add(x)
                 x = bx.ObtenerLista(lx)(0)
@@ -74,7 +90,11 @@ Public Class StockLista
                     dr("ID") = l.ID
                     dr("Nombre") = l.Nombre
                     dr("Categoria") = l.Categoria.Nombre
-                    dr("Stock") = 0
+                    Dim st As New BLL.Stock
+                    Dim hastast As New BE.Stock
+                    hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
+                    hastast.Fecha = Me.CalendarExtender1.SelectedDate
+                    dr("Stock") = st.CalcularStock(hastast, l).Cantidad
                     dt.Rows.Add(dr)
                 Next
 
@@ -86,6 +106,7 @@ Public Class StockLista
                     grdStocks.UseAccessibleHeader = True
                     grdStocks.HeaderRow.TableSection = TableRowSection.TableHeader
                 End If
+
             End If
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
@@ -123,9 +144,15 @@ Public Class StockLista
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
                     row.ToolTip = String.Empty
 
-                    DibujarGrafica()
-
-
+                    Dim p As New BE.Producto
+                    Dim bp As New BLL.Producto
+                    Dim lp As New List(Of BE.ABM)
+                    lp.Add(p)
+                    p.ID = Long.Parse(grdStocks.DataKeys(row.RowIndex).Value)
+                    p = bp.ObtenerLista(lp).Find(Function(z) DirectCast(z, BE.Producto).Cliente.ID = dlClientes.SelectedValue)
+                    If Not IsNothing(p) Then
+                        DibujarGrafica(p)
+                    End If
                 Else
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
                     row.ToolTip = String.Empty
@@ -172,9 +199,30 @@ Public Class StockLista
     End Sub
 
 
-    Protected Sub DibujarGrafica()
+    Protected Sub DibujarGrafica(p As BE.Producto)
 
         Dim sb As New StringBuilder
+        Dim stocks(11) As Long
+
+
+        Dim datastr As String = "                data: ["
+        Dim labelsstr As String = "                labels: ["""
+        Dim fechainicio As Date = Me.CalendarExtender1.SelectedDate
+        For i = 11 To 0 Step -1
+            Dim st As New BLL.Stock
+            Dim hastast As New BE.Stock
+            hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
+            hastast.Fecha = fechainicio.AddMonths(i * -1)
+            If hastast.Fecha <> fechainicio Then
+                hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
+            End If
+            datastr += st.CalcularStock(hastast, p).Cantidad.ToString
+            labelsstr += obtenertextomes(hastast.Fecha.Month)
+            If i = 0 Then datastr += "]," Else datastr += ","
+            If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
+        Next
+
+
         sb.Clear()
 
         sb.AppendLine("<script>")
@@ -185,12 +233,16 @@ Public Class StockLista
         sb.AppendLine("        type: 'line',")
         sb.AppendLine("        // Los datos")
         sb.AppendLine("        data: {")
-        sb.AppendLine("            labels: [""Dic"", ""Ene"", ""Feb"", ""Mar"", ""Apr"", ""May"", ""Jun"", ""Jul"", ""Ago"", ""Sep"", ""Oct"", ""Nov""],")
+
+        sb.AppendLine(labelsstr)
+
         sb.AppendLine("            datasets: [{")
         sb.AppendLine("                label: ""Stock"",")
         sb.AppendLine("                //backgroundColor: 'rgb(26, 109, 104)',")
         sb.AppendLine("                borderColor: 'rgb(26, 109, 104)',")
-        sb.AppendLine("                data: [1000, 800, 300, 100, 800, 250, 600, 450, 320, 180, 700, 500, 270, 190],")
+
+        sb.AppendLine(datastr)
+
         sb.AppendLine("                tension: 0.1,")
         sb.AppendLine("            }]")
         sb.AppendLine("        },")
@@ -213,5 +265,60 @@ Public Class StockLista
 
 
     End Sub
+
+    Private Sub StockLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+        Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+
+
+    End Sub
+
+    Private Sub dlDistribuidores_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlDistribuidores.SelectedIndexChanged
+
+        If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+
+    End Sub
+
+
+    Private Function ObtenerUltimodia(fecha As DateTime) As DateTime
+        Return New DateTime(fecha.Year, fecha.Month, DateTime.DaysInMonth(fecha.Year, fecha.Month))
+    End Function
+
+
+    Private Function obtenertextomes(mes As Integer) As String
+
+        Dim strbusqueda As String = ""
+        Select Case mes
+            Case 1
+                strbusqueda = "enero"
+            Case 2
+                strbusqueda = "febrero"
+            Case 3
+                strbusqueda = "marzo"
+            Case 4
+                strbusqueda = "abril"
+            Case 5
+                strbusqueda = "mayo"
+            Case 6
+                strbusqueda = "junio"
+            Case 7
+                strbusqueda = "julio"
+            Case 8
+                strbusqueda = "agosto"
+            Case 9
+                strbusqueda = "septiembre"
+            Case 10
+                strbusqueda = "octubre"
+            Case 11
+                strbusqueda = "noviembre"
+            Case 12
+                strbusqueda = "diciembre"
+        End Select
+
+        Dim f As New BLL.Facade_Pantalla
+        Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+
+
+    End Function
 
 End Class

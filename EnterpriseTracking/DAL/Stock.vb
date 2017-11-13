@@ -70,7 +70,7 @@ Public Class Stock
 
     Public Function ObtenerStocks(Desde As BE.Stock, hasta As BE.Stock) As List(Of BE.Stock)
         Dim params(2) As System.Data.SqlClient.SqlParameter
-        Dim cadena As String = "select * from Stock where borrado = 0 and IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date)"
+        Dim cadena As String = "select * from Stock where borrado = 0 and IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date) order by fecha asc"
         Dim dt As DataTable
         Dim l As BE.Stock
         Dim ll As New List(Of BE.Stock)
@@ -121,6 +121,35 @@ Public Class Stock
 
     End Function
 
+
+    Public Function CalcularStock(desde As BE.Factura, hasta As BE.Factura, prod As BE.Producto) As BE.Stock
+        Dim params(3) As System.Data.SqlClient.SqlParameter
+
+        Dim cadena As String = "select COALESCE(sum(x.cantidad),0) as cantidad from ("
+        cadena += "select (cantidad * (-1)) as cantidad from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 and IDProducto = @P4 "
+        cadena += "UNION ALL select case when tipo = 'Entrada' then cantidad else cantidad * (-1) end as cantidad from stock where borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and IDDistribuidor = @P3 and IDProducto = @P4"
+        cadena += ") as x"
+
+        Dim l As New BE.Stock
+        Try
+            params(0) = DBH.CrearParametro("@P1", desde.Fecha)
+            params(1) = DBH.CrearParametro("@P2", hasta.Fecha)
+            params(2) = DBH.CrearParametro("@P3", desde.Distribuidor.ID)
+            params(3) = DBH.CrearParametro("@P4", prod.ID)
+
+            l.Cantidad = DBH.RetrieveScalar(cadena, params)
+            Return l
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+
+        End Try
+    End Function
 
 
 End Class

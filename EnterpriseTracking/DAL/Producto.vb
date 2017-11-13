@@ -11,7 +11,7 @@
     Public Overrides Sub Guardar(ob As BE.ABM)
 
 
-        Dim params(6) As System.Data.SqlClient.SqlParameter
+        Dim params(7) As System.Data.SqlClient.SqlParameter
 
         u = DirectCast(ob, BE.Producto)
 
@@ -25,13 +25,14 @@
                 params(4) = DBH.CrearParametro("@P5", u.borrado)
                 params(5) = DBH.CrearParametro("@P6", Long.Parse(u.Cliente.ID))
                 params(6) = DBH.CrearParametro("@P7", Double.Parse(u.Precio))
-                Dim resultado As Long = DBH.Insert("INSERT INTO Producto(Nombre ,DVH, IDCategoria, IDReal, borrado, IDCliente, precio) VALUES(@P1, @P2, @P3, @P4, @P5, @P6, @P7); SELECT SCOPE_IDENTITY();", params)
+                params(7) = DBH.CrearParametro("@P8", Long.Parse(u.stockminimo))
+                Dim resultado As Long = DBH.Insert("INSERT INTO Producto(Nombre ,DVH, IDCategoria, IDReal, borrado, IDCliente, precio, stockminimo) VALUES(@P1, @P2, @P3, @P4, @P5, @P6, @P7, @P8); SELECT SCOPE_IDENTITY();", params)
                 If resultado <> -1 Then
                     u.ID = resultado
                 End If
             Else
                 ' Update 
-                ReDim params(7)
+                ReDim params(8)
                 params(0) = DBH.CrearParametro("@P1", u.Nombre)
                 params(1) = DBH.CrearParametro("@P2", Long.Parse(u.DVH))
                 params(2) = DBH.CrearParametro("@P3", Long.Parse(u.Categoria.ID))
@@ -40,8 +41,9 @@
                 params(5) = DBH.CrearParametro("@P6", u.Cliente.ID)
                 params(6) = DBH.CrearParametro("@P7", Double.Parse(u.Precio))
                 params(7) = DBH.CrearParametro("@P0", Long.Parse(u.ID))
+                params(8) = DBH.CrearParametro("@P8", Long.Parse(u.stockminimo))
 
-                DBH.Update("update Producto set Nombre=@P1, DVH=@P2, IDCategoria=@P3, IDReal=@P4, borrado=@P5, IDCliente=@P6, precio=@P7 where ID=@P0", params)
+                DBH.Update("update Producto set Nombre=@P1, DVH=@P2, IDCategoria=@P3, IDReal=@P4, borrado=@P5, IDCliente=@P6, precio=@P7, =, stockminimo=@P8 where ID=@P0", params)
 
             End If
 
@@ -124,6 +126,7 @@
                 l.IDReal = dr.Item("IDReal")
                 l.borrado = dr.Item("borrado")
                 l.Precio = dr.Item("Precio")
+                l.stockminimo = dr.Item("stockminimo")
                 l.DVH = dr.Item("DVH")
 
                 l.Categoria.ID = dr.Item("IDCategoria")

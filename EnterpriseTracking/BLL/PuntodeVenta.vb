@@ -1,4 +1,5 @@
 Imports System.Net
+Imports System.Globalization
 
 Public Class PuntodeVenta
 
@@ -65,8 +66,8 @@ Public Class PuntodeVenta
                         v.Longitud = 0
                     Else
                         Dim locationElement = result.Element("geometry").Element("location")
-                        v.Latitud = Double.Parse(locationElement.Element("lat").Value)
-                        v.Longitud = Double.Parse(locationElement.Element("lng").Value)
+                        v.Latitud = Double.Parse(locationElement.Element("lat").Value, New CultureInfo("en-US"))
+                        v.Longitud = Double.Parse(locationElement.Element("lng").Value, New CultureInfo("en-US"))
 
                     End If
 

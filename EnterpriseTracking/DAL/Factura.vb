@@ -49,8 +49,11 @@
             params(6) = DBH.CrearParametro("@P7", Long.Parse(u.Vendedor.ID))
 
             DBH.Update(cmd, params)
-
             u.ID = DBH.RetrieveScalar("select id from Factura where IDdistribuidor= " + u.Distribuidor.ID.ToString + " and NroFactura='" + u.Nro_Factura_Real + "'")
+
+            Dim del As String = "delete from FacturaDetalle where IDFactura = " + u.ID.ToString
+            DBH.Delete(del)
+
 
         Catch bex As BE.Excepcion
             Throw bex
