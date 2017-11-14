@@ -154,5 +154,64 @@
         End Try
     End Function
 
+    Public Function ObtenerDetallescomoStock(desde As BE.Factura, hasta As BE.Factura, Optional prod As BE.Producto = Nothing) As List(Of BE.Stock)
+        Dim params(2) As System.Data.SqlClient.SqlParameter
+        Dim cadena As String = "select fd.*, f.fecha, f.IDDistribuidor from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 "
+        Dim dt As DataTable
+        Dim l As BE.Stock
+        Dim ll As New List(Of BE.Stock)
+        Dim dd As New DAL.Producto
+        Dim ddi As New DAL.Distribuidor
+        Try
+            If Not IsNothing(prod) Then
+                ReDim params(3)
+                params(0) = DBH.CrearParametro("@P1", desde.Fecha)
+                params(1) = DBH.CrearParametro("@P2", hasta.Fecha)
+                params(2) = DBH.CrearParametro("@P3", desde.Distribuidor.ID)
+                params(3) = DBH.CrearParametro("@P4", prod.ID)
+                cadena += " and IDProducto = @P4"
+            Else
+                params(0) = DBH.CrearParametro("@P1", desde.Fecha)
+                params(1) = DBH.CrearParametro("@P2", hasta.Fecha)
+                params(2) = DBH.CrearParametro("@P3", desde.Distribuidor.ID)
+            End If
+            cadena += " order by fecha"
+
+            dt = DBH.SelectTabla(cadena, params)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Stock
+
+                l.Fecha = dr.Item("fecha")
+                l.borrado = 0
+                l.Cantidad = dr.Item("cantidad")
+                l.Precio = dr.Item("precio")
+                l.DVH = dr.Item("DVH")
+
+                l.Producto.ID = dr.Item("IDProducto")
+                'Dim li As New List(Of BE.ABM)
+                'li.Add(l.Producto)
+                'l.Producto = dd.ObtenerLista(li)(0)
+                l.Tipo = "Salida"
+
+                l.Distribuidor.ID = dr.Item("IDDistribuidor")
+                'Dim ld As New List(Of BE.ABM)
+                'ld.Add(l.Distribuidor)
+                'l.Distribuidor = ddi.ObtenerLista(ld)(0)
+
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+
+        End Try
+    End Function
+
 
 	End Class 

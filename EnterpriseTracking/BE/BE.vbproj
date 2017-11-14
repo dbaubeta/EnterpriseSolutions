@@ -94,6 +94,8 @@
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
     <Compile Include="PuntodeVenta.vb" />
+    <Compile Include="Rep_Vtas_Dist_Vend.vb" />
+    <Compile Include="Rep_Vtas_prod_cat.vb" />
     <Compile Include="Secuencia.vb" />
     <Compile Include="Stock.vb" />
     <Compile Include="Usuario.vb" />

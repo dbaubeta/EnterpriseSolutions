@@ -145,6 +145,7 @@
     <Content Include="Principal.aspx" />
     <Content Include="ProductoEdicion.aspx" />
     <Content Include="ProductoLista.aspx" />
+    <Content Include="ProyeccionVtas.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
@@ -157,7 +158,9 @@
     <Content Include="UsuarioAsignarPermisos.aspx" />
     <Content Include="UsuarioEdicion.aspx" />
     <Content Include="UsuarioLista.aspx" />
+    <Content Include="ValStock.aspx" />
     <Content Include="VtasxCatProd.aspx" />
+    <Content Include="VtasxDistVend.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -322,6 +325,13 @@
       <DependentUpon>ProductoLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ProyeccionVtas.aspx.designer.vb">
+      <DependentUpon>ProyeccionVtas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProyeccionVtas.aspx.vb">
+      <DependentUpon>ProyeccionVtas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="StockLista.aspx.designer.vb">
       <DependentUpon>StockLista.aspx</DependentUpon>
     </Compile>
@@ -357,11 +367,25 @@
       <DependentUpon>UsuarioLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ValStock.aspx.designer.vb">
+      <DependentUpon>ValStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ValStock.aspx.vb">
+      <DependentUpon>ValStock.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="VtasxCatProd.aspx.designer.vb">
       <DependentUpon>VtasxCatProd.aspx</DependentUpon>
     </Compile>
     <Compile Include="VtasxCatProd.aspx.vb">
       <DependentUpon>VtasxCatProd.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="VtasxDistVend.aspx.designer.vb">
+      <DependentUpon>VtasxDistVend.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VtasxDistVend.aspx.vb">
+      <DependentUpon>VtasxDistVend.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

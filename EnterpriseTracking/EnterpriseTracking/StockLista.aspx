@@ -51,6 +51,45 @@
   </div>
 </div>
 
+<!-- Filtrado client side -->
+<script>
+
+    function clickenfila() {
+        filtrado();
+        dibujarchart();
+    }
+
+function filtrado() {
+  // variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById('<%= txtFiltro.ClientID%>');
+  filter = input.value.toUpperCase();
+  table = document.getElementById('<%= grdStocks.ClientID%>');
+  tr = table.getElementsByTagName("tr");
+
+  // oculto las filas que no matchean el filtro
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+
+          td2 = tr[i].getElementsByTagName("td")[1];
+          if (td2) {
+              if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+              } else {
+                  tr[i].style.display = "none";
+              }
+          }
+
+      }
+    } 
+  }
+}
+</script>
+
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:10px;margin-bottom:15px">
     <div class="col-sm-8">
@@ -85,8 +124,8 @@
         <asp:Label ID="lblFecha" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
     </div>
     <div class="col-sm-2" style="vertical-align:middle">
-        <asp:TextBox ID="txtFecha" runat="server" ReadOnly = "true"  CssClass="form-control" ></asp:TextBox>
-        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> <%--Format="dd/MM/yyyy"/>--%>
+        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" ></asp:TextBox>
+        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> 
     </div>
     <div class="col-sm-3" style="vertical-align:middle"></div>
     <div class="col-sm-4">
@@ -94,7 +133,8 @@
             <asp:Label ID="lblFiltro" runat="server" Text="Label" Width="100%" style="text-align: right; margin-top:5px" Font-Bold="true" ></asp:Label>
         </div>
         <div class="col-sm-9" style="vertical-align:middle">
-            <asp:TextBox ID="txtFiltro" runat="server" style="width:100%" CssClass="form-control"/>
+            <input type="text" runat="server" id="txtFiltro" onkeyup="filtrado()" class="form-control" style="width:100%">
+            <%--<asp:TextBox ID="txtFiltro" runat="server" style="width:100%" CssClass="form-control" />--%>
         </div> 
     </div>
     <div class="col-sm-1" style="vertical-align:middle"></div>

@@ -173,7 +173,7 @@ Partial Public Class StockLista
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFiltro As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtFiltro As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
     '''grdStocks control.

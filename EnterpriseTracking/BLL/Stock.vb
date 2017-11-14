@@ -122,8 +122,69 @@ Public Class Stock
 
     End Function
 
-    Public Function ValorizarFIFO(l As List(Of BE.Stock)) As List(Of BE.Stock)
-        ValorizarFIFO = Nothing
+    Public Function ValorizarFIFO(hasta As BE.Stock, prod As BE.Producto) As BE.Stock
+        Dim ListaCompleta As New List(Of BE.Stock)
+
+        Dim bf As New DAL.Factura
+        Dim desdef As New BE.Factura
+        Dim hastaf As New BE.Factura
+        Dim desdes As New BE.Stock
+        Dim hastas As New BE.Stock
+        Dim ddf As New DAL.Detalle_Factura
+
+        desdef.Fecha = New Date(1900, 1, 1)
+        desdef.Distribuidor = hasta.Distribuidor
+        hastaf.Fecha = hasta.Fecha
+        desdes.Fecha = desdef.Fecha
+        desdes.Distribuidor = desdef.Distribuidor
+        hastas.Fecha = hasta.Fecha
+
+        'For Each f As BE.Factura In bf.ObtenerFacturas(desdef, hastaf)
+        '    For Each df As BE.Detalle_Factura In f.Detalles_Factura
+        '        Dim x As New BE.Stock
+        '        x.Fecha = f.Fecha
+        '        x.Cantidad = df.Cantidad
+        '        x.Precio = df.Precio
+        '        x.Tipo = "Salida"
+        '        ListaCompleta.Add(x)
+        '    Next
+        'Next
+
+        ListaCompleta.AddRange(ddf.ObtenerDetallescomoStock(desdef, hastaf, prod))
+        ListaCompleta.AddRange(Me.ObtenerStocks(desdes, hastas).FindAll(Function(y) y.Producto.ID = prod.ID))
+
+        Dim listaentradas As New List(Of BE.Stock)
+        For Each st As BE.Stock In ListaCompleta.OrderBy(Function(x) x.Fecha).ThenBy(Function(z) z.Tipo)
+
+            If st.Tipo = "Entrada" Then
+                listaentradas.Add(st)
+            Else
+                Dim cantidadrestante As Long = st.Cantidad
+                For Each se In listaentradas
+                    If se.Cantidad > 0 Then
+                        If se.Cantidad >= cantidadrestante Then
+                            se.Cantidad = se.Cantidad - cantidadrestante
+                            cantidadrestante = 0
+                            Exit For
+                        Else
+                            cantidadrestante = cantidadrestante - se.Cantidad
+                            se.Cantidad = 0
+                        End If
+                    End If
+                Next
+            End If
+        Next
+
+
+        ' Calculo lo que queda
+        Dim total As New BE.Stock
+        For Each st As BE.Stock In listaentradas
+            total.Cantidad += st.Cantidad
+            total.Precio += st.Precio * st.Cantidad
+        Next
+
+        Return total
+
     End Function
 
     Public Function ValorizarLIFO(l As List(Of BE.Stock)) As List(Of BE.Stock)

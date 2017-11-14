@@ -121,7 +121,6 @@ Public Class Stock
 
     End Function
 
-
     Public Function CalcularStock(desde As BE.Factura, hasta As BE.Factura, prod As BE.Producto) As BE.Stock
         Dim params(3) As System.Data.SqlClient.SqlParameter
 

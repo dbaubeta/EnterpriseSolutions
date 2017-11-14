@@ -92,6 +92,7 @@
     <Compile Include="Producto.vb" />
     <Compile Include="Provincia.vb" />
     <Compile Include="PuntodeVenta.vb" />
+    <Compile Include="Reportes.vb" />
     <Compile Include="Secuencia.vb" />
     <Compile Include="SQLHelper.vb" />
     <Compile Include="Stock.vb" />

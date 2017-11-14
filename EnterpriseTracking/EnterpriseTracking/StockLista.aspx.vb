@@ -40,6 +40,9 @@ Public Class StockLista
                 If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
                 If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
 
+            Else
+                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+
             End If
 
         Catch bex As BE.Excepcion
@@ -153,6 +156,7 @@ Public Class StockLista
                     If Not IsNothing(p) Then
                         DibujarGrafica(p)
                     End If
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "clickenfila();", True)
                 Else
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
                     row.ToolTip = String.Empty
@@ -261,7 +265,7 @@ Public Class StockLista
 
         LitChart.Text = sb.ToString
 
-        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
+        'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
 
 
     End Sub
