@@ -111,7 +111,16 @@ function filtrado() {
         <asp:Label ID="lblDistribuidor" runat="server" Text="Label" Width="100%"></asp:Label>
     </div>
     <div class="col-sm-5" style="vertical-align:middle">
-            <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+            <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control" ></asp:DropDownList>
+    </div> 
+</div>
+<div class="row" style="margin-top:10px;height:100%;">
+    <div class="col-sm-1" style="vertical-align:middle"></div>
+    <div class="col-sm-1" style="vertical-align:middle">
+        <asp:Label ID="lblmetodo" runat="server" Text="Label" Width="100%"></asp:Label>
+    </div>
+    <div class="col-sm-5" style="vertical-align:middle">
+            <asp:DropDownList ID="dlmetodo" runat="server" CssClass="form-control"  ></asp:DropDownList>
     </div> 
 </div>
 
@@ -125,13 +134,16 @@ function filtrado() {
         <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" ></asp:TextBox>
         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> 
     </div>
-    <div class="col-sm-3" style="vertical-align:middle"></div>
+    <div class="col-sm-2" style="vertical-align:middle"></div>
+    <div class="col-sm-1" style="vertical-align:middle">
+                <asp:Button ID="btnProcesar" runat="server" Text="Button" cssclass="btn btn-info"/>
+    </div>
     <div class="col-sm-4">
         <div class="col-sm-3" style="vertical-align:middle">
             <asp:Label ID="lblFiltro" runat="server" Text="Label" Width="100%" style="text-align: right; margin-top:5px" Font-Bold="true" ></asp:Label>
         </div>
         <div class="col-sm-9" style="vertical-align:middle">
-            <input type="text" runat="server" id="txtFiltro" onkeyup="filtrado()" class="form-control" style="width:100%">
+            <input type="text" runat="server" id="txtFiltro" onkeyup="filtrado()" class="form-control" style="width:100%; background-image: url('~/images//searchicon.png'); background-position: 10px 12px; background-repeat: no-repeat;" >
             <%--<asp:TextBox ID="txtFiltro" runat="server" style="width:100%" CssClass="form-control" />--%>
         </div> 
     </div>

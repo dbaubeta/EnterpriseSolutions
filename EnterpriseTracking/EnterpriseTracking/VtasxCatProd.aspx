@@ -117,7 +117,7 @@
                 <asp:Label ID="lblDistribuidor" runat="server" Text="Label" Width="100%"></asp:Label>
             </div>
             <div class="col-sm-10" style="vertical-align:middle">
-                    <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+                    <asp:DropDownList ID="dlDistribuidores" runat="server" CssClass="form-control" ></asp:DropDownList>
             </div> 
         </div>
         <div class="row" style="margin-top:2px;margin-bottom:15px">

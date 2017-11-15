@@ -43,13 +43,15 @@ Public Class VtasxCatProd
                 Me.txtFiltro.Visible = False
                 Me.lblFiltro.Visible = False
 
+                If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
+
             Else
                 CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
                 CalendarExtender2.SelectedDate = DateTime.ParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
 
             End If
 
-            If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
+
 
 
 
@@ -456,4 +458,9 @@ Public Class VtasxCatProd
 
     End Sub
 
+    Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
+
+        CargardlDistribuidores()
+
+    End Sub
 End Class

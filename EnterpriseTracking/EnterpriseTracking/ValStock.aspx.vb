@@ -39,8 +39,14 @@ Public Class ValStock
                 Me.CalendarExtender1.EndDate = Now.Date
                 Me.CalendarExtender1.SelectedDate = Now.Date
 
+                Me.dlmetodo.Items.Add("FIFO")
+                Me.dlmetodo.Items.Add("LIFO")
+                Me.dlmetodo.Items.Add("PPP")
+                Me.dlmetodo.SelectedIndex = 0
+
                 If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
                 If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+
 
             Else
                 CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
@@ -89,7 +95,7 @@ Public Class ValStock
                 dt.Columns.Add("Nombre")
                 dt.Columns.Add("Categoria")
                 dt.Columns.Add("Stock")
-                dt.Columns.Add("ValStock")
+                dt.Columns.Add("StockVal")
 
                 For Each l As BE.Producto In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Producto).Cliente.ID = x.ID)
                     Dim dr As DataRow = dt.NewRow
@@ -100,9 +106,18 @@ Public Class ValStock
                     Dim hastast As New BE.Stock
                     hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
                     hastast.Fecha = Me.CalendarExtender1.SelectedDate
-                    Dim resultado As BE.Stock = st.ValorizarFIFO(hastast, l)
+                    Dim resultado As New BE.Stock
+                    Select Case dlmetodo.Text
+                        Case "FIFO"
+                            resultado = st.ValorizarFIFO(hastast, l)
+                        Case "LIFO"
+                            resultado = st.ValorizarLIFO(hastast, l)
+                        Case "PPP"
+                            resultado = st.ValorizarPPP(hastast, l)
+                    End Select
+
                     dr("Stock") = resultado.Cantidad
-                    dr("ValStock") = resultado.Precio
+                    dr("StockVal") = resultado.Precio
                     dt.Rows.Add(dr)
                 Next
 
@@ -330,4 +345,9 @@ Public Class ValStock
 
     End Function
 
+    Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
+
+        CargarGrilla()
+
+    End Sub
 End Class

@@ -122,6 +122,24 @@ Partial Public Class ValStock
     Protected WithEvents dlDistribuidores As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblmetodo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblmetodo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''dlmetodo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlmetodo As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''ScriptManager1 control.
     '''</summary>
     '''<remarks>
@@ -156,6 +174,15 @@ Partial Public Class ValStock
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
+
+    '''<summary>
+    '''btnProcesar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnProcesar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''lblFiltro control.
