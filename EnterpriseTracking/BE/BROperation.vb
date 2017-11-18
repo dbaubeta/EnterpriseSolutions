@@ -1,6 +1,4 @@
-﻿Public Class BROperation
-
-
+Public Class BROperation
 
     Private _Fecha As DateTime
     Public Property Fecha() As DateTime

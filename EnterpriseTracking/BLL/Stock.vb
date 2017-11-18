@@ -301,13 +301,5 @@ Public Class Stock
     End Function
 
 
-    Public Function ValorizarLIFO(l As List(Of BE.Stock)) As List(Of BE.Stock)
-        ValorizarLIFO = Nothing
-    End Function
-
-    Public Function ValorizarPP(l As List(Of BE.Stock)) As List(Of BE.Stock)
-        ValorizarPP = Nothing
-    End Function
-
 
 End Class 

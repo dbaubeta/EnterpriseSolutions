@@ -1,30 +1,29 @@
+Public Class Producto
+    Inherits ABM
 
-	Public Class Producto
-		Inherits ABM
 
+    Private _Categoria As BE.Categoria
+    Private _Cliente As BE.Cliente
+    Private _ID_Real As String
+    Private _Precio As Double
 
-		Private _Categoria As BE.Categoria
-		Private _Cliente As BE.Cliente
-		Private _ID_Real As String
-		Private _Precio As Double
-		
-		Public Property Categoria() As BE.Categoria
-			Get
-				Return _Categoria
-			End Get
-			Set(ByVal Value as BE.Categoria)
-				_Categoria = Value
-			End Set
-		End Property
+    Public Property Categoria() As BE.Categoria
+        Get
+            Return _Categoria
+        End Get
+        Set(ByVal Value As BE.Categoria)
+            _Categoria = Value
+        End Set
+    End Property
 
-		Public Property Cliente() As BE.Cliente
-			Get
-				Return _Cliente
-			End Get
-			Set(ByVal Value as BE.Cliente)
-				_Cliente = Value
-			End Set
-		End Property
+    Public Property Cliente() As BE.Cliente
+        Get
+            Return _Cliente
+        End Get
+        Set(ByVal Value As BE.Cliente)
+            _Cliente = Value
+        End Set
+    End Property
 
     Public Property IDReal() As Long
         Get
@@ -36,13 +35,13 @@
     End Property
 
     Public Property Precio() As Double
-			Get
-				Return _Precio
-			End Get
-			Set(ByVal Value as Double)
-				_Precio = Value
-			End Set
-		End Property
+        Get
+            Return _Precio
+        End Get
+        Set(ByVal Value As Double)
+            _Precio = Value
+        End Set
+    End Property
 
     Private _stockminimo As Long
     Public Property stockminimo() As Long
@@ -62,5 +61,5 @@
     End Sub
 
 
-	End Class
+End Class
 

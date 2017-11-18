@@ -54,10 +54,6 @@ Public Class BackupRestore
         End Try
     End Sub
 
-    Public Sub Grabar(ByVal o As BE.BROperation)
-
-    End Sub
-
     Public Function Obtener_Backups() As List(Of BE.BROperation)
 
         Try

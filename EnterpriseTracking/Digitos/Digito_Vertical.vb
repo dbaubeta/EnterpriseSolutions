@@ -27,6 +27,7 @@ Public Class Digito_Vertical
 
     End Function
 
+
     Public Overloads Function calcular() As Long
 
         ' Calcular el DVH

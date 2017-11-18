@@ -23,13 +23,6 @@
         End Set
     End Property
 
-    Public Sub Agregar_elemento(ByVal p_elemento As Elemento)
-    End Sub
-
-
-    Public Sub Bloquear_Usuario(ByVal u As BE.usuario)
-
-    End Sub
 
     Public Sub Eliminar()
         Dim dvv As New Digitos.Digito_Vertical
@@ -142,10 +135,6 @@
     End Sub
 
 
-    Public Function Usuario_Bloqueado(ByVal u As BE.Usuario) As List(Of BE.MensajeError)
-        Usuario_Bloqueado = Nothing
-    End Function
-
     Public Function ValidarDatos(ByVal s As BE.Usuario) As List(Of BE.MensajeError)
 
         Dim l As New List(Of BE.MensajeError)
@@ -167,7 +156,7 @@
             Throw bex
         Catch ex As Exception
             Dim bex As New BE.Excepcion
-            bex.excepcion = ex
+            bex.Excepcion = ex
             bex.Capa = Me.GetType().ToString
             Throw bex
         End Try

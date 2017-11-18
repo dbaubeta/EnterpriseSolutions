@@ -1,4 +1,4 @@
-﻿Public MustInherit Class ABM
+Public MustInherit Class ABM
 
     Private _DVH As Long
     Private _ID As Long

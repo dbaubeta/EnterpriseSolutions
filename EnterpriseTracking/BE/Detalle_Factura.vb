@@ -1,6 +1,5 @@
 Public Class Detalle_Factura
 
-
 	Private _Cantidad As Long
     Private _DVH As Long
 	Private _Linea As Long

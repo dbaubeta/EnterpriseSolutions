@@ -113,55 +113,31 @@ Public Class PanelControl
                     Dim did As Long = Long.Parse(grdTransmisiones.DataKeys(gr.RowIndex).Value)
                     desde.Distribuidor.ID = did
                     desdej.Distribuidor.ID = did
-                    Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
-
-                    Dim lj As List(Of BE.Justificacion) = bj.ObtenerJustificaciones(desdej, hastaj).FindAll(Function(z) DirectCast(z, BE.Justificacion).Distribuidor.ID = did)
-                    Dim total As Integer = 0
-                    Dim faltante As Integer = 0
-                    For idx = 1 To 31
-                        Dim dia As Integer = idx
-                        If idx <= hasta.Fecha.Day Then
-                            If DirectCast(p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).ID = did)(0), BE.Distribuidor).diasfactura.Substring(Int32.Parse(New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).DayOfWeek), 1) = "1" Then
-                                total += 1
-                                If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
-                                    Dim jus As BE.Justificacion = lj.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)
-                                    If IsNothing(jus) Then
-                                        faltante += 1
-                                    End If
-                                End If
-                            End If
-                        End If
-                    Next
 
                     'Calculo porcentaje y meto en el div
-                    Dim porcentaje As Integer
-                    If total = 0 Then
-                        porcentaje = 0
-                    Else
-                        porcentaje = (total - faltante) * 100 / total
-                    End If
+                    Dim porcentaje As Integer = bf.CalcularPorcentajeTransmisiones(desde, hasta)
+
                     Dim tipobarra As String = "progress-bar-success"
                     If porcentaje < 100 Then tipobarra = "progress-bar-warning"
                     If porcentaje < 50 Then tipobarra = "progress-bar-danger"
 
                     Dim sb As New StringBuilder
                     sb.Clear()
-                    'sb.AppendLine("<div class=""row"">")
-                    'sb.AppendLine("<div class=""col-sm-12"" style=""vertical-align:middle""></div>")
+
                     sb.AppendLine("<div class=""progress"" style=""height:100%"">")
                     sb.AppendLine("<div class=""progress-bar " + tipobarra + """ role=""progressbar"" aria-valuenow=""" + porcentaje.ToString + """")
                     sb.AppendLine("aria-valuemin=""0"" aria-valuemax=""100"" style=""width:" + porcentaje.ToString + "%; height:100%"">")
                     sb.AppendLine(porcentaje.ToString + "%")
                     sb.AppendLine("</div>")
                     sb.AppendLine("</div>")
-                    'sb.AppendLine("</div>")
-                    'sb.AppendLine("</div>")
+
                     DirectCast(gr.FindControl("LitPorcentaje"), Literal).Text = sb.ToString
 
 
                     ' SETEO INVASION
                     ' ===============================================================================================
                     Dim hayinvasion As Boolean = False
+                    Dim lf As List(Of BE.Factura) = bf.ObtenerFacturas(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = did)
                     For Each fact As BE.Factura In lf
                         If fact.PuntoVenta.invade Then
                             hayinvasion = True

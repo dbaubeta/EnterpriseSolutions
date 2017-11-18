@@ -1,6 +1,5 @@
-
-	Public Class Distribuidor
-		Inherits ABM
+Public Class Distribuidor
+    Inherits ABM
 
 
     Private _cliente As BE.Cliente

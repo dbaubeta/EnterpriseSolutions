@@ -26,7 +26,6 @@
 
     End Sub
 
-
     Public Sub Guardar(e As BE.Elemento)
 
         Dim params(2) As System.Data.SqlClient.SqlParameter
@@ -154,11 +153,6 @@
     End Function
 
 
-    Public Function ObtenerGrupos(u As BE.Usuario) As List(Of BE.Elemento)
-        ObtenerGrupos = Nothing
-    End Function
-
-
     Public Function ObtenerGrupos() As List(Of BE.Elemento)
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
@@ -220,12 +214,6 @@
         End Try
 
     End Function
-
-    Public Sub QuitarPermiso(g As BE.Elemento, p As BE.Elemento, u As BE.Usuario)
-
-    End Sub
-
-
 
     Public Function ObtenerElementos(u As BE.Usuario) As List(Of BE.Elemento)
 

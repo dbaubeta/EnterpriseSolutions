@@ -90,10 +90,6 @@ Public Class Secuencia
 
     End Sub
 
-    Public Function ObtenerSecuencias(f As List(Of BE.Secuencia)) As List(Of BE.Secuencia)
-        ObtenerSecuencias = Nothing
-    End Function
-
     Public Function Validar(s As BE.Secuencia) As List(Of BE.MensajeError)
 
         Dim p As New BLL.Persistencia

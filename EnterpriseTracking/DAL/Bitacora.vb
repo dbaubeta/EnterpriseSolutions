@@ -2,10 +2,6 @@
 
     Dim DBH As New SqlHelper
 
-    Public Function Cargar(b As BE.Bitacora) As BE.Bitacora
-
-        Return Nothing
-    End Function
 
     Public Sub Guardar(b As BE.Bitacora)
 

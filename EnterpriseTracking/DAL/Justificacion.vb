@@ -80,10 +80,6 @@
 
 
 
-    Public Function Obtenerjustificaciones(ByVal f As List(Of BE.Justificacion)) As List(Of BE.Justificacion)
-        Obtenerjustificaciones = Nothing
-    End Function
-
     Public Function Obtenerjustificaciones(Desde As BE.Justificacion, hasta As BE.Justificacion) As List(Of BE.Justificacion)
         Dim params(2) As System.Data.SqlClient.SqlParameter
         Dim cadena As String = "select * from justificacion where IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date)"

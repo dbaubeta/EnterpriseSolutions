@@ -1,7 +1,6 @@
 Public Class Categoria
     Inherits ABM
 
-
     Private _Cliente As BE.Cliente
     Private _IDReal As String
 

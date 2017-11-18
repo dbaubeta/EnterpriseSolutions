@@ -1,11 +1,5 @@
 ﻿Public Class Bitacora
 
-    Public Function Cargar(b As BE.Bitacora) As BE.Bitacora
-        Dim d As New DAL.Bitacora
-
-        Return d.Cargar(b)
-    End Function
-
     Public Sub Guardar(ByVal b As BE.Bitacora)
 
         Dim d As New DAL.Bitacora
@@ -26,9 +20,7 @@
 
     End Function
 
-    Public Sub VolcarXML()
 
-    End Sub
 
 
 End Class

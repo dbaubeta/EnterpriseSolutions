@@ -59,14 +59,10 @@ Public Class Factura
 
     End Sub
 
-    Public Function ObtenerFacturas(f As List(Of BE.Factura)) As List(Of BE.Factura)
-        ObtenerFacturas = Nothing
-    End Function
-
-    Public Function ObtenerFacturas(desde As BE.Factura, hasta As BE.Factura) As List(Of BE.Factura)
+    Public Function ObtenerFacturas(desde As BE.Factura, hasta As BE.Factura, Optional lazyload As Boolean = False) As List(Of BE.Factura)
         Try
 
-            Return d.ObtenerFacturas(desde, hasta)
+            Return d.ObtenerFacturas(desde, hasta, LazyLoad)
 
 
         Catch bex As BE.Excepcion
@@ -79,5 +75,53 @@ Public Class Factura
         End Try
 
     End Function
+
+
+    Public Function CalcularPorcentajeTransmisiones(desde As BE.Factura, hasta As BE.Factura) As Double
+
+        Dim desdej As New BE.Justificacion
+        Dim hastaj As New BE.Justificacion
+        Dim bj As New BLL.Justificacion
+        Dim p As New Persistencia
+        p.EstablecerObjetoNegocio(New BLL.Distribuidor)
+
+        desdej.Distribuidor = desde.Distribuidor
+        desdej.Fecha = desde.Fecha
+        hastaj.Fecha = hasta.Fecha
+
+        Dim lf As List(Of BE.Factura) = ObtenerFacturas(desde, hasta, True).FindAll(Function(z) DirectCast(z, BE.Factura).Distribuidor.ID = desde.Distribuidor.ID)
+
+        Dim lj As List(Of BE.Justificacion) = bj.ObtenerJustificaciones(desdej, hastaj).FindAll(Function(z) DirectCast(z, BE.Justificacion).Distribuidor.ID = desde.Distribuidor.ID)
+        Dim total As Integer = 0
+        Dim faltante As Integer = 0
+        Dim dist As BE.Distribuidor = DirectCast(p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).ID = desde.Distribuidor.ID)(0), BE.Distribuidor)
+        For idx = 1 To 31
+            Dim dia As Integer = idx
+            If idx <= hasta.Fecha.Day Then
+                If dist.diasfactura.Substring(Int32.Parse(New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).DayOfWeek), 1) = "1" Then
+                    total += 1
+                    If IsNothing(lf.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)) Then
+                        Dim jus As BE.Justificacion = lj.Find(Function(y) y.Fecha.Date = New DateTime(desde.Fecha.Year, desde.Fecha.Month, dia).Date)
+                        If IsNothing(jus) Then
+                            faltante += 1
+                        End If
+                    End If
+                End If
+            End If
+        Next
+
+        'Calculo porcentaje y meto en el div
+        Dim porcentaje As Integer
+        If total = 0 Then
+            porcentaje = 0
+        Else
+            porcentaje = (total - faltante) * 100 / total
+        End If
+
+        Return porcentaje
+
+    End Function
+
+
 
 End Class

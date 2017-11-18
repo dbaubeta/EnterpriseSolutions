@@ -67,11 +67,7 @@
 
     End Sub
 
-		Public Function ObtenerFacturas(ByVal f As List(Of BE.Factura)) As List(Of BE.Factura)
-			ObtenerFacturas = Nothing
-		End Function
-
-    Public Function ObtenerFacturas(Desde As BE.Factura, hasta As BE.Factura) As List(Of BE.Factura)
+    Public Function ObtenerFacturas(Desde As BE.Factura, hasta As BE.Factura, Optional LazyLoad As Boolean = False) As List(Of BE.Factura)
         Dim params(2) As System.Data.SqlClient.SqlParameter
         Dim cadena As String = "select * from Factura where borrado = 0 and IDDistribuidor = @P1 and cast(Fecha as date) >= cast(@P2 as date) and cast(Fecha as date) <= cast(@P3 as date)"
         Dim dt As DataTable
@@ -96,20 +92,25 @@
                 l.DVH = dr.Item("DVH")
 
                 l.Distribuidor.ID = dr.Item("IDDistribuidor")
-                Dim li As New List(Of BE.ABM)
-                li.Add(l.Distribuidor)
-                l.Distribuidor = dd.ObtenerLista(li)(0)
+                If Not LazyLoad Then
+                    Dim li As New List(Of BE.ABM)
+                    li.Add(l.Distribuidor)
+                    l.Distribuidor = dd.ObtenerLista(li)(0)
+                End If
 
                 l.PuntoVenta.ID = dr.Item("IDPuntoVenta")
-                Dim lp As New List(Of BE.PuntodeVenta)
-                lp.Add(l.PuntoVenta)
-                l.PuntoVenta = dp.ObtenerPDVs(lp)(0)
+                If Not LazyLoad Then
+                    Dim lp As New List(Of BE.PuntodeVenta)
+                    lp.Add(l.PuntoVenta)
+                    l.PuntoVenta = dp.ObtenerPDVs(lp)(0)
+                End If
 
-                l.Vendedor.ID = dr.Item("IDVendedor")
-                Dim lv As New List(Of BE.Vendedor)
-                lv.Add(l.Vendedor)
-                l.Vendedor = dv.ObtenerVendedores(lv)(0)
-
+                If Not LazyLoad Then
+                    l.Vendedor.ID = dr.Item("IDVendedor")
+                    Dim lv As New List(Of BE.Vendedor)
+                    lv.Add(l.Vendedor)
+                    l.Vendedor = dv.ObtenerVendedores(lv)(0)
+                End If
 
                 ll.Add(l)
             Next

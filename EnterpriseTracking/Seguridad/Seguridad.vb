@@ -47,10 +47,6 @@
 
     End Function
 
-    Public Function ObtenerPermiso(ByVal o As BE.Elemento) As Permiso
-        ObtenerPermiso = Nothing
-    End Function
-
     Public Function ObtenerPermisos() As List(Of Permiso)
         Dim d As New DAL.Elemento
         Dim l As New List(Of Permiso)
@@ -67,7 +63,7 @@
             Throw bex
         Catch ex As Exception
             Dim bex As New BE.Excepcion
-            bex.excepcion = ex
+            bex.Excepcion = ex
             bex.Capa = Me.GetType().ToString
             Throw bex
         End Try
