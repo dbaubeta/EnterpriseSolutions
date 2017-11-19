@@ -68,6 +68,7 @@ Public Class PanelControl
             Dim bf As New BLL.Factura
             Dim bj As New BLL.Justificacion
             Dim bp As New BLL.Producto
+            Dim bd As New BLL.Distribuidor
 
             If Not IsNothing(dlClientes.SelectedValue) Then
                 x.ID = dlClientes.SelectedValue
@@ -92,8 +93,7 @@ Public Class PanelControl
                 hastaj.Fecha = hasta.Fecha
 
                 ' Cargo la grilla
-                p.EstablecerObjetoNegocio(New BLL.Distribuidor)
-                For Each d In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = x.ID)
+                For Each d In bd.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = x.ID)
                     Dim dr As DataRow = dt.NewRow
                     dr("ID") = d.ID
                     dr("Distribuidor") = d.Nombre

@@ -20,8 +20,6 @@ Public Class Factura
 
 
         Try
-            l.Add(ob.Distribuidor)
-            ob.Distribuidor = bd.ObtenerLista(l)(0)
 
             For Each v As BE.Factura In ob.Lista_Facturas
 

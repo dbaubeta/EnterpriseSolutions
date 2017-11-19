@@ -23,8 +23,6 @@ Public Class PuntodeVenta
 
 
         Try
-            l.Add(ob.Distribuidor)
-            ob.Distribuidor = bd.ObtenerLista(l)(0)
 
             For Each v As BE.PuntodeVenta In ob.Lista_PDV
 

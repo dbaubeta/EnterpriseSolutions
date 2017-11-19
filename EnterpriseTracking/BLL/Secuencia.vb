@@ -67,6 +67,11 @@ Public Class Secuencia
 
         Try
 
+            Dim bd As New BLL.Distribuidor
+            Dim l As New List(Of BE.ABM)
+            l.Add(ob.Distribuidor)
+            ob.Distribuidor = bd.ObtenerLista(l)(0)
+
             bv.Guardar(ob)
             bp.Guardar(ob)
             bf.Guardar(ob)
@@ -349,7 +354,7 @@ Public Class Secuencia
         End Try
     End Function
 
-    Public Function ValidarXMLconXSD(doc As XmlDocument, xsdFilePath As String) As List(Of BE.MensajeError)
+    Private Function ValidarXMLconXSD(doc As XmlDocument, xsdFilePath As String) As List(Of BE.MensajeError)
 
         Dim l As List(Of BE.MensajeError)
 
@@ -363,13 +368,13 @@ Public Class Secuencia
 
     '    Private Class XmlValidationErrorBuilder
 
-    Public Sub ValidationEventHandler(ByVal sender As Object, ByVal args As ValidationEventArgs)
+    Private Sub ValidationEventHandler(ByVal sender As Object, ByVal args As ValidationEventArgs)
         If args.Severity = XmlSeverityType.Error Then
             _errors.Add(args)
         End If
     End Sub
 
-    Public Function GetErrors() As List(Of BE.MensajeError)
+    Private Function GetErrors() As List(Of BE.MensajeError)
         Dim l As New List(Of BE.MensajeError)
         If _errors.Count <> 0 Then
             For Each i As ValidationEventArgs In _errors

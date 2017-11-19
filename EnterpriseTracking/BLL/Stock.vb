@@ -74,8 +74,6 @@ Public Class Stock
         Dim lp As New List(Of BE.ABM)
 
         Try
-            l.Add(ob.Distribuidor)
-            ob.Distribuidor = bd.ObtenerLista(l)(0)
 
             For Each v As BE.Stock In ob.Lista_Stock
                 ' Recalculo todos los digitos verificadores horizontales
@@ -300,6 +298,155 @@ Public Class Stock
 
     End Function
 
+
+    Public Function ProyectarVentas(hastast As BE.Stock, p As BE.Producto) As BE.Stock()
+
+        Dim stocks(23) As BE.Stock
+
+        Dim historial(11) As Long
+        historial = obtenerHistorial(hastast, p)
+        Dim proyeccion(11) As Long
+        proyeccion = proyectar(historial)
+
+        For i = 0 To 11
+            Dim a As New BE.Stock
+            a.Cantidad = historial(i)
+            stocks(i) = a
+
+            Dim b As New BE.Stock
+            b.Cantidad = proyeccion(i)
+            stocks(i + 12) = b
+
+        Next
+        Return stocks
+
+    End Function
+
+
+
+    Private Function obtenerHistorial(fecha As BE.Stock, prod As BE.Producto) As Long()
+
+        Dim bf As New BLL.Factura
+        Dim bdf As New BLL.Detalle_Factura
+        Dim bp As New BLL.Producto
+        Dim bd As New BLL.Distribuidor
+        Dim bs As New BLL.Stock
+        Dim salida As New BE.Stock
+
+        Dim historial(11) As Long
+
+        Dim ldi As New List(Of BE.ABM)
+        ldi.Add(fecha.Distribuidor)
+        fecha.Distribuidor = bd.ObtenerLista(ldi)(0)
+
+        Dim ld As New List(Of BE.ABM)
+        ld.Add(prod)
+        prod = bp.ObtenerLista(ld).Find(Function(z) DirectCast(z, BE.Producto).Cliente.ID = fecha.Distribuidor.Cliente.ID)
+
+        'Seteo los valores desde hasta, en base al mes y año
+        Dim desde As New BE.Stock
+        Dim hasta As New BE.Stock
+        desde.Fecha = New Date(Now.Year, Now.Month, 1).AddMonths(-11)
+        desde.Distribuidor = fecha.Distribuidor
+        hasta.Fecha = fecha.Fecha
+        If hasta.Fecha.Date >= Now.Date Then hasta.Fecha = Now.Date
+
+        Dim ls As List(Of BE.Stock) = bs.ObtenerStocks(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Stock).Distribuidor.ID = fecha.Distribuidor.ID).FindAll(Function(zz) DirectCast(zz, BE.Stock).Producto.ID = prod.ID).FindAll(Function(zzz) zzz.Tipo = "Entrada")
+        Dim fechacontrol As Date = New Date(Now.Year, Now.Month, 1).AddMonths(1)
+        For Each s As BE.Stock In ls
+            Dim difmonth As Integer = Math.Floor(Math.Abs(DateDiff(DateInterval.Month, fechacontrol, s.Fecha)))
+            historial(12 - difmonth) += s.Cantidad
+        Next
+
+        Return historial
+
+    End Function
+
+
+
+    Private Function proyectar(historial As Long())
+
+
+        ' Calculo el promedio de los meses entre cada compra
+        Dim cntnon0 As Integer = 0
+        Dim cnt0 As Integer = 0
+        For i = 0 To 11
+            If historial(i) <> 0 Then
+                cntnon0 += 1
+            Else
+                cnt0 += 1
+            End If
+        Next
+
+        Dim prommes As Integer = Convert.ToInt32(Math.Round((cnt0 / (cntnon0 + 1))))
+
+
+
+        ' Calculo el promedio/mediana de las cantidades de compras del ultimo año
+        Dim med As Long
+        cntnon0 = 0
+        For i = 0 To 11
+            If historial(i) <> 0 Then cntnon0 += 1
+        Next
+        Dim values(cntnon0 - 1)
+
+        Dim idx As Integer = 0
+        For i = 0 To 11
+            If historial(i) <> 0 Then
+                values(idx) = historial(i)
+                idx += 1
+            End If
+        Next
+
+        If values.Length >= 5 Then 'Usar MEdiana si hay menos de 5 valores para calcular
+            Array.Sort(values)
+            Dim size As Integer = values.Length
+            If size = 0 Then med = 0
+
+            If size Mod 2 = 0 Then
+                med = (values(CInt(size / 2) - 1) + values(CInt(size / 2))) / 2
+            Else
+                med = values(CInt(Math.Floor(size / 2)))
+            End If
+        Else ' Usar Promedio
+
+            Dim lCounter As Long
+            Dim dTotal As Double
+            dTotal = 0
+            For lCounter = 0 To UBound(values)
+                dTotal = dTotal + values(lCounter)
+            Next
+            med = dTotal / (UBound(values) + 1)
+
+        End If
+
+
+
+        Dim proyeccion(11) As Long
+        cnt0 = 0
+        Dim inicio As Integer = 0
+
+        For i = 11 To 0 Step -1
+            If historial(i) = 0 Then
+                cnt0 += 1
+            Else
+                Exit For
+            End If
+        Next
+
+        inicio = prommes - cnt0
+        If inicio < 0 Then inicio = 0
+
+        For i = 0 To 11
+            If i = inicio Then
+                proyeccion(i) = med
+                inicio += prommes + 1
+            End If
+        Next
+
+        Return proyeccion
+
+    End Function
 
 
 End Class 

@@ -120,6 +120,7 @@
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
+        ' Valido los datos ingresados
         Dim erroresval As List(Of BE.MensajeError) = p.ValidarDatos(u)
         If erroresval.Count > 0 Then
             MostrarMensajeModal(erroresval(0).IDError, True)

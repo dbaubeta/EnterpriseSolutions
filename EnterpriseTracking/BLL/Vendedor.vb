@@ -9,11 +9,6 @@ Public Class Vendedor
         Try
             ' Recalculo todos los digitos verificadores horizontales
 
-            Dim bd As New BLL.Distribuidor
-            Dim l As New List(Of BE.ABM)
-            l.Add(ob.Distribuidor)
-            ob.Distribuidor = bd.ObtenerLista(l)(0)
-
             For Each v As BE.Vendedor In ob.Lista_Vendedores
                 v.DVH = dvh.calcular(v)
                 v.Distribuidor.ID = ob.Distribuidor.ID

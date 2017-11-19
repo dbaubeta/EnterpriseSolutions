@@ -9,8 +9,6 @@
 
         Try
 
-
-
             Dim cmd As String = "MERGE FacturaDetalle AS target " +
                     "USING (SELECT @P1 as IDFactura ,@P2 as Linea ,@P3 as IDProducto ,@P4 as Cantidad ,@P5 as precio ,@P6 as DVH ) AS source " +
                     "ON target.IDFactura = source.IDFactura AND target.linea = source.linea " +
