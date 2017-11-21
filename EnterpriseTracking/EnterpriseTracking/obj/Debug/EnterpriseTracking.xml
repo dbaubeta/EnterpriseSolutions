@@ -6,7 +6,127 @@ EnterpriseTracking
 </name>
 </assembly>
 <members>
-<member name="F:EnterpriseTracking.CargaManual.ImagenSiNo">
+<member name="F:EnterpriseTracking.CambiarContrasena.ImagenSiNo">
+	<summary>
+ImagenSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.noTranslateModalMessageSiNo">
+	<summary>
+noTranslateModalMessageSiNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.btnModalSi">
+	<summary>
+btnModalSi control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.btnModalNo">
+	<summary>
+btnModalNo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.ImagenMensaje">
+	<summary>
+ImagenMensaje control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.noTranslateModalMessage">
+	<summary>
+noTranslateModalMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.btnModalOk">
+	<summary>
+btnModalOk control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.lblCambiarContrasenaTitulo">
+	<summary>
+lblCambiarContrasenaTitulo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.lblContrasenaActual">
+	<summary>
+lblContrasenaActual control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.txtcontrasena">
+	<summary>
+txtcontrasena control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.lblNuevaContrasena">
+	<summary>
+lblNuevaContrasena control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.txtNuevaContrasena">
+	<summary>
+txtNuevaContrasena control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.lblRepetircontrasena">
+	<summary>
+lblRepetircontrasena control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.txtRepetirContrasena">
+	<summary>
+txtRepetirContrasena control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CambiarContrasena.btnAceptar">
+	<summary>
+btnAceptar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.CargaManual.ImagenSiNo">
 	<summary>
 ImagenSiNo control.
 </summary>
@@ -649,6 +769,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.Enterprise.noTranslateListaSeguridad">
 	<summary>
 noTranslateListaSeguridad control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.Enterprise.mnuButtonCambiarContrasena">
+	<summary>
+mnuButtonCambiarContrasena control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -3130,6 +3258,30 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:EnterpriseTracking.ProyeccionVtas.LitChart">
 	<summary>
 LitChart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ValidarBase.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ValidarBase.Button1">
+	<summary>
+Button1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:EnterpriseTracking.ValidarBase.Button2">
+	<summary>
+Button2 control.
 </summary>
 	<remarks>
 Auto-generated field.

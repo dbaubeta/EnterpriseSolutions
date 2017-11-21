@@ -152,6 +152,44 @@
         End Try
     End Function
 
+
+    Public Function ObtenerDetalles() As List(Of BE.Detalle_Factura)
+        Dim cadena As String = "select fd.* from FacturaDetalle fd join factura f on f.id = fd.IDFactura"
+        Dim dt As DataTable
+        Dim l As BE.Detalle_Factura
+        Dim ll As New List(Of BE.Detalle_Factura)
+        Dim dd As New DAL.Producto
+        Try
+
+
+            dt = DBH.SelectTabla(cadena)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Detalle_Factura
+
+                l.FacturaID = dr.Item("IDFactura")
+                l.Linea = dr.Item("linea")
+                l.Cantidad = dr.Item("cantidad")
+                l.Precio = dr.Item("precio")
+                l.DVH = dr.Item("DVH")
+
+                l.Producto.ID = dr.Item("IDProducto")
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+
+        End Try
+    End Function
+
+
+
     Public Function ObtenerDetallescomoStock(desde As BE.Factura, hasta As BE.Factura, Optional prod As BE.Producto = Nothing) As List(Of BE.Stock)
         Dim params(2) As System.Data.SqlClient.SqlParameter
         Dim cadena As String = "select fd.*, f.fecha, f.IDDistribuidor from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 "

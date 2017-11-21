@@ -1,16 +1,6 @@
 ﻿Public Class Login
     Inherits System.Web.UI.Page
 
-
-
-
-    Protected _centerMap As String = String.Empty
-    Protected _markers As String = String.Empty
-    Protected _mapZoomLevel As Integer = 5
-    ' initial zoom level of the map
-
-
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.msjError.Visible = False
 

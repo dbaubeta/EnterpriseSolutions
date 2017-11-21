@@ -9,8 +9,7 @@ Public Class Secuencia
 	Private _Lista_PDV As List(Of BE.PuntodeVenta)
 	Private _Lista_Stock As List(Of BE.Stock)
 	Private _Lista_Vendedores As List(Of BE.Vendedor)
-	Private _Nro_Secuencia_Int As Long
-	Private _Nro_Secuencia_Real As Long
+    Private _Nro_Secuencia_Real As Long
 
 	Public Property Distribuidor() As BE.Distribuidor
 		Get
@@ -84,14 +83,7 @@ Public Class Secuencia
 		End Set
 	End Property
 
-	Public Property Nro_Secuencia_Int() As Long
-		Get
-			Return _Nro_Secuencia_Int
-		End Get
-		Set(ByVal Value as Long)
-			_Nro_Secuencia_Int = Value
-		End Set
-	End Property
+
 
 	Public Property Nro_Secuencia_Real() As Long
 		Get
@@ -120,6 +112,7 @@ Public Class Secuencia
         Me.Lista_Facturas = New List(Of BE.Factura)
         Me.Lista_PDV = New List(Of BE.PuntodeVenta)
         Me.Lista_Stock = New List(Of BE.Stock)
+        Me.Distribuidor = New BE.Distribuidor
 
     End Sub
 

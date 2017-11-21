@@ -17,7 +17,7 @@ DAL
 </summary>
 </member><member name="P:DAL.My.Resources.Resources.BackupFolder">
 	<summary>
-  Looks up a localized string similar to C:\Users\daniel.baubeta\Documents\Backups\.
+  Looks up a localized string similar to F:\backups\.
 </summary>
 </member><member name="P:DAL.My.Resources.Resources.StrSql">
 	<summary>

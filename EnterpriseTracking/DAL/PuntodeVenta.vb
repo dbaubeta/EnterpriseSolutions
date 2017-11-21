@@ -94,7 +94,7 @@ Public Class PuntodeVenta
         End Try
     End Sub
 
-    Public Function ObtenerPDVs(ByVal f As List(Of BE.PuntodeVenta)) As List(Of BE.PuntodeVenta)
+    Public Function ObtenerPDVs(Optional f As List(Of BE.PuntodeVenta) = Nothing) As List(Of BE.PuntodeVenta)
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
         Dim in1 As String = ""

@@ -17,7 +17,6 @@
         Try
             Dim f As New BLL.Facade_Pantalla
             Dim b As New BLL.Idioma
-            Dim l As New List(Of BE.Idioma)
             Dim m As New BE.MensajeError
 
 
@@ -27,7 +26,6 @@
 
             If Not IsPostBack Then
 
-                l = b.Obtener_Idiomas()
                 'dlIdiomas_SelectedIndexChanged(sender, e)
                 If Not IsNothing(Session("UsuarioAEditar")) Then
 

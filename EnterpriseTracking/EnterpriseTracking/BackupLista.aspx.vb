@@ -123,39 +123,55 @@ Public Class BackupLista
     End Sub
 
     Private Sub btnModalSi_ServerClick(sender As Object, e As EventArgs) Handles btnModalSi.ServerClick
+        Dim hayerror As Boolean = False
 
         Try
             Dim x As New BE.BROperation
             Dim d As New BLL.BackupRestore
+            Dim bit As New Bitacora.Bitacora
 
             If Session("AccionBackup") = "Crear" Then
                 x.Fecha = Now
                 d.Backup(x)
                 CargarGrilla()
+                bit.Guardar(New BE.Bitacora("BIT_Backup", "Backup", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID))
                 MostrarMensajeModal("BackupCompleto", True)
             End If
 
             If Session("AccionBackup") = "Restaurar" Then
                 x.Fecha = DateTime.ParseExact(grdBackups.SelectedRow.Cells(0).Text.Replace(":", "_"), "yyyy-MM-dd HH_mm_ss", CultureInfo.InvariantCulture)
                 d.Restore(x)
+                bit.Guardar(New BE.Bitacora("BIT_Restore", "Restore", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID))
                 MostrarMensajeModal("RestoreCompleto", True)
+
             End If
 
             If Session("AccionBackup") = "Eliminar" Then
                 x.Fecha = DateTime.ParseExact(grdBackups.SelectedRow.Cells(0).Text.Replace(":", "_"), "yyyy-MM-dd HH_mm_ss", CultureInfo.InvariantCulture)
                 d.Eliminar(x)
+                bit.Guardar(New BE.Bitacora("BIT_Backup", "Backup", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID))
                 CargarGrilla()
             End If
 
-
-            Session("AccionBackup") = Nothing
-
-
         Catch bex As BE.Excepcion
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+            hayerror = True
         Catch ex As Exception
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+            hayerror = True
         End Try
+
+
+        If Session("AccionBackup") = "Restaurar" And Not hayerror Then
+            Session("AccionBackup") = Nothing
+            'Cierro la sesion
+            Dim m As Object
+            m = Me.Master
+            m.Logout()
+
+        Else
+            Session("AccionBackup") = Nothing
+        End If
 
     End Sub
 
@@ -192,4 +208,7 @@ Public Class BackupLista
 
 
 
+    Private Sub BackupLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+    End Sub
 End Class

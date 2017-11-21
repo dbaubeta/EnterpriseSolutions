@@ -43,7 +43,7 @@
                 params(7) = DBH.CrearParametro("@P0", Long.Parse(u.ID))
                 params(8) = DBH.CrearParametro("@P8", Long.Parse(u.stockminimo))
 
-                DBH.Update("update Producto set Nombre=@P1, DVH=@P2, IDCategoria=@P3, IDReal=@P4, borrado=@P5, IDCliente=@P6, precio=@P7, =, stockminimo=@P8 where ID=@P0", params)
+                DBH.Update("update Producto set Nombre=@P1, DVH=@P2, IDCategoria=@P3, IDReal=@P4, borrado=@P5, IDCliente=@P6, precio=@P7, stockminimo=@P8 where ID=@P0", params)
 
             End If
 

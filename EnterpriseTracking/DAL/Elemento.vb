@@ -87,7 +87,7 @@
         End Try
     End Sub
 
-    Public Function ObtenerElementos(i As List(Of BE.Elemento)) As List(Of BE.Elemento)
+    Public Function ObtenerElementos(Optional i As List(Of BE.Elemento) = Nothing) As List(Of BE.Elemento)
 
         Dim params() As System.Data.SqlClient.SqlParameter = Nothing
         Dim in1 As String = ""

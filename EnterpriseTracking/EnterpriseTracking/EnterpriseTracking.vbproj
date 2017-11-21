@@ -80,6 +80,10 @@
       <Project>{0341b243-7936-40cf-b288-53613ef8fb0a}</Project>
       <Name>Cifrado</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Digitos\Digitos.vbproj">
+      <Project>{403b3c66-4472-4fb7-b3f8-9764ae9a44b9}</Project>
+      <Name>Digitos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Seguridad\Seguridad.vbproj">
       <Project>{298bdc6e-48ac-4a92-854b-b7d3c01819b7}</Project>
       <Name>Seguridad</Name>
@@ -111,6 +115,7 @@
   <ItemGroup>
     <Content Include="BackupLista.aspx" />
     <Content Include="BitacoraLista.aspx" />
+    <Content Include="CambiarContrasena.aspx" />
     <Content Include="CargaManual.aspx" />
     <Content Include="CategoriaEdicion.aspx" />
     <Content Include="CategoriaLista.aspx" />
@@ -158,6 +163,7 @@
     <Content Include="UsuarioAsignarPermisos.aspx" />
     <Content Include="UsuarioEdicion.aspx" />
     <Content Include="UsuarioLista.aspx" />
+    <Content Include="ValidarBase.aspx" />
     <Content Include="ValStock.aspx" />
     <Content Include="VtasxCatProd.aspx" />
     <Content Include="VtasxDistVend.aspx" />
@@ -178,6 +184,13 @@
     </Compile>
     <Compile Include="BitacoraLista.aspx.vb">
       <DependentUpon>BitacoraLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContrasena.aspx.designer.vb">
+      <DependentUpon>CambiarContrasena.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContrasena.aspx.vb">
+      <DependentUpon>CambiarContrasena.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CargaManual.aspx.designer.vb">
@@ -365,6 +378,13 @@
     </Compile>
     <Compile Include="UsuarioLista.aspx.vb">
       <DependentUpon>UsuarioLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ValidarBase.aspx.designer.vb">
+      <DependentUpon>ValidarBase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ValidarBase.aspx.vb">
+      <DependentUpon>ValidarBase.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ValStock.aspx.designer.vb">

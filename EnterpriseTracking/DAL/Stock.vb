@@ -121,6 +121,54 @@ Public Class Stock
 
     End Function
 
+    Public Function ObtenerStocks() As List(Of BE.Stock)
+        Dim cadena As String = "select * from Stock"
+        Dim dt As DataTable
+        Dim l As BE.Stock
+        Dim ll As New List(Of BE.Stock)
+        Dim dd As New DAL.Distribuidor
+        Dim dp As New DAL.Producto
+        Dim dv As New DAL.Vendedor
+        Try
+
+            dt = DBH.SelectTabla(cadena)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Stock
+                l.ID = dr.Item("ID")
+                l.borrado = dr.Item("borrado")
+                l.Fecha = dr.Item("Fecha")
+                l.Cantidad = dr.Item("cantidad")
+                l.Tipo = dr.Item("tipo")
+                l.Precio = dr.Item("Precio")
+                l.DVH = dr.Item("DVH")
+
+                l.Distribuidor.ID = dr.Item("IDDistribuidor")
+                Dim li As New List(Of BE.ABM)
+                li.Add(l.Distribuidor)
+                l.Distribuidor = dd.ObtenerLista(li)(0)
+
+                l.Producto.ID = dr.Item("IDProducto")
+                Dim lp As New List(Of BE.ABM)
+                lp.Add(l.Producto)
+                l.Producto = dp.ObtenerLista(lp)(0)
+
+
+
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
+
     Public Function CalcularStock(desde As BE.Factura, hasta As BE.Factura, prod As BE.Producto) As BE.Stock
         Dim params(3) As System.Data.SqlClient.SqlParameter
 

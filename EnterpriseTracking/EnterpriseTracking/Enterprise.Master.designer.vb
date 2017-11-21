@@ -131,6 +131,15 @@ Partial Public Class Enterprise
     Protected WithEvents noTranslateListaSeguridad As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''mnuButtonCambiarContrasena control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mnuButtonCambiarContrasena As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''mnuButtonLogout control.
     '''</summary>
     '''<remarks>

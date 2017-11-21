@@ -31,10 +31,9 @@ Public Class Enterprise
 
         ' Si la pantalla actual no esta en la lista de permisos del usuario o no es admin lo mando a login
         Dim formname As String = Path.GetFileName(Request.PhysicalPath).Replace(".aspx", "")
-        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = formname)) And DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID = 1 Then
-            Session("Idioma") = Nothing
-            Session("Usuario") = Nothing
-            Response.Redirect("~/Login.aspx")
+        If Not IsNothing(lp.Find(Function(x) x.Elemento.nombre = formname)) Or formname = "CambiarContrasena" Or DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID = 1 Then
+        Else
+            Logout()
         End If
 
 
@@ -126,8 +125,7 @@ Public Class Enterprise
 
     End Sub
 
-
-    Protected Sub mnuButtonLogout_Click(sender As Object, e As EventArgs) Handles mnuButtonLogout.Click
+    Public Sub Logout()
 
         Dim bit As New Bitacora.Bitacora
 
@@ -137,6 +135,12 @@ Public Class Enterprise
         Session("EsCliente") = Nothing
         Session("EsDistribuidor") = Nothing
         Response.Redirect("~/Login.aspx")
+
+    End Sub
+
+    Protected Sub mnuButtonLogout_Click(sender As Object, e As EventArgs) Handles mnuButtonLogout.Click
+
+        Logout()
 
     End Sub
 
@@ -303,5 +307,8 @@ Public Class Enterprise
     End Sub
 
 
+    Private Sub mnuButtonCambiarContrasena_Click(sender As Object, e As EventArgs) Handles mnuButtonCambiarContrasena.Click
+        Response.Redirect("~/CambiarContrasena.aspx")
+    End Sub
 
 End Class

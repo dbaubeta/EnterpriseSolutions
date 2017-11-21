@@ -124,4 +124,42 @@
 
 
 
+    Public Function Obtenerjustificaciones() As List(Of BE.Justificacion)
+        Dim cadena As String = "select * from justificacion"
+        Dim dt As DataTable
+        Dim l As BE.Justificacion
+        Dim ll As New List(Of BE.Justificacion)
+        Dim dd As New DAL.Distribuidor
+        Dim dp As New DAL.PuntodeVenta
+        Dim dv As New DAL.Vendedor
+        Try
+
+            dt = DBH.SelectTabla(cadena)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Justificacion
+                l.ID = dr.Item("ID")
+                l.Fecha = dr.Item("Fecha")
+                l.DVH = dr.Item("DVH")
+                l.Motivo = dr.Item("motivo")
+
+                l.Distribuidor.ID = dr.Item("IDDistribuidor")
+                Dim li As New List(Of BE.ABM)
+                li.Add(l.Distribuidor)
+                l.Distribuidor = dd.ObtenerLista(li)(0)
+
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+    End Function
+
+
 End Class

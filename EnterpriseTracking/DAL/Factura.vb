@@ -105,8 +105,8 @@
                     l.PuntoVenta = dp.ObtenerPDVs(lp)(0)
                 End If
 
+                l.Vendedor.ID = dr.Item("IDVendedor")
                 If Not LazyLoad Then
-                    l.Vendedor.ID = dr.Item("IDVendedor")
                     Dim lv As New List(Of BE.Vendedor)
                     lv.Add(l.Vendedor)
                     l.Vendedor = dv.ObtenerVendedores(lv)(0)
@@ -125,6 +125,47 @@
             Throw bex
         End Try
     End Function
+
+
+    Public Function ObtenerFacturas() As List(Of BE.Factura)
+        Dim cadena As String = "select * from Factura"
+        Dim dt As DataTable
+        Dim l As BE.Factura
+        Dim ll As New List(Of BE.Factura)
+        Dim dd As New DAL.Distribuidor
+        Dim dp As New DAL.PuntodeVenta
+        Dim dv As New DAL.Vendedor
+        Try
+
+            dt = DBH.SelectTabla(cadena)
+            For Each dr As DataRow In dt.Rows
+                l = New BE.Factura
+                l.ID = dr.Item("ID")
+                l.Nro_Factura_Real = dr.Item("NroFactura")
+                l.borrado = dr.Item("borrado")
+                l.Fecha = dr.Item("Fecha")
+                l.DVH = dr.Item("DVH")
+
+                l.Distribuidor.ID = dr.Item("IDDistribuidor")
+
+                l.PuntoVenta.ID = dr.Item("IDPuntoVenta")
+
+                l.Vendedor.ID = dr.Item("IDVendedor")
+                
+                ll.Add(l)
+            Next
+
+            Return ll
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+    End Function
+
 
 
 End Class 

@@ -103,6 +103,15 @@ Public Class EditarLenguaje
                 Next
 
                 bi.Guardar(x)
+                Dim bit As New Bitacora.Bitacora
+
+                ' Guardo en la bitacora
+                If IsNothing(Session("IdiomaAEditar")) Then
+                    bit.Guardar(New BE.Bitacora("BIT_IdiomaAlta", "Idioma", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, u.ID.ToString))
+                Else
+                    bit.Guardar(New BE.Bitacora("BIT_IdiomaModificacion", "Idioma", DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, u.ID.ToString))
+                End If
+
 
             Catch bex As BE.Excepcion
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)

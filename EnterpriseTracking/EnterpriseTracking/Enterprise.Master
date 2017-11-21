@@ -44,7 +44,7 @@
         <nav class="navbar navbar-inverse" style="background-color:#00122f">
           <div class="container-fluid">
             <div class="row" style="margin-bottom:10px;margin-top:10px">
-              <div class="col-sm-8">
+              <div class="col-sm-7">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Enterprise</a>
                 </div>
@@ -83,8 +83,13 @@
                 </ul>
               </div>
             <%-- LOGOUT--%>              
-              <div class="col-sm-2" style="height:100%;margin-top:10px;text-align:right;">
+              <div class="col-sm-3" style="height:100%;">
+              <div class="col-sm-6" style="height:100%;margin-top:10px;text-align:right;">
+                  <asp:Button ID="mnuButtonCambiarContrasena" cssclass="btn btn-info" runat="server" style="width:100%" />
+              </div>
+              <div class="col-sm-6" style="height:100%;margin-top:10px;text-align:right;">
                   <asp:Button ID="mnuButtonLogout" cssclass="btn btn-danger" runat="server" style="width:100%" />
+              </div>
               </div>
             <%-- IDIOMAS--%>              
               <div class="col-sm-2" style="height:100%;margin-top:10px ;">
