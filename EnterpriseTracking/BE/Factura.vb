@@ -91,6 +91,17 @@ Public Class Factura
         End Set
     End Property
 
+    Private _tipofactura As String
+    Public Property TipoFactura() As String
+        Get
+            Return _tipofactura
+        End Get
+        Set(ByVal value As String)
+            _tipofactura = value
+        End Set
+    End Property
+
+
     Public Sub New()
         Me.Detalles_Factura = New List(Of Detalle_Factura)()
         Me.Distribuidor = New BE.Distribuidor

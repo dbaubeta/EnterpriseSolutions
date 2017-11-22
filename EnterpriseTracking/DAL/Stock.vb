@@ -173,7 +173,7 @@ Public Class Stock
         Dim params(3) As System.Data.SqlClient.SqlParameter
 
         Dim cadena As String = "select COALESCE(sum(x.cantidad),0) as cantidad from ("
-        cadena += "select (cantidad * (-1)) as cantidad from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 and IDProducto = @P4 "
+        cadena += "select (cantidad * CASE WHEN f.TipoFactura='NC' THEN -1 else 1 END *(-1)) as cantidad from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 and IDProducto = @P4 "
         cadena += "UNION ALL select case when tipo = 'Entrada' then cantidad else cantidad * (-1) end as cantidad from stock where borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and IDDistribuidor = @P3 and IDProducto = @P4"
         cadena += ") as x"
 

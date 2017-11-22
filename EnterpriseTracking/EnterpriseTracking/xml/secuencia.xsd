@@ -53,14 +53,31 @@
             <xs:enumeration value="Tucumán"/>
 			</xs:restriction>
       </xs:simpleType>
-      <!-- Definimos un tipo para la provincia -->
+      <!-- Definimos un tipo para lel tipo de movimiento de stock -->
       <xs:simpleType name="TipoStock">
          <xs:restriction base="xs:string">
             <xs:enumeration value="Entrada"/>
             <xs:enumeration value="Salida"/>
 			</xs:restriction>
       </xs:simpleType>
-      <xs:element name="secuencia">
+      <!-- Definimos un tipo para el tipo de factura -->
+      <xs:simpleType name="TipoFactura">
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="FA"/>
+            <xs:enumeration value="NC"/>
+            <xs:enumeration value="ND"/>
+			</xs:restriction>
+      </xs:simpleType>      
+      <!-- Definimos un tipo para el tipo de PDV-->
+      <xs:simpleType name="TipoPDV">
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="Kiosco"/>
+            <xs:enumeration value="Supermercado chico"/>
+            <xs:enumeration value="Supermercado mediano"/>
+            <xs:enumeration value="Autoservicio"/>
+			</xs:restriction>
+      </xs:simpleType>      
+	  <xs:element name="secuencia">
          <xs:complexType>
             <xs:sequence>
                <xs:element name="distribuidor" type="intRequerido" minOccurs="1" maxOccurs="1"></xs:element>
@@ -94,6 +111,7 @@
                                  <xs:element name="cp" type="StringRequerido" nillable="false"></xs:element>
                                  <xs:element name="provincia" type="ProvinciaRequerida" nillable="false"></xs:element>
                                  <xs:element name="cuit" type="StringRequerido" nillable="false"></xs:element>
+                                 <xs:element name="tipopdv" type="TipoPDV" nillable="false"></xs:element>
                                  <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>
                               </xs:sequence>
@@ -110,6 +128,7 @@
                               <xs:sequence>
                                  <xs:element name="nrofactura" type="StringRequerido" nillable="false"></xs:element>
                                  <xs:element name="fecha" type="FechaRequerido" nillable="false"></xs:element>
+                                 <xs:element name="tipofactura" type="TipoFactura" nillable="false"></xs:element>
                                  <xs:element name="vendedor" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="puntoventa" type="intRequerido" nillable="false"></xs:element>
                                  <xs:element name="borrado" type="borradoRequerido" nillable="false"></xs:element>

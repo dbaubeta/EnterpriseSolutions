@@ -82,7 +82,7 @@ function filtrado() {
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:10px;margin-bottom:15px">
     <div class="col-sm-8">
-        <asp:Label ID="lblStockListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+        <asp:Label ID="lblProyeccionVentasTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
     </div>
     <div class="col-sm-4">
         <div class="col-sm-3" style="vertical-align:middle">
@@ -109,12 +109,12 @@ function filtrado() {
 <div class="row" style="margin-top:10px;margin-bottom:15px">
     <div class="col-sm-1" style="vertical-align:middle"></div>
     <div class="col-sm-1" style="vertical-align:middle">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <asp:Label ID="lblFecha" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
+<%--        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:Label ID="lblFecha" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>--%>
     </div>
     <div class="col-sm-2" style="vertical-align:middle">
-        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" ></asp:TextBox>
-        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> 
+<%--        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" ></asp:TextBox>
+        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> --%>
     </div>
     <div class="col-sm-2" style="vertical-align:middle"></div>
     <div class="col-sm-1" style="vertical-align:middle">
@@ -142,39 +142,51 @@ function filtrado() {
                 </asp:BoundField>
                 <asp:BoundField DataField="mes1" HeaderText="mes1" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes2" HeaderText="mes2" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes3" HeaderText="mes3" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes4" HeaderText="mes4" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes5" HeaderText="mes5" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes6" HeaderText="mes6" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes7" HeaderText="mes7" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes8" HeaderText="mes8" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes9" HeaderText="mes9" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes10" HeaderText="mes10" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes11" HeaderText="mes11" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="mes12" HeaderText="mes12" >
                 <HeaderStyle Width="6%" />
+                <ItemStyle Width="6%" HorizontalAlign="Right" />
                 </asp:BoundField>
             </Columns>
                 <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />

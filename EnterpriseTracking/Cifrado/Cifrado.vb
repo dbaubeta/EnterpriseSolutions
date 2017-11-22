@@ -66,8 +66,11 @@ Public Class Cifrado
             AES.Key = hash
             AES.Mode = Security.Cryptography.CipherMode.ECB
             Dim DESDecrypter As System.Security.Cryptography.ICryptoTransform = AES.CreateDecryptor
-            Dim Buffer As Byte() = Convert.FromBase64String(input)
-            decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
+            Try
+                Dim Buffer As Byte() = Convert.FromBase64String(input)
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length))
+            Catch
+            End Try
             Return decrypted
         Catch ex As Exception
             Throw ex

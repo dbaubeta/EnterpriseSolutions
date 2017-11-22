@@ -23,16 +23,22 @@ Public Class ValStock
                 Me.dlClientes.DataValueField = "ID"
                 Me.dlClientes.DataTextField = "Nombre"
                 ' Busco si el usuario logueado es un cliente
-                If IsNothing(Session("EsCliente")) Then
-                    Me.dlClientes.DataSource = b.ObtenerLista()
-                    Me.dlClientes.DataBind()
-                    Me.dlClientes.SelectedIndex = 0
-                Else
+                If Not IsNothing(Session("EsCliente")) Then
                     Me.dlClientes.DataSource = b.ObtenerLista().FindAll(Function(z) z.ID = DirectCast(Session("EsCliente"), BE.Cliente).ID)
                     Me.dlClientes.DataBind()
                     Me.dlClientes.SelectedValue = DirectCast(Session("EsCliente"), BE.Cliente).ID
                     Me.dlClientes.Visible = False
                     Me.lblCliente.Visible = False
+                ElseIf Not IsNothing(Session("EsDistribuidor")) Then
+                    Me.dlClientes.DataSource = b.ObtenerLista().FindAll(Function(z) z.ID = DirectCast(Session("EsDistribuidor"), BE.Distribuidor).Cliente.ID)
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedValue = DirectCast(Session("EsDistribuidor"), BE.Distribuidor).Cliente.ID
+                    Me.dlClientes.Visible = False
+                    Me.lblCliente.Visible = False
+                Else
+                    Me.dlClientes.DataSource = b.ObtenerLista()
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedIndex = 0
 
                 End If
 
@@ -54,8 +60,14 @@ Public Class ValStock
             End If
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -63,15 +75,38 @@ Public Class ValStock
 
 
     Private Sub CargardlDistribuidores()
+        Try
+            Dim b As New BLL.Distribuidor
+            Me.dlDistribuidores.Items.Clear()
+            Me.dlDistribuidores.DataValueField = "ID"
+            Me.dlDistribuidores.DataTextField = "Nombre"
+            If Not IsNothing(Session("EsDistribuidor")) Then
+                Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).ID = DirectCast(Session("EsDistribuidor"), BE.Distribuidor).ID)
+            Else
+                Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = dlClientes.SelectedValue)
+            End If
+            Me.dlDistribuidores.DataBind()
+            If Me.dlDistribuidores.Items.Count > 0 Then Me.dlDistribuidores.SelectedIndex = 0
 
-        Dim b As New BLL.Distribuidor
-        Me.dlDistribuidores.Items.Clear()
-        Me.dlDistribuidores.DataValueField = "ID"
-        Me.dlDistribuidores.DataTextField = "Nombre"
-        Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = dlClientes.SelectedValue)
-        Me.dlDistribuidores.DataBind()
-        If Me.dlDistribuidores.Items.Count > 0 Then Me.dlDistribuidores.SelectedIndex = 0
+            If Not IsNothing(Session("EsDistribuidor")) Then
+                Me.dlDistribuidores.Visible = False
+                Me.lblDistribuidor.Visible = False
+            Else
+                Me.dlDistribuidores.Visible = True
+                Me.lblDistribuidor.Visible = True
+            End If
 
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
     End Sub
 
 
@@ -132,8 +167,14 @@ Public Class ValStock
 
             End If
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -151,8 +192,14 @@ Public Class ValStock
             Next
             MyBase.Render(writer)
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -167,15 +214,15 @@ Public Class ValStock
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
                     row.ToolTip = String.Empty
 
-                    Dim p As New BE.Producto
-                    Dim bp As New BLL.Producto
-                    Dim lp As New List(Of BE.ABM)
-                    lp.Add(p)
-                    p.ID = Long.Parse(grdStocksVal.DataKeys(row.RowIndex).Value)
-                    p = bp.ObtenerLista(lp).Find(Function(z) DirectCast(z, BE.Producto).Cliente.ID = dlClientes.SelectedValue)
-                    If Not IsNothing(p) Then
-                        DibujarGrafica(p)
-                    End If
+                    'Dim p As New BE.Producto
+                    'Dim bp As New BLL.Producto
+                    'Dim lp As New List(Of BE.ABM)
+                    'lp.Add(p)
+                    'p.ID = Long.Parse(grdStocksVal.DataKeys(row.RowIndex).Value)
+                    'p = bp.ObtenerLista(lp).Find(Function(z) DirectCast(z, BE.Producto).Cliente.ID = dlClientes.SelectedValue)
+                    'If Not IsNothing(p) Then
+                    '    DibujarGrafica(p)
+                    'End If
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "clickenfila();", True)
                 Else
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
@@ -183,8 +230,14 @@ Public Class ValStock
                 End If
             Next
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -223,72 +276,72 @@ Public Class ValStock
     End Sub
 
 
-    Protected Sub DibujarGrafica(p As BE.Producto)
+    'Protected Sub DibujarGrafica(p As BE.Producto)
 
-        Dim sb As New StringBuilder
-        Dim stocks(11) As Long
-
-
-        Dim datastr As String = "                data: ["
-        Dim labelsstr As String = "                labels: ["""
-        Dim fechainicio As Date = Me.CalendarExtender1.SelectedDate
-        For i = 11 To 0 Step -1
-            Dim st As New BLL.Stock
-            Dim hastast As New BE.Stock
-            hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
-            hastast.Fecha = fechainicio.AddMonths(i * -1)
-            If hastast.Fecha <> fechainicio Then
-                hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
-            End If
-            datastr += st.CalcularStock(hastast, p).Cantidad.ToString
-            labelsstr += obtenertextomes(hastast.Fecha.Month)
-            If i = 0 Then datastr += "]," Else datastr += ","
-            If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
-        Next
+    '    Dim sb As New StringBuilder
+    '    Dim stocks(11) As Long
 
 
-        sb.Clear()
-
-        sb.AppendLine("<script>")
-        sb.AppendLine("function dibujarchart() {")
-        sb.AppendLine("    var ctx = document.getElementById('myChart');")
-        sb.AppendLine("    var chart = new Chart(ctx, {")
-        sb.AppendLine("        // Tipo de Chart")
-        sb.AppendLine("        type: 'line',")
-        sb.AppendLine("        // Los datos")
-        sb.AppendLine("        data: {")
-
-        sb.AppendLine(labelsstr)
-
-        sb.AppendLine("            datasets: [{")
-        sb.AppendLine("                label: ""Stock"",")
-        sb.AppendLine("                //backgroundColor: 'rgb(26, 109, 104)',")
-        sb.AppendLine("                borderColor: 'rgb(26, 109, 104)',")
-
-        sb.AppendLine(datastr)
-
-        sb.AppendLine("                tension: 0.1,")
-        sb.AppendLine("            }]")
-        sb.AppendLine("        },")
-        sb.AppendLine("        // Opciones para el chart")
-        sb.AppendLine("        options: {")
-        sb.AppendLine("            responsive: true,")
-        sb.AppendLine("            maintainAspectRatio: false,")
-        sb.AppendLine("            animation: {")
-        sb.AppendLine("                duration: 1000, // general animation time")
-        sb.AppendLine("            }")
-        sb.AppendLine("        }")
-        sb.AppendLine("    });")
-        sb.AppendLine("}")
-        sb.AppendLine("</script>")
+    '    Dim datastr As String = "                data: ["
+    '    Dim labelsstr As String = "                labels: ["""
+    '    Dim fechainicio As Date = Me.CalendarExtender1.SelectedDate
+    '    For i = 11 To 0 Step -1
+    '        Dim st As New BLL.Stock
+    '        Dim hastast As New BE.Stock
+    '        hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
+    '        hastast.Fecha = fechainicio.AddMonths(i * -1)
+    '        If hastast.Fecha <> fechainicio Then
+    '            hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
+    '        End If
+    '        datastr += st.CalcularStock(hastast, p).Cantidad.ToString
+    '        labelsstr += obtenertextomes(hastast.Fecha.Month)
+    '        If i = 0 Then datastr += "]," Else datastr += ","
+    '        If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
+    '    Next
 
 
-        LitChart.Text = sb.ToString
+    '    sb.Clear()
 
-        'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
+    '    sb.AppendLine("<script>")
+    '    sb.AppendLine("function dibujarchart() {")
+    '    sb.AppendLine("    var ctx = document.getElementById('myChart');")
+    '    sb.AppendLine("    var chart = new Chart(ctx, {")
+    '    sb.AppendLine("        // Tipo de Chart")
+    '    sb.AppendLine("        type: 'line',")
+    '    sb.AppendLine("        // Los datos")
+    '    sb.AppendLine("        data: {")
+
+    '    sb.AppendLine(labelsstr)
+
+    '    sb.AppendLine("            datasets: [{")
+    '    sb.AppendLine("                label: ""Stock"",")
+    '    sb.AppendLine("                //backgroundColor: 'rgb(26, 109, 104)',")
+    '    sb.AppendLine("                borderColor: 'rgb(26, 109, 104)',")
+
+    '    sb.AppendLine(datastr)
+
+    '    sb.AppendLine("                tension: 0.1,")
+    '    sb.AppendLine("            }]")
+    '    sb.AppendLine("        },")
+    '    sb.AppendLine("        // Opciones para el chart")
+    '    sb.AppendLine("        options: {")
+    '    sb.AppendLine("            responsive: true,")
+    '    sb.AppendLine("            maintainAspectRatio: false,")
+    '    sb.AppendLine("            animation: {")
+    '    sb.AppendLine("                duration: 1000, // general animation time")
+    '    sb.AppendLine("            }")
+    '    sb.AppendLine("        }")
+    '    sb.AppendLine("    });")
+    '    sb.AppendLine("}")
+    '    sb.AppendLine("</script>")
 
 
-    End Sub
+    '    LitChart.Text = sb.ToString
+
+    '    'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
+
+
+    'End Sub
 
     Private Sub StockLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
@@ -340,14 +393,22 @@ Public Class ValStock
         End Select
 
         Dim f As New BLL.Facade_Pantalla
-        Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+        Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda + "corto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
 
 
     End Function
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
 
-        CargarGrilla()
+        If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
 
     End Sub
+
+
+    Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
+
+        CargardlDistribuidores()
+
+    End Sub
+
 End Class

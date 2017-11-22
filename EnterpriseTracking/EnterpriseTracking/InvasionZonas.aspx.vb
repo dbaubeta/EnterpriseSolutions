@@ -19,10 +19,28 @@ Public Class InvasionZonas
         If IsNothing(Session("Usuario")) Then
             Response.Redirect("~/Login.aspx")
         End If
-        Dim b As New BLL.Distribuidor
+        Dim b As New BLL.Cliente
 
         Try
             If Not IsPostBack Then
+
+
+                Me.dlClientes.DataValueField = "ID"
+                Me.dlClientes.DataTextField = "Nombre"
+                ' Busco si el usuario logueado es un cliente
+                If IsNothing(Session("EsCliente")) Then
+                    Me.dlClientes.DataSource = b.ObtenerLista()
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedIndex = 0
+                Else
+                    Me.dlClientes.DataSource = b.ObtenerLista().FindAll(Function(z) z.ID = DirectCast(Session("EsCliente"), BE.Cliente).ID)
+                    Me.dlClientes.DataBind()
+                    Me.dlClientes.SelectedValue = DirectCast(Session("EsCliente"), BE.Cliente).ID
+                    Me.dlClientes.Visible = False
+                    Me.lblCliente.Visible = False
+
+                End If
+
 
                 Me.dlano.Items.Add(Now.Year.ToString)
                 Me.dlano.Items.Add((Now.Year - 1).ToString)
@@ -32,29 +50,46 @@ Public Class InvasionZonas
                 Me.dlano.SelectedValue = (Now.Year.ToString)
                 CargarMeses()
 
-                Me.dlDistribuidores.DataValueField = "ID"
-                Me.dlDistribuidores.DataTextField = "Nombre"
-                ' Busco si el usuario logueado es un Distribuidor
-                If IsNothing(Session("EsCliente")) Then
-                    Me.dlDistribuidores.DataSource = b.ObtenerLista()
-                    Me.dlDistribuidores.DataBind()
-                    Me.dlDistribuidores.SelectedIndex = 0
-                Else
-                    Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = DirectCast(Session("EsCliente"), BE.Cliente).ID)
-                    Me.dlDistribuidores.DataBind()
-                    Me.dlDistribuidores.SelectedValue = DirectCast(Session("EsDistribuidor"), BE.Distribuidor).ID
-                End If
+                If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
 
             End If
 
             If Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
+    End Sub
+
+    Private Sub CargardlDistribuidores()
+        Try
+            Dim b As New BLL.Distribuidor
+            Me.dlDistribuidores.Items.Clear()
+            Me.dlDistribuidores.DataValueField = "ID"
+            Me.dlDistribuidores.DataTextField = "Nombre"
+            Me.dlDistribuidores.DataSource = b.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Distribuidor).Cliente.ID = dlClientes.SelectedValue)
+            Me.dlDistribuidores.DataBind()
+            If Me.dlDistribuidores.Items.Count > 0 Then Me.dlDistribuidores.SelectedIndex = 0
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
     End Sub
 
 
@@ -130,6 +165,7 @@ Public Class InvasionZonas
 
                 Next
 
+                Me.LitMaps.Text = ""
                 If countmarkers = 0 Then
 
                     Dim dr As DataRow = dt.NewRow
@@ -141,13 +177,13 @@ Public Class InvasionZonas
                     'Else
                     'mapcenterlat = minlat + (maxlat - minlat) / 2
                     'mapcenterlong = minlong + (maxlong - minlong) / 2
+                Else
+
+                    mapcenterlat = x.AreaVentasCentroLat
+                    mapcenterlong = x.AreaVentasCentroLong
+                    CreateMaps()
+
                 End If
-
-                mapcenterlat = x.AreaVentasCentroLat
-                mapcenterlong = x.AreaVentasCentroLong
-
-                CreateMaps()
-
                 grdPuntodeVentas.DataSource = Nothing
                 grdPuntodeVentas.DataSource = dt
                 grdPuntodeVentas.DataBind()
@@ -161,8 +197,14 @@ Public Class InvasionZonas
 
             End If
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -180,8 +222,14 @@ Public Class InvasionZonas
             Next
             MyBase.Render(writer)
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -204,8 +252,14 @@ Public Class InvasionZonas
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "initialize();", True)
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -295,21 +349,20 @@ Public Class InvasionZonas
     End Sub
 
 
-
-
+    Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
+        CargardlDistribuidores()
+        Me.grdPuntodeVentas.DataSource = Nothing
+        Me.grdPuntodeVentas.DataBind()
+        Me.LitMaps.Text = ""
+        CargarGrilla()
+    End Sub
 
     Private Sub InvasionZonas_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
-
         For i = 0 To grdPuntodeVentas.Rows.Count - 1
-
             If grdPuntodeVentas.DataKeys(i).Value = "1" Then
-
                 grdPuntodeVentas.Rows(i).BackColor = ColorTranslator.FromHtml("#C64D45")
-
             End If
-
         Next
-
     End Sub
 
 

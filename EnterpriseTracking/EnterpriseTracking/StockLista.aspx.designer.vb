@@ -158,6 +158,15 @@ Partial Public Class StockLista
     Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
 
     '''<summary>
+    '''btnProcesar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnProcesar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''lblFiltro control.
     '''</summary>
     '''<remarks>

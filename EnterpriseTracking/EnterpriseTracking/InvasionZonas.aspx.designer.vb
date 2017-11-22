@@ -77,13 +77,31 @@ Partial Public Class InvasionZonas
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''lblDistribuidorListaTitulo control.
+    '''lblInvasionzonasTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDistribuidorListaTitulo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblInvasionzonasTitulo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblCliente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCliente As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''dlClientes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dlClientes As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''lblDistribuidor control.

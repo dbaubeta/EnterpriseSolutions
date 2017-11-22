@@ -28,7 +28,7 @@ Public MustInherit Class ABM
         Try
             ob.DVH = DVH.calcular(ob)
             d.Guardar(ob)
-            DVV.tabla = "Cliente"
+            DVV.tabla = d.GetType().Name
             DVV.calcular()
 
         Catch bex As BE.Excepcion

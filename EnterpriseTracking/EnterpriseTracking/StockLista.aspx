@@ -127,7 +127,10 @@ function filtrado() {
         <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" ></asp:TextBox>
         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtFecha"/> 
     </div>
-    <div class="col-sm-3" style="vertical-align:middle"></div>
+    <div class="col-sm-2" style="vertical-align:middle"></div>
+    <div class="col-sm-1" style="vertical-align:middle">
+                <asp:Button ID="btnProcesar" runat="server" Text="Button" cssclass="btn btn-info" Width="100%"/>
+    </div>
     <div class="col-sm-4">
         <div class="col-sm-3" style="vertical-align:middle">
             <asp:Label ID="lblFiltro" runat="server" Text="Label" Width="100%" style="text-align: right; margin-top:5px" Font-Bold="true" ></asp:Label>
@@ -143,7 +146,7 @@ function filtrado() {
 <div class="row" style="margin-top:30px;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
     <div class="col-md-10">
-        <asp:GridView ID="grdStocks" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False"  DataKeyNames="ID">
+        <asp:GridView ID="grdStocks" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False"  DataKeyNames="ID, Critico">
             <Columns>
                 <asp:BoundField DataField="Categoria" HeaderText="Categoria" >
                 <HeaderStyle Width="15%" />
@@ -153,6 +156,7 @@ function filtrado() {
                 </asp:BoundField>
                 <asp:BoundField DataField="Stock" HeaderText="Stock" >
                 <HeaderStyle Width="15%" />
+                <ItemStyle Width="15%" HorizontalAlign="Right" />
                 </asp:BoundField>
             </Columns>
                 <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />

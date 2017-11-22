@@ -57,4 +57,31 @@ Public Class Digito_Vertical
 
     End Function
 
+
+    Public Function validar() As Long
+
+        ' Calcular el DVH
+        Dim DBH As New DAL.SqlHelper
+
+        Try
+            Dim consulta As String = "Select count(*) from DVV " + _
+                                      "JOIN (SELECT '" + Me.tabla + "' as tabla, ISNULL(sum(DVH),0) valor from " + Me.tabla + ") src " + _
+                                      "ON src.tabla = DVV.NombreTabla " + _
+                                      "WHERE dvv.Nombretabla = '" + Me.tabla + "' AND dvv.valor != src.valor;"
+
+            Return DBH.RetrieveScalar(consulta)
+
+        Catch bex As BE.Excepcion
+            Throw bex
+        Catch ex As Exception
+            Dim bex As New BE.Excepcion
+            bex.Excepcion = ex
+            bex.Capa = Me.GetType().ToString
+            Throw bex
+        End Try
+
+    End Function
+
+
+
 End Class

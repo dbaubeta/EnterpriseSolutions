@@ -1,6 +1,7 @@
 ﻿Public Class Validador
 
     Dim dvh As New Digito_Horizontal
+    Dim dvv As New Digito_Vertical
 
     Public Function validarDB() As List(Of BE.MensajeError)
 
@@ -77,7 +78,7 @@
         str = "Detalle_Factura"
         For Each x In ddf.ObtenerDetalles()
             If dvh.calcular(x) <> x.DVH Then
-                l.Add(New BE.MensajeError("DVH_" + str, "", x.FacturaID.ToString + ", " + x.Linea))
+                l.Add(New BE.MensajeError("DVH_" + str, "", x.FacturaID.ToString + vbTab + x.Linea))
             End If
         Next
 
@@ -149,6 +150,47 @@
                 l.Add(New BE.MensajeError("DVH_" + str, "", x.ID))
             End If
         Next
+
+
+
+        dvv.tabla = "Categoria"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Cliente"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Distribuidor"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Elemento"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "ElementoElemento"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "EntradasBitacora"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Factura"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "FacturaDetalle"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "idioma"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "IdiomaLeyenda"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "justificacion"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Producto"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "PuntoDeVenta"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Secuencia"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Stock"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Usuario"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "UsuarioElemento"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Vendedor"
+        If dvv.validar() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+
+
 
 
 
@@ -298,6 +340,46 @@
             x.DVH = dvh.calcular(x)
         Next
         dve.Guardar(lve)
+
+
+        dvv.tabla = "Categoria"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Cliente"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Distribuidor"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Elemento"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "ElementoElemento"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "EntradasBitacora"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Factura"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "FacturaDetalle"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "idioma"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "IdiomaLeyenda"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "justificacion"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Producto"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "PuntoDeVenta"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Secuencia"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Stock"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Usuario"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "UsuarioElemento"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+        dvv.tabla = "Vendedor"
+        If dvv.calcular() > 0 Then l.Add(New BE.MensajeError("DVV_Error", "", dvv.tabla))
+
+
 
         Return l
 

@@ -28,8 +28,14 @@ Public Class DistribuidorEdicion
 
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -114,8 +120,14 @@ Public Class DistribuidorEdicion
             End If
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
     End Sub
@@ -147,16 +159,21 @@ Public Class DistribuidorEdicion
             IIf(Me.chkJueves.Checked, "1", "0") + _
             IIf(Me.chkViernes.Checked, "1", "0") + _
             IIf(Me.chkSabado.Checked, "1", "0")
-            Dim us2 As CultureInfo = New CultureInfo("en-US")
-            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text, us2)
-            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text, us2)
+            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text, New CultureInfo("en-US"))
+            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text, New CultureInfo("en-US"))
             u.AreaVentasRadio = Long.Parse(Me.txtAreaVentasRadio.Text)
 
             erroresval = p.ValidarDatos(u)
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -176,9 +193,15 @@ Public Class DistribuidorEdicion
                     bit.Guardar(New BE.Bitacora("BIT_" + strClase + "Modificacion", strClase, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, u.ID.ToString))
                 End If
             Catch bex As BE.Excepcion
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+                bitac.Guardar(bm)
                 hayerror = True
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
             Catch ex As Exception
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+                bitac.Guardar(bm)
                 hayerror = True
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
             End Try

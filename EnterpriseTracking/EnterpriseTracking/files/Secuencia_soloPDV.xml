@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<secuencia>
+  <distribuidor>100</distribuidor>
+  <IDReal>1</IDReal>
+  <puntosventa>
+    <puntoventa>
+      <id>1</id><nombre>El Kioskito Loco</nombre><calle>Av. Pres. Manuel Quintana</calle><numero>403</numero><depto></depto>
+      <cp>C1129ABA</cp><provincia>C.A.B.A.</provincia><cuit>12345678901</cuit><tipopdv>Kiosco</tipopdv><vendedor>1</vendedor><borrado>0</borrado>
+    </puntoventa>
+    <puntoventa>
+      <id>2</id><nombre>Super el Chino</nombre><calle>Av. Callao</calle><numero>1652</numero><depto></depto>
+      <cp>C1024AAP</cp><provincia>C.A.B.A.</provincia><cuit>54316565163</cuit><tipopdv>Supermercado chico</tipopdv><vendedor>1</vendedor><borrado>0</borrado>
+    </puntoventa>
+    <puntoventa>
+      <id>3</id><nombre>Mayorista El zarpado</nombre><calle>Av. Gral. Las Heras</calle><numero>2077</numero><depto></depto>
+      <cp>C1127AAP</cp><provincia>C.A.B.A.</provincia><cuit>65468791654</cuit><tipopdv>Kiosco</tipopdv><vendedor>2</vendedor><borrado>0</borrado>
+    </puntoventa>
+    <puntoventa>
+      <id>4</id><nombre>Despensa la Kriss</nombre><calle>Ayacucho</calle><numero>1872</numero><depto></depto>
+      <cp>C1112AAH</cp><provincia>C.A.B.A.</provincia><cuit>21654987652</cuit><tipopdv>Autoservicio</tipopdv><vendedor>4</vendedor><borrado>0</borrado>
+    </puntoventa>
+    <puntoventa>
+      <id>5</id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1532</numero><depto></depto>
+      <cp>C1112ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><tipopdv>Kiosco</tipopdv><vendedor>3</vendedor><borrado>0</borrado>
+    </puntoventa>
+    <puntoventa>
+      <id>6</id><nombre>Despensa El Patovica Alegre</nombre><calle>Serrano</calle><numero>852</numero><depto></depto>
+      <cp>C1414DEQ</cp><provincia>C.A.B.A.</provincia><cuit>65465499879</cuit><tipopdv>Supermercado mediano</tipopdv><vendedor>3</vendedor><borrado>0</borrado>
+    </puntoventa>  </puntosventa>
+</secuencia>

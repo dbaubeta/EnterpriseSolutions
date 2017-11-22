@@ -86,6 +86,96 @@ Partial Public Class BitacoraLista
     Protected WithEvents lblBackupListaTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''ScriptManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
+    '''lblDesde control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDesde As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDesde control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDesde As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''CalendarExtender1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
+
+    '''<summary>
+    '''lblHasta control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHasta As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txthasta control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txthasta As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''CalendarExtender2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CalendarExtender2 As Global.AjaxControlToolkit.CalendarExtender
+
+    '''<summary>
+    '''btnProcesar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnProcesar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblFiltro control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFiltro As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtFiltro control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFiltro As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
     '''grdBitacora control.
     '''</summary>
     '''<remarks>

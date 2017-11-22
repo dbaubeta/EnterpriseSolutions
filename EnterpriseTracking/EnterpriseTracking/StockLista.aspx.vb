@@ -38,7 +38,7 @@ Public Class StockLista
                 Me.CalendarExtender1.SelectedDate = Now.Date
 
                 If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
-                If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+
 
             Else
                 CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
@@ -46,8 +46,14 @@ Public Class StockLista
             End If
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -87,6 +93,7 @@ Public Class StockLista
                 dt.Columns.Add("Nombre")
                 dt.Columns.Add("Categoria")
                 dt.Columns.Add("Stock")
+                dt.Columns.Add("Critico")
 
                 For Each l As BE.Producto In p.ObtenerLista().FindAll(Function(z) DirectCast(z, BE.Producto).Cliente.ID = x.ID)
                     Dim dr As DataRow = dt.NewRow
@@ -97,7 +104,16 @@ Public Class StockLista
                     Dim hastast As New BE.Stock
                     hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
                     hastast.Fecha = Me.CalendarExtender1.SelectedDate
-                    dr("Stock") = st.CalcularStock(hastast, l).Cantidad
+                    Dim stockcal As Long
+                    stockcal = st.CalcularStock(hastast, l).Cantidad
+                    dr("Stock") = stockcal
+
+                    If stockcal < l.stockminimo Then
+                        dr("Critico") = "Si"
+                    Else
+                        dr("Critico") = "No"
+                    End If
+
                     dt.Rows.Add(dr)
                 Next
 
@@ -112,8 +128,14 @@ Public Class StockLista
 
             End If
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -131,8 +153,14 @@ Public Class StockLista
             Next
             MyBase.Render(writer)
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -151,7 +179,7 @@ Public Class StockLista
                     Dim bp As New BLL.Producto
                     Dim lp As New List(Of BE.ABM)
                     lp.Add(p)
-                    p.ID = Long.Parse(grdStocks.DataKeys(row.RowIndex).Value)
+                    p.ID = Long.Parse(grdStocks.DataKeys(row.RowIndex).Values(0))
                     p = bp.ObtenerLista(lp).Find(Function(z) DirectCast(z, BE.Producto).Cliente.ID = dlClientes.SelectedValue)
                     If Not IsNothing(p) Then
                         DibujarGrafica(p)
@@ -163,8 +191,14 @@ Public Class StockLista
                 End If
             Next
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -221,7 +255,7 @@ Public Class StockLista
                 hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
             End If
             datastr += st.CalcularStock(hastast, p).Cantidad.ToString
-            labelsstr += obtenertextomes(hastast.Fecha.Month)
+            labelsstr += obtenertextomes(hastast.Fecha.Month) + " " + hastast.Fecha.Year.ToString
             If i = 0 Then datastr += "]," Else datastr += ","
             If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
         Next
@@ -273,7 +307,15 @@ Public Class StockLista
     Private Sub StockLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
         Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+        For i = 0 To grdStocks.Rows.Count - 1
 
+            If grdStocks.DataKeys(i).Values(1) = "Si" Then
+
+                grdStocks.Rows(i).BackColor = ColorTranslator.FromHtml("#C64D45")
+
+            End If
+
+        Next
 
     End Sub
 
@@ -320,9 +362,21 @@ Public Class StockLista
         End Select
 
         Dim f As New BLL.Facade_Pantalla
-        Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+        Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda + "corto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
+
 
 
     End Function
+
+    Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
+        If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+    End Sub
+
+
+    Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
+
+        CargardlDistribuidores()
+
+    End Sub
 
 End Class

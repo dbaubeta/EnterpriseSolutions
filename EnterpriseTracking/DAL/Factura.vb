@@ -4,12 +4,12 @@
 
     Public Sub Guardar(u As BE.Factura)
 
-        Dim params(6) As System.Data.SqlClient.SqlParameter
+        Dim params(7) As System.Data.SqlClient.SqlParameter
 
         Try
 
             Dim cmd As String = "MERGE Factura AS target " +
-                    "USING (SELECT @P1 as NroFactura,@P2 as Fecha,@P3 as DVH,@P4 as Borrado,@P5 as IDPuntoVenta,@P6 as IDDistribuidor,@P7 as IDVendedor) AS source " +
+                    "USING (SELECT @P1 as NroFactura,@P2 as Fecha,@P3 as DVH,@P4 as Borrado,@P5 as IDPuntoVenta,@P6 as IDDistribuidor,@P7 as IDVendedor, @P8 as TipoFactura) AS source " +
                     "ON target.NroFactura = source.NroFactura AND target.IDDistribuidor = source.IDDistribuidor " +
                     "WHEN NOT MATCHED THEN " +
                     "INSERT (NroFactura " +
@@ -18,7 +18,8 @@
                           ",Borrado " +
                           ",IDPuntoVenta " +
                           ",IDDistribuidor " +
-                          ",IDVendedor) " +
+                          ",IDVendedor " +
+                          ",TipoFactura) " +
                     "VALUES " +
                           "(source.NroFactura " +
                           ",source.Fecha " +
@@ -26,7 +27,8 @@
                           ",source.Borrado " +
                           ",source.IDPuntoVenta " +
                           ",source.IDDistribuidor " +
-                          ",source.IDVendedor) " +
+                          ",source.IDVendedor " +
+                          ",source.TipoFactura) " +
                     "WHEN MATCHED THEN " +
                     "    UPDATE SET " +
                           "NroFactura = source.NroFactura " +
@@ -35,6 +37,7 @@
                           ",Borrado = source.Borrado " +
                           ",IDPuntoVenta = source.IDPuntoVenta " +
                           ",IDDistribuidor = source.IDDistribuidor " +
+                          ",TipoFactura = source.TipoFactura " +
                           ",IDVendedor = source.IDVendedor;"
 
 
@@ -47,6 +50,7 @@
             params(4) = DBH.CrearParametro("@P5", Long.Parse(u.PuntoVenta.ID))
             params(5) = DBH.CrearParametro("@P6", Long.Parse(u.Distribuidor.ID))
             params(6) = DBH.CrearParametro("@P7", Long.Parse(u.Vendedor.ID))
+            params(7) = DBH.CrearParametro("@P8", u.TipoFactura)
 
             DBH.Update(cmd, params)
             u.ID = DBH.RetrieveScalar("select id from Factura where IDdistribuidor= " + u.Distribuidor.ID.ToString + " and NroFactura='" + u.Nro_Factura_Real + "'")
@@ -90,6 +94,7 @@
                 l.borrado = dr.Item("borrado")
                 l.Fecha = dr.Item("Fecha")
                 l.DVH = dr.Item("DVH")
+                l.TipoFactura = dr.Item("TipoFactura")
 
                 l.Distribuidor.ID = dr.Item("IDDistribuidor")
                 If Not LazyLoad Then
@@ -145,6 +150,7 @@
                 l.borrado = dr.Item("borrado")
                 l.Fecha = dr.Item("Fecha")
                 l.DVH = dr.Item("DVH")
+                l.TipoFactura = dr.Item("TipoFactura")
 
                 l.Distribuidor.ID = dr.Item("IDDistribuidor")
 

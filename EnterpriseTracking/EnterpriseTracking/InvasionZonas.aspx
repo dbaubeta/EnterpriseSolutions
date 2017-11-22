@@ -52,8 +52,16 @@
 
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:15px;margin-bottom:15px">
-    <div class="col-sm-12">
-        <asp:Label ID="lblDistribuidorListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+    <div class="col-sm-8">
+        <asp:Label ID="lblInvasionzonasTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+    </div>
+    <div class="col-sm-4">
+        <div class="col-sm-3" style="vertical-align:middle">
+            <asp:Label ID="lblCliente" runat="server" Text="Label" Width="100%" style="text-align: right; margin-top:3px" Font-Bold="true" ></asp:Label>
+        </div>
+        <div class="col-sm-9" style="vertical-align:middle">
+                <asp:DropDownList ID="dlClientes" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+        </div> 
     </div>
 </div>
 <hr />

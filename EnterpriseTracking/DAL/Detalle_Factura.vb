@@ -192,7 +192,7 @@
 
     Public Function ObtenerDetallescomoStock(desde As BE.Factura, hasta As BE.Factura, Optional prod As BE.Producto = Nothing) As List(Of BE.Stock)
         Dim params(2) As System.Data.SqlClient.SqlParameter
-        Dim cadena As String = "select fd.*, f.fecha, f.IDDistribuidor from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 "
+        Dim cadena As String = "select fd.*, f.fecha, f.IDDistribuidor, f.TipoFactura from FacturaDetalle fd join factura f on f.id = fd.IDFactura where f.borrado = 0 and cast(Fecha as date) >= cast(@P1 as date) and cast(Fecha as date) <= cast(@P2 as date) and f.IDDistribuidor = @P3 "
         Dim dt As DataTable
         Dim l As BE.Stock
         Dim ll As New List(Of BE.Stock)
@@ -219,7 +219,7 @@
 
                 l.Fecha = dr.Item("fecha")
                 l.borrado = 0
-                l.Cantidad = dr.Item("cantidad")
+                l.Cantidad = dr.Item("cantidad") * IIf(dr.Item("TipoFactura") = "NC", -1, 1)
                 l.Precio = dr.Item("precio")
                 l.DVH = dr.Item("DVH")
 

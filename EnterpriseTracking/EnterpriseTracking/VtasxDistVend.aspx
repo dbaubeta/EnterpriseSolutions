@@ -163,9 +163,11 @@
                         </asp:BoundField>
                         <asp:BoundField DataField="Unidades" HeaderText="Unidades" >
                         <HeaderStyle Width="15%" /> 
+                        <ItemStyle Width="15%" HorizontalAlign="Right" />
                         </asp:BoundField>
                         <asp:BoundField DataField="Monto" HeaderText="Monto" >
                         <HeaderStyle Width="15%" />
+                        <ItemStyle Width="15%" HorizontalAlign="Right" />
                         </asp:BoundField>
                     </Columns>
                         <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />

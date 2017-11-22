@@ -77,13 +77,13 @@ Partial Public Class ProyeccionVtas
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''lblStockListaTitulo control.
+    '''lblProyeccionVentasTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblStockListaTitulo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblProyeccionVentasTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblCliente control.
@@ -120,42 +120,6 @@ Partial Public Class ProyeccionVtas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlDistribuidores As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''ScriptManager1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
-    '''<summary>
-    '''lblFecha control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFecha As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtFecha control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtFecha As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''CalendarExtender1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
 
     '''<summary>
     '''btnProcesar control.

@@ -97,6 +97,16 @@
                 <asp:TextBox ID="txtPrecio" runat="server" style="width:100%" CssClass="form-control" />
             </div>        
         </div>
+        <%-- LABEL + TEXTBOX --%>
+        <div class="row" style="margin-top:10px" >
+            <div class="col-sm-2" style="padding-top:8px">
+                <asp:Label ID="lblStockMinimo" runat="server" Text="Label" Font-Bold="true" Width="100%" style="text-align:right;"></asp:Label> <br/>
+            </div>    
+            <div class="col-sm-3" style="padding-top:3px">
+                <asp:TextBox ID="txtStockMinimo" runat="server" style="width:100%" CssClass="form-control" />
+            </div>        
+        </div>
+
         <%-- DROPDOWN LIST --%>
         <div class="row" style="margin-top:10px">
             <div class="col-sm-2" style="padding-top:8px">

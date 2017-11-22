@@ -13,9 +13,37 @@ Public Class BitacoraLista
         End If
         Try
 
+
+            If Not IsPostBack Then
+
+                Me.CalendarExtender1.EndDate = Now.Date
+                Me.CalendarExtender1.SelectedDate = New Date(Now.Date.Year, Now.Date.Month, 1)
+                Me.CalendarExtender2.EndDate = Now.Date
+                Me.CalendarExtender2.SelectedDate = Now.Date
+
+                'Me.txtFiltro.Visible = False
+                'Me.lblFiltro.Visible = False
+            Else
+                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+                CalendarExtender2.SelectedDate = DateTime.ParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+
+            End If
+
+
+
+
+
+
+
         Catch bex As BE.Excepcion
+            Dim bit As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bit.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -23,6 +51,8 @@ Public Class BitacoraLista
 
     Private Sub BitacoraLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
+        Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+        Me.CalendarExtender2.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
         CargarGrilla()
 
     End Sub
@@ -33,15 +63,21 @@ Public Class BitacoraLista
                 If r.RowType = DataControlRowType.DataRow Then
                     r.Attributes("onmouseover") = "this.style.cursor='pointer'"
                     r.Attributes("onmouseout") = "this.style.textDecoration='none';"
-                    r.ToolTip = "Click to select row"
-                    r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdBitacora, "Select$" + r.RowIndex.ToString, True)
+                    'r.ToolTip = "Click to select row"
+                    'r.Attributes("onclick") = Me.Page.ClientScript.GetPostBackClientHyperlink(Me.grdBitacora, "Select$" + r.RowIndex.ToString, True)
                 End If
             Next
             MyBase.Render(writer)
 
         Catch bex As BE.Excepcion
+            Dim bit As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bit.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -63,11 +99,13 @@ Public Class BitacoraLista
             dt.Columns.Add("Usuario")
             dt.Columns.Add("Modulo")
             dt.Columns.Add("Mensaje")
+            dt.Columns.Add("Datos")
 
             Dim parm1 As New BE.Bitacora
-            parm1.FechaHora = Now.Date
+            parm1.FechaHora = Me.CalendarExtender1.SelectedDate
             Dim parm2 As New BE.Bitacora
-            parm2.FechaHora = Now
+            parm2.FechaHora = Me.CalendarExtender2.SelectedDate
+            parm2.FechaHora = DateAdd(DateInterval.Second, -1, DateAdd(DateInterval.Day, 1, parm2.FechaHora))
             Dim lp As New List(Of BE.Bitacora)
             lp.Add(parm1)
             lp.Add(parm2)
@@ -83,6 +121,7 @@ Public Class BitacoraLista
                 Dim m As New BE.MensajeError
                 m.IDError = l.Mensaje
                 dr("Mensaje") = f.ObtenerLeyenda(m, Session("Idioma")).texto_Leyenda
+                dr("Datos") = l.Datos
                 dt.Rows.Add(dr)
             Next
 
@@ -95,8 +134,14 @@ Public Class BitacoraLista
                 grdBitacora.HeaderRow.TableSection = TableRowSection.TableHeader
             End If
         Catch bex As BE.Excepcion
+            Dim bit As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bit.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -117,8 +162,14 @@ Public Class BitacoraLista
             Next
 
         Catch bex As BE.Excepcion
+            Dim bit As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bit.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 

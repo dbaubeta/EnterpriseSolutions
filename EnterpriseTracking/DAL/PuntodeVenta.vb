@@ -1,20 +1,21 @@
 Public Class PuntodeVenta
 
     Protected DBH As New SqlHelper
-
+    Dim cif As New Cifrado.Cifrado
     Public Sub Guardar(s As List(Of BE.PuntodeVenta))
 
-        Dim params(13) As System.Data.SqlClient.SqlParameter
+        Dim params(14) As System.Data.SqlClient.SqlParameter
 
         Try
 
             Dim cmd As String = "MERGE PuntoDeVenta AS target " + _
-                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero, @P13 as Latitud ,@P14 as Longitud) AS source " + _
+                    "USING (SELECT @P1 as IDReal ,@P2 as Nombre ,@P3 as CUIT ,@P4 as Calle ,@P5 as Depto ,@P6 as CodigoPostal ,@P7 as DVH ,@P8 as Borrado ,@P9 as IDProvincia ,@P10 as IDDistribuidor ,@P11 as IDVendedor ,@P12 as Numero, @P13 as Latitud ,@P14 as Longitud, @P15 as TipoPDV) AS source " + _
                     "ON target.IDReal = source.IDReal AND target.IDDistribuidor = source.IDDistribuidor " + _
                     "WHEN NOT MATCHED THEN " + _
                     "INSERT (IDReal  " + _
                            ",Nombre " + _
                            ",CUIT " + _
+                           ",TipoPDV " + _
                            ",Calle " + _
                            ",Depto " + _
                            ",CodigoPostal " + _
@@ -30,6 +31,7 @@ Public Class PuntodeVenta
                            "(source.IDReal  " + _
                            ",source.Nombre " + _
                            ",source.CUIT " + _
+                           ",source.TipoPDV " + _
                            ",source.Calle " + _
                            ",source.Depto " + _
                            ",source.CodigoPostal " + _
@@ -46,6 +48,7 @@ Public Class PuntodeVenta
                            "IDReal = source.IDReal  " + _
                            ",Nombre = source.Nombre " + _
                            ",CUIT = source.CUIT " + _
+                           ",TipoPDV = source.TipoPDV " + _
                            ",Calle = source.Calle " + _
                            ",Depto = source.Depto " + _
                            ",CodigoPostal = source.CodigoPostal " + _
@@ -62,20 +65,20 @@ Public Class PuntodeVenta
 
                 ' Merge
                 params(0) = DBH.CrearParametro("@P1", u.IDReal)
-                params(1) = DBH.CrearParametro("@P2", u.Nombre)
-                params(2) = DBH.CrearParametro("@P3", u.CUIT)
-                params(3) = DBH.CrearParametro("@P4", u.Calle)
-                params(4) = DBH.CrearParametro("@P5", u.Depto)
-                params(5) = DBH.CrearParametro("@P6", u.CodigoPostal)
+                params(1) = DBH.CrearParametro("@P2", cif.Encriptar_str(u.Nombre))
+                params(2) = DBH.CrearParametro("@P3", cif.Encriptar_str(u.CUIT))
+                params(3) = DBH.CrearParametro("@P4", cif.Encriptar_str(u.Calle))
+                params(4) = DBH.CrearParametro("@P5", cif.Encriptar_str(u.Depto))
+                params(5) = DBH.CrearParametro("@P6", cif.Encriptar_str(u.CodigoPostal))
                 params(6) = DBH.CrearParametro("@P7", Long.Parse(u.DVH))
                 params(7) = DBH.CrearParametro("@P8", u.borrado)
                 params(8) = DBH.CrearParametro("@P9", Long.Parse(u.Provincia.ID))
                 params(9) = DBH.CrearParametro("@P10", Long.Parse(u.Distribuidor.ID))
                 params(10) = DBH.CrearParametro("@P11", Long.Parse(u.Vendedor.ID))
-                params(11) = DBH.CrearParametro("@P12", u.numero)
+                params(11) = DBH.CrearParametro("@P12", cif.Encriptar_str(u.numero))
                 params(12) = DBH.CrearParametro("@P13", u.Latitud)
-                params(13) = DBH.CrearParametro("@P14", u.Longitud
-                                                )
+                params(13) = DBH.CrearParametro("@P14", u.Longitud)
+                params(14) = DBH.CrearParametro("@P15", u.TipoPDV)
 
 
                 DBH.Update(cmd, params)
@@ -156,15 +159,16 @@ Public Class PuntodeVenta
             For Each dr As DataRow In dt.Rows
                 l = New BE.PuntodeVenta
                 l.ID = dr.Item("ID")
-                l.Nombre = dr.Item("Nombre")
+                l.Nombre = cif.Desencriptar_str(dr.Item("Nombre"))
                 l.IDReal = dr.Item("IDReal")
-                l.Calle = dr.Item("Calle")
-                l.numero = dr.Item("numero")
-                l.Depto = dr.Item("Depto")
-                l.CodigoPostal = dr.Item("CodigoPostal")
-                l.CUIT = dr.Item("CUIT")
+                l.Calle = cif.Desencriptar_str(dr.Item("Calle"))
+                l.numero = cif.Desencriptar_str(dr.Item("numero"))
+                l.Depto = cif.Desencriptar_str(dr.Item("Depto"))
+                l.CodigoPostal = cif.Desencriptar_str(dr.Item("CodigoPostal"))
+                l.CUIT = cif.Desencriptar_str(dr.Item("CUIT"))
                 l.borrado = dr.Item("borrado")
                 l.DVH = dr.Item("DVH")
+                l.TipoPDV = dr.Item("TipoPDV")
                 If dr.Item("Latitud") Is GetType(DBNull) Then
                     l.Latitud = Nothing
                 Else
@@ -207,6 +211,10 @@ Public Class PuntodeVenta
 
 
     End Function
+
+
+
+
 
 
 End Class

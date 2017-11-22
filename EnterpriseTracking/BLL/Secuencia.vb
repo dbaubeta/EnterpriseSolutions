@@ -115,7 +115,7 @@ Public Class Secuencia
             Dim ll As New List(Of BE.ABM)
             Dim d As New BE.Distribuidor
             ll.Add(s.Distribuidor)
-            d = p.ObtenerLista(ll)(0)
+            d = p.ObtenerLista(ll).Find(Function(z) DirectCast(z, BE.Distribuidor).IDReal = s.Distribuidor.IDReal)
 
             If Not IsNothing(d) Then
                 s.Distribuidor = d
@@ -176,6 +176,7 @@ Public Class Secuencia
 
             Else
                 'Error no existe el distribuidor
+                errores.Add(New BE.MensajeError("DistribuidorNoExiste", Nothing, s.Distribuidor.IDReal))
             End If
 
             Return errores
@@ -220,51 +221,55 @@ Public Class Secuencia
 
         Dim root As XmlElement = xmldoc.DocumentElement
         Dim vendedores As XmlElement = root("vendedores")
-        Dim nodelist As XmlNodeList = vendedores.GetElementsByTagName("vendedor")
+        If Not IsNothing(vendedores) Then
+            Dim nodelist As XmlNodeList = vendedores.GetElementsByTagName("vendedor")
 
-        For Each node As XmlElement In nodelist
-            Dim x As New BE.Vendedor
+            For Each node As XmlElement In nodelist
+                Dim x As New BE.Vendedor
 
-            x.Distribuidor = s.Distribuidor
-            x.IDReal = node("id").InnerText
-            x.Nombre = node("nombre").InnerText
-            x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+                x.Distribuidor = s.Distribuidor
+                x.IDReal = node("id").InnerText
+                x.Nombre = node("nombre").InnerText
+                x.borrado = IIf(node("borrado").InnerText = "1", True, False)
 
-            s.Lista_Vendedores.Add(x)
+                s.Lista_Vendedores.Add(x)
 
-        Next
-
+            Next
+        End If
     End Sub
 
     Private Sub cargarPuntodeVenta(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
 
         Dim root As XmlElement = xmldoc.DocumentElement
         Dim puntosventa As XmlElement = root("puntosventa")
-        Dim nodelist As XmlNodeList = puntosventa.GetElementsByTagName("puntoventa")
+        If Not IsNothing(puntosventa) Then
+            Dim nodelist As XmlNodeList = puntosventa.GetElementsByTagName("puntoventa")
 
-        For Each node As XmlElement In nodelist
-            Dim x As New BE.PuntodeVenta
+            For Each node As XmlElement In nodelist
+                Dim x As New BE.PuntodeVenta
 
-            x.Distribuidor = s.Distribuidor
-            x.IDReal = node("id").InnerText
-            x.Nombre = node("nombre").InnerText
-            x.Calle = node("calle").InnerText
-            x.numero = Int32.Parse(node("numero").InnerText)
-            x.Depto = node("depto").InnerText
-            x.CodigoPostal = node("cp").InnerText
-            Dim p As New BE.Provincia
-            p.Nombre = node("provincia").InnerText
-            x.Provincia = p
-            Dim v As New BE.Vendedor
-            v.IDReal = node("vendedor").InnerText
-            x.Vendedor = v
-            x.CUIT = node("cuit").InnerText
-            x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+                x.Distribuidor = s.Distribuidor
+                x.IDReal = node("id").InnerText
+                x.Nombre = node("nombre").InnerText
+                x.Calle = node("calle").InnerText
+                x.numero = Int32.Parse(node("numero").InnerText)
+                x.Depto = node("depto").InnerText
+                x.CodigoPostal = node("cp").InnerText
+                Dim p As New BE.Provincia
+                p.Nombre = node("provincia").InnerText
+                x.Provincia = p
+                Dim v As New BE.Vendedor
+                v.IDReal = node("vendedor").InnerText
+                x.Vendedor = v
+                x.CUIT = node("cuit").InnerText
+                x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+                x.TipoPDV = node("tipopdv").InnerText
 
-            s.Lista_PDV.Add(x)
 
-        Next
+                s.Lista_PDV.Add(x)
 
+            Next
+        End If
     End Sub
 
 
@@ -272,67 +277,71 @@ Public Class Secuencia
 
         Dim root As XmlElement = xmldoc.DocumentElement
         Dim facturas As XmlElement = root("facturas")
-        Dim nodelist As XmlNodeList = facturas.GetElementsByTagName("factura")
+        If Not IsNothing(facturas) Then
+            Dim nodelist As XmlNodeList = facturas.GetElementsByTagName("factura")
 
-        For Each node As XmlElement In nodelist
-            Dim x As New BE.Factura
+            For Each node As XmlElement In nodelist
+                Dim x As New BE.Factura
 
-            x.Distribuidor = s.Distribuidor
-            x.Nro_Factura_Real = node("nrofactura").InnerText
-            x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
-            Dim p As New BE.PuntodeVenta
-            p.IDReal = node("puntoventa").InnerText
-            x.PuntoVenta = p
-            Dim v As New BE.Vendedor
-            v.IDReal = node("vendedor").InnerText
-            x.Vendedor = v
-            x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+                x.Distribuidor = s.Distribuidor
+                x.Nro_Factura_Real = node("nrofactura").InnerText
+                x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+                Dim p As New BE.PuntodeVenta
+                p.IDReal = node("puntoventa").InnerText
+                x.PuntoVenta = p
+                Dim v As New BE.Vendedor
+                v.IDReal = node("vendedor").InnerText
+                x.Vendedor = v
+                x.borrado = IIf(node("borrado").InnerText = "1", True, False)
+                x.TipoFactura = node("tipofactura").InnerText
 
-            ' Cargo el detalle de la factura
-            Dim detalles As XmlElement = node("detallesfactura")
-            Dim detalleslist As XmlNodeList = detalles.GetElementsByTagName("detallefactura")
-            For Each nodedetalle As XmlElement In detalleslist
 
-                Dim xd As New BE.Detalle_Factura
+                ' Cargo el detalle de la factura
+                Dim detalles As XmlElement = node("detallesfactura")
+                Dim detalleslist As XmlNodeList = detalles.GetElementsByTagName("detallefactura")
+                For Each nodedetalle As XmlElement In detalleslist
 
-                xd.Linea = Int32.Parse(nodedetalle("linea").InnerText)
-                Dim pr As New BE.Producto
-                pr.IDReal = nodedetalle("producto").InnerText
-                xd.Producto = pr
-                xd.Cantidad = Int64.Parse(nodedetalle("cantidad").InnerText)
-                xd.Precio = Double.Parse(nodedetalle("cantidad").InnerText)
-                x.Detalles_Factura.Add(xd)
+                    Dim xd As New BE.Detalle_Factura
+
+                    xd.Linea = Int32.Parse(nodedetalle("linea").InnerText)
+                    Dim pr As New BE.Producto
+                    pr.IDReal = nodedetalle("producto").InnerText
+                    xd.Producto = pr
+                    xd.Cantidad = Int64.Parse(nodedetalle("cantidad").InnerText)
+                    xd.Precio = Double.Parse(nodedetalle("precio").InnerText, New CultureInfo("en-US"))
+                    x.Detalles_Factura.Add(xd)
+
+                Next
+
+
+                s.Lista_Facturas.Add(x)
 
             Next
-
-
-            s.Lista_Facturas.Add(x)
-
-        Next
-
+        End If
     End Sub
 
     Private Sub cargarStock(xmldoc As XmlDocument, ByRef s As BE.Secuencia)
 
         Dim root As XmlElement = xmldoc.DocumentElement
         Dim stocks As XmlElement = root("stocks")
-        Dim nodelist As XmlNodeList = stocks.GetElementsByTagName("stock")
+        If Not IsNothing(stocks) Then
+            Dim nodelist As XmlNodeList = stocks.GetElementsByTagName("stock")
 
-        For Each node As XmlElement In nodelist
-            Dim x As New BE.Stock
+            For Each node As XmlElement In nodelist
+                Dim x As New BE.Stock
 
-            x.Distribuidor = s.Distribuidor
-            x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
-            Dim pr As New BE.Producto
-            pr.IDReal = node("producto").InnerText
-            x.Producto = pr
-            x.Cantidad = Int64.Parse(node("cantidad").InnerText)
-            x.Precio = Double.Parse(node("precio").InnerText)
-            x.Tipo = node("tipo").InnerText
-            s.Lista_Stock.Add(x)
+                x.Distribuidor = s.Distribuidor
+                x.Fecha = Date.ParseExact(node("fecha").InnerText, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+                Dim pr As New BE.Producto
+                pr.IDReal = node("producto").InnerText
+                x.Producto = pr
+                x.Cantidad = Int64.Parse(node("cantidad").InnerText)
+                x.Precio = Double.Parse(node("precio").InnerText, New CultureInfo("en-US"))
+                x.Tipo = node("tipo").InnerText
+                s.Lista_Stock.Add(x)
 
-        Next
-
+            Next
+        End If
     End Sub
 
 #End Region

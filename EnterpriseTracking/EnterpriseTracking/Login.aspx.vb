@@ -4,6 +4,12 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.msjError.Visible = False
 
+
+        If Session("BaseValidada") <> "Si" Then
+            Response.Redirect("~/Default.aspx")
+        End If
+
+
     End Sub
 
 
@@ -23,8 +29,14 @@
             Try
                 us = s.ObtenerUsuario(u)
             Catch bex As BE.Excepcion
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+                bitac.Guardar(bm)
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
             Catch ex As Exception
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+                bitac.Guardar(bm)
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
             End Try
 
@@ -51,8 +63,14 @@
                 Try
                     bit.Guardar(New BE.Bitacora("BIT_Login", "Login", us.Usuario.ID))
                 Catch bex As BE.Excepcion
+                    Dim bitac As New Bitacora.Bitacora
+                    Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+                    bitac.Guardar(bm)
                     MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
                 Catch ex As Exception
+                    Dim bitac As New Bitacora.Bitacora
+                    Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+                    bitac.Guardar(bm)
                     MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
                 End Try
 
@@ -66,8 +84,14 @@
                 Me.msjError.InnerText = b.ObtenerLeyenda(em, Session("Idioma")).texto_Leyenda
                 Me.msjError.Visible = True
             Catch bex As BE.Excepcion
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+                bitac.Guardar(bm)
                 MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
             Catch ex As Exception
+                Dim bitac As New Bitacora.Bitacora
+                Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+                bitac.Guardar(bm)
                 MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
             End Try
 
@@ -103,8 +127,14 @@
             'Label11.Text = (Convert.ToString(vbCr & vbLf & "              <script type='text/javascript'>" & vbCr & vbLf & "                 function initialize() {" & vbCr & vbLf & vbCr & vbLf & "                 var mapOptions = {" & vbCr & vbLf & "                     center: new google.maps.LatLng(39.948427, -101.836428)," & vbCr & vbLf & "                     zoom: 2," & vbCr & vbLf & "                     mapTypeId: google.maps.MapTypeId.ROADMAP" & vbCr & vbLf & "                 };" & vbCr & vbLf & vbCr & vbLf & "                 var myMap = new google.maps.Map(document.getElementById('mapArea')," & vbCr & vbLf & "                             mapOptions);") & markers) + "}" & vbCr & vbLf & "             </script>"
 
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
 
@@ -126,8 +156,14 @@
             f.Traducir(Me, b)
             Session("Idioma") = b
         Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
         Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
             MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
         End Try
     End Sub

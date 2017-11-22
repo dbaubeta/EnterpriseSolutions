@@ -125,6 +125,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Default.aspx" />
     <Content Include="DistribuidorEdicion.aspx" />
     <Content Include="DistribuidorLista.aspx" />
     <Content Include="IdiomaEdicion.aspx" />
@@ -151,6 +152,7 @@
     <Content Include="ProductoEdicion.aspx" />
     <Content Include="ProductoLista.aspx" />
     <Content Include="ProyeccionVtas.aspx" />
+    <Content Include="Recalcular.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
@@ -226,6 +228,13 @@
     </Compile>
     <Compile Include="ClienteLista.aspx.vb">
       <DependentUpon>ClienteLista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="DistribuidorEdicion.aspx.designer.vb">
@@ -343,6 +352,13 @@
     </Compile>
     <Compile Include="ProyeccionVtas.aspx.vb">
       <DependentUpon>ProyeccionVtas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Recalcular.aspx.designer.vb">
+      <DependentUpon>Recalcular.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Recalcular.aspx.vb">
+      <DependentUpon>Recalcular.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="StockLista.aspx.designer.vb">

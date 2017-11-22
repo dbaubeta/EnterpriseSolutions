@@ -11,58 +11,58 @@
   <puntosventa>
     <puntoventa>
       <id>1</id><nombre>El Kioskito Loco</nombre><calle>Av. Pres. Manuel Quintana</calle><numero>401</numero><depto></depto>
-      <cp>C1129ABA</cp><provincia>C.A.B.A.</provincia><cuit>12345678901</cuit><vendedor>1</vendedor><borrado>0</borrado>
+      <cp>C1129ABA</cp><provincia>C.A.B.A.</provincia><cuit>12345678901</cuit><tipopdv>Kiosco</tipopdv><vendedor>1</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
       <id>2</id><nombre>Super el Chino</nombre><calle>Av. Callao</calle><numero>1650</numero><depto></depto>
-      <cp>C1024AAP</cp><provincia>C.A.B.A.</provincia><cuit>54316565163</cuit><vendedor>1</vendedor><borrado>0</borrado>
+      <cp>C1024AAP</cp><provincia>C.A.B.A.</provincia><cuit>54316565163</cuit><tipopdv>Supermercado chico</tipopdv><vendedor>1</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
       <id>3</id><nombre>Mayorista El zarpado</nombre><calle>Av. Gral. Las Heras</calle><numero>2075</numero><depto></depto>
-      <cp>C1127AAP</cp><provincia>C.A.B.A.</provincia><cuit>65468791654</cuit><vendedor>2</vendedor><borrado>0</borrado>
+      <cp>C1127AAP</cp><provincia>C.A.B.A.</provincia><cuit>65468791654</cuit><tipopdv>Kiosco</tipopdv><vendedor>2</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
       <id>4</id><nombre>Despensa la Kriss</nombre><calle>Ayacucho</calle><numero>1870</numero><depto></depto>
-      <cp>C1112AAH</cp><provincia>C.A.B.A.</provincia><cuit>21654987652</cuit><vendedor>4</vendedor><borrado>0</borrado>
+      <cp>C1112AAH</cp><provincia>C.A.B.A.</provincia><cuit>21654987652</cuit><tipopdv>Autoservicio</tipopdv><vendedor>4</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
       <id>5</id><nombre>Super El Morlaco</nombre><calle>Posadas</calle><numero>1530</numero><depto></depto>
-      <cp>C1112ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><vendedor>3</vendedor><borrado>0</borrado>
+      <cp>C1112ADB</cp><provincia>C.A.B.A.</provincia><cuit>56546545888</cuit><tipopdv>Kiosco</tipopdv><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>
     <puntoventa>
       <id>6</id><nombre>Despensa El Patovica Alegre</nombre><calle>Serrano</calle><numero>850</numero><depto></depto>
-      <cp>C1414DEQ</cp><provincia>C.A.B.A.</provincia><cuit>65465499879</cuit><vendedor>3</vendedor><borrado>0</borrado>
+      <cp>C1414DEQ</cp><provincia>C.A.B.A.</provincia><cuit>65465499879</cuit><tipopdv>Supermercado mediano</tipopdv><vendedor>3</vendedor><borrado>0</borrado>
     </puntoventa>  </puntosventa>
   <facturas>
-    <factura><nrofactura>0001A00000001</nrofactura><fecha>2017-11-01</fecha><vendedor>1</vendedor><puntoventa>1</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000001</nrofactura><fecha>2017-11-21</fecha><tipofactura>FA</tipofactura><vendedor>1</vendedor><puntoventa>1</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>3</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>10</cantidad><precio>12.50</precio></detallefactura>
         <detallefactura><linea>3</linea><producto>200</producto><cantidad>50</cantidad><precio>20.00</precio></detallefactura>
       </detallesfactura>
     </factura>
-    <factura><nrofactura>0001A00000002</nrofactura><fecha>2017-11-03</fecha><vendedor>1</vendedor><puntoventa>2</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000002</nrofactura><fecha>2017-11-21</fecha><tipofactura>FA</tipofactura><vendedor>2</vendedor><puntoventa>2</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
         <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
       </detallesfactura>
     </factura>
-    <factura><nrofactura>0001A00000003</nrofactura><fecha>2017-11-06</fecha><vendedor>1</vendedor><puntoventa>3</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000003</nrofactura><fecha>2017-11-21</fecha><tipofactura>FA</tipofactura><vendedor>2</vendedor><puntoventa>3</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
         <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
       </detallesfactura>
     </factura>
-    <factura><nrofactura>0001A00000004</nrofactura><fecha>2017-11-06</fecha><vendedor>1</vendedor><puntoventa>4</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000004</nrofactura><fecha>2017-11-21</fecha><tipofactura>FA</tipofactura><vendedor>3</vendedor><puntoventa>4</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
         <detallefactura><linea>3</linea><producto>200</producto><cantidad>100</cantidad><precio>20.00</precio></detallefactura>
       </detallesfactura>
     </factura>
-    <factura><nrofactura>0001A00000005</nrofactura><fecha>2017-11-08</fecha><vendedor>1</vendedor><puntoventa>6</puntoventa><borrado>0</borrado>
+    <factura><nrofactura>0001A00000005</nrofactura><fecha>2017-11-21</fecha><tipofactura>FA</tipofactura><vendedor>4</vendedor><puntoventa>6</puntoventa><borrado>0</borrado>
       <detallesfactura>
         <detallefactura><linea>1</linea><producto>100</producto><cantidad>40</cantidad><precio>15.60</precio></detallefactura>
         <detallefactura><linea>2</linea><producto>150</producto><cantidad>20</cantidad><precio>12.50</precio></detallefactura>
@@ -71,11 +71,8 @@
     </factura>
   </facturas>
   <stocks>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>500</cantidad><precio>10.00</precio></stock>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>500</cantidad><precio>8.00</precio></stock>
-    <stock><fecha>2017-01-01</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>500</cantidad><precio>12.00</precio></stock>
-    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>500</cantidad><precio>10.00</precio></stock>
-    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>500</cantidad><precio>8.00</precio></stock>
-    <stock><fecha>2017-04-01</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>500</cantidad><precio>12.00</precio></stock>
+    <stock><fecha>2017-01-21</fecha><tipo>Entrada</tipo><producto>100</producto><cantidad>100</cantidad><precio>10.00</precio></stock>
+    <stock><fecha>2017-01-20</fecha><tipo>Entrada</tipo><producto>150</producto><cantidad>120</cantidad><precio>8.00</precio></stock>
+    <stock><fecha>2017-01-19</fecha><tipo>Entrada</tipo><producto>200</producto><cantidad>85</cantidad><precio>12.00</precio></stock>
   </stocks>
 </secuencia>

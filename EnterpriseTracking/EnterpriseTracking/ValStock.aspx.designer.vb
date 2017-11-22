@@ -77,13 +77,13 @@ Partial Public Class ValStock
     Protected WithEvents btnModalOk As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''lblStockListaTitulo control.
+    '''lblValStockTitulo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblStockListaTitulo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblValStockTitulo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblCliente control.
@@ -210,13 +210,4 @@ Partial Public Class ValStock
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grdStocksVal As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''LitChart control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LitChart As Global.System.Web.UI.WebControls.Literal
 End Class

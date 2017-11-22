@@ -54,7 +54,7 @@
 
     function clickenfila() {
         filtrado();
-        dibujarchart();
+        //dibujarchart();
     }
 
 function filtrado() {
@@ -91,7 +91,7 @@ function filtrado() {
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:10px;margin-bottom:15px">
     <div class="col-sm-8">
-        <asp:Label ID="lblStockListaTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
+        <asp:Label ID="lblValStockTitulo" runat="server" Text="Label" Width="100%" Font-Size="XX-Large" ></asp:Label>
     </div>
     <div class="col-sm-4">
         <div class="col-sm-3" style="vertical-align:middle">
@@ -136,7 +136,7 @@ function filtrado() {
     </div>
     <div class="col-sm-2" style="vertical-align:middle"></div>
     <div class="col-sm-1" style="vertical-align:middle">
-                <asp:Button ID="btnProcesar" runat="server" Text="Button" cssclass="btn btn-info"/>
+                <asp:Button ID="btnProcesar" runat="server" Text="Button" cssclass="btn btn-info" Width="100%"/>
     </div>
     <div class="col-sm-4">
         <div class="col-sm-3" style="vertical-align:middle">
@@ -144,7 +144,6 @@ function filtrado() {
         </div>
         <div class="col-sm-9" style="vertical-align:middle">
             <input type="text" runat="server" id="txtFiltro" onkeyup="filtrado()" class="form-control" style="width:100%; background-image: url('~/images//searchicon.png'); background-position: 10px 12px; background-repeat: no-repeat;" >
-            <%--<asp:TextBox ID="txtFiltro" runat="server" style="width:100%" CssClass="form-control" />--%>
         </div> 
     </div>
     <div class="col-sm-1" style="vertical-align:middle"></div>
@@ -156,23 +155,27 @@ function filtrado() {
         <asp:GridView ID="grdStocksVal" runat="server" CssClass="table table-bordered table-hover table-striped table-condensed" AutoGenerateColumns="False"  DataKeyNames="ID">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" >
-                <HeaderStyle Width="70%" />
+                <HeaderStyle Width="70%" HorizontalAlign="Center"/>
+                <ItemStyle Width="70%" HorizontalAlign="Left" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Stock" HeaderText="Stock" >
                 <HeaderStyle Width="15%" />
+                <ItemStyle Width="15%" HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="StockVal" HeaderText="StockVal" >
                 <HeaderStyle Width="15%" />
+                <ItemStyle Width="15%" HorizontalAlign="Right" />
                 </asp:BoundField>
             </Columns>
                 <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
+                <%--<RowStyle HorizontalAlign="right" ></RowStyle>--%>
         </asp:GridView>
     </div>
     <div class="col-md-1">
     </div>
 </div>
 <%-- Grafico de Stock Anual --%>
-<div class="row" style="margin-top:30px;">
+<%--<div class="row" style="margin-top:30px;">
     <div class="col-sm-1" style="vertical-align:middle"></div>
     <div class="col-md-10" style="max-height:200px">
         <div style="width:100%; height:200px;">
@@ -181,8 +184,8 @@ function filtrado() {
     </div>
     <div class="col-md-1">
     </div>
-</div>
+</div>--%>
 
-<asp:Literal ID="LitChart" runat="server"></asp:Literal>
+<%--<asp:Literal ID="LitChart" runat="server"></asp:Literal>--%>
 
 </asp:Content>

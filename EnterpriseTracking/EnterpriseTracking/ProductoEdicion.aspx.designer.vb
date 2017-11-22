@@ -158,6 +158,24 @@ Partial Public Class ProductoEdicion
     Protected WithEvents txtPrecio As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblStockMinimo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblStockMinimo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtStockMinimo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtStockMinimo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblProductoCategoria control.
     '''</summary>
     '''<remarks>

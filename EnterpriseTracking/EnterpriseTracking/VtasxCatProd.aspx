@@ -127,14 +127,14 @@
             </div>
             <div class="col-sm-4" style="vertical-align:middle">
                 <asp:TextBox ID="txtDesde" runat="server" CssClass="form-control" ></asp:TextBox>
-                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"  PopupButtonID="imgPopup" TargetControlID="txtDesde"/> <%--Format="dd/MM/yyyy"/>--%>
+                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="txtDesde"/> <%--Format="dd/MM/yyyy"/>--%>
             </div>
             <div class="col-sm-2" style="vertical-align:middle">
                 <asp:Label ID="lblHasta" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
             </div>
             <div class="col-sm-4" style="vertical-align:middle">
                 <asp:TextBox ID="txthasta" runat="server" CssClass="form-control" ></asp:TextBox>
-                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server"  PopupButtonID="imgPopup2" TargetControlID="txthasta"/> <%--Format="dd/MM/yyyy"/>--%>
+                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" PopupButtonID="imgPopup2" TargetControlID="txthasta"/> <%--Format="dd/MM/yyyy"/>--%>
             </div>
         </div>
         <div class="row" style="margin-top:2px;margin-bottom:15px">
@@ -170,9 +170,11 @@
                         </asp:BoundField>
                         <asp:BoundField DataField="Unidades" HeaderText="Unidades" >
                         <HeaderStyle Width="15%" /> 
+                        <ItemStyle Width="15%" HorizontalAlign="Right" />
                         </asp:BoundField>
                         <asp:BoundField DataField="Monto" HeaderText="Monto" >
                         <HeaderStyle Width="15%" />
+                        <ItemStyle Width="15%" HorizontalAlign="Right" />
                         </asp:BoundField>
                     </Columns>
                         <HeaderStyle BackColor="#0C5991" Font-Bold="True" ForeColor="White" />
@@ -208,5 +210,6 @@
         dibujartorta();
     }
 </script>
+
 
 </asp:Content>

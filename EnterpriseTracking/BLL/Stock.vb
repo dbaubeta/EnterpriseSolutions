@@ -304,20 +304,26 @@ Public Class Stock
         Dim stocks(23) As BE.Stock
 
         Dim historial(11) As Long
-        historial = obtenerHistorial(hastast, p)
         Dim proyeccion(11) As Long
-        proyeccion = proyectar(historial)
+        historial = obtenerHistorial(hastast, p)
+        If historial(0) = -1 Then
+            Dim x As New BE.Stock
+            x.Cantidad = -1
+            stocks(0) = x
+        Else
+            proyeccion = proyectar(historial)
 
-        For i = 0 To 11
-            Dim a As New BE.Stock
-            a.Cantidad = historial(i)
-            stocks(i) = a
+            For i = 0 To 11
+                Dim a As New BE.Stock
+                a.Cantidad = historial(i)
+                stocks(i) = a
 
-            Dim b As New BE.Stock
-            b.Cantidad = proyeccion(i)
-            stocks(i + 12) = b
+                Dim b As New BE.Stock
+                b.Cantidad = proyeccion(i)
+                stocks(i + 12) = b
 
-        Next
+            Next
+        End If
         Return stocks
 
     End Function
@@ -352,11 +358,16 @@ Public Class Stock
         If hasta.Fecha.Date >= Now.Date Then hasta.Fecha = Now.Date
 
         Dim ls As List(Of BE.Stock) = bs.ObtenerStocks(desde, hasta).FindAll(Function(z) DirectCast(z, BE.Stock).Distribuidor.ID = fecha.Distribuidor.ID).FindAll(Function(zz) DirectCast(zz, BE.Stock).Producto.ID = prod.ID).FindAll(Function(zzz) zzz.Tipo = "Entrada")
-        Dim fechacontrol As Date = New Date(Now.Year, Now.Month, 1).AddMonths(1)
-        For Each s As BE.Stock In ls
-            Dim difmonth As Integer = Math.Floor(Math.Abs(DateDiff(DateInterval.Month, fechacontrol, s.Fecha)))
-            historial(12 - difmonth) += s.Cantidad
-        Next
+        If ls.Count > 0 Then
+            Dim fechacontrol As Date = New Date(Now.Year, Now.Month, 1).AddMonths(1)
+            For Each s As BE.Stock In ls
+                Dim difmonth As Integer = Math.Floor(Math.Abs(DateDiff(DateInterval.Month, fechacontrol, s.Fecha)))
+                historial(12 - difmonth) += s.Cantidad
+            Next
+        Else
+            historial(0) = -1
+        End If
+
 
         Return historial
 

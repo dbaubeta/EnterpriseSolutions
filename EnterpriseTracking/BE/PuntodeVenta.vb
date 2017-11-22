@@ -3,7 +3,7 @@ Public Class PuntodeVenta
 
 	Private _Calle As String
 	Private _CodigoPostal As String
-	Private _CUIT As Long
+    Private _CUIT As String
 	Private _Depto As String
 	Private _Distribuidor As BE.Distribuidor
     Private _DVH As Long
@@ -32,14 +32,14 @@ Public Class PuntodeVenta
 		End Set
 	End Property
 
-	Public Property CUIT() As Long
-		Get
-			Return _CUIT
-		End Get
-		Set(ByVal Value as Long)
-			_CUIT = Value
-		End Set
-	End Property
+    Public Property CUIT() As String
+        Get
+            Return _CUIT
+        End Get
+        Set(ByVal Value As String)
+            _CUIT = Value
+        End Set
+    End Property
 
 	Public Property Depto() As String
 		Get
@@ -122,12 +122,12 @@ Public Class PuntodeVenta
         End Set
     End Property
 
-    Private _numero As Integer
-    Public Property numero() As Integer
+    Private _numero As String
+    Public Property numero() As String
         Get
             Return _numero
         End Get
-        Set(ByVal value As Integer)
+        Set(ByVal value As String)
             _numero = value
         End Set
     End Property
@@ -165,6 +165,17 @@ Public Class PuntodeVenta
             Return False
 
         End Get
+    End Property
+
+
+    Private _tipoPDV As String
+    Public Property TipoPDV() As String
+        Get
+            Return _tipoPDV
+        End Get
+        Set(ByVal value As String)
+            _tipoPDV = value
+        End Set
     End Property
 
 
