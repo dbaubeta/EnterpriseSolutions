@@ -50,15 +50,19 @@
     Public Function ObtenerEntradas(f As List(Of BE.Bitacora)) As List(Of BE.Bitacora)
 
 
-        Dim cadena As String = "select * from entradasbitacora where fechahora between '" + f.Item(0).FechaHora.ToString("yyyy-MM-dd HH:mm:ss") + "' and '" + f.Item(1).FechaHora.ToString("yyyy-MM-dd HH:mm:ss") + "' order by id desc"
+        Dim params(1) As System.Data.SqlClient.SqlParameter
+        Dim cadena As String = "select * from entradasbitacora where fechahora between @P1 and @P2 order by id desc"
         Dim idx As Integer = 0
         Dim dt As DataTable
         Dim l As BE.Bitacora
         Dim ll As New List(Of BE.Bitacora)
 
+        params(0) = DBH.CrearParametro("@P1", f.Item(0).FechaHora)
+        params(1) = DBH.CrearParametro("@P2", f.Item(1).FechaHora)
+
         Try
 
-            dt = DBH.SelectTabla(cadena)
+            dt = DBH.SelectTabla(cadena, params)
             For Each dr As DataRow In dt.Rows
                 l = New BE.Bitacora
                 l.ID = dr.Item("ID")

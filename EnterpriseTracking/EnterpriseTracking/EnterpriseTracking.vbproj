@@ -125,7 +125,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="BaseCorrupta.aspx" />
     <Content Include="DistribuidorEdicion.aspx" />
     <Content Include="DistribuidorLista.aspx" />
     <Content Include="IdiomaEdicion.aspx" />
@@ -230,11 +230,11 @@
       <DependentUpon>ClienteLista.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="BaseCorrupta.aspx.designer.vb">
+      <DependentUpon>BaseCorrupta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="BaseCorrupta.aspx.vb">
+      <DependentUpon>BaseCorrupta.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="DistribuidorEdicion.aspx.designer.vb">

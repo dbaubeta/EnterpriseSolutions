@@ -5,6 +5,11 @@ Imports System.Globalization
 Public Class BitacoraLista
     Inherits System.Web.UI.Page
 
+    Private Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+        Response.Cache.SetCacheability(HttpCacheability.NoCache)
+        Response.Cache.SetExpires(DateTime.Now.AddDays(-1))
+    End Sub
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -21,19 +26,10 @@ Public Class BitacoraLista
                 Me.CalendarExtender2.EndDate = Now.Date
                 Me.CalendarExtender2.SelectedDate = Now.Date
 
-                'Me.txtFiltro.Visible = False
-                'Me.lblFiltro.Visible = False
-            Else
-                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
-                CalendarExtender2.SelectedDate = DateTime.ParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+                Session("Desde") = Me.CalendarExtender1.SelectedDate
+                Session("Hasta") = Me.CalendarExtender2.SelectedDate
 
             End If
-
-
-
-
-
-
 
         Catch bex As BE.Excepcion
             Dim bit As New Bitacora.Bitacora
@@ -53,6 +49,14 @@ Public Class BitacoraLista
 
         Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
         Me.CalendarExtender2.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+        CalendarExtender1.SelectedDate = DirectCast(Session("Desde"), Date)
+        CalendarExtender2.SelectedDate = DirectCast(Session("Hasta"), Date)
+
+        Me.txtDesde.Text = DirectCast(Session("Desde"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+        Me.txthasta.Text = DirectCast(Session("Hasta"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+
+
+
         CargarGrilla()
 
     End Sub
@@ -205,6 +209,36 @@ Public Class BitacoraLista
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "openModalOk();", True)
         End If
 
+    End Sub
+
+    Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
+        Try
+            Dim desde As Date
+            Dim hasta As Date
+
+            If DateTime.TryParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, desde) Then
+                Session("Desde") = desde
+            Else
+                MostrarMensajeModal("FechaDesdeInvalida", True, True)
+            End If
+            If DateTime.TryParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, hasta) Then
+                Session("Hasta") = hasta
+            Else
+                MostrarMensajeModal("FechaHastaInvalida", True, True)
+            End If
+
+
+        Catch bex As BE.Excepcion
+            Dim bit As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bit.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
     End Sub
 
 End Class

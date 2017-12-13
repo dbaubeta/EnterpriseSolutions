@@ -97,6 +97,7 @@
 }
 </script>
 
+
 <%-- CONTENIDO DE PANTALLA --%>
 <div class="row" style="margin-top:15px;margin-bottom:15px">
     <div class="col-sm-12">
@@ -114,14 +115,14 @@
                 <asp:Label ID="lblDesde" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
             </div>
             <div class="col-sm-4" style="vertical-align:middle">
-                <asp:TextBox ID="txtDesde" runat="server" CssClass="form-control" style="width:100%"></asp:TextBox>
-                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="txtDesde"/> <%--Format="dd/MM/yyyy"/>--%>
+                <asp:TextBox ID="txtDesde" runat="server" CssClass="form-control" style="width:100%" ></asp:TextBox>
+                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="txtDesde" /> <%--Format="dd/MM/yyyy"/>--%>
             </div>
             <div class="col-sm-2" style="vertical-align:middle">
                 <asp:Label ID="lblHasta" runat="server" Text="Label" Width="100%" style="text-align: left; margin-top:5px" Font-Bold="true" ></asp:Label>
             </div>
             <div class="col-sm-4" style="vertical-align:middle">
-                <asp:TextBox ID="txthasta" runat="server" CssClass="form-control" width="100%"></asp:TextBox>
+                <asp:TextBox ID="txthasta" runat="server" CssClass="form-control" width="100%" ></asp:TextBox>
                 <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" PopupButtonID="imgPopup2" TargetControlID="txthasta"/> <%--Format="dd/MM/yyyy"/>--%>
             </div>
         </div>

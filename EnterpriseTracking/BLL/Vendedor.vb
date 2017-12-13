@@ -10,8 +10,8 @@ Public Class Vendedor
             ' Recalculo todos los digitos verificadores horizontales
 
             For Each v As BE.Vendedor In ob.Lista_Vendedores
-                v.DVH = dvh.calcular(v)
                 v.Distribuidor.ID = ob.Distribuidor.ID
+                v.DVH = dvh.calcular(v)
             Next
             d.Guardar(ob.Lista_Vendedores)
             dvv.tabla = "Vendedor"

@@ -26,6 +26,8 @@
         </div>
         </nav>
 
+        <asp:Button ID="Button1" runat="server" Text="Recalcular" />
+        <br/>
         <asp:Literal ID="LitMensajes" runat="server"></asp:Literal>
     
     <hr />

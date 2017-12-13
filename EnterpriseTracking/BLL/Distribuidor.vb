@@ -12,8 +12,21 @@ Public Class Distribuidor
 
         Dim l As New List(Of BE.MensajeError)
         Dim s As BE.Distribuidor = p
+        Dim bd As New BLL.Distribuidor
+
 
         Try
+
+            Dim p2 As New BE.Distribuidor()
+            p2.IDReal = DirectCast(p, BE.Distribuidor).IDReal
+            Dim ld As New List(Of BE.ABM)
+            ld.Add(p2)
+
+            If bd.ObtenerLista(ld).Count > 0 And p.ID = 0 Then
+                Dim m As New BE.MensajeError
+                m.IDError = "IDRealDistribuidoryaExiste"
+                l.Add(m)
+            End If
             If s.Nombre = "" Or IsNothing(s.Nombre) Then
                 Dim m As New BE.MensajeError
                 m.IDError = "NombreDistribuidorRequerido"

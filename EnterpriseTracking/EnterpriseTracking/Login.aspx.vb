@@ -1,12 +1,38 @@
 ﻿Public Class Login
     Inherits System.Web.UI.Page
 
+
+
+    Public Sub validarbase()
+
+        Dim d As New Digitos.Validador
+        Dim li As New List(Of BE.MensajeError)
+
+        Dim b As New BLL.Idioma
+        Dim l As New List(Of BE.Idioma)
+
+        l = b.Obtener_Idiomas()
+
+        li = d.validarDB()
+        Dim sb As New StringBuilder
+        Dim idi As New BE.Idioma
+        idi = l.Find(Function(c) c.ID = 1)
+        If li.Count > 0 Then
+            Session("BaseValidada") = "No"
+        Else
+            Session("BaseValidada") = "Si"
+        End If
+
+
+    End Sub
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.msjError.Visible = False
 
-
+        validarbase()
         If Session("BaseValidada") <> "Si" Then
-            Response.Redirect("~/Default.aspx")
+            Response.Redirect("~/BaseCorrupta.aspx")
         End If
 
 

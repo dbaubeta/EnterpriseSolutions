@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Globalization
 
 Public Class ValStock
     Inherits System.Web.UI.Page
@@ -45,6 +46,8 @@ Public Class ValStock
                 Me.CalendarExtender1.EndDate = Now.Date
                 Me.CalendarExtender1.SelectedDate = Now.Date
 
+                Session("Desde") = Me.CalendarExtender1.SelectedDate
+
                 Me.dlmetodo.Items.Add("FIFO")
                 Me.dlmetodo.Items.Add("LIFO")
                 Me.dlmetodo.Items.Add("PPP")
@@ -52,10 +55,6 @@ Public Class ValStock
 
                 If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
                 If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
-
-
-            Else
-                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
 
             End If
 
@@ -140,7 +139,7 @@ Public Class ValStock
                     Dim st As New BLL.Stock
                     Dim hastast As New BE.Stock
                     hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
-                    hastast.Fecha = Me.CalendarExtender1.SelectedDate
+                    hastast.Fecha = DirectCast(Session("Desde"), Date)
                     Dim resultado As New BE.Stock
                     Select Case dlmetodo.Text
                         Case "FIFO"
@@ -345,14 +344,42 @@ Public Class ValStock
 
     Private Sub StockLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
-        Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+        Try
+            Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+            CalendarExtender1.SelectedDate = DirectCast(Session("Desde"), Date)
+
+            Me.txtFecha.Text = DirectCast(Session("Desde"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
 
     Private Sub dlDistribuidores_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlDistribuidores.SelectedIndexChanged
 
-        If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+        Try
+            If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
@@ -400,14 +427,49 @@ Public Class ValStock
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
 
-        If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+        Try
+
+            Dim desde As Date
+
+            If DateTime.TryParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, desde) Then
+                Session("Desde") = desde
+                If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+            Else
+                MostrarMensajeModal("FechaDesdeInvalida", True, True)
+            End If
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
 
     Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
 
-        CargardlDistribuidores()
+        Try
+            CargardlDistribuidores()
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 

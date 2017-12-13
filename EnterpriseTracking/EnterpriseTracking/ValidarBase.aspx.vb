@@ -32,6 +32,14 @@
     End Sub
 
 
+    Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim d As New Digitos.Validador
+        d.RecalcularDB()
+
+
+    End Sub
+
 
 
 End Class

@@ -159,10 +159,18 @@ Public Class DistribuidorEdicion
             IIf(Me.chkJueves.Checked, "1", "0") + _
             IIf(Me.chkViernes.Checked, "1", "0") + _
             IIf(Me.chkSabado.Checked, "1", "0")
-            u.AreaVentasCentroLat = Double.Parse(Me.txtAreaVentasLat.Text, New CultureInfo("en-US"))
-            u.AreaVentasCentroLong = Double.Parse(Me.txtAreaVentasLong.Text, New CultureInfo("en-US"))
-            u.AreaVentasRadio = Long.Parse(Me.txtAreaVentasRadio.Text)
-
+            If Double.TryParse(Me.txtAreaVentasLat.Text, System.Globalization.NumberStyles.Float, New CultureInfo("en-US"), u.AreaVentasCentroLat) Then
+            Else
+                u.AreaVentasCentroLat = 0
+            End If
+            If Double.TryParse(Me.txtAreaVentasLong.Text, System.Globalization.NumberStyles.Float, New CultureInfo("en-US"), u.AreaVentasCentroLong) Then
+            Else
+                u.AreaVentasCentroLong = 0
+            End If
+            If Long.TryParse(Me.txtAreaVentasRadio.Text, System.Globalization.NumberStyles.Number, New CultureInfo("en-US"), u.AreaVentasRadio) Then
+            Else
+                u.AreaVentasRadio = 0
+            End If
             erroresval = p.ValidarDatos(u)
 
         Catch bex As BE.Excepcion

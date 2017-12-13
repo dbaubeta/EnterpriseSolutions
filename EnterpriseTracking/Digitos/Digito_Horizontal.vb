@@ -25,7 +25,7 @@ Public Class Digito_Horizontal
                     Else
                         valor = i.GetValue(o).ToString()
                     End If
-                    If i.Name <> "DVH" And i.Name <> "ID" And valor.Substring(0, IIf(valor.Length >= 18, 18, valor.Length)) <> "System.Collections" Then
+                    If i.Name <> "DVH" And i.Name <> "ID" And i.Name <> "invade" And valor.Substring(0, IIf(valor.Length >= 18, 18, valor.Length)) <> "System.Collections" Then
 
                         If valor.Substring(0, IIf(valor.Length >= 3, 3, valor.Length)) = "BE." Then
                             Dim x As Object = i.GetValue(o)

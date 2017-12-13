@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Globalization
 
 Public Class VtasxDistVend
     Inherits System.Web.UI.Page
@@ -49,9 +50,8 @@ Public Class VtasxDistVend
                 Me.txtFiltro.Visible = False
                 Me.lblFiltro.Visible = False
 
-            Else
-                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
-                CalendarExtender2.SelectedDate = DateTime.ParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+                Session("Desde") = Me.CalendarExtender1.SelectedDate
+                Session("Hasta") = Me.CalendarExtender2.SelectedDate
 
             End If
 
@@ -97,10 +97,8 @@ Public Class VtasxDistVend
 
                 Dim desde As New BE.Factura
                 Dim hasta As New BE.Factura
-                'desde.Distribuidor.ID = dlDistribuidores.SelectedValue
-                'hasta.Distribuidor.ID = dlDistribuidores.SelectedValue
-                desde.Fecha = Me.CalendarExtender1.SelectedDate
-                hasta.Fecha = Me.CalendarExtender2.SelectedDate
+                desde.Fecha = DirectCast(Session("Desde"), Date)
+                hasta.Fecha = DirectCast(Session("Hasta"), Date)
                 desde.Distribuidor.Cliente.ID = Me.dlClientes.SelectedValue
 
                 Dim ll As New List(Of BE.Rep_Vtas_Dist_Vend)
@@ -258,13 +256,12 @@ Public Class VtasxDistVend
 
         Dim datastr As String = "                data: ["
         Dim labelsstr As String = "                labels: ["""
-        Dim fechainicio As Date = Me.CalendarExtender2.SelectedDate
+        Dim fechainicio As Date = DirectCast(Session("Hasta"), Date)
         Try
             For i = 11 To 0 Step -1
                 Dim desde As New BE.Factura
                 Dim hasta As New BE.Factura
-                'desde.Distribuidor.ID = dlDistribuidores.SelectedValue
-                'hasta.Distribuidor.ID = dlDistribuidores.SelectedValue
+
                 desde.Fecha = ObtenerPrimerdia(fechainicio.AddMonths(i * -1))
                 hasta.Fecha = ObtenerUltimodia(fechainicio.AddMonths(i * -1))
                 desde.Distribuidor.Cliente.ID = Me.dlClientes.SelectedValue
@@ -351,8 +348,8 @@ Public Class VtasxDistVend
         Try
             'desde.Distribuidor.ID = dlDistribuidores.SelectedValue
             'hasta.Distribuidor.ID = dlDistribuidores.SelectedValue
-            desde.Fecha = Me.CalendarExtender1.SelectedDate
-            hasta.Fecha = Me.CalendarExtender2.SelectedDate
+            desde.Fecha = DirectCast(Session("Desde"), Date)
+            hasta.Fecha = DirectCast(Session("Hasta"), Date)
             desde.Distribuidor.Cliente.ID = Me.dlClientes.SelectedValue
 
 
@@ -442,8 +439,15 @@ Public Class VtasxDistVend
     Private Sub VtasxCatProd_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
         Try
+
             Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
             Me.CalendarExtender2.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+            CalendarExtender1.SelectedDate = DirectCast(Session("Desde"), Date)
+            CalendarExtender2.SelectedDate = DirectCast(Session("Hasta"), Date)
+
+            Me.txtDesde.Text = DirectCast(Session("Desde"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+            Me.txthasta.Text = DirectCast(Session("Hasta"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
+
         Catch bex As BE.Excepcion
             Dim bitac As New Bitacora.Bitacora
             Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
@@ -519,14 +523,38 @@ Public Class VtasxDistVend
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
 
-        If Me.dlClientes.Items.Count > 0 Then
-            If Me.CalendarExtender1.SelectedDate > CalendarExtender2.SelectedDate Then
-                MostrarMensajeModal("FechaDesdeMayorFechaHasta", True)
-            Else
-                CargarGrilla()
-                DibujarTorta()
-            End If
+        Dim desde As Date
+        Dim hasta As Date
+        Dim hayerror As Boolean = False
+
+        If DateTime.TryParseExact(Me.txtDesde.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, desde) Then
+            Session("Desde") = desde
+        Else
+            MostrarMensajeModal("FechaDesdeInvalida", True, True)
+            hayerror = True
         End If
+        If DateTime.TryParseExact(Me.txthasta.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, hasta) Then
+            Session("Hasta") = hasta
+        Else
+            MostrarMensajeModal("FechaHastaInvalida", True, True)
+            hayerror = True
+        End If
+
+
+        If Not hayerror Then
+
+            If Me.dlClientes.Items.Count > 0 Then
+                If desde > hasta Then
+                    MostrarMensajeModal("FechaDesdeMayorFechaHasta", True)
+                Else
+                    CargarGrilla()
+                    DibujarTorta()
+                End If
+            End If
+
+        End If
+
+
     End Sub
 
 

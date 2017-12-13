@@ -77,13 +77,13 @@ Public Class Stock
 
             For Each v As BE.Stock In ob.Lista_Stock
                 ' Recalculo todos los digitos verificadores horizontales
-                v.DVH = dvh.calcular(v)
                 v.Distribuidor.ID = ob.Distribuidor.ID
 
                 lp.Clear()
                 lp.Add(v.Producto)
                 v.Producto = bp.ObtenerLista(lp).Find(Function(x) DirectCast(x, BE.Producto).Cliente.ID = ob.Distribuidor.Cliente.ID)
 
+                v.DVH = dvh.calcular(v)
                 d.Guardar(v)
             Next
 

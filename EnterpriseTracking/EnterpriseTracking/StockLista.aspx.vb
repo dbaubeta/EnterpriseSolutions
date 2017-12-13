@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing
+Imports System.Globalization
+
 Public Class StockLista
     Inherits System.Web.UI.Page
 
@@ -37,11 +39,12 @@ Public Class StockLista
                 Me.CalendarExtender1.EndDate = Now.Date
                 Me.CalendarExtender1.SelectedDate = Now.Date
 
+                Session("Desde") = Me.CalendarExtender1.SelectedDate
+
+
                 If dlClientes.Items.Count > 0 Then CargardlDistribuidores()
 
 
-            Else
-                CalendarExtender1.SelectedDate = DateTime.ParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
 
             End If
 
@@ -103,7 +106,7 @@ Public Class StockLista
                     Dim st As New BLL.Stock
                     Dim hastast As New BE.Stock
                     hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
-                    hastast.Fecha = Me.CalendarExtender1.SelectedDate
+                    hastast.Fecha = DirectCast(Session("Desde"), Date)
                     Dim stockcal As Long
                     stockcal = st.CalcularStock(hastast, l).Cantidad
                     dr("Stock") = stockcal
@@ -239,89 +242,134 @@ Public Class StockLista
 
     Protected Sub DibujarGrafica(p As BE.Producto)
 
-        Dim sb As New StringBuilder
-        Dim stocks(11) As Long
+        Try
+
+            Dim sb As New StringBuilder
+            Dim stocks(11) As Long
 
 
-        Dim datastr As String = "                data: ["
-        Dim labelsstr As String = "                labels: ["""
-        Dim fechainicio As Date = Me.CalendarExtender1.SelectedDate
-        For i = 11 To 0 Step -1
-            Dim st As New BLL.Stock
-            Dim hastast As New BE.Stock
-            hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
-            hastast.Fecha = fechainicio.AddMonths(i * -1)
-            If hastast.Fecha <> fechainicio Then
-                hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
-            End If
-            datastr += st.CalcularStock(hastast, p).Cantidad.ToString
-            labelsstr += obtenertextomes(hastast.Fecha.Month) + " " + hastast.Fecha.Year.ToString
-            If i = 0 Then datastr += "]," Else datastr += ","
-            If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
-        Next
+            Dim datastr As String = "                data: ["
+            Dim labelsstr As String = "                labels: ["""
+            Dim fechainicio As Date = DirectCast(Session("Desde"), Date)
+            For i = 11 To 0 Step -1
+                Dim st As New BLL.Stock
+                Dim hastast As New BE.Stock
+                hastast.Distribuidor.ID = dlDistribuidores.SelectedValue
+                hastast.Fecha = fechainicio.AddMonths(i * -1)
+                If hastast.Fecha <> fechainicio Then
+                    hastast.Fecha = ObtenerUltimodia(hastast.Fecha)
+                End If
+                datastr += st.CalcularStock(hastast, p).Cantidad.ToString
+                labelsstr += obtenertextomes(hastast.Fecha.Month) + " " + hastast.Fecha.Year.ToString
+                If i = 0 Then datastr += "]," Else datastr += ","
+                If i = 0 Then labelsstr += """]," Else labelsstr += ""","""
+            Next
 
 
-        sb.Clear()
+            sb.Clear()
 
-        sb.AppendLine("<script>")
-        sb.AppendLine("function dibujarchart() {")
-        sb.AppendLine("    var ctx = document.getElementById('myChart');")
-        sb.AppendLine("    var chart = new Chart(ctx, {")
-        sb.AppendLine("        // Tipo de Chart")
-        sb.AppendLine("        type: 'line',")
-        sb.AppendLine("        // Los datos")
-        sb.AppendLine("        data: {")
+            sb.AppendLine("<script>")
+            sb.AppendLine("function dibujarchart() {")
+            sb.AppendLine("    var ctx = document.getElementById('myChart');")
+            sb.AppendLine("    var chart = new Chart(ctx, {")
+            sb.AppendLine("        // Tipo de Chart")
+            sb.AppendLine("        type: 'line',")
+            sb.AppendLine("        // Los datos")
+            sb.AppendLine("        data: {")
 
-        sb.AppendLine(labelsstr)
+            sb.AppendLine(labelsstr)
 
-        sb.AppendLine("            datasets: [{")
-        sb.AppendLine("                label: ""Stock"",")
-        sb.AppendLine("                //backgroundColor: 'rgb(26, 109, 104)',")
-        sb.AppendLine("                borderColor: 'rgb(26, 109, 104)',")
+            sb.AppendLine("            datasets: [{")
+            sb.AppendLine("                label: ""Stock"",")
+            sb.AppendLine("                //backgroundColor: 'rgb(26, 109, 104)',")
+            sb.AppendLine("                borderColor: 'rgb(26, 109, 104)',")
 
-        sb.AppendLine(datastr)
+            sb.AppendLine(datastr)
 
-        sb.AppendLine("                tension: 0.1,")
-        sb.AppendLine("            }]")
-        sb.AppendLine("        },")
-        sb.AppendLine("        // Opciones para el chart")
-        sb.AppendLine("        options: {")
-        sb.AppendLine("            responsive: true,")
-        sb.AppendLine("            maintainAspectRatio: false,")
-        sb.AppendLine("            animation: {")
-        sb.AppendLine("                duration: 1000, // general animation time")
-        sb.AppendLine("            }")
-        sb.AppendLine("        }")
-        sb.AppendLine("    });")
-        sb.AppendLine("}")
-        sb.AppendLine("</script>")
+            sb.AppendLine("                tension: 0.1,")
+            sb.AppendLine("            }]")
+            sb.AppendLine("        },")
+            sb.AppendLine("        // Opciones para el chart")
+            sb.AppendLine("        options: {")
+            sb.AppendLine("            responsive: true,")
+            sb.AppendLine("            maintainAspectRatio: false,")
+            sb.AppendLine("            animation: {")
+            sb.AppendLine("                duration: 1000, // general animation time")
+            sb.AppendLine("            }")
+            sb.AppendLine("        }")
+            sb.AppendLine("    });")
+            sb.AppendLine("}")
+            sb.AppendLine("</script>")
 
 
-        LitChart.Text = sb.ToString
+            LitChart.Text = sb.ToString
 
-        'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
+            'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Pop", "dibujarchart();", True)
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
 
     End Sub
 
     Private Sub StockLista_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
 
-        Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
-        For i = 0 To grdStocks.Rows.Count - 1
+        Try
 
-            If grdStocks.DataKeys(i).Values(1) = "Si" Then
+            Me.CalendarExtender1.Format = Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+            CalendarExtender1.SelectedDate = DirectCast(Session("Desde"), Date)
+            Me.txtFecha.Text = DirectCast(Session("Desde"), Date).ToString(Me.CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture))
 
-                grdStocks.Rows(i).BackColor = ColorTranslator.FromHtml("#C64D45")
+            For i = 0 To grdStocks.Rows.Count - 1
 
-            End If
+                If grdStocks.DataKeys(i).Values(1) = "Si" Then
 
-        Next
+                    grdStocks.Rows(i).BackColor = ColorTranslator.FromHtml("#C64D45")
+
+                End If
+
+            Next
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
 
     End Sub
 
     Private Sub dlDistribuidores_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlDistribuidores.SelectedIndexChanged
 
-        If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+        Try
+            If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
@@ -365,17 +413,50 @@ Public Class StockLista
         Return f.ObtenerLeyenda(New BE.MensajeError(strbusqueda + "corto"), DirectCast(Session("Idioma"), BE.Idioma)).texto_Leyenda
 
 
-
     End Function
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
-        If Me.dlClientes.Items.Count > 0 Then CargarGrilla()
+
+        Try
+            Dim desde As Date
+
+            If DateTime.TryParseExact(Me.txtFecha.Text, CalendarExtender1.Format, New Globalization.CultureInfo(DirectCast(Session("Idioma"), BE.Idioma).Culture), DateTimeStyles.None, desde) Then
+                Session("Desde") = desde
+                If Me.dlClientes.Items.Count > 0 And Me.dlDistribuidores.Items.Count > 0 Then CargarGrilla()
+            Else
+                MostrarMensajeModal("FechaDesdeInvalida", True, True)
+            End If
+
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
+
     End Sub
 
 
     Private Sub dlClientes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles dlClientes.SelectedIndexChanged
 
-        CargardlDistribuidores()
+        Try
+            CargardlDistribuidores()
+        Catch bex As BE.Excepcion
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(bex.Excepcion.Message + Environment.NewLine + bex.Excepcion.StackTrace, True, False)
+        Catch ex As Exception
+            Dim bitac As New Bitacora.Bitacora
+            Dim bm As New BE.Bitacora("BIT_ERROR", Me.Page.ToString, DirectCast(Session("Usuario"), Seguridad.Usuario).Usuario.ID, ex.Message + Environment.NewLine + ex.StackTrace)
+            bitac.Guardar(bm)
+            MostrarMensajeModal(ex.Message + Environment.NewLine + ex.StackTrace, True, False)
+        End Try
 
     End Sub
 
